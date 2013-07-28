@@ -34,13 +34,21 @@ void Queue::setMoveVector(CCPoint move_vector)
 	int size = m_pCharacters->count();
 	CCAssert((size > 0), "Count of queue must larger than 0!!!");
 
-	for (int i = size - 1; i > 0; --i)
+	CCPoint newVector = ccpMult(move_vector, -1);
+	Character* pHead = getHead();
+	// 如果跟队首反方向，则不处理
+	if (newVector.x == pHead->getMoveVector().x && newVector.y == pHead->getMoveVector().y)
 	{
-		Character* character = (Character*)(m_pCharacters->objectAtIndex(i));
-		Character* characterInFront = (Character*)(m_pCharacters->objectAtIndex(i - 1));
-		character->setMoveVector(characterInFront->getMoveVector());
+		return;
 	}
-	((Character*)(m_pCharacters->objectAtIndex(0)))->setMoveVector(move_vector);
+
+	//for (int i = size - 1; i > 0; --i)
+	//{
+	//	Character* character = (Character*)(m_pCharacters->objectAtIndex(i));
+	//	Character* characterInFront = (Character*)(m_pCharacters->objectAtIndex(i - 1));
+	//	character->setMoveVector(characterInFront->getMoveVector());
+	//}
+	pHead->setMoveVector(move_vector);
 }
 
 void Queue::appendCharacter(Character* character)
