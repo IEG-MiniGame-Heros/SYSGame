@@ -6,6 +6,19 @@
 void MainGame::onEnter()
 {
 	cocos2d::CCLayer::onEnter();
+
+	///////// 所有游戏中的基础设置 /////////
+
+	// 开启触屏
+	setTouchEnabled(true);
+
+	// 获取屏幕宽度和高度
+	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+	GI.ScrrenOrigin = origin;
+	GI.ScreenWidth = visibleSize.width;
+	GI.ScreenHeight = visibleSize.height;
+	GI.ScreenCenter = ccp(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
 }
 
 void MainGame::onExit()

@@ -59,9 +59,10 @@ void Queue::appendCharacter(Character* character)
 		{
 			GI.Game->removeChild(character);
 			addChild(character);
-			character->setPosition(ccp(480, 320));
+			character->setPosition(GI.ScreenCenter);
 			character->setMoveVector(ccp(0, 1));
 			m_pCharacters->addObject(character);
+			character->setQueue(this);
 		}
 		else 
 		{
@@ -72,6 +73,7 @@ void Queue::appendCharacter(Character* character)
 			character->setPosition(getPositionBehindTail());
 			character->setMoveVector(lastCharacter->getMoveVector());
 			m_pCharacters->addObject(character);
+			character->setQueue(this);
 		}
 	}
 }
@@ -94,4 +96,9 @@ Character* Queue::getPrivousCharacter(Character* pCha) const
 	}
 
 	return NULL;
+}
+
+bool Queue::isInQueue(Character* pCha) const 
+{
+	return (m_pCharacters->indexOfObject(pCha) != CC_INVALID_INDEX);
 }

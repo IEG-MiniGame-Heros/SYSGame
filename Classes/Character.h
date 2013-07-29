@@ -3,6 +3,8 @@
 
 #include "MovingEntity.h"
 
+class Queue;
+
 class Character : public MovingEntity
 {
 public:
@@ -17,11 +19,18 @@ public:
 
 	virtual void kill();
 
+	/** 
+	 * 属于哪个队列&&设置队列
+	 */
+	Queue* getQueue() const;
+	void setQueue(Queue* pQ);
+
 protected: 
 
 	int			m_iCurHealth;		// 当前生命值
 	int			m_iMaxHealth;		// 最大生命值
 	bool		m_bIsMoving;		// 正在移动
+	Queue*		m_pQueue;			// 属于哪个队伍
 	
 };
 #endif

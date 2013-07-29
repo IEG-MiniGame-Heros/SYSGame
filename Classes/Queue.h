@@ -21,6 +21,11 @@ public:
 	Character* getHead() const;
 
 	/** 
+	 * @brief 是否在队列当中
+	 */
+	bool isInQueue(Character* pCha) const;
+
+	/** 
 	 * @brief 获取前面的队友
 	 * @param pCha 就是这货，获取它前面的队友
 	 */

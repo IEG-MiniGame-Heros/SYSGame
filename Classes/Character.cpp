@@ -6,7 +6,9 @@ void Character::onEnter()
 {
 	MovingEntity::onEnter();
 
+	m_vCurMoveVector = ccp(0, 0);
 	m_bIsMoving = false;
+	m_pQueue = NULL;
 }
 
 void Character::onExit()
@@ -23,11 +25,12 @@ bool Character::onMove()
 	}
 
 	CCPoint moveDelta = m_vCurMoveVector * GI.GridSize;
-	//CCPoint curPos = getPosition();
 	CCPoint targetPosition = getPosition() + moveDelta;
-	if (this != GI.Me->getHead())
+
+	// 如果这个不是队首
+	if (m_pQueue && (this != m_pQueue->getHead()))
 	{
-		targetPosition = GI.Me->getPrivousCharacter(this)->getPosition();
+		targetPosition = m_pQueue->getPrivousCharacter(this)->getPosition();
 	}
 
 	// 移动到目标位置之后，调用onMoveDone将m_bIsMoving置为false
@@ -52,4 +55,15 @@ void Character::kill()
 {
 }
 
+Queue* Character::getQueue() const 
+{
+	return m_pQueue;
+}
 
+void Character::setQueue(Queue* pQ) 
+{
+	if (pQ != NULL)
+	{
+		m_pQueue = pQ;
+	}
+}

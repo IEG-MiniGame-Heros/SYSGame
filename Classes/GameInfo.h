@@ -32,6 +32,12 @@ public:
 	Queue*				Me;							// 指向玩家的指针
 	float				ValidDraggedLength;			// 有效的滑动距离，在此基础上才进行滑动判定
 
+	// 屏幕
+	CCPoint				ScreenCenter;				// 屏幕中心
+	CCPoint				ScrrenOrigin;				// 屏幕原点(左下角)
+	float				ScreenWidth;				// 屏幕宽度
+	float				ScreenHeight;				// 屏幕高度
+
 	// 地图相关
 	int					MapN;						//
 	int					MapM;						// N行M列的地图

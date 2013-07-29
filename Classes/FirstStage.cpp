@@ -35,11 +35,6 @@ void FirstStage::onEnter()
 
 	GI.Game = this;
 
-	setTouchEnabled(true);
-
-	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
-
 	Queue* pQueue = Queue::create();
 	addChild(pQueue);
 	CCAssert((GI.Me == NULL), "Me is not null");
@@ -57,6 +52,11 @@ void FirstStage::onEnter()
 
 	Hero* pHero4 = Hero::create(GI.PathOfHero.c_str());
 	addChild(pHero4);
+
+	Hero* pHero5 = Hero::create(GI.PathOfHero.c_str());
+	addChild(pHero5);
+	pHero5->setPosition(ccp(GI.ScreenCenter.x + GI.GridSize * 3, GI.ScreenCenter.y + GI.GridSize * 3));
+
 
 	// 把这几个人加进队伍里面吧
 	GI.Me->appendCharacter(pHero);
