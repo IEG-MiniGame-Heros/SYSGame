@@ -28,8 +28,9 @@ public:
 public:
 
 	MainGame*			Game;						// 指向当前游戏Layer的指针
-	std::string			PathOfHero;					// 英雄的图片路径
 	Queue*				Me;							// 指向玩家的指针
+
+	std::string			PathOfHero;					// 英雄的图片路径	
 	float				ValidDraggedLength;			// 有效的滑动距离，在此基础上才进行滑动判定
 
 	// 屏幕
