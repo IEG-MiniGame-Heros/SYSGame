@@ -1,11 +1,6 @@
 #include "HelloWorldScene.h"
-#include "CCArmature/CCArmature.h"
-#include "CCArmature/utils/CCArmatureDataManager.h"
-
-USING_NS_CC;
 
 using namespace cocos2d;
-using namespace cocos2d::extension;
 
 CCScene* HelloWorld::scene()
 {
@@ -31,8 +26,6 @@ CCScene* HelloWorld::scene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-
     bool bRet = false;
     do 
     {

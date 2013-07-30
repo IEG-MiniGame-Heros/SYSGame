@@ -32,6 +32,13 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground();
+
+	/************************************************************************/
+	/*                                                                      */
+	/************************************************************************/
+	bool isDatabaseFileExist(const char* pFileName);
+
+	void copyDatabaseFile(const char* pFileName);
 };
 
 #endif  // __APP_DELEGATE_H__

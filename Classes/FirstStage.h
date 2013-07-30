@@ -2,6 +2,7 @@
 #define SYS_FIRST_STAGE
 
 #include "MainGame.h"
+#include "Database.h"
 
 class FirstStage : public MainGame
 {

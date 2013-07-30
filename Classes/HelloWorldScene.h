@@ -5,8 +5,6 @@
 
 #include "Box2D/Box2D.h"
 
-#include "chipmunk.h"
-
 #include "SimpleAudioEngine.h"
 
 class HelloWorld : public cocos2d::CCLayer
