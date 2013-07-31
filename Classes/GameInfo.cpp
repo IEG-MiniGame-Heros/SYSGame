@@ -20,7 +20,5 @@ GameInfo::GameInfo()
 	MapN = M_N;
 	MapM = M_M;
 	GridSize = 80.f;
-	memset(IsConq, 0, sizeof(IsConq));	
-	
 
 }

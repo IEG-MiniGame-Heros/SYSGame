@@ -1,11 +1,12 @@
 #ifndef SYS_MOVING_ENTITY
 #define SYS_MOVING_ENTITY
 
+#include "BaseEntity.h"
 #include "cocos2d.h"
 
 USING_NS_CC;
 
-class MovingEntity : public cocos2d::CCSprite
+class MovingEntity : public BaseEntity
 {
 public:
 

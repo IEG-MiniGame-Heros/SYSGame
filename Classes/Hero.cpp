@@ -31,3 +31,14 @@ Hero* Hero::create(const char *pszFileName)
 	CC_SAFE_DELETE(pobSprite);
 	return NULL;
 }
+
+bool Hero::init()
+{
+	if (!CCSprite::init())
+	{
+		return false;
+	}
+
+	setType(ET_Goods);
+	return true;
+}

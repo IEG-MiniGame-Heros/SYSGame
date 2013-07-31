@@ -42,7 +42,7 @@ public:
 	// 地图相关
 	int					MapN;						//
 	int					MapM;						// N行M列的地图
+	int					MapWidth;					// 地图宽度
+	int					MapHeight;					// 地图高度
 	int					GridSize;					// 地图每一小格的大小
-	bool				IsConq[M_N][M_M];			// 地图的某一格是否被占领
-	CCPoint				Grids[M_N][M_M];			// 每一格的中点
 };

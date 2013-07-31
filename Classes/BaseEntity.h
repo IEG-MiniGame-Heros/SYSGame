@@ -5,12 +5,6 @@
 
 USING_NS_CC;
 
-//enum EEntityBaseType
-//{
-//	EBT_Movable,		// 可以动的
-//	EBT_UnMovable		// 不可动的
-//};
-
 enum EEntityType
 {
 	ET_Goods,			// 物品道具类
@@ -20,15 +14,9 @@ enum EEntityType
 	ET_Max
 };
 
-class BaseEntity : public cocos2d::CCNode
+class BaseEntity : public CCSprite
 {
 public:
-
-	///** 
-	// * 基本类型,这个类是能动的还是不能动的
-	// */
-	//EEntityBaseType	getBaseType() const;
-	//void setBaseType(EEntityBaseType base_type);
 
 	/** 
 	 * 获取Entity类型
