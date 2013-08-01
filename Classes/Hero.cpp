@@ -1,10 +1,14 @@
 #include "Hero.h"
+#include "Queue.h"
+#include "EntityManager.h"
 #include "GameInfo.h"
 
 void Hero::onEnter()
 {
 	Character::onEnter();
 
+	setCurSpeed(GI.HeroInitSpeed);
+	setMaxSpeed(GI.HeroMaxSpeed);
 	schedule(schedule_selector(Hero::onUpdate));
 }
 
@@ -18,6 +22,18 @@ void Hero::onExit()
 void Hero::onUpdate(float dt)
 {
 	onMove();
+
+	// 检查有没有英雄要“吃”
+	if (m_pQueue && m_pQueue->getHead() == this)
+	{
+		BaseEntity* entity = EM.findHeroNotInQueue(this, GI.RangeToPickupHero);
+		if (entity != NULL)
+		{
+			m_pQueue->appendCharacter((Character*)(entity));
+		}
+	}
+
+	
 }
 
 Hero* Hero::create(const char *pszFileName)
@@ -32,13 +48,7 @@ Hero* Hero::create(const char *pszFileName)
 	return NULL;
 }
 
-bool Hero::init()
+Hero::Hero()
 {
-	if (!CCSprite::init())
-	{
-		return false;
-	}
-
-	setType(ET_Goods);
-	return true;
+	setType(ET_Hero);
 }

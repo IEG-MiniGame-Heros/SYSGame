@@ -29,7 +29,6 @@ protected:
 
 	int			m_iCurHealth;		// 当前生命值
 	int			m_iMaxHealth;		// 最大生命值
-	bool		m_bIsMoving;		// 正在移动
 	Queue*		m_pQueue;			// 属于哪个队伍
 	
 };

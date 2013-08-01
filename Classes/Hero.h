@@ -6,7 +6,7 @@
 class Hero : public Character 
 {
 public:
-	bool init();
+	Hero();
 
 	virtual void onEnter();
 

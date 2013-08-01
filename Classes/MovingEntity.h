@@ -23,6 +23,14 @@ public:
 
 	CCSprite* getSprite() const;
 
+	bool isMoving() const;
+
+	float getCurSpeed() const;
+	void setCurSpeed(float speed);
+
+	float getMaxSpeed() const;
+	void setMaxSpeed(float speed);
+
 
 protected:
 
@@ -31,5 +39,6 @@ protected:
 	float			m_fCurSpeed;			// 当前速度
 	CCPoint			m_vCurMoveVector;		// 移动向量
 	CCPoint			m_vLastMoveVector;      // 上一个移动向量
+	bool			m_bIsMoving;			// 正在移动
 };
 #endif

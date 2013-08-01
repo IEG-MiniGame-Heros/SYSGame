@@ -59,7 +59,7 @@ void Queue::appendCharacter(Character* character)
 		{
 			GI.Game->removeChild(character);
 			addChild(character);
-			character->setPosition(GI.ScreenCenter);
+			character->setPosition(ccp(0, 0));
 			character->setMoveVector(ccp(0, 1));
 			m_pCharacters->addObject(character);
 			character->setQueue(this);
