@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include "Comm.h"
 #include "Util.h"
 #include "cocos2d.h"
 #include "sqlite3.h"
@@ -15,6 +16,8 @@ class Database
 {
 public:
 	static string getDataBasePath();
+	static int callback(void *data, int argc, char **argv, char **azColName);
+	static int query(string sql, map<string, string> mData);
 	static int updateCoin(int currNum);
 };
 

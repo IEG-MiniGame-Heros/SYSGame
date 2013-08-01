@@ -35,7 +35,9 @@ void FirstStage::onEnter()
 	MainGame::onEnter();
 
 	CCLOG("begin Database!!");
-	int result = Database::updateCoin(100);
+	string sql = "select o.money, o.kill_num from t_user o where o.username = 'a' and o.password = 'a'";
+	map<string, string> mData;
+	int result = Database::query(sql, mData);
 	CCLOG("end Database!!  %d", result);
 
 	GI.Game = this;
