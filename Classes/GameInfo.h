@@ -36,6 +36,12 @@ public:
 	float				HeroInitSpeed;				// 英雄初始速度
 	float				HeroMaxSpeed;				// 英雄最大速度
 
+	// 怪
+	std::string			PathOfMonster;				// 怪的图片路径
+	float				MonsterInitSpeed;			// 怪的初始速度
+	float				MonsterMaxSpeed;			// 怪的最大速度
+
+
 	// 地图相关
 	int					MapN;						//
 	int					MapM;						// N行M列的地图

@@ -20,6 +20,11 @@ GameInfo::GameInfo()
 	HeroInitSpeed = 1.5f;
 	HeroMaxSpeed = 2.0f;
 
+	// ¹Ö
+	PathOfMonster = "Monster1.png";
+	MonsterInitSpeed = 1.0f;
+	MonsterMaxSpeed = 2.0f;
+
 	// µØÍ¼
 	MapN = M_N;
 	MapM = M_M;

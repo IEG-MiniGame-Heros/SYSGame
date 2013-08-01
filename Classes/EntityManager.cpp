@@ -1,5 +1,6 @@
 #include "EntityManager.h"
 #include "Hero.h"
+#include "Monster.h"
 #include "Queue.h"
 #include "FirstStage.h"
 #include "GameInfo.h"
@@ -41,6 +42,31 @@ bool EntityManager::removeAHero(Hero* pHero)
 	{
 		GI.Game->removeChild(pHero);
 		m_pAllEntities->removeObject(pHero);
+		return true;
+	}
+	return false;
+}
+
+Monster* EntityManager::addAMonster(CCPoint pos)
+{
+	if (GI.Game)
+	{
+		Monster* pMonster = Monster::create(GI.PathOfMonster.c_str());
+		GI.Game->addChild(pMonster);
+		pMonster->setPosition(pos);
+		m_pAllEntities->addObject(pMonster);
+		return pMonster;
+	}
+
+	return NULL;
+}
+
+bool EntityManager::removeAMonster(Monster* pMonster)
+{
+	if (pMonster && GI.Game)
+	{
+		GI.Game->removeChild(pMonster);
+		m_pAllEntities->removeObject(pMonster);
 		return true;
 	}
 	return false;

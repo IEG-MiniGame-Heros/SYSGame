@@ -9,6 +9,7 @@
 USING_NS_CC;
 
 class Hero;
+class Monster;
 
 class EntityManager
 {
@@ -22,6 +23,10 @@ public:
 
 	Hero* addAHero(CCPoint pos);
 	bool removeAHero(Hero* pHero);
+
+	Monster* addAMonster(CCPoint pos);
+	bool removeAMonster(Monster* pMonster);
+
 
 	/// Find Entity Begin
 	////////////////////////
