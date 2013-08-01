@@ -34,8 +34,7 @@ void FirstStage::onEnter()
 	MainGame::onEnter();
 
 	CCLOG("begin Database!!");
-	map<string, string> m;
-	int result = Database::update("123", m);
+	int result = Database::updateCoin(100);
 	CCLOG("end Database!!  %d", result);
 
 	GI.Game = this;
