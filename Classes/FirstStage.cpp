@@ -35,9 +35,10 @@ void FirstStage::onEnter()
 	MainGame::onEnter();
 
 	CCLOG("begin Database!!");
-	string sql = "select o.money, o.kill_num from t_user o where o.username = 'a' and o.password = 'a'";
-	map<string, string> mData;
-	int result = Database::query(sql, mData);
+	string sql = "select * from t_item";
+	vector<map<string, string> > vData;
+	//map<string, string> mData;
+	int result = Database::query(sql, vData);
 	CCLOG("end Database!!  %d", result);
 
 	GI.Game = this;
