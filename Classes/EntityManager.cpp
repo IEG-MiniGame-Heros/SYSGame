@@ -126,5 +126,20 @@ Hero* EntityManager::findHeroNotInQueue(BaseEntity* pMe, float range)
 
 CCArray* EntityManager::findAllEntitiesInRange(BaseEntity* pMe, float range, EEntityType type)
 {
-	return NULL;
+	CCArray* ret = CCArray::create();
+	CCObject* tObject;
+
+	CCARRAY_FOREACH(m_pAllEntities, tObject)
+	{
+		BaseEntity* tEntity = (BaseEntity*)(tObject);
+		if (tEntity != pMe && tEntity->getType() == type)
+		{
+			float dist_sqrt = pMe->getPosition().getDistanceSq(tEntity->getPosition());
+			if (dist_sqrt < range * range + 1e-6)
+			{
+				ret->addObject(tEntity);
+			}
+		}
+	}
+	return ret;
 }
