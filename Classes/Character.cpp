@@ -35,7 +35,7 @@ bool Character::onMove()
 
 	// 移动到目标位置之后，调用onMoveDone将m_bIsMoving置为false
 	CCAction* action = CCSequence::create(
-		CCMoveTo::create(1.f, targetPosition),
+		CCMoveTo::create(1.f / getCurSpeed(), targetPosition),
 		CCCallFunc::create(this, callfunc_selector(Character::onMoveDone)),
 		NULL
 		);

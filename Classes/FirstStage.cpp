@@ -1,6 +1,7 @@
 #include "FirstStage.h"
 #include "Hero.h"
 #include "Queue.h"
+#include "EntityManager.h"
 #include "GameInfo.h"
 
 #include "cocos2d.h"
@@ -39,34 +40,31 @@ void FirstStage::onEnter()
 
 	GI.Game = this;
 
+	// 获取屏幕宽度和高度
+	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+	CCPoint center = ccp(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
+
 	Queue* pQueue = Queue::create();
 	addChild(pQueue);
 	CCAssert((GI.Me == NULL), "Me is not null");
 	GI.Me = pQueue;
 	GI.Me->retain();
 
-	Hero* pHero = Hero::create(GI.PathOfHero.c_str());
-	addChild(pHero);
+	Hero* p1 = EM.addAHero(ccp(0, 0));
+	Hero* p2 = EM.addAHero(ccp(0, 0));
+	Hero* p3 = EM.addAHero(ccp(0, 0));
+	Hero* p4 = EM.addAHero(ccp(0, 0));
+	Hero* p5 = EM.addAHero(ccp(0, 0));
 
-	Hero* pHero2 = Hero::create(GI.PathOfHero.c_str());
-	addChild(pHero2);
-
-	Hero* pHero3 = Hero::create(GI.PathOfHero.c_str());
-	addChild(pHero3);
-
-	Hero* pHero4 = Hero::create(GI.PathOfHero.c_str());
-	addChild(pHero4);
-
-	Hero* pHero5 = Hero::create(GI.PathOfHero.c_str());
-	addChild(pHero5);
-	pHero5->setPosition(ccp(GI.ScreenCenter.x + GI.GridSize * 3, GI.ScreenCenter.y + GI.GridSize * 3));
+	p5->setPosition(ccp(center.x + GI.GridSize * 3, center.y + GI.GridSize * 3));
 
 
 	// 把这几个人加进队伍里面吧
-	GI.Me->appendCharacter(pHero);
-	GI.Me->appendCharacter(pHero2);
-	GI.Me->appendCharacter(pHero3);
-	GI.Me->appendCharacter(pHero4);
+	GI.Me->appendCharacter(p1);
+	GI.Me->appendCharacter(p2);
+	GI.Me->appendCharacter(p3);
+	GI.Me->appendCharacter(p4);
 }
 
 void FirstStage::onExit()

@@ -9,12 +9,12 @@ USING_NS_CC;
 class Goods : public BaseEntity
 {
 public:
+	Goods();
+
 	virtual void onEnter();
 	virtual void onExit();
 
 	virtual void use();
-
-	bool init();
 
 protected:
 

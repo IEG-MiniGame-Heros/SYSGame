@@ -1,12 +1,12 @@
-#ifndef SYS_HERO
-#define SYS_HERO
+#ifndef SYS_MONSTER
+#define SYS_MONSTER
 
 #include "Character.h"
 
-class Hero : public Character 
+class Monster : public Character
 {
 public:
-	Hero();
+	Monster();
 
 	virtual void onEnter();
 
@@ -14,9 +14,10 @@ public:
 
 	virtual void onUpdate(float dt);
 
-	static Hero* create(const char *pszFileName);
+	static Monster* create(const char *pszFileName);
 
 protected:
 
 };
+
 #endif
