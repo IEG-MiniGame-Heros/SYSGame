@@ -34,12 +34,13 @@ void FirstStage::onEnter()
 {
 	MainGame::onEnter();
 
+#if 0
 	CCLOG("begin Database!!");
 	string sql = "select * from t_item";
 	vector<map<string, string> > vData;
-	//map<string, string> mData;
 	int result = Database::query(sql, vData);
 	CCLOG("end Database!!  %d", result);
+#endif
 
 	GI.Game = this;
 

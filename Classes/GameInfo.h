@@ -1,4 +1,10 @@
+#ifndef SYS_GAMEINFO
+#define SYS_GAMEINFO
+
 #include "cocos2d.h"
+#include "Comm.h"
+#include "Util.h"
+#include "Database.h"
 
 #include <string>
 
@@ -24,6 +30,7 @@ public:
 	GameInfo();
 
 public:
+	void initData();
 
 public:
 
@@ -51,4 +58,9 @@ public:
 
 	// 其他
 	float				ValidDraggedLength;			// 有效的滑动距离，在此基础上才进行滑动判定
+
+private:
+	TConfig stConfig;
 };
+
+#endif

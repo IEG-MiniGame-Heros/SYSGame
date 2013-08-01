@@ -18,7 +18,7 @@ public:
 
 	// usage:StringToNumber<Type> ( String )
 	template <typename T>
-	T StringToNumber ( const string &Text )
+	static T StringToNumber ( const string &Text )
 	{
 		istringstream ss(Text);
 		T result;

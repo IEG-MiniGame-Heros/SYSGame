@@ -29,7 +29,7 @@ int Database::callback(void *data, int argc, char **argv, char **azColName)
 	return 0;
 }
 
-int Database::query(string sql, vector<map<string, string> > vData)
+int Database::query(string sql, vector<map<string, string> > &vData)
 {
 	int result = SQLITE_ERROR;
 	sqlite3 *db;
@@ -57,6 +57,7 @@ int Database::query(string sql, vector<map<string, string> > vData)
 		}else{
 			CCLOG("Operation done successfully");
 		}
+#if 0
 		CCLOG("--------- %s ---------", sql.c_str());
 		int size = vData.size();
 		for(int i = 0; i < size; i++)
@@ -69,6 +70,7 @@ int Database::query(string sql, vector<map<string, string> > vData)
 			CCLOG("----------------");
 		}
 		CCLOG("--------- end ---------");
+#endif
 		result = SQLITE_OK;
 	} while (0);
 
