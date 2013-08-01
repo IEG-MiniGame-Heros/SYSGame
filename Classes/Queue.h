@@ -39,15 +39,29 @@ public:
 	 */
 	void setMoveVector(CCPoint move_vector);
 
+	/** 
+	 * @brief 将一个Character加在后面
+	 */
 	void appendCharacter(Character* character);
+
+	/** 
+	 * @brief 将一个Character从队列中移除
+	 */
+	bool removeFromQueue(Character* character);
 
 	/** 
 	 * @brief 返回一个队尾后面的位置
 	 */
 	CCPoint getPositionBehindTail() const;
 
+	/// Test begin
+public:
+	void onUpdate(float dt);
+	/// Test End
+
 protected:
 	CCArray*		m_pCharacters;			// 指向队伍的指针
+
 
 };
 

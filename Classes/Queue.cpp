@@ -9,11 +9,19 @@ void Queue::onEnter()
 
 	m_pCharacters = CCArray::create();
 	m_pCharacters->retain();
+
+	//schedule(schedule_selector(Queue::onUpdate), 7, 0, 5);
+}
+
+void Queue::onUpdate(float dt)
+{
+	removeFromQueue((Character*)(m_pCharacters->objectAtIndex(1)));
 }
 
 void Queue::onExit()
 {
 	m_pCharacters->release();
+	//unschedule(schedule_selector(Queue::onUpdate));
 
 	CCNode::onExit();
 }
@@ -101,4 +109,28 @@ Character* Queue::getPrivousCharacter(Character* pCha) const
 bool Queue::isInQueue(Character* pCha) const 
 {
 	return (m_pCharacters->indexOfObject(pCha) != CC_INVALID_INDEX);
+}
+
+bool Queue::removeFromQueue(Character* character)
+{
+	if (!isInQueue(character))
+	{
+		return false;
+	}
+
+	//m_pCharacters->removeObject(character);
+	int idx = m_pCharacters->indexOfObject(character);
+	int size = m_pCharacters->count();
+	for (int i = size - 1; i > idx; --i)
+	{
+		Character* character = (Character*)(m_pCharacters->objectAtIndex(i));
+		Character* characterInFront = (Character*)(m_pCharacters->objectAtIndex(i - 1));
+		character->setMoveVector(characterInFront->getMoveVector());
+		character->setPosition(characterInFront->getPosition());
+	}
+
+	m_pCharacters->removeObject(character);
+	removeChild(character);
+
+	return true;
 }

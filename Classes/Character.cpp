@@ -31,6 +31,7 @@ bool Character::onMove()
 	if (m_pQueue && (this != m_pQueue->getHead()))
 	{
 		targetPosition = m_pQueue->getPrivousCharacter(this)->getPosition();
+		setMoveVector(m_pQueue->getPrivousCharacter(this)->getMoveVector());
 	}
 
 	// 移动到目标位置之后，调用onMoveDone将m_bIsMoving置为false
