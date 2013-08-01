@@ -1,0 +1,92 @@
+#ifndef SYS_COMM
+#define SYS_COMM
+
+#include <string>
+#include <vector>
+#include <map>
+using namespace std;
+
+// 物品类型枚举
+enum EItemType
+{
+	kMoney, // 金币
+	kStageItem, // 场景道具
+	kOthers // 其他
+};
+
+// 游戏模式美剧
+enum EGameMode
+{
+	kEndlessMode, // 无尽模式
+	kLevelMode // 过关模式
+};
+
+// 物品结构
+struct TItem
+{
+	string sItemName; // 物品名称
+	string sDescribe; // 物品描述
+	EItemType eType; // 物品类型
+	int iDuration; // 物品效果持续时间
+	int iExistTime; // 场景道具在场景中保留的时间
+	string sResourcePath; // 物品对应的图片资源路径(有多个文件的话,用;分隔)
+};
+
+// 怪物奖励结构
+struct TReward
+{
+	TItem stItem; // 掉落的物品
+	int iWeight; // 掉落物品的权重
+};
+
+// 技能结构
+struct TSkill
+{
+	string sSkillName; // 技能名称
+	int iDamage; // 技能上海
+	int iSkillCD; // 技能CD
+	string sResourcePath; // 技能对应的图片资源路径(有多个文件的话,用;分隔)
+};
+
+// 怪物结构
+struct TMonster
+{
+	string sMonsterName; // 怪物名称
+	int iMoveSpeed; // 移动速度
+	int iHP; // 生命值
+	TSkill stSkill; // 技能
+	string sResourcePath; // 怪物对应的图片资源路径(有多个文件的话,用;分隔)
+	vector<TReward> vReward; // 奖励列表
+};
+
+// 英雄结构
+struct THero
+{
+	string sHeroName; // 英雄名称
+	int iMoveSpeed; // 移动速度
+	int iHP; // 生命值
+	TSkill stSkill; // 技能
+	string sResourcePath; // 技能对应的图片资源路径(有多个文件的话,用;分隔)
+};
+
+// 刷怪频率结构
+struct TFrequency
+{
+	int iMonsterMin; // 击杀怪物条件的下限
+	int iMonsterMax; // 击杀怪物条件的上限
+	int iRefreshInterval; // 刷新时间间隔(单位:s)
+	int iRefreshNum; // 刷新时间间隔内刷怪的数量
+};
+
+// 地图结构
+struct TMap
+{
+	string sMapName; // 地图名称
+	int iNeedKillNum; // 闯关模式通关需要杀怪的数量
+	string sResourcePath; // 对应的地图资源路径
+	map<EGameMode, TFrequency> mFrequency; // 地图刷怪,与当前的游戏模式相关
+
+};
+
+
+#endif
