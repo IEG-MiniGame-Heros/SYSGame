@@ -35,6 +35,7 @@ struct TItem
 	EItemType eType; // 物品类型
 	int iDuration; // 物品效果持续时间
 	int iExistTime; // 场景道具在场景中保留的时间
+	int iValue; // 价值
 	string sResourcePath; // 物品对应的图片资源路径(有多个文件的话,用;分隔)
 };
 
@@ -63,6 +64,7 @@ struct TMonster
 	TSkill stSkill; // 技能
 	string sResourcePath; // 怪物对应的图片资源路径(有多个文件的话,用;分隔)
 	vector<TReward> vReward; // 奖励列表
+	int iAttackRange; // 攻击范围
 };
 
 // 英雄结构
@@ -73,11 +75,13 @@ struct THero
 	int iHP; // 生命值
 	TSkill stSkill; // 技能
 	string sResourcePath; // 技能对应的图片资源路径(有多个文件的话,用;分隔)
+	int iAttackRange; // 攻击范围
 };
 
 // 刷怪频率结构
 struct TFrequency
 {
+	EGameMode eGameMode; // 游戏模式
 	int iMonsterMin; // 击杀怪物条件的下限
 	int iMonsterMax; // 击杀怪物条件的上限
 	int iRefreshInterval; // 刷新时间间隔(单位:s)
@@ -90,7 +94,7 @@ struct TMap
 	string sMapName; // 地图名称
 	int iNeedKillNum; // 闯关模式通关需要杀怪的数量
 	string sResourcePath; // 对应的地图资源路径
-	map<EGameMode, TFrequency> mFrequency; // 地图刷怪,与当前的游戏模式相关
+	vector<TFrequency> vFrequency; // 地图刷怪
 };
 
 // 配置结构
@@ -101,6 +105,9 @@ struct TConfig
 	int iSpeedIncrement; // 每增加一个英雄,要增加的速度
 	int iLifeNum; // 闯关模式时的生命数
 	int iRebornCost; // 闯关模式重生消耗的金币数
+	float fTimeCoefficient; // 时间得分系数
+	float fCoinCoefficient; // 金币得分系数
+	float fMonsterCoefficient; // 怪物得分系数
 };
 
 // 用户结构

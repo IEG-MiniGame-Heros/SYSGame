@@ -29,8 +29,6 @@ public:
 
 	GameInfo();
 
-public:
-	void initData();
 
 public:
 
@@ -59,8 +57,20 @@ public:
 	// 其他
 	float				ValidDraggedLength;			// 有效的滑动距离，在此基础上才进行滑动判定
 
+public:
+	void initData();
+	TConfig getSystemConfig();
+	vector<TMap> getMapConfig();
+	vector<THero> getHeroConfig();
+	vector<TMonster> getMonsterConfig();
+	vector<TItem> getItemConfig();
+
 private:
-	TConfig stConfig;
+	TConfig stSystemConfig; // 系统配置
+	vector<TMap> vMapConfig; // 地图配置列表
+	vector<THero> vHeroConfig; // 英雄配置列表
+	vector<TMonster> vMonsterConfig; // 怪物配置列表
+	vector<TItem> vItemConfig; // 物品配置列表
 };
 
 #endif
