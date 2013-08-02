@@ -27,9 +27,10 @@ public:
 
 protected: 
 
-	int			m_iCurHealth;		// 当前生命值
-	int			m_iMaxHealth;		// 最大生命值
-	Queue*		m_pQueue;			// 属于哪个队伍
+	int				m_iCurHealth;		// 当前生命值
+	int				m_iMaxHealth;		// 最大生命值
+	Queue*			m_pQueue;			// 属于哪个队伍
+	CCAnimation*	m_pWalkAnim[4];		// 行走动画
 	
 };
 #endif

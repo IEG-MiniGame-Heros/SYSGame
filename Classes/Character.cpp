@@ -34,9 +34,12 @@ bool Character::onMove()
 		setMoveVector(m_pQueue->getPrivousCharacter(this)->getMoveVector());
 	}
 
-	// 移动到目标位置之后，调用onMoveDone将m_bIsMoving置为false
+	// 移动到目标位置之后，调用onMoveDone将m_bIsMoving置为false	
 	CCAction* action = CCSequence::create(
-		CCMoveTo::create(1.f / getCurSpeed(), targetPosition),
+		CCSpawn::create(
+			CCMoveTo::create(1.f / getCurSpeed(), targetPosition),
+			CCAnimate::create(m_pWalkAnim[0]),			
+			NULL),
 		CCCallFunc::create(this, callfunc_selector(Character::onMoveDone)),
 		NULL
 		);
