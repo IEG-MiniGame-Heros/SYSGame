@@ -1,6 +1,8 @@
 #include "FirstStage.h"
 #include "Hero.h"
 #include "Queue.h"
+#include "FireBall.h"
+#include "SkillFireAttack.h"
 #include "EntityManager.h"
 #include "GameInfo.h"
 
@@ -41,6 +43,12 @@ void FirstStage::onEnter()
 	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 	CCPoint center = ccp(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
 
+	CCTMXTiledMap *map = CCTMXTiledMap::create("TileMaps/orthogonal-test-zorder.tmx");
+	addChild(map, 0, 1);
+	map->setPosition(ccp(0, 0));
+	
+
+
 	Queue* pQueue = Queue::create();
 	addChild(pQueue);
 	CCAssert((GI.Me == NULL), "Me is not null");
@@ -61,6 +69,10 @@ void FirstStage::onEnter()
 	GI.Me->appendCharacter(p2);
 	GI.Me->appendCharacter(p3);
 	GI.Me->appendCharacter(p4);
+
+	Monster* m1 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 3, GI.GridSize * 12));
+	//FireBall* b1 = (FireBall*)EM.addAnEffect(ccp(0, 0) + ccp(GI.GridSize * 2, GI.GridSize * 10), EET_FireBall);
+	p1->addChild(SkillFireAttack::create());
 }
 
 void FirstStage::onExit()

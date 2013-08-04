@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "BaseEntity.h"
+#include "Comm.h"
 
 #define EM (EntityManager::instance())
 
@@ -10,6 +11,7 @@ USING_NS_CC;
 
 class Hero;
 class Monster;
+class Effect;
 
 class EntityManager
 {
@@ -19,14 +21,16 @@ public:
 
 	static EntityManager& instance();
 
-	CCArray* getAllEntities() const;
+	//CCArray* getAllEntities() const;
+
+	/** 
+	 * 移除一个对象
+	 */
+	void removeAnEntity(BaseEntity* entity, EEntityType);
 
 	Hero* addAHero(CCPoint pos);
-	bool removeAHero(Hero* pHero);
-
 	Monster* addAMonster(CCPoint pos);
-	bool removeAMonster(Monster* pMonster);
-
+	Effect* addAnEffect(CCPoint pos, EEffectType type, CCPoint target_pos);
 
 	/// Find Entity Begin
 	////////////////////////
@@ -54,7 +58,14 @@ public:
 
 protected:
 
-	CCArray* m_pAllEntities;
+	CCArray* getArrayByType(EEntityType type) const;
+
+protected:
+
+	CCArray* m_pAllHeros;
+	CCArray* m_pAllMonsters;
+	CCArray* m_pAllGoods;
+	CCArray* m_pAllEffects;
 };
 
 #endif

@@ -1,7 +1,10 @@
 #include "Queue.h"
 #include "Character.h"
 #include "FirstStage.h"
+#include "EntityManager.h"
 #include "GameInfo.h"
+
+#define TEST_REMOVE_FROM_QUEUE 0
 
 void Queue::onEnter()
 {
@@ -10,7 +13,9 @@ void Queue::onEnter()
 	m_pCharacters = CCArray::create();
 	m_pCharacters->retain();
 
-	//schedule(schedule_selector(Queue::onUpdate), 7, 0, 5);
+#if TEST_REMOVE_FROM_QUEUE
+	schedule(schedule_selector(Queue::onUpdate), 7, 0, 5);
+#endif
 }
 
 void Queue::onUpdate(float dt)
@@ -21,7 +26,10 @@ void Queue::onUpdate(float dt)
 void Queue::onExit()
 {
 	m_pCharacters->release();
-	//unschedule(schedule_selector(Queue::onUpdate));
+
+#if TEST_REMOVE_FROM_QUEUE
+	unschedule(schedule_selector(Queue::onUpdate));
+#endif
 
 	CCNode::onExit();
 }
@@ -130,7 +138,8 @@ bool Queue::removeFromQueue(Character* character)
 	}
 
 	m_pCharacters->removeObject(character);
-	removeChild(character);
+	//removeChild(character);
+	EM.removeAnEntity(character, character->getType());
 
 	return true;
 }

@@ -1,5 +1,6 @@
 #include "Character.h"
 #include "Queue.h"
+#include "EntityManager.h"
 #include "GameInfo.h"
 
 void Character::onEnter()
@@ -57,6 +58,18 @@ void Character::onMoveDone()
 
 void Character::kill() 
 {
+	// 在队列之中
+	if (m_pQueue)
+	{
+		m_pQueue->removeFromQueue(this);
+	}
+	else
+	{
+		EM.removeAnEntity(this, getType());
+	}
+
+	// 然后，播放死亡动画
+	////////////////////////////
 }
 
 Queue* Character::getQueue() const 
@@ -69,5 +82,47 @@ void Character::setQueue(Queue* pQ)
 	if (pQ != NULL)
 	{
 		m_pQueue = pQ;
+	}
+}
+
+EEntityType Character::getEnemyType() const 
+{
+	return (getType() == ET_Hero ? ET_Monster : ET_Hero);
+}
+
+int Character::getCurHealth() const 
+{
+	return m_iCurHealth;
+}
+
+void Character::setCurHealth(int health)
+{
+	m_iCurHealth = health;
+	if (m_iCurHealth < 0)
+	{
+		m_iCurHealth = 0;
+	}
+}
+
+int Character::getMaxHealth() const 
+{
+	return m_iMaxHealth;
+}
+
+void Character::setMaxHealth(int max_health)
+{
+	m_iMaxHealth = max_health;
+}
+
+void Character::getHarmed(int damage)
+{
+	if (damage > 0)
+	{
+		m_iCurHealth -= damage;
+		// 如果挂了
+		if (m_iCurHealth <= 0)
+		{
+			kill();
+		}
 	}
 }

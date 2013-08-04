@@ -25,6 +25,19 @@ enum EGameMode
 	kLevelMode = 2 // 过关模式
 };
 
+// 特效类型
+enum EEffectType
+{
+	EET_FireBall	=	1,	// 火球
+};
+
+// 物品类型
+enum EGoodType
+{
+	EGT_Coin		=	1,	// 金币
+	EGT_BloodSupply	=	2,	// 血包
+};
+
 
 // -------------------------------- 公共结构 --------------------------------
 // 物品结构

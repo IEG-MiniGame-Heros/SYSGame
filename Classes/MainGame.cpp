@@ -20,7 +20,7 @@ void MainGame::onExit()
 
 void MainGame::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
 {
-	CCLog("ccTouchesBegan");
+	//CCLog("ccTouchesBegan");
 	CCSetIterator it = pTouches->begin();
 	CCTouch* touch = (CCTouch*)(*it);
 	m_tBeginPos = touch->getLocation();  

@@ -12,6 +12,8 @@ void Monster::onEnter()
 
 	setCurSpeed(GI.MonsterInitSpeed);
 	setMaxSpeed(GI.MonsterMaxSpeed);
+	setCurHealth(100);
+	setMaxHealth(100);
 }
 
 void Monster::onExit()
