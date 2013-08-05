@@ -20,6 +20,8 @@ void Hero::onEnter()
 	m_pWalkAnim[0]->addSpriteFrameWithFileName("Hero1_1.png");
 	m_pWalkAnim[0]->addSpriteFrameWithFileName("Hero1_2.png");
 	m_pWalkAnim[0]->setDelayPerUnit(0.5 / getCurSpeed());
+	//m_pWalkAnim[0]->setLoops(2);
+	
 }
 
 void Hero::onExit()
@@ -45,7 +47,7 @@ void Hero::onUpdate(float dt)
 			m_pQueue->appendCharacter((Character*)(entity));
 		}
 	}
-
+	
 	
 }
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="40" tilewidth="20" tileheight="20">
+ <tileset firstgid="1" name="Map1" tilewidth="20" tileheight="20">
+  <image source="./Map1.png" width="1000" height="1000"/>
+ </tileset>
+ <layer name="块层 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJy92GdwlHUeB/CE3SUJRUVURJokBEhCCy10VOQsHCBHLwEBERK6ip6FA+ToJKGFltAF7I4dRKlKLyKo5zm2Uc85Pe/s0rnPjrx+nHtxz4vP7Ox+J7vf/Hd/v32SxISEhDJEiBKjLEkkk0I5ylOBilxGFa6lKtdRjerUoCa1qE0qadQhnbrUoz4ZZJJFAxrSiMY0IZtmNKcFLcmhFa1pQ1va0Z4OdOQGbuN2uvBHutKN7txBD3rSi970oS/96M8ABjKIXAYzhDsZyjCGM4K7Gcko8shnNGMYyzjGM4GJ3MPDPMJk/sIUpjKNR5nODGYyi9nMYS7zmE8BhRSxgIUsYjFLKGYZy1nB+v+jTf+jvezjAAc5xMn47+WDWEAhRSxgIYsiwdlillDMUpaxnBWspIRSVrGaNaxlHevZwGNs5F09TnGas5zjfPw8ExMStst3sJNd7GYPb0aCs7fYyz72c4CDHOIwRzjKMd7mOO9wgpPxTrzH+2TokUkWtd1PJS3+3O5/5/Z7fuBHfuJnfokEZ79yitOc4SznOM8FLl5aEImUIUKUGGVJIpkUBuoxiFx6+rle9I4/t/up8jTqkE5d6lE/GpxlkEkWDWhIIxrThGya0ozmtKAlObSiNW1oS4EehRQxQ6+ZzCLLIuwl700f+tKP/gyIBmcDGUQugxnCnQxlGMO5ixHczUhGkUc+oxnDWHbotZNdvKrXFraSq99M+SxmM4e5zGN+NDgroJAiFrCQRSxmCcUsZRnLWcFKSihlFatZw5e6/IOv+Cdf8018JvXbIt/Ka2zjdd5gezQ428FOdrGbPbzJW+xlH/s5wEEOcZgjHOUYb3OcKlxLVapRnRrx59bva7ff8C++5d/8h++iwdn3/MCP/MTP/MKvnOI0ZzjLOc5zgYvEv1QTKUOE2zx2O13oSje6x59bv+ryGtSkFtdTm9RYcJZGHdKpSz3qk0EmWTSgIY1oTBOyaUozmtOCh3V5hMlMYSrTSI8Ez0BY+/kZr/Usz/E8L/BivE8keAbC2s+feK1P+YzP+SI+M/E+keAzCms/V/IeX0llruYaqrAtEnxGYe3nTrrcTGdu4db4zPDt75xRWPt5ki738wAP8lB8ZuIzGQ0+o7D282ZdHucJnuJpnqFHNPiMwtrPH+jydz7kIz7mE6b/zhmFtZ/L+wOoAhW5nCuoxMvR4PkNaz+316UDHbmRm+jEV9HwdlzQ52+8LhOYyL3cxySqxsLbcUHfH+t0Wc8GNrKJzXSJhbfjgs72hC4neZf3+RsfMDkW3o4LOttYksdIIoVylOe5WHg7Luhsc3RpRWva0o72fBYL7xolKMvTJZ/RjGUc46lcNrz5DcpKdCllFWtYyzo6lw1vfoOyI7oc5RjHeYcTl97fsOY3KLt46Z9niUSIEkv+7f0Na36DsmxdmtKMFrQkJ/m39zes+Q3KhutyFyMYySjyyE8O7xolKCvWYynLWMFKSihNDu8aJSjbp8d+DnCIwxzhaHJ41yhB2Wk9znCW81zgYnxGUsw6SSSTQjnKU4GKXMblXEElrqQyV3E111CN6tSgJrW4ntqkkkYd0qlLPeqTQSZZNKAhjWlCNjm0ojVtaEs72tOBjtzAjdxEJ26mM3/gFm6lK93ozh304E/0pBe96UNf+tGfAQxkELkMZghDGcZw8shnNGMYyzjGM4GJ3MO93Mck7ucB/syDPMQUpjKNR5nOX5nBTGYxmznMZR7zKaCQIhawkMUsoZgSSlnFatawlnWsZwOPsZFNbOZxnuBJnuJpnucFXuQlXuYVXmULW3mNbbzOG2xnBzvZxW728F8UcjU5
+  </data>
+ </layer>
+</map>

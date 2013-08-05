@@ -19,6 +19,7 @@ void Character::onExit()
 
 bool Character::onMove()
 {
+	//this->runAction((GI.Me->getHead()));
 	// 正在移动中，请勿打扰>_<
 	if (m_bIsMoving)
 	{
@@ -44,9 +45,7 @@ bool Character::onMove()
 		CCCallFunc::create(this, callfunc_selector(Character::onMoveDone)),
 		NULL
 		);
-
 	this->runAction(action);
-
 	return (m_bIsMoving = true);
 }
 

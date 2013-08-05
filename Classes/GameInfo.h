@@ -46,8 +46,12 @@ public:
 	float				MonsterInitSpeed;			// 怪的初始速度
 	float				MonsterMaxSpeed;			// 怪的最大速度
 
+	// 场景
+	CCLayer*			currentLayer;				// 每一关的切换都要对这个场景进行赋值，以跟随英雄移动
+													// 跟随移动的代码在FirstStage的update函数中
 
 	// 地图相关
+	CCTMXTiledMap*		Map;						// 地图的引用
 	int					MapN;						//
 	int					MapM;						// N行M列的地图
 	int					MapWidth;					// 地图宽度
