@@ -73,15 +73,20 @@ void FirstStage::onEnter()
 	GI.Me->appendCharacter(p4);
 
 	Monster* m1 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 3, GI.GridSize * 12));
-	//FireBall* b1 = (FireBall*)EM.addAnEffect(ccp(0, 0) + ccp(GI.GridSize * 2, GI.GridSize * 10), EET_FireBall);
+	Monster* m2 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 7, GI.GridSize * 13));
+	Monster* m3 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 12, GI.GridSize * 5));
+	
+	/// 测试，给第一个英雄增加一个技能
 	p1->addChild(SkillFireAttack::create());
 
 	// 更新Layer，让Layer跟随精灵移动
-	this->schedule(schedule_selector(FirstStage::updateLayer), 0.01);
+	this->schedule(schedule_selector(FirstStage::updateLayer));
 }
 
 void FirstStage::onExit()
 {
+	unschedule(schedule_selector(FirstStage::updateLayer));
+
 	GI.Me->release();
 	GI.Me = NULL;
 	MainGame::onExit();
