@@ -1,0 +1,11 @@
+.separator ","
+.read create_table.sql
+insert into t_user values(1, 0, 0, 'a', 'a');
+.import 地图配置表.csv t_map
+.import 怪物奖励配置表.csv t_reward
+.import 怪物配置表.csv t_monster
+.import 技能配置表.csv t_skill
+.import 刷怪配置表.csv t_frequency
+.import 物品配置表.csv t_item
+.import 系统参数配置表.csv t_config
+.import 英雄配置表.csv t_hero
