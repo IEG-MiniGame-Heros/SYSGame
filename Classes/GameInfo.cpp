@@ -42,6 +42,8 @@ void GameInfo::initData()
 				stSystemConfig.fCoinCoefficient = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "monster_coefficient")
 				stSystemConfig.fMonsterCoefficient = Util::StringToNumber<float>(iter->second);
+			if (iter->first == "flashing_time")
+				stSystemConfig.fFlashingTime = Util::StringToNumber<float>(iter->second);
 			CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
 		}
 		CCLOG("-------------");

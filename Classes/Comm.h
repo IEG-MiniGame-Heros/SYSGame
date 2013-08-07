@@ -129,6 +129,7 @@ struct TConfig
 	float fTimeCoefficient; // 时间得分系数
 	float fCoinCoefficient; // 金币得分系数
 	float fMonsterCoefficient; // 怪物得分系数
+	float fFlashingTime; // 英雄或物品消失前的闪烁时间
 };
 
 // 用户结构
