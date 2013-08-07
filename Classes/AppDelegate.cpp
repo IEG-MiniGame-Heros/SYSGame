@@ -3,6 +3,7 @@
 #include "AppDelegate.h"
 #include "FirstStage.h"
 #include "LoginScrene.h"
+#include "SelectHeroScrene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace CocosDenshion;

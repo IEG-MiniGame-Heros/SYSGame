@@ -1,4 +1,5 @@
 #include "LoginScrene.h"
+#include "SelectHeroScrene.h"
 
 bool LoginScrene::init()
 {
@@ -37,5 +38,5 @@ CCScene* LoginScrene::scene()
 
 void LoginScrene::tbLoginCallback(cocos2d::CCObject *pSender)
 {
-
+	CCDirector::sharedDirector()->replaceScene(SelectHeroScrene::scene());
 }
