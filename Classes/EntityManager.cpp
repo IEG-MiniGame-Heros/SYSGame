@@ -62,6 +62,10 @@ Monster* EntityManager::addAMonster(CCPoint pos)
 
 BaseEntity* EntityManager::findEntityInRange(BaseEntity* pMe, float range, EEntityType type)
 {
+	if (!pMe)
+	{
+		return NULL;
+	}
 	BaseEntity* ret = NULL;
 	float min_dist = range * range;
 	CCObject* tObject;	
@@ -71,7 +75,35 @@ BaseEntity* EntityManager::findEntityInRange(BaseEntity* pMe, float range, EEnti
 		BaseEntity* tEntity = (BaseEntity*)(tObject);
 		if (tEntity != pMe && tEntity->getType() == type)
 		{
+			CCPoint tP = tEntity->getPosition();
+			CCPoint tM = pMe->getPosition();
+
 			float dist_sqrt = pMe->getPosition().getDistanceSq(tEntity->getPosition());
+			if (dist_sqrt < range * range + 1e-6)
+			{
+				ret = tEntity;
+			}
+		}
+	}
+
+	return ret;
+}
+
+BaseEntity* EntityManager::findEntityInRange(CCPoint MyPos, BaseEntity* pMe, float range, EEntityType type)
+{
+	BaseEntity* ret = NULL;
+	float min_dist = range * range;
+	CCObject* tObject;	
+
+	CCARRAY_FOREACH(getArrayByType(type), tObject)
+	{
+		BaseEntity* tEntity = (BaseEntity*)(tObject);
+		if (tEntity != pMe && tEntity->getType() == type)
+		{
+			//CCPoint tP = tEntity->getPosition();
+			//CCPoint tM = pMe->getPosition();
+
+			float dist_sqrt = MyPos.getDistanceSq(tEntity->getPosition());
 			if (dist_sqrt < range * range + 1e-6)
 			{
 				ret = tEntity;
@@ -144,7 +176,14 @@ void EntityManager::removeAnEntity(BaseEntity* entity, EEntityType type)
 
 	if (entity->getParent() != NULL)
 	{
-		entity->removeFromParentAndCleanup(true);
+		if (entity->getParent() == GI.Game)
+		{
+			GI.Game->removeChild(entity, true);
+		}
+		else 
+		{
+			entity->removeFromParentAndCleanup(true);
+		}
 	}
 }
 

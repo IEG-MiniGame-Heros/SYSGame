@@ -53,7 +53,7 @@ void SkillFireAttack::onUpdate(float dt)
 		}
 		else 
 		{
-			Character* pEnemy = (Character*)EM.findEntityInRange(m_pEffect, m_fHitRange, m_pOwner->getEnemyType());
+			Character* pEnemy = (Character*)EM.findEntityInRange(m_pEffect->getPosition(), m_pEffect, m_fHitRange, m_pOwner->getEnemyType());
 			if (pEnemy)
 			{
 				// ≈–∂®…À∫¶

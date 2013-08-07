@@ -10,16 +10,10 @@ public:
 	virtual void onEnter();
 	virtual void onExit();
 
-	//void setLifeTime(float time);
-	///** 
-	// * @brief 播放特效
-	// */
-	//void play();
-
 	/** 
 	 * @brief 移除特效
 	 */
-	void kill();
+	void kill() {}
 
 	void setTarget(CCPoint target);
 

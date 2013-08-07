@@ -2,6 +2,7 @@
 #include "Character.h"
 #include "FirstStage.h"
 #include "EntityManager.h"
+#include "Hero.h"
 #include "GameInfo.h"
 
 #define TEST_REMOVE_FROM_QUEUE 0
@@ -90,6 +91,12 @@ void Queue::appendCharacter(Character* character)
 			character->setMoveVector(lastCharacter->getMoveVector());
 			m_pCharacters->addObject(character);
 			character->setQueue(this);
+		}
+
+		// 如果这是英雄
+		if (character->getType() == ET_Hero)
+		{
+			((Hero*)(character))->setIsPickedUp(true);
 		}
 	}
 }

@@ -18,11 +18,6 @@ void Effect::onExit()
 	MovingEntity::onExit();
 }
 
-void Effect::kill()
-{
-	EM.removeAnEntity(this, ET_Effect);
-}
-
 void Effect::setTarget(CCPoint target)
 {
 	m_vTargetPos = target;
