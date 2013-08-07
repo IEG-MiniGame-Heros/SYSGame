@@ -4,6 +4,7 @@
 #include "Queue.h"
 #include "FirstStage.h"
 #include "FireBall.h"
+#include "Bullet.h"
 #include "GameInfo.h"
 
 EntityManager& EntityManager::instance()
@@ -185,6 +186,10 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 	{
 	case EET_FireBall:
 		eft = FireBall::create("FireBall_1.png");
+		eft->setTarget(target_pos);
+		break;
+	case EET_Bullet:
+		eft = Bullet::create("Bullet_1.png");
 		eft->setTarget(target_pos);
 		break;
 

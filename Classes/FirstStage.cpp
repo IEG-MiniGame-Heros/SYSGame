@@ -3,6 +3,7 @@
 #include "Queue.h"
 #include "FireBall.h"
 #include "SkillFireAttack.h"
+#include "SkillBulletAttack.h"
 #include "EntityManager.h"
 #include "GameInfo.h"
 
@@ -78,6 +79,7 @@ void FirstStage::onEnter()
 	
 	/// 测试，给第一个英雄增加一个技能
 	p1->addChild(SkillFireAttack::create());
+	p2->addChild(SkillBulletAttack::create());
 
 	// 更新Layer，让Layer跟随精灵移动
 	this->schedule(schedule_selector(FirstStage::updateLayer));

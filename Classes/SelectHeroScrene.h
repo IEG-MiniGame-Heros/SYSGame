@@ -4,7 +4,7 @@
 #include "Comm.h"
 #include "cocos2d.h"
 #include "cocos-ext.h"
-#include "CocoGUILIB/System/CocosGUI.h"
+//#include "CocoGUILIB/System/CocosGUI.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;

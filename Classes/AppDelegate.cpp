@@ -2,8 +2,8 @@
 #include "CCEGLView.h"
 #include "AppDelegate.h"
 #include "FirstStage.h"
-#include "LoginScrene.h"
-#include "SelectHeroScrene.h"
+//#include "LoginScrene.h"
+//#include "SelectHeroScrene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace CocosDenshion;
@@ -42,8 +42,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = LoginScrene::scene();
-	//CCScene* pScene = FirstStage::scene();
+    //CCScene *pScene = LoginScrene::scene();
+	CCScene* pScene = FirstStage::scene();
 
     // run
     pDirector->runWithScene(pScene);
