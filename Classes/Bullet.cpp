@@ -1,4 +1,6 @@
 #include "Bullet.h"
+#include "EntityManager.h"
+#include <math.h>
 
 void Bullet::onEnter()
 {
