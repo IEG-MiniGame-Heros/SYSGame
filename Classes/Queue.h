@@ -44,6 +44,8 @@ public:
 	 */
 	void appendCharacter(Character* character);
 
+	void addAMember(Character* pCha);
+
 	/** 
 	 * @brief 将一个Character从队列中移除
 	 */
@@ -54,6 +56,8 @@ public:
 	 */
 	CCPoint getPositionBehindTail() const;
 
+	bool isLastMember(Character* pCha) const;
+
 	/// Test begin
 public:
 	void onUpdate(float dt);
@@ -61,6 +65,7 @@ public:
 
 protected:
 	CCArray*		m_pCharacters;			// 指向队伍的指针
+	CCArray*		m_pPendingAddPool;		// 即将加入队伍中的指针
 
 
 };

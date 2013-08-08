@@ -14,6 +14,9 @@ void Queue::onEnter()
 	m_pCharacters = CCArray::create();
 	m_pCharacters->retain();
 
+	m_pPendingAddPool = CCArray::create();
+	m_pPendingAddPool->retain();
+
 #if TEST_REMOVE_FROM_QUEUE
 	schedule(schedule_selector(Queue::onUpdate), 7, 0, 5);
 #endif
@@ -27,6 +30,7 @@ void Queue::onUpdate(float dt)
 void Queue::onExit()
 {
 	m_pCharacters->release();
+	m_pPendingAddPool->release();
 
 #if TEST_REMOVE_FROM_QUEUE
 	unschedule(schedule_selector(Queue::onUpdate));
@@ -149,4 +153,18 @@ bool Queue::removeFromQueue(Character* character)
 	EM.removeAnEntity(character, character->getType());
 
 	return true;
+}
+
+bool Queue::isLastMember(Character* pCha) const 
+{
+	if (isInQueue(pCha))
+	{
+		return (m_pCharacters->lastObject() == pCha);
+	}
+	return false;
+}
+
+void Queue::addAMember(Character* pCha)
+{
+
 }
