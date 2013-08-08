@@ -21,7 +21,7 @@ public:
 	bool shouldAttack();
 
 	virtual void attack() {}
-	virtual void onUpdate(float dt) {}
+	virtual void onUpdate(float dt);
 
 protected:
 

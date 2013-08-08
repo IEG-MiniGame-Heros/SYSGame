@@ -45,7 +45,7 @@ void Monster::onExit()
 	Character::onExit();
 }
 
-const int WALK_LOOPS = 5;
+const int WALK_LOOPS = 3;
 
 void Monster::onUpdate(float dt)
 {

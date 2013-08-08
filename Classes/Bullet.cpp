@@ -11,11 +11,13 @@ void Bullet::onEnter()
 	anim->addSpriteFrameWithFileName("Bullet_1.png");
 	anim->setDelayPerUnit(m_fLifeTime);
 
-	CCLog("Target = %f, %f", m_vTargetPos.x, m_vTargetPos.y);
+	float length = max(600.f, getPosition().getDistance(m_vTargetPos));
+	CCPoint move_delta((m_vTargetPos - getPosition()).normalize() * length);
+
 	CCAction* act = CCSequence::create(
 		CCSpawn::create(
+			CCMoveBy::create(m_fLifeTime, move_delta),
 			CCAnimate::create(anim),
-			CCMoveTo::create(m_fLifeTime, m_vTargetPos),
 			NULL),
 		CCCallFunc::create(this, callfunc_selector(Effect::kill)),
 		NULL

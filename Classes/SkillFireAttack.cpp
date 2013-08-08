@@ -17,12 +17,12 @@ void SkillFireAttack::onEnter()
 
 	m_fAttackSpeed = 2.f;
 
-	schedule(schedule_selector(SkillFireAttack::onUpdate));
+	schedule(schedule_selector(Skill::onUpdate));
 }
 
 void SkillFireAttack::onExit()
 {
-	unschedule(schedule_selector(SkillFireAttack::onUpdate));
+	unschedule(schedule_selector(Skill::onUpdate));
 
 	Skill::onExit();
 }
@@ -33,45 +33,3 @@ void SkillFireAttack::attack()
 	m_fElapseTime = 0;
 	m_pEffect = EM.addAnEffect(m_pOwner->getPosition(), EET_FireBall, m_pTarget->getPosition());
 }
-
-void SkillFireAttack::onUpdate(float dt)
-{
-	// 这个我也不知道怎么解释，坑爹的dt竟然有大于100的时刻！！！
-	// >_<所以，将就着吧~~~
-	if (dt < 0.5f)
-	{
-		m_fElapseTime += dt;
-	}
-
-	if (m_bIsAttacking)
-	{
-		// 特效已经消亡
-		if (!m_pEffect || m_pEffect->isKilled())
-		{
-			m_bIsAttacking = false;
-		}
-		else 
-		{
-			Character* pEnemy = NULL;
-			if (m_pEffect && m_pEffect->retainCount() > 1)
-			{
-				//CCLog("Fire, Count = %d", m_pEffect->retainCount());
-				pEnemy = (Character*)EM.findEntityInRange(m_pEffect->getPosition(), m_pEffect, m_fHitRange, m_pOwner->getEnemyType());
-			}
-			if (pEnemy)
-			{
-				// 判定伤害
-				pEnemy->getHarmed(m_iDamage);
-				m_pEffect->kill();
-				m_pEffect = NULL;
-				m_bIsAttacking = false;
-			}
-		}
-	}
-
-	if (shouldAttack())
-	{
-		attack();
-	}
-}
-

@@ -37,7 +37,7 @@ Hero* EntityManager::addAHero(CCPoint pos)
 {
 	if (GI.Game)
 	{
-		Hero* pHero = Hero::create(GI.PathOfHero.c_str());
+		Hero* pHero = Hero::create("Hero1_1.png");
 		GI.Game->addChild(pHero);
 		pHero->setPosition(pos);
 		m_pAllHeros->addObject(pHero);
