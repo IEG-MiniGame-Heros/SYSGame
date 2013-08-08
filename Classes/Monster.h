@@ -3,14 +3,6 @@
 
 #include "Character.h"
 
-const CCPoint WalkVec[4] = 
-{
-	CCPoint(1, 0),
-	CCPoint(0, -1),
-	CCPoint(-1, 0),
-	CCPoint(0, 1)
-};
-
 class Monster : public Character
 {
 public:

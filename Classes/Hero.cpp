@@ -14,8 +14,8 @@ void Hero::onEnter()
 
 	// 倒计时，一定时间后消失
 	CCAction* fadeAway = CCSequence::create(
-		CCDelayTime::create(2),
-		CCBlink::create(2, 5),
+		CCDelayTime::create(6),
+		CCBlink::create(6, 15),
 		CCCallFunc::create(this, callfunc_selector(Character::kill)),
 		NULL
 		);
@@ -23,17 +23,39 @@ void Hero::onEnter()
 	runAction(fadeAway);
 
 	// 设置速度
-	setCurSpeed(GI.HeroInitSpeed);
-	setMaxSpeed(GI.HeroMaxSpeed);
+	//setCurSpeed(GI.HeroInitSpeed);
+	setCurSpeed(GI.getHeroConfig()[0].fMoveSpeed);
 
 	// 设置动画
-	// 0.下 1.左 2.上 3.右
+	// 0.右 1.下 2.左 3.上 
+
 	m_pWalkAnim[0] = CCAnimation::create();
 	m_pWalkAnim[0]->retain();
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("Hero1_1.png");
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("Hero1_2.png");
-	m_pWalkAnim[0]->setDelayPerUnit(0.5 / getCurSpeed());
+	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/hero/Hero1_R_1.png");
+	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/hero/Hero1_R_2.png");
+	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/hero/Hero1_R_3.png");
+	m_pWalkAnim[0]->setDelayPerUnit(1.f / getCurSpeed() / 3);
+
+	m_pWalkAnim[1] = CCAnimation::create();
+	m_pWalkAnim[1]->retain();
+	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/hero/Hero1_D_1.png");
+	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/hero/Hero1_D_2.png");
+	m_pWalkAnim[1]->setDelayPerUnit(0.5 / getCurSpeed());
 	
+	m_pWalkAnim[2] = CCAnimation::create();
+	m_pWalkAnim[2]->retain();
+	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/hero/Hero1_L_1.png");
+	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/hero/Hero1_L_2.png");
+	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/hero/Hero1_L_3.png");
+	m_pWalkAnim[2]->setDelayPerUnit(1.f / getCurSpeed() / 3);
+
+	m_pWalkAnim[3] = CCAnimation::create();
+	m_pWalkAnim[3]->retain();
+	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/hero/Hero1_U_1.png");
+	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/hero/Hero1_U_2.png");
+	m_pWalkAnim[3]->setDelayPerUnit(0.5 / getCurSpeed());
+
+
 	
 }
 
@@ -43,6 +65,9 @@ void Hero::onExit()
 
 	// 释放动画资源
 	m_pWalkAnim[0]->release();
+	m_pWalkAnim[1]->release();
+	m_pWalkAnim[2]->release();
+	m_pWalkAnim[3]->release();
 
 	Character::onExit();
 }
