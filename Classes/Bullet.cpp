@@ -13,7 +13,7 @@ void Bullet::onEnter()
 	anim->addSpriteFrameWithFileName("Bullet_1.png");
 	anim->setDelayPerUnit(m_fLifeTime);
 
-	float length = std::max(600.f, getPosition().getDistance(m_vTargetPos));
+	float length = max(600.f, getPosition().getDistance(m_vTargetPos));
 	CCPoint move_delta((m_vTargetPos - getPosition()).normalize() * length);
 
 	CCAction* act = CCSequence::create(
