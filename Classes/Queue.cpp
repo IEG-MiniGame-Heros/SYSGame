@@ -166,5 +166,27 @@ bool Queue::isLastMember(Character* pCha) const
 
 void Queue::addAMember(Character* pCha)
 {
+	m_pPendingAddPool->addObject(pCha);
+}
 
+void Queue::removeAMember(Character* pCha)
+{
+	m_pPendingKillPool->addObject(pCha);
+}
+
+void Queue::refreshMembers()
+{
+	while (m_pPendingAddPool->count() > 0)
+	{
+		Character* pCha = (Character*)m_pPendingAddPool->lastObject();
+		appendCharacter(pCha);
+		m_pPendingAddPool->removeLastObject();
+	}
+
+	while (m_pPendingKillPool->count() > 0)
+	{
+		Character* pCha = (Character*)m_pPendingKillPool->lastObject();
+		removeFromQueue(pCha);
+		m_pPendingKillPool->removeLastObject();
+	}
 }
