@@ -9,6 +9,19 @@ void Hero::onEnter()
 
 	schedule(schedule_selector(Hero::onUpdate));
 
+
+	m_bIsPickedUp = false;
+
+	// 倒计时，一定时间后消失
+	CCAction* fadeAway = CCSequence::create(
+		CCDelayTime::create(5),
+		CCBlink::create(12, 30),
+		CCCallFunc::create(this, callfunc_selector(Hero::kill)),
+		NULL
+		);
+	fadeAway->setTag(EHAT_Fade);
+	runAction(fadeAway);
+
 	// 设置速度
 	setCurSpeed(GI.HeroInitSpeed);
 	setMaxSpeed(GI.HeroMaxSpeed);
@@ -20,7 +33,7 @@ void Hero::onEnter()
 	m_pWalkAnim[0]->addSpriteFrameWithFileName("Hero1_1.png");
 	m_pWalkAnim[0]->addSpriteFrameWithFileName("Hero1_2.png");
 	m_pWalkAnim[0]->setDelayPerUnit(0.5 / getCurSpeed());
-	//m_pWalkAnim[0]->setLoops(2);
+	
 	
 }
 
@@ -36,6 +49,11 @@ void Hero::onExit()
 
 void Hero::onUpdate(float dt)
 {
+	if (!m_bIsPickedUp)
+	{
+		return;
+	}
+
 	onMove();
 
 	// 检查有没有英雄要“吃”
@@ -46,9 +64,7 @@ void Hero::onUpdate(float dt)
 		{
 			m_pQueue->appendCharacter((Character*)(entity));
 		}
-	}
-	
-	
+	}	
 }
 
 Hero* Hero::create(const char *pszFileName)
@@ -66,4 +82,15 @@ Hero* Hero::create(const char *pszFileName)
 Hero::Hero()
 {
 	setType(ET_Hero);
+}
+
+void Hero::setIsPickedUp(bool is_picked_up)
+{
+	m_bIsPickedUp = is_picked_up;
+	
+	// 英雄被获取了，就把闪烁动画给停了
+	if (m_bIsPickedUp)
+	{
+		stopActionByTag(EHAT_Fade);
+	}
 }

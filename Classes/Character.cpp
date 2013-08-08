@@ -64,7 +64,7 @@ void Character::kill()
 	}
 	else
 	{
-		EM.removeAnEntity(this, getType());
+		EM.removeAnEntity(this, ET_Monster);
 	}
 
 	// 然后，播放死亡动画

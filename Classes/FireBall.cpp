@@ -1,25 +1,24 @@
 #include "FireBall.h"
+#include "EntityManager.h"
+
+#include <math.h>
 
 void FireBall::onEnter()
 {
 	Effect::onEnter();
 
-	m_fLifeTime = 1.0f;
+	m_fLifeTime = 2.f;
 	m_bShouldMove = true;
 
-	CCAnimation* anim = CCAnimation::create();
-	anim->addSpriteFrameWithFileName("FireBall_1.png");
-	anim->setDelayPerUnit(m_fLifeTime);
+	float length = max(600.f, getPosition().getDistance(m_vTargetPos));
+	CCPoint move_delta((m_vTargetPos - getPosition()).normalize() * length);
 
-	CCLog("Target = %f, %f", m_vTargetPos.x, m_vTargetPos.y);
 	CCAction* act = CCSequence::create(
-		CCSpawn::create(
-			CCAnimate::create(anim),
-			CCMoveTo::create(m_fLifeTime, m_vTargetPos),
-			NULL),
+		CCMoveBy::create(m_fLifeTime, move_delta),
 		CCCallFunc::create(this, callfunc_selector(Effect::kill)),
 		NULL
 		);
+
 
 	runAction(act);
 }

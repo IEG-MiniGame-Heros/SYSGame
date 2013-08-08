@@ -3,6 +3,14 @@
 
 #include "Character.h"
 
+const CCPoint WalkVec[4] = 
+{
+	CCPoint(1, 0),
+	CCPoint(0, -1),
+	CCPoint(-1, 0),
+	CCPoint(0, 1)
+};
+
 class Monster : public Character
 {
 public:
@@ -18,6 +26,9 @@ public:
 
 protected:
 
+	int		m_iWalkLoopCount;		// Monster AI走路时候的计数
+	int		m_iWalkDir;				// Monster AI走路的方向
+	int		m_bIsClockWise;			// 是否顺时针走路
 };
 
 #endif

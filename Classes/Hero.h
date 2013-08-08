@@ -3,6 +3,11 @@
 
 #include "Character.h"
 
+enum EHeroActionTag
+{
+	EHAT_Fade		// 消失的Tag
+};
+
 class Hero : public Character 
 {
 public:
@@ -16,7 +21,12 @@ public:
 
 	static Hero* create(const char *pszFileName);
 
+	void setIsPickedUp(bool is_picked_up);
+
+
 protected:
+
+	bool		m_bIsPickedUp;		// 是否被拾取了
 
 };
 #endif
