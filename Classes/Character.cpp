@@ -64,9 +64,9 @@ void Character::kill()
 	}
 	else
 	{
-		EM.removeAnEntity(this, ET_Monster);
+		EM.removeAnEntity(this, getType());
 	}
-
+	CCLog("Character killed");
 	// 然后，播放死亡动画
 	////////////////////////////
 }

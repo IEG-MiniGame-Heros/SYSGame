@@ -76,7 +76,7 @@ void Queue::appendCharacter(Character* character)
 		{
 			GI.Game->removeChild(character);
 			addChild(character);
-			character->setPosition(ccp(0, 0));
+			character->setPosition(ccp(GI.GridSize * 4, GI.GridSize * 4));
 			character->setMoveVector(ccp(0, 1));
 			m_pCharacters->addObject(character);
 			character->setQueue(this);

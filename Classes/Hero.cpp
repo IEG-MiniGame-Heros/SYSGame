@@ -14,9 +14,9 @@ void Hero::onEnter()
 
 	// 倒计时，一定时间后消失
 	CCAction* fadeAway = CCSequence::create(
-		CCDelayTime::create(5),
-		CCBlink::create(12, 30),
-		CCCallFunc::create(this, callfunc_selector(Hero::kill)),
+		CCDelayTime::create(2),
+		CCBlink::create(2, 5),
+		CCCallFunc::create(this, callfunc_selector(Character::kill)),
 		NULL
 		);
 	fadeAway->setTag(EHAT_Fade);
