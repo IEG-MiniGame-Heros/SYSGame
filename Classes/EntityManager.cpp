@@ -199,8 +199,8 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 
 	if (GI.Game)
 	{
-		GI.Game->addChild(eft);
 		eft->setPosition(pos);
+		GI.Game->addChild(eft);		
 		m_pAllEffects->addObject(eft);
 	}
 
