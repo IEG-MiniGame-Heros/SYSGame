@@ -68,18 +68,19 @@ void FirstStage::onEnter()
 
 
 	// 把这几个人加进队伍里面吧
-	GI.Me->appendCharacter(p1);
-	GI.Me->appendCharacter(p2);
-	GI.Me->appendCharacter(p3);
-	GI.Me->appendCharacter(p4);
+	GI.Me->addAMember(p1);
+	GI.Me->addAMember(p2);
+	GI.Me->addAMember(p3);
+	GI.Me->addAMember(p4);
+	GI.Me->refreshMembers();
 
-	Monster* m1 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 3, GI.GridSize * 12));
-	Monster* m2 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 7, GI.GridSize * 13));
-	Monster* m3 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 12, GI.GridSize * 5));
+	//Monster* m1 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 3, GI.GridSize * 12));
+	//Monster* m2 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 7, GI.GridSize * 13));
+	//Monster* m3 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 12, GI.GridSize * 5));
 	//
 	/// 测试，给第一个英雄增加一个技能
-	p1->addChild(SkillFireAttack::create());
-	p2->addChild(SkillBulletAttack::create());
+	//p1->addChild(SkillFireAttack::create());
+	//p2->addChild(SkillBulletAttack::create());
 
 	// 更新Layer，让Layer跟随精灵移动
 	this->schedule(schedule_selector(FirstStage::updateLayer));

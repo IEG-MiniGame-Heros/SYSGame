@@ -17,20 +17,30 @@ void Queue::onEnter()
 	m_pPendingAddPool = CCArray::create();
 	m_pPendingAddPool->retain();
 
+	m_pPendingKillPool = CCArray::create();
+	m_pPendingKillPool->retain();
+
 #if TEST_REMOVE_FROM_QUEUE
-	schedule(schedule_selector(Queue::onUpdate), 7, 0, 5);
+	schedule(schedule_selector(Queue::onUpdate), 5, 5, 2);
 #endif
 }
 
 void Queue::onUpdate(float dt)
 {
-	removeFromQueue((Character*)(m_pCharacters->objectAtIndex(1)));
+	CCLog("///////////Queue Num: %d", m_pCharacters->count());		
+	if (m_pCharacters && m_pCharacters->count() > 3)
+	{		
+		//removeAMember((Character*)m_pCharacters->objectAtIndex(0));
+		removeAMember((Character*)m_pCharacters->objectAtIndex(1));
+		removeAMember((Character*)m_pCharacters->objectAtIndex(2));
+	}	
 }
 
 void Queue::onExit()
 {
 	m_pCharacters->release();
 	m_pPendingAddPool->release();
+	m_pPendingKillPool->release();
 
 #if TEST_REMOVE_FROM_QUEUE
 	unschedule(schedule_selector(Queue::onUpdate));
@@ -167,11 +177,14 @@ bool Queue::isLastMember(Character* pCha) const
 void Queue::addAMember(Character* pCha)
 {
 	m_pPendingAddPool->addObject(pCha);
+	pCha->setQueue(this);
+	GI.Game->removeChild(pCha);
 }
 
 void Queue::removeAMember(Character* pCha)
 {
 	m_pPendingKillPool->addObject(pCha);
+	pCha->setVisible(false);	
 }
 
 void Queue::refreshMembers()
@@ -181,6 +194,7 @@ void Queue::refreshMembers()
 		Character* pCha = (Character*)m_pPendingAddPool->lastObject();
 		appendCharacter(pCha);
 		m_pPendingAddPool->removeLastObject();
+		pCha->onMove();
 	}
 
 	while (m_pPendingKillPool->count() > 0)
