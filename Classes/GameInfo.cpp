@@ -33,15 +33,17 @@ void GameInfo::initData()
 			if (iter->first == "map_size")
 				stSystemConfig.iMapSize = Util::StringToNumber<int>(iter->second);
 			if (iter->first == "max_move_speed")
-				stSystemConfig.iMaxMoveSpeed = Util::StringToNumber<int>(iter->second);
+				stSystemConfig.fMaxMoveSpeed = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "speed_increment")
-				stSystemConfig.iSpeedIncrement = Util::StringToNumber<int>(iter->second);
+				stSystemConfig.fSpeedIncrement = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "time_coefficient")
 				stSystemConfig.fTimeCoefficient = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "coin_coefficient")
 				stSystemConfig.fCoinCoefficient = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "monster_coefficient")
 				stSystemConfig.fMonsterCoefficient = Util::StringToNumber<float>(iter->second);
+			if (iter->first == "flashing_time")
+				stSystemConfig.fFlashingTime = Util::StringToNumber<float>(iter->second);
 			CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
 		}
 		CCLOG("-------------");
@@ -113,11 +115,11 @@ void GameInfo::initData()
 		{
 			// 英雄部分
 			if (iter->first == "attack_range")
-				stHero.iAttackRange = Util::StringToNumber<int>(iter->second);
+				stHero.fAttackRange = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "hp")
 				stHero.iHP = Util::StringToNumber<int>(iter->second);
 			if (iter->first == "move_speed")
-				stHero.iMoveSpeed = Util::StringToNumber<int>(iter->second);
+				stHero.fMoveSpeed = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "hero_name")
 				stHero.sHeroName = iter->second;
 			if (iter->first == "resource_path")
@@ -186,11 +188,11 @@ void GameInfo::initData()
 		{
 			// 怪物部分
 			if (iter->first == "attack_range")
-				stMonster.iAttackRange = Util::StringToNumber<int>(iter->second);
+				stMonster.fAttackRange = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "hp")
 				stMonster.iHP = Util::StringToNumber<int>(iter->second);
 			if (iter->first == "move_speed")
-				stMonster.iMoveSpeed = Util::StringToNumber<int>(iter->second);
+				stMonster.fMoveSpeed = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "monster_name")
 				stMonster.sMonsterName = iter->second;
 			if (iter->first == "resource_path")
@@ -280,7 +282,7 @@ GameInfo::GameInfo()
 
 
 	// 英雄
-	PathOfHero = "Hero1_1.png";
+	PathOfHero = "Hero1.png";
 	RangeToPickupHero = 80.f;
 	HeroInitSpeed = 1.5f;
 	HeroMaxSpeed = 2.0f;

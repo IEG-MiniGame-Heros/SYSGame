@@ -4,6 +4,7 @@
 #include "Queue.h"
 #include "FirstStage.h"
 #include "FireBall.h"
+#include "Bullet.h"
 #include "GameInfo.h"
 
 EntityManager& EntityManager::instance()
@@ -36,7 +37,7 @@ Hero* EntityManager::addAHero(CCPoint pos)
 {
 	if (GI.Game)
 	{
-		Hero* pHero = Hero::create(GI.PathOfHero.c_str());
+		Hero* pHero = Hero::create("spirit/hero/Hero1_D_1.png");
 		GI.Game->addChild(pHero);
 		pHero->setPosition(pos);
 		m_pAllHeros->addObject(pHero);
@@ -62,10 +63,6 @@ Monster* EntityManager::addAMonster(CCPoint pos)
 
 BaseEntity* EntityManager::findEntityInRange(BaseEntity* pMe, float range, EEntityType type)
 {
-	if (!pMe)
-	{
-		return NULL;
-	}
 	BaseEntity* ret = NULL;
 	float min_dist = range * range;
 	CCObject* tObject;	
@@ -75,35 +72,7 @@ BaseEntity* EntityManager::findEntityInRange(BaseEntity* pMe, float range, EEnti
 		BaseEntity* tEntity = (BaseEntity*)(tObject);
 		if (tEntity != pMe && tEntity->getType() == type)
 		{
-			CCPoint tP = tEntity->getPosition();
-			CCPoint tM = pMe->getPosition();
-
 			float dist_sqrt = pMe->getPosition().getDistanceSq(tEntity->getPosition());
-			if (dist_sqrt < range * range + 1e-6)
-			{
-				ret = tEntity;
-			}
-		}
-	}
-
-	return ret;
-}
-
-BaseEntity* EntityManager::findEntityInRange(CCPoint MyPos, BaseEntity* pMe, float range, EEntityType type)
-{
-	BaseEntity* ret = NULL;
-	float min_dist = range * range;
-	CCObject* tObject;	
-
-	CCARRAY_FOREACH(getArrayByType(type), tObject)
-	{
-		BaseEntity* tEntity = (BaseEntity*)(tObject);
-		if (tEntity != pMe && tEntity->getType() == type)
-		{
-			//CCPoint tP = tEntity->getPosition();
-			//CCPoint tM = pMe->getPosition();
-
-			float dist_sqrt = MyPos.getDistanceSq(tEntity->getPosition());
 			if (dist_sqrt < range * range + 1e-6)
 			{
 				ret = tEntity;
@@ -176,14 +145,7 @@ void EntityManager::removeAnEntity(BaseEntity* entity, EEntityType type)
 
 	if (entity->getParent() != NULL)
 	{
-		if (entity->getParent() == GI.Game)
-		{
-			GI.Game->removeChild(entity, true);
-		}
-		else 
-		{
-			entity->removeFromParentAndCleanup(true);
-		}
+		entity->removeFromParentAndCleanup(true);
 	}
 }
 
@@ -226,6 +188,10 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 		eft = FireBall::create("FireBall_1.png");
 		eft->setTarget(target_pos);
 		break;
+	case EET_Bullet:
+		eft = Bullet::create("Bullet_1.png");
+		eft->setTarget(target_pos);
+		break;
 
 	default:
 		break;
@@ -233,8 +199,8 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 
 	if (GI.Game)
 	{
-		GI.Game->addChild(eft);
 		eft->setPosition(pos);
+		GI.Game->addChild(eft);		
 		m_pAllEffects->addObject(eft);
 	}
 

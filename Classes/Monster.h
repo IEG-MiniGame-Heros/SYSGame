@@ -3,14 +3,6 @@
 
 #include "Character.h"
 
-const CCPoint WalkVec[4] = 
-{
-	CCPoint(1, 0),
-	CCPoint(0, -1),
-	CCPoint(-1, 0),
-	CCPoint(0, 1)
-};
-
 class Monster : public Character
 {
 public:
@@ -23,8 +15,6 @@ public:
 	virtual void onUpdate(float dt);
 
 	static Monster* create(const char *pszFileName);
-
-	void kill();
 
 protected:
 

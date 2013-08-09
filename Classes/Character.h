@@ -5,6 +5,14 @@
 
 class Queue;
 
+const CCPoint WalkVec[4] = 
+{
+	CCPoint(1, 0),		// ср
+	CCPoint(0, -1),		// об
+	CCPoint(-1, 0),		// вС
+	CCPoint(0, 1)		// ио
+};
+
 class Character : public MovingEntity
 {
 public:

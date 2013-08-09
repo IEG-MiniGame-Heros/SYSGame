@@ -17,6 +17,53 @@ void Character::onExit()
 	MovingEntity::onExit();
 }
 
+//const CCPoint WalkVec[4] = 
+//{
+//	CCPoint(1, 0),
+//	CCPoint(0, -1),
+//	CCPoint(-1, 0),
+//	CCPoint(0, 1)
+//};
+
+#define ccpEqual(a, b) (a.x == b.x && a.y == b.y)
+
+int getIndexByMoveVector(CCPoint vec)
+{
+	for (int i = 0; i < 4; ++i)
+	{
+		if (ccpEqual(vec, WalkVec[i]))
+		{
+			return i;
+		}
+	}
+
+	CCLog("Can't match vector");
+	return 0;
+}
+
+CCPoint getMoveVectorByPosition(CCPoint A, CCPoint B)
+{
+	CCPoint ret = B - A;
+	if (fabs(ret.x) > 2.0)
+	{
+		ret.x = (ret.x > 0 ? 1.f : -1.f);
+	}
+	else 
+	{
+		ret.x = 0.f;
+	}
+
+	if (fabs(ret.y) > 2.f)
+	{
+		ret.y = (ret.y > 0 ? 1.f : -1.f);
+	}
+	else 
+	{
+		ret.y = 0.f;
+	}
+	return ret;
+}
+
 bool Character::onMove()
 {
 	//this->runAction((GI.Me->getHead()));
@@ -33,14 +80,22 @@ bool Character::onMove()
 	if (m_pQueue && (this != m_pQueue->getHead()))
 	{
 		targetPosition = m_pQueue->getPrivousCharacter(this)->getPosition();
-		setMoveVector(m_pQueue->getPrivousCharacter(this)->getMoveVector());
+		CCPoint mv = getMoveVectorByPosition(getPosition(), targetPosition);
+		setMoveVector(mv);
+	}
+
+	int index = getIndexByMoveVector(getMoveVector());
+	// 额。。。这个只是没有资源罢了
+	if (getType() == ET_Monster)
+	{
+		index = 0;
 	}
 
 	// 移动到目标位置之后，调用onMoveDone将m_bIsMoving置为false	
 	CCAction* action = CCSequence::create(
 		CCSpawn::create(
 			CCMoveTo::create(1.f / getCurSpeed(), targetPosition),
-			CCAnimate::create(m_pWalkAnim[0]),			
+			CCAnimate::create(m_pWalkAnim[index]),			
 			NULL),
 		CCCallFunc::create(this, callfunc_selector(Character::onMoveDone)),
 		NULL
@@ -57,8 +112,18 @@ void Character::onMoveDone()
 
 void Character::kill() 
 {
-	// 这个不要了
-	// 放到下一层去实现，以避免Action出现异常
+	// 在队列之中
+	if (m_pQueue)
+	{
+		m_pQueue->removeFromQueue(this);
+	}
+	else
+	{
+		EM.removeAnEntity(this, getType());
+	}
+	CCLog("Character killed");
+	// 然后，播放死亡动画
+	////////////////////////////
 }
 
 Queue* Character::getQueue() const 

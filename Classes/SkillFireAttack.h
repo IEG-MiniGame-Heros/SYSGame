@@ -12,7 +12,7 @@ public:
 	void onExit();
 
 	void attack();
-	void onUpdate(float dt);
+	//void onUpdate(float dt);
 };
 
 #endif

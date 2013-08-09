@@ -3,6 +3,7 @@
 #include "Queue.h"
 #include "FireBall.h"
 #include "SkillFireAttack.h"
+#include "SkillBulletAttack.h"
 #include "EntityManager.h"
 #include "GameInfo.h"
 
@@ -73,11 +74,12 @@ void FirstStage::onEnter()
 	GI.Me->appendCharacter(p4);
 
 	Monster* m1 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 3, GI.GridSize * 12));
-	//Monster* m2 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 7, GI.GridSize * 13));
-	//Monster* m3 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 12, GI.GridSize * 5));
-	
+	Monster* m2 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 7, GI.GridSize * 13));
+	Monster* m3 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 12, GI.GridSize * 5));
+	//
 	/// 测试，给第一个英雄增加一个技能
 	p1->addChild(SkillFireAttack::create());
+	p2->addChild(SkillBulletAttack::create());
 
 	// 更新Layer，让Layer跟随精灵移动
 	this->schedule(schedule_selector(FirstStage::updateLayer));
@@ -91,25 +93,6 @@ void FirstStage::onExit()
 	GI.Me = NULL;
 	MainGame::onExit();
 }
-
-/*
-void FirstStage::updateLayer(float dt){
-	CCLog("UPdate2");
-	char m[256];
-
-	CCTMXTiledMap *map = GI.Map;
-
-	if(GI.Me != NULL && GI.Map != NULL){
-		CCPoint hero = GI.Me->getHead()->getPosition();
-		int mapWidth = GI.Map->getMapSize().width * GI.Map->getTileSize().width;
-		float x = hero.x - mapWidth/2;
-		float y = hero.y;
-		CCSize s = GI.Map->getContentSize();
-		CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-		GI.currentLayer->setPosition(ccp(-s.width/2+winSize.width/2-x, -y));
-	}
-}
-*/
 
 void FirstStage::updateLayer(float dt){
 	if(GI.Me->getHead() == NULL) {  

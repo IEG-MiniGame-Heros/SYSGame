@@ -43,8 +43,6 @@ public:
 	 */
 	BaseEntity* findEntityInRange(BaseEntity* pMe, float range, EEntityType type);
 
-	BaseEntity* findEntityInRange(CCPoint MyPos, BaseEntity* pMe, float range, EEntityType type);
-
 
 	/** 
 	 * 寻找范围内所有的Entity

@@ -41,7 +41,7 @@ CREATE TABLE t_hero (
 
   hp          integer
 
-, resource_path varchar(50), attack_range integer);
+, resource_path varchar(255), attack_range integer);
 
 CREATE TABLE t_item (
 
@@ -55,7 +55,7 @@ CREATE TABLE t_item (
 
   describe       varchar(50),
 
-  resource_path  varchar(50)
+  resource_path  varchar(255)
 
 , value integer, item_type integer);
 
@@ -67,7 +67,7 @@ CREATE TABLE t_map (
 
   need_kill_num  integer,
 
-  resource_path  varchar(50)
+  resource_path  varchar(255)
 
 );
 
@@ -83,7 +83,7 @@ CREATE TABLE t_monster (
 
   hp             integer,
 
-  resource_path  varchar(50)
+  resource_path  varchar(255)
 
 , attack_range integer);
 
@@ -109,7 +109,7 @@ CREATE TABLE t_skill (
 
   skill_cd    integer
 
-, resource_path varchar(50));
+, resource_path varchar(255));
 
 CREATE TABLE t_user (
 

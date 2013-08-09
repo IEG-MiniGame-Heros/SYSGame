@@ -14,6 +14,9 @@ void Queue::onEnter()
 	m_pCharacters = CCArray::create();
 	m_pCharacters->retain();
 
+	m_pPendingAddPool = CCArray::create();
+	m_pPendingAddPool->retain();
+
 #if TEST_REMOVE_FROM_QUEUE
 	schedule(schedule_selector(Queue::onUpdate), 7, 0, 5);
 #endif
@@ -27,6 +30,7 @@ void Queue::onUpdate(float dt)
 void Queue::onExit()
 {
 	m_pCharacters->release();
+	m_pPendingAddPool->release();
 
 #if TEST_REMOVE_FROM_QUEUE
 	unschedule(schedule_selector(Queue::onUpdate));
@@ -74,9 +78,9 @@ void Queue::appendCharacter(Character* character)
 	{
 		if (m_pCharacters->count() == 0)
 		{
-			GI.Game->removeChild(character);
+			//GI.Game->removeChild(character);
 			addChild(character);
-			character->setPosition(ccp(0, 0));
+			character->setPosition(ccp(GI.GridSize * 4, GI.GridSize * 4));
 			character->setMoveVector(ccp(0, 1));
 			m_pCharacters->addObject(character);
 			character->setQueue(this);
@@ -85,7 +89,7 @@ void Queue::appendCharacter(Character* character)
 		{
 			// 加在队伍后面
 			Character* lastCharacter = (Character*)(m_pCharacters->lastObject());			
-			GI.Game->removeChild(character);
+			//GI.Game->removeChild(character);
 			addChild(character);
 			character->setPosition(getPositionBehindTail());
 			character->setMoveVector(lastCharacter->getMoveVector());
@@ -149,4 +153,41 @@ bool Queue::removeFromQueue(Character* character)
 	EM.removeAnEntity(character, character->getType());
 
 	return true;
+}
+
+bool Queue::isLastMember(Character* pCha) const 
+{
+	if (isInQueue(pCha))
+	{
+		return (m_pCharacters->lastObject() == pCha);
+	}
+	return false;
+}
+
+void Queue::addAMember(Character* pCha)
+{
+	m_pPendingAddPool->addObject(pCha);
+	GI.Game->removeChild(pCha);
+}
+
+void Queue::removeAMember(Character* pCha)
+{
+	m_pPendingKillPool->addObject(pCha);
+}
+
+void Queue::refreshMembers()
+{
+	while (m_pPendingAddPool->count() > 0)
+	{
+		Character* pCha = (Character*)m_pPendingAddPool->lastObject();
+		appendCharacter(pCha);
+		m_pPendingAddPool->removeLastObject();
+	}
+
+	while (m_pPendingKillPool->count() > 0)
+	{
+		Character* pCha = (Character*)m_pPendingKillPool->lastObject();
+		removeFromQueue(pCha);
+		m_pPendingKillPool->removeLastObject();
+	}
 }

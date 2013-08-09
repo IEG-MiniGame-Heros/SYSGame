@@ -23,8 +23,6 @@ public:
 
 	void setIsPickedUp(bool is_picked_up);
 
-	void kill();
-
 
 protected:
 

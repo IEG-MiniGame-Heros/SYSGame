@@ -14,7 +14,7 @@ void Monster::onEnter()
 {
 	Character::onEnter();
 
-	//schedule(schedule_selector(Monster::onUpdate));
+	schedule(schedule_selector(Monster::onUpdate));
 
 	// 设置动画
 	// 0.下 1.左 2.上 3.右
@@ -37,7 +37,7 @@ void Monster::onEnter()
 
 void Monster::onExit()
 {
-	//unschedule(schedule_selector(Monster::onUpdate));
+	unschedule(schedule_selector(Monster::onUpdate));
 
 	// 施放动画
 	m_pWalkAnim[0]->release();
@@ -45,7 +45,7 @@ void Monster::onExit()
 	Character::onExit();
 }
 
-const int WALK_LOOPS = 5;
+const int WALK_LOOPS = 3;
 
 void Monster::onUpdate(float dt)
 {
@@ -69,25 +69,9 @@ void Monster::onUpdate(float dt)
 			m_iWalkDir += (m_bIsClockWise ? 1 : -1);
 			m_iWalkDir = (m_iWalkDir + 4) % 4;
 			m_iWalkLoopCount = 0;
-			CCLog("Dir = %d", m_iWalkDir);
+			//CCLog("Dir = %d", m_iWalkDir);
 		}
 	}
-}
-
-void Monster::kill()
-{
-	// 在队列之中
-	if (m_pQueue)
-	{
-		m_pQueue->removeFromQueue(this);
-	}
-	else
-	{
-		EM.removeAnEntity(this, ET_Monster);
-	}
-
-	// 然后，播放死亡动画
-	////////////////////////////
 }
 
 Monster* Monster::create(const char *pszFileName)
