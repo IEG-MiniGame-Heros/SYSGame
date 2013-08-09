@@ -125,7 +125,7 @@ void Character::kill()
 	// 在队列之中
 	if (m_pQueue)
 	{
-		m_pQueue->removeFromQueue(this);
+		m_pQueue->removeAMember(this);
 	}
 	else
 	{
