@@ -20,11 +20,11 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-#if (CC_TARGET_PLATFORM !=CC_TARGET_WIN32)//AndroidÏÂÐèÒª¸´ÖÆÊý¾ÝÎÄ¼þ
-	//¼ì²éÊý¾Ý¿âÎÄ¼þÊÇ·ñÒÑ¾­ÌáÈ¡
+#if (CC_TARGET_PLATFORM !=CC_TARGET_WIN32)//Androidä¸‹éœ€è¦å¤åˆ¶æ•°æ®æ–‡ä»¶
+	//æ£€æŸ¥æ•°æ®åº“æ–‡ä»¶æ˜¯å¦å·²ç»æå–
 	if(!isDatabaseFileExist("database.db"))
 	{
-		copyDatabaseFile("database.db");//ÒªÊ¹ÓÃµÄsqlite¿âÎÄ¼þ
+		copyDatabaseFile("database.db");//è¦ä½¿ç”¨çš„sqliteåº“æ–‡ä»¶
 	}
 #endif
 
@@ -33,7 +33,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
 
     // turn on display FPS
-    pDirector->setDisplayStats(false);
+    pDirector->setDisplayStats(true);
 
 	CCEGLView::sharedOpenGLView()->setDesignResolutionSize(480, 800, kResolutionShowAll);
 
