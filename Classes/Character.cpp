@@ -94,35 +94,6 @@ bool Character::onMove()
 			return (m_bIsMoving = false); 
 		}  
 	}
-	/*
-	if(GI.Me->getHead() != NULL) {  
-       // 地图方块数量    
-		CCSize mapTiledNum = GI.Map->getMapSize();  
-  
-		// 地图单个格子大小 
-		CCSize tiledSize = GI.Map->getTileSize();  
-     
-		// 地图大小 
-		CCSize mapSize = CCSize(  
-			mapTiledNum.width * tiledSize.width,   
-			mapTiledNum.height * tiledSize.height
-		);  
-  
-		// 屏幕大小  
-		CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();  
-  
-		// 精灵的坐标，取第一个精灵 
-		CCPoint spritePos = GI.Me->getHead()->getPosition();  
-  
-		// 如果精灵坐标小于屏幕的一半，则取屏幕中点坐标，否则取精灵的坐标 
-		x = max(spritePos.x, visibleSize.width / 2);  
-		y = max(spritePos.y, visibleSize.height / 2);  
-  
-		// 如果x、y的坐标大于右上角的极限值，则取极限值的坐标（极限值是指不让地图超出屏幕造成出现黑边的极限坐标）
-		x = min(x, mapSize.width - visibleSize.width);  
-		y = min(y, mapSize.height - visibleSize.height);  
-    }
-	*/
 	
 	//bool flag = false;
 	if (m_pQueue)

@@ -295,7 +295,7 @@ GameInfo::GameInfo()
 	// µØÍ¼
 	MapN = M_N;
 	MapM = M_M;
-	GridSize = 48.f;
+	GridSize = 40.f;
 
 	// ÆäËû
 	ValidDraggedLength = 10.f;
