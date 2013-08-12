@@ -16,6 +16,7 @@ void Hero::onEnter()
 	CCAction* fadeAway = CCSequence::create(
 		CCDelayTime::create(6),
 		CCBlink::create(6, 15),
+		CCDelayTime::create(0.2f),
 		CCCallFunc::create(this, callfunc_selector(Character::kill)),
 		NULL
 		);
@@ -87,7 +88,7 @@ void Hero::onUpdate(float dt)
 		BaseEntity* entity = EM.findHeroNotInQueue(this, GI.RangeToPickupHero);
 		if (entity != NULL)
 		{
-			m_pQueue->appendCharacter((Character*)(entity));
+			m_pQueue->addAMember((Character*)(entity));
 		}
 	}	
 }
@@ -117,5 +118,6 @@ void Hero::setIsPickedUp(bool is_picked_up)
 	if (m_bIsPickedUp)
 	{
 		stopActionByTag(EHAT_Fade);
+		setVisible(true);
 	}
 }

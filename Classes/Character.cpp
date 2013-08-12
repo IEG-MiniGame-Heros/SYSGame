@@ -76,12 +76,22 @@ bool Character::onMove()
 	CCPoint moveDelta = m_vCurMoveVector * GI.GridSize;
 	CCPoint targetPosition = getPosition() + moveDelta;
 
-	// 如果这个不是队首
-	if (m_pQueue && (this != m_pQueue->getHead()))
+	
+	if (m_pQueue)
 	{
-		targetPosition = m_pQueue->getPrivousCharacter(this)->getPosition();
-		CCPoint mv = getMoveVectorByPosition(getPosition(), targetPosition);
-		setMoveVector(mv);
+		// 如果这个不是队首
+		if (this != m_pQueue->getHead())
+		{
+			targetPosition = m_pQueue->getPrivousCharacter(this)->getPosition();
+			CCPoint mv = getMoveVectorByPosition(getPosition(), targetPosition);
+			setMoveVector(mv);
+		}
+		
+		// 刷完队尾，看看有没有需要添加的
+		if (m_pQueue->isLastMember(this)) 
+		{
+			m_pQueue->refreshMembers();
+		}
 	}
 
 	int index = getIndexByMoveVector(getMoveVector());
@@ -115,7 +125,7 @@ void Character::kill()
 	// 在队列之中
 	if (m_pQueue)
 	{
-		m_pQueue->removeFromQueue(this);
+		m_pQueue->removeAMember(this);
 	}
 	else
 	{

@@ -68,10 +68,11 @@ void FirstStage::onEnter()
 
 
 	// 把这几个人加进队伍里面吧
-	GI.Me->appendCharacter(p1);
-	GI.Me->appendCharacter(p2);
-	GI.Me->appendCharacter(p3);
-	GI.Me->appendCharacter(p4);
+	GI.Me->addAMember(p1);
+	GI.Me->addAMember(p2);
+	GI.Me->addAMember(p3);
+	GI.Me->addAMember(p4);
+	GI.Me->refreshMembers();
 
 	Monster* m1 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 3, GI.GridSize * 12));
 	Monster* m2 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 7, GI.GridSize * 13));
