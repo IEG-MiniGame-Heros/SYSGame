@@ -75,13 +75,68 @@ bool Character::onMove()
 
 	CCPoint moveDelta = m_vCurMoveVector * GI.GridSize;
 	CCPoint targetPosition = getPosition() + moveDelta;
-
 	
+	if(GI.Map != NULL && GI.Meta != NULL){
+		float x = 0;
+		float y = 0;
+		x = getPosition().x;
+		y = getPosition().y;
+		/* -----------------判断是否不可通行---------------- */  
+		/* 获得当前主角在地图中的格子位置 */  
+		CCPoint tiledPos = tileCoordForPosition(ccp(x, y));  
+  
+		/* 获取地图格子的唯一标识 */  
+		int tiledGid = GI.Meta->tileGIDAt(tiledPos);  
+  
+		/* 不为0，代表存在这个格子,如果存在，那么碰撞到啦~ 结束咯*/  
+		if(tiledGid != 0) {  
+			CCLog("collision detection");
+			return (m_bIsMoving = false); 
+		}  
+	}
+	/*
+	if(GI.Me->getHead() != NULL) {  
+       // 地图方块数量    
+		CCSize mapTiledNum = GI.Map->getMapSize();  
+  
+		// 地图单个格子大小 
+		CCSize tiledSize = GI.Map->getTileSize();  
+     
+		// 地图大小 
+		CCSize mapSize = CCSize(  
+			mapTiledNum.width * tiledSize.width,   
+			mapTiledNum.height * tiledSize.height
+		);  
+  
+		// 屏幕大小  
+		CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();  
+  
+		// 精灵的坐标，取第一个精灵 
+		CCPoint spritePos = GI.Me->getHead()->getPosition();  
+  
+		// 如果精灵坐标小于屏幕的一半，则取屏幕中点坐标，否则取精灵的坐标 
+		x = max(spritePos.x, visibleSize.width / 2);  
+		y = max(spritePos.y, visibleSize.height / 2);  
+  
+		// 如果x、y的坐标大于右上角的极限值，则取极限值的坐标（极限值是指不让地图超出屏幕造成出现黑边的极限坐标）
+		x = min(x, mapSize.width - visibleSize.width);  
+		y = min(y, mapSize.height - visibleSize.height);  
+    }
+	*/
+	
+	//bool flag = false;
 	if (m_pQueue)
 	{
 		// 如果这个不是队首
 		if (this != m_pQueue->getHead())
 		{
+			CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();  
+			/* 边界检测（比较坑爹
+			if(targetPosition.x < 0 || targetPosition.x > visibleSize.width
+				|| targetPosition.y < 0 || targetPosition.y > visibleSize.height){
+				flag = true;
+			}
+			*/
 			targetPosition = m_pQueue->getPrivousCharacter(this)->getPosition();
 			CCPoint mv = getMoveVectorByPosition(getPosition(), targetPosition);
 			setMoveVector(mv);
@@ -101,8 +156,10 @@ bool Character::onMove()
 		index = 0;
 	}
 
+	CCAction*  action;
 	// 移动到目标位置之后，调用onMoveDone将m_bIsMoving置为false	
-	CCAction* action = CCSequence::create(
+	
+	action = CCSequence::create(
 		CCSpawn::create(
 			CCMoveTo::create(1.f / getCurSpeed(), targetPosition),
 			CCAnimate::create(m_pWalkAnim[index]),			
@@ -189,4 +246,19 @@ void Character::getHarmed(int damage)
 			kill();
 		}
 	}
+}
+
+
+CCPoint Character::tileCoordForPosition( CCPoint pos )
+{
+	CCSize mapTiledNum = GI.Map->getMapSize();
+    CCSize tiledSize = GI.Map->getTileSize();
+
+    int x = pos.x / tiledSize.width;
+    int y = pos.y / tiledSize.height;
+
+    /* Cocos2d-x的默认Y坐标是由下至上的，所以要做一个相减操作 */
+    y = mapTiledNum.height - y;
+
+    return ccp(x, y);
 }

@@ -40,16 +40,26 @@ void FirstStage::onEnter()
 	GI.Game = this;
 
 
-	// ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ÈºÍ¸ß¶ï¿½
+	// »ñÈ¡ÆÁÄ»¿í¶ÈºÍ¸ß¶È
 	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
 	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 	CCPoint center = ccp(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
 
-	CCTMXTiledMap *map = CCTMXTiledMap::create("Map04.tmx");
+	CCTMXTiledMap *map = CCTMXTiledMap::create("map/Map05.tmx");
 	addChild(map, 0, 1);
 	map->setPosition(ccp(0, 0));
 	GI.Map = map;
 	
+    /* ¼ÓÔØ¶ÔÏó²ãµÄËùÓÐ¶ÔÏó */
+    //CCTMXObjectGroup* objGroup = map->objectGroupNamed("objects");
+
+    /* ¼ÓÔØmeta²ã */
+	CCTMXLayer*	meta = map->layerNamed("meta");
+    GI.Meta = meta;
+    GI.Meta->setVisible(false);
+
+    /* ¼ÓÔØÕÏ°­Îï²ã */
+    //GI.Barrier = map->layerNamed("barrier");
 
 
 	Queue* pQueue = Queue::create();
@@ -58,31 +68,31 @@ void FirstStage::onEnter()
 	GI.Me = pQueue;
 	GI.Me->retain();
 
-	Hero* p1 = EM.addAHero(ccp(0, 0));
-	Hero* p2 = EM.addAHero(ccp(0, 0));
-	Hero* p3 = EM.addAHero(ccp(0, 0));
-	Hero* p4 = EM.addAHero(ccp(0, 0));
-	Hero* p5 = EM.addAHero(ccp(0, 0));
+	Hero* p1 = EM.addAHero(ccp(100, 100));
+	Hero* p2 = EM.addAHero(ccp(100, 100));
+	Hero* p3 = EM.addAHero(ccp(100, 100));
+	Hero* p4 = EM.addAHero(ccp(100, 100));
+	Hero* p5 = EM.addAHero(ccp(100, 100));
 
 	p5->setPosition(ccp(center.x + GI.GridSize * 3, center.y + GI.GridSize * 3));
 
 
-	// ï¿½ï¿½ï¿½â¼¸ï¿½ï¿½ï¿½Ë¼Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// °ÑÕâ¼¸¸öÈË¼Ó½ø¶ÓÎéÀïÃæ°É
 	GI.Me->addAMember(p1);
 	GI.Me->addAMember(p2);
 	GI.Me->addAMember(p3);
 	GI.Me->addAMember(p4);
 	GI.Me->refreshMembers();
 
-	Monster* m1 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 3, GI.GridSize * 12));
-	Monster* m2 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 7, GI.GridSize * 13));
-	Monster* m3 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 12, GI.GridSize * 5));
+	//Monster* m1 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 3, GI.GridSize * 12));
+	//Monster* m2 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 7, GI.GridSize * 13));
+	//Monster* m3 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 12, GI.GridSize * 5));
 	//
-	/// ï¿½ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ó¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	p1->addChild(SkillFireAttack::create());
-	p2->addChild(SkillBulletAttack::create());
+	/// ²âÊÔ£¬¸øµÚÒ»¸öÓ¢ÐÛÔö¼ÓÒ»¸ö¼¼ÄÜ
+	//p1->addChild(SkillFireAttack::create());
+	//p2->addChild(SkillBulletAttack::create());
 
-	// ï¿½ï¿½ï¿½ï¿½Layerï¿½ï¿½ï¿½ï¿½Layerï¿½ï¿½ï¿½æ¾«ï¿½ï¿½ï¿½Æ¶ï¿½
+	// ¸üÐÂLayer£¬ÈÃLayer¸úËæ¾«ÁéÒÆ¶¯
 	this->schedule(schedule_selector(FirstStage::updateLayer));
 }
 
@@ -101,36 +111,36 @@ void FirstStage::updateLayer(float dt){
     }  
     //CCLayer* parent = (CCLayer* )GI.Me->getHead()->getParent();  
   
-	/* ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */      
+	/* µØÍ¼·½¿éÊýÁ¿ */      
 	CCSize mapTiledNum = GI.Map->getMapSize();  
   
-    /* ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó´ï¿½Ð¡ */  
+    /* µØÍ¼µ¥¸ö¸ñ×Ó´óÐ¡ */  
 	CCSize tiledSize = GI.Map->getTileSize();  
       
-	/* ï¿½ï¿½Í¼ï¿½ï¿½Ð¡ */  
+	/* µØÍ¼´óÐ¡ */  
     CCSize mapSize = CCSize(  
         mapTiledNum.width * tiledSize.width,   
         mapTiledNum.height * tiledSize.height
 	);  
   
-    /* ï¿½ï¿½Ä»ï¿½ï¿½Ð¡ */  
+    /* ÆÁÄ»´óÐ¡ */  
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();  
   
-    /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê£¬È¡ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */  
+    /* ¾«ÁéµÄ×ø±ê£¬È¡µÚÒ»¸ö¾«Áé */  
     CCPoint spritePos = GI.Me->getHead()->getPosition();  
   
-    /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½Ò»ï¿½ë£¬ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½Ðµï¿½ï¿½ï¿½ï¿½ê£¬ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */  
+    /* Èç¹û¾«Áé×ø±êÐ¡ÓÚÆÁÄ»µÄÒ»°ë£¬ÔòÈ¡ÆÁÄ»ÖÐµã×ø±ê£¬·ñÔòÈ¡¾«ÁéµÄ×ø±ê */  
     float x = max(spritePos.x, visibleSize.width / 2);  
     float y = max(spritePos.y, visibleSize.height / 2);  
   
-    /* ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ÇµÄ¼ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ê£¨ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ãµï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½É³ï¿½ï¿½ÖºÚ±ßµÄ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê£© */  
+    /* Èç¹ûx¡¢yµÄ×ø±ê´óÓÚÓÒÉÏ½ÇµÄ¼«ÏÞÖµ£¬ÔòÈ¡¼«ÏÞÖµµÄ×ø±ê£¨¼«ÏÞÖµÊÇÖ¸²»ÈÃµØÍ¼³¬³öÆÁÄ»Ôì³É³öÏÖºÚ±ßµÄ¼«ÏÞ×ø±ê£© */  
     x = min(x, mapSize.width - visibleSize.width / 2);  
     y = min(y, mapSize.height - visibleSize.height / 2);  
 
     CCPoint destPos = CCPoint(x, y);  
     CCPoint centerPos = CCPoint(visibleSize.width / 2, visibleSize.height / 2);  
 
-    /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Æ¶ï¿½ï¿½ï¿½Ä¿ï¿½Äµï¿½Ö®ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ */  
+    /* ¼ÆËãÆÁÄ»ÖÐµãºÍËùÒªÒÆ¶¯µÄÄ¿µÄµãÖ®¼äµÄ¾àÀë */  
     CCPoint viewPos = ccpSub(centerPos, destPos);  
 
 	GI.currentLayer->setPosition(viewPos);  

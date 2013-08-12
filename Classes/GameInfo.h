@@ -52,6 +52,9 @@ public:
 
 	// 地图相关
 	CCTMXTiledMap*		Map;						// 地图的引用
+    CCTMXLayer*			Meta;						// 检测碰撞的地图层 
+    CCTMXLayer*			Barrier;					// 障碍物层
+
 	int					MapN;						//
 	int					MapM;						// N行M列的地图
 	int					MapWidth;					// 地图宽度
