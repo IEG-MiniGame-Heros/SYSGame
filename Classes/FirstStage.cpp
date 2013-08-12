@@ -45,11 +45,21 @@ void FirstStage::onEnter()
 	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 	CCPoint center = ccp(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
 
-	CCTMXTiledMap *map = CCTMXTiledMap::create("Map04.tmx");
+	CCTMXTiledMap *map = CCTMXTiledMap::create("map/Map05.tmx");
 	addChild(map, 0, 1);
 	map->setPosition(ccp(0, 0));
 	GI.Map = map;
 	
+    /* 加载对象层的所有对象 */
+    //CCTMXObjectGroup* objGroup = map->objectGroupNamed("objects");
+
+    /* 加载meta层 */
+	CCTMXLayer*	meta = map->layerNamed("meta");
+    GI.Meta = meta;
+    GI.Meta->setVisible(false);
+
+    /* 加载障碍物层 */
+    //GI.Barrier = map->layerNamed("barrier");
 
 
 	Queue* pQueue = Queue::create();
@@ -58,11 +68,11 @@ void FirstStage::onEnter()
 	GI.Me = pQueue;
 	GI.Me->retain();
 
-	Hero* p1 = EM.addAHero(ccp(0, 0));
-	Hero* p2 = EM.addAHero(ccp(0, 0));
-	Hero* p3 = EM.addAHero(ccp(0, 0));
-	Hero* p4 = EM.addAHero(ccp(0, 0));
-	Hero* p5 = EM.addAHero(ccp(0, 0));
+	Hero* p1 = EM.addAHero(ccp(100, 100));
+	Hero* p2 = EM.addAHero(ccp(100, 100));
+	Hero* p3 = EM.addAHero(ccp(100, 100));
+	Hero* p4 = EM.addAHero(ccp(100, 100));
+	Hero* p5 = EM.addAHero(ccp(100, 100));
 
 	p5->setPosition(ccp(center.x + GI.GridSize * 3, center.y + GI.GridSize * 3));
 

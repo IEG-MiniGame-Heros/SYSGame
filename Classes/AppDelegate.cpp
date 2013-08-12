@@ -2,8 +2,7 @@
 #include "CCEGLView.h"
 #include "AppDelegate.h"
 #include "FirstStage.h"
-//#include "LoginScrene.h"
-//#include "SelectHeroScrene.h"
+#include "LoginScrene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace CocosDenshion;
@@ -21,11 +20,11 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-#if (CC_TARGET_PLATFORM !=CC_TARGET_WIN32)//AndroidÏÂÐèÒª¸´ÖÆÊý¾ÝÎÄ¼þ
-	//¼ì²éÊý¾Ý¿âÎÄ¼þÊÇ·ñÒÑ¾­ÌáÈ¡
+#if (CC_TARGET_PLATFORM !=CC_TARGET_WIN32)//Androidä¸‹éœ€è¦å¤åˆ¶æ•°æ®æ–‡ä»¶
+	//æ£€æŸ¥æ•°æ®åº“æ–‡ä»¶æ˜¯å¦å·²ç»æå–
 	if(!isDatabaseFileExist("database.db"))
 	{
-		copyDatabaseFile("database.db");//ÒªÊ¹ÓÃµÄsqlite¿âÎÄ¼þ
+		copyDatabaseFile("database.db");//è¦ä½¿ç”¨çš„sqliteåº“æ–‡ä»¶
 	}
 #endif
 
@@ -42,8 +41,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    //CCScene *pScene = LoginScrene::scene();
-	CCScene* pScene = FirstStage::scene();
+    CCScene *pScene = LoginScrene::scene();
+	//CCScene* pScene = FirstStage::scene();
 
     // run
     pDirector->runWithScene(pScene);

@@ -51,6 +51,11 @@ public:
 	 */
 	void getHarmed(int damage);
 
+    /* 
+	 * 将像素坐标转换为地图格子坐标
+	 */
+    CCPoint tileCoordForPosition(CCPoint pos);
+
 protected: 
 
 	int				m_iCurHealth;		// 当前生命值
