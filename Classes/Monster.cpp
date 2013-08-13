@@ -24,11 +24,10 @@ void Monster::onEnter()
 	m_pWalkAnim[0]->addSpriteFrameWithFileName("Monster1.png");
 	m_pWalkAnim[0]->setDelayPerUnit(0.5 / getCurSpeed());
 
-	setCurSpeed(GI.MonsterInitSpeed);
-	setMaxSpeed(GI.MonsterMaxSpeed);
-	setCurHealth(100);
-	setMaxHealth(100);
-	setCurSpeed(3.0f);
+	setCurSpeed(GI.getMonsterConfig()[0].fMoveSpeed);
+	setMaxSpeed(GI.getMonsterConfig()[0].fMoveSpeed);
+	setCurHealth(GI.getMonsterConfig()[0].iHP);
+	setMaxHealth(GI.getMonsterConfig()[0].iHP);
 
 	m_iWalkLoopCount = 0;
 	m_iWalkDir = 0;

@@ -49,6 +49,9 @@ void FirstStage::onEnter()
 	addChild(map, 0, 1);
 	map->setPosition(ccp(0, 0));
 	GI.Map = map;
+	GI.MapHeight = map->getContentSize().height;
+	GI.MapWidth = map->getContentSize().width;
+	CCLog("MapSize = %f, %f", GI.MapWidth, GI.MapHeight);
 	
     /* 加载对象层的所有对象 */
     //CCTMXObjectGroup* objGroup = map->objectGroupNamed("objects");
@@ -60,6 +63,9 @@ void FirstStage::onEnter()
 
     /* 加载障碍物层 */
     //GI.Barrier = map->layerNamed("barrier");
+
+	// 初始化GameHelper, 一定要放在地图加载之后
+	////////////////////////////////////////
 
 
 	Queue* pQueue = Queue::create();
@@ -84,13 +90,13 @@ void FirstStage::onEnter()
 	GI.Me->addAMember(p4);
 	GI.Me->refreshMembers();
 
-	//Monster* m1 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 3, GI.GridSize * 12));
-	//Monster* m2 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 7, GI.GridSize * 13));
-	//Monster* m3 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 12, GI.GridSize * 5));
+	Monster* m1 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 3, GI.GridSize * 12));
+	Monster* m2 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 7, GI.GridSize * 13));
+	Monster* m3 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 12, GI.GridSize * 5));
 	//
 	/// 测试，给第一个英雄增加一个技能
-	//p1->addChild(SkillFireAttack::create());
-	//p2->addChild(SkillBulletAttack::create());
+	p1->addChild(SkillFireAttack::create());
+	p2->addChild(SkillBulletAttack::create());
 
 	// 更新Layer，让Layer跟随精灵移动
 	this->schedule(schedule_selector(FirstStage::updateLayer));
