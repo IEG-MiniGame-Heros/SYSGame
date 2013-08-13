@@ -4,7 +4,7 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>logo.png</key>
+			<key>bg_logo.png</key>
 			<dict>
 				<key>width</key>
 				<integer>480</integer>

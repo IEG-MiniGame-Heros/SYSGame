@@ -26,6 +26,10 @@ bool LoginScrene::init()
 		cbPsw = dynamic_cast<UICheckBox*>(ul->getWidgetByName("cb_psw"));
 		cbPsw->setSelectedState(true);
 
+		// ×Ô¶¯µÇÂ¼¸´Ñ¡¿ñ
+		cbAuto = dynamic_cast<UICheckBox*>(ul->getWidgetByName("cb_auto"));
+		cbAuto->setSelectedState(false);
+
 		// µÇÂ¼°´Å¥
 		tbLogin = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_login"));
 		tbLogin->addPushDownEvent(this, coco_releaseselector(LoginScrene::tbLoginCallback));
