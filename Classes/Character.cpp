@@ -226,6 +226,18 @@ void Character::getHarmed(int damage)
 	}
 }
 
+void Character::getHeal(int amount)
+{
+	if (amount > 0)
+	{
+		m_iCurHealth += amount;
+		if (m_iCurHealth > m_iMaxHealth)
+		{
+			m_iCurHealth = m_iMaxHealth;
+		}
+	}
+}
+
 
 CCPoint Character::tileCoordForPosition( CCPoint pos )
 {
