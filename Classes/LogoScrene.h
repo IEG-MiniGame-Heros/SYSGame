@@ -14,6 +14,7 @@ public :
 	static cocos2d::CCScene* scene();
 
 	virtual void onEnter();
+	virtual void onExit();
 
 	void replaceScrene(float dt);
 	CREATE_FUNC(LogoScrene);

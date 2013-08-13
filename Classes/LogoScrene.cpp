@@ -29,9 +29,14 @@ void LogoScrene::replaceScrene(float dt)
 	CCDirector::sharedDirector()->replaceScene(LoginScrene::scene());
 }
 
-// 两秒之后切换场景
+// 一秒之后切换场景
 void LogoScrene::onEnter()
 {
 	CCLayer::onEnter();
-	this->schedule(schedule_selector(LogoScrene::replaceScrene), 2.0f);  
+	this->schedule(schedule_selector(LogoScrene::replaceScrene), 1.0f);  
+}
+
+void LogoScrene::onExit()
+{
+	
 }
