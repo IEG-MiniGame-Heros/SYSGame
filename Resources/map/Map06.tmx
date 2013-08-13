@@ -4,7 +4,7 @@
   <image source="./grass_map.jpg" width="1050" height="1050"/>
  </tileset>
  <tileset firstgid="1765" name="meta_tiles" tilewidth="25" tileheight="25">
-  <image source=".//meta_tiles.png" width="67" height="34"/>
+  <image source="./meta_tiles.png" width="67" height="34"/>
  </tileset>
  <layer name="background" width="42" height="42">
   <data encoding="base64" compression="zlib">
@@ -16,7 +16,7 @@
    <property name="Collidable" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1jEKgDAUBcFU3v+S3kMsbAVhCXyZhUfKDKTJeax1hnurvIdz3z0742zjbONs42zjbONsm2C842zjbONs42zjbOPs42yb8vYTnH/4z3N+b5LzOc2s2QVUKwic
+   eJztzrEJwDAQBMGP3H+T6kOpEweGBYGYhUv/Zz0zK9y78m49zu8/J+Ns42zjbONs42zjbONs42zjbONs42zjbONs42zjbONsu8VpZv+3AaZ9Jfw=
   </data>
  </layer>
 </map>
