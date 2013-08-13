@@ -23,7 +23,9 @@ private:
 	UILayer *ul;
 	UITextField *tfName;
 	UITextField *tfPsw;
-	UITextButton *tbLogin;
+	UIButton *tbLogin;
+	UICheckBox *cbPsw;
+	UICheckBox *cbAuto;
 };
 
 #endif
