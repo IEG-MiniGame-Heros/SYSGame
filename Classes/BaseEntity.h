@@ -18,6 +18,9 @@ class BaseEntity : public CCSprite
 {
 public:
 
+	virtual void onEnter();
+	virtual void onExit();
+
 	/** 
 	 * 获取Entity类型
 	 */

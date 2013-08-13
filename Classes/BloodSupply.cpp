@@ -6,21 +6,21 @@
 #include "Character.h"
 
 
-BloodSupply::BloodSupply()
-{
-	setType(ET_Goods);
-}
+//BloodSupply::BloodSupply()
+//{
+//	setType(ET_Goods);
+//}
 
 void BloodSupply::onEnter()
 {
-	CCSprite::onEnter();
+	Goods::onEnter();
 
 	m_iSupplyAmount = 30;
 }
 
 void BloodSupply::onExit()
 {
-	CCSprite::onExit();
+	Goods::onExit();
 }
 
 void BloodSupply::use()
@@ -43,7 +43,18 @@ void BloodSupply::use()
 	//	}
 	//}
 
+	if (GI.Me && GI.Me->getQueueNum() > 0)
+	{
+		CCArray* members = GI.Me->getAllMembers();
+		CCObject* object = NULL;
+		CCARRAY_FOREACH(members, object)
+		{
+			((Character*)(object))->getHeal(m_iSupplyAmount);
+		}
 
+		// 吃完了，不要你了。。。ByeBye
+		kill();
+	}
 }
 
 BloodSupply* BloodSupply::create(const char *pszFileName)
@@ -59,19 +70,19 @@ BloodSupply* BloodSupply::create(const char *pszFileName)
 }
 
 
-//绘制血条
-void BloodSupply::draw() 
-{
-	CCLayer *layer = NULL;
-	layer->draw();
-	CCSize s =CCDirector::sharedDirector()->getWinSize();
-	ccDrawColor4F(0.0, 0.0, 0.0, 1.0);
-	glLineWidth(10);    //  instead of glColor4f
-	cocos2d::ccDrawLine(CCPointMake(5, s.height - 10), CCPointMake(115, s.height - 10));
-	glLineWidth(5);
-	cocos2d::ccDrawColor4F(1, 0, 0, 0);  
-	Character* pHead = NULL;
-	pHead = pHead->getQueue()->getHead();
-	int bloods=pHead->getCurHealth();
-	cocos2d::ccDrawLine(CCPointMake(10, s.height - 11), CCPointMake(10 + bloods, s.height - 11));
-}
+////绘制血条
+//void BloodSupply::draw() 
+//{
+//	CCLayer *layer = NULL;
+//	layer->draw();
+//	CCSize s =CCDirector::sharedDirector()->getWinSize();
+//	ccDrawColor4F(0.0, 0.0, 0.0, 1.0);
+//	glLineWidth(10);    //  instead of glColor4f
+//	cocos2d::ccDrawLine(CCPointMake(5, s.height - 10), CCPointMake(115, s.height - 10));
+//	glLineWidth(5);
+//	cocos2d::ccDrawColor4F(1, 0, 0, 0);  
+//	Character* pHead = NULL;
+//	pHead = pHead->getQueue()->getHead();
+//	int bloods=pHead->getCurHealth();
+//	cocos2d::ccDrawLine(CCPointMake(10, s.height - 11), CCPointMake(10 + bloods, s.height - 11));
+//}

@@ -7,12 +7,13 @@ USING_NS_CC;
 class BloodSupply : public Goods
 {
 public:
-	BloodSupply();
 
 	virtual void onEnter();
 	virtual void onExit();
 	virtual void use();
-	void  draw();
+
+	//为什么要在这里重载CCSprite???!!!
+	//void  draw();
 
 	static BloodSupply* create(const char *pszFileName);
 

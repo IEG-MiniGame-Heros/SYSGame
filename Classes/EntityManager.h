@@ -12,6 +12,7 @@ USING_NS_CC;
 class Hero;
 class Monster;
 class Effect;
+class Goods;
 
 class EntityManager
 {
@@ -31,6 +32,7 @@ public:
 	Hero* addAHero(CCPoint pos);
 	Monster* addAMonster(CCPoint pos);
 	Effect* addAnEffect(CCPoint pos, EEffectType type, CCPoint target_pos);
+	Goods* addAGoods(CCPoint pos, EGoodType type);
 
 	/// Find Entity Begin
 	////////////////////////

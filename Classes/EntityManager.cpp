@@ -6,6 +6,8 @@
 #include "FireBall.h"
 #include "Bullet.h"
 #include "Explosion.h"
+#include "Coin.h"
+#include "BloodSupply.h"
 #include "GameInfo.h"
 
 EntityManager& EntityManager::instance()
@@ -211,4 +213,29 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 	}
 
 	return eft;
+}
+
+Goods* EntityManager::addAGoods(CCPoint pos, EGoodType type) 
+{
+	Goods* goods = NULL;
+
+	switch (type)
+	{
+	case EGT_BloodSupply:
+		goods = BloodSupply::create("spirit/item/BloodSupply.png");
+		break;
+
+	case EGT_Coin:
+		goods = Coin::create("spirit/item/Coin.png");
+		break;
+	}
+
+	if (GI.Game)
+	{
+		goods->setPosition(pos);
+		GI.Game->addChild(goods);
+		m_pAllGoods->addObject(goods);
+	}
+
+	return goods;
 }

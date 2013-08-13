@@ -1,5 +1,6 @@
 #include "Hero.h"
 #include "Queue.h"
+#include "Goods.h"
 #include "EntityManager.h"
 #include "GameInfo.h"
 
@@ -98,6 +99,13 @@ void Hero::onUpdate(float dt)
 			m_pQueue->addAMember((Character*)(entity));
 		}
 	}	
+
+	// 检查有没有物品可以使用
+	Goods* pGood = (Goods*)(EM.findEntityInRange(this, 60.f, ET_Goods));
+	if (pGood)
+	{
+		pGood->use();
+	}
 
 	// 检测是否撞到小怪了
 	BaseEntity* entity = EM.findEntityInRange(this, 35.f, ET_Monster);

@@ -220,8 +220,16 @@ void Queue::refreshMembers()
 	}
 }
 
+/** 
+ * @brief ÊÇ·ñ¼´½«±»kill
+ */
 bool Queue::isPendingKill(Character* pCha) const 
 {
 	CCAssert(pCha != NULL, "");
 	return (m_pPendingKillPool->indexOfObject(pCha) != CC_INVALID_INDEX);
+}
+
+CCArray* Queue::getAllMembers() const 
+{
+	return m_pCharacters;
 }

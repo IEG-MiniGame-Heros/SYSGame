@@ -1,4 +1,5 @@
 #include "Goods.h"
+#include "EntityManager.h"
 
 Goods::Goods()
 {
@@ -7,14 +8,19 @@ Goods::Goods()
 
 void Goods::onEnter()
 {
-	CCSprite::onEnter();
+	BaseEntity::onEnter();
 }
 
 void Goods::onExit()
 {
-	CCSprite::onEnter();
+	BaseEntity::onExit();
 }
 
 void Goods::use()
 {
+}
+
+void Goods::kill()
+{
+	EM.removeAnEntity(this, ET_Goods);
 }

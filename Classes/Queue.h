@@ -58,6 +58,8 @@ public:
 	 */
 	CCPoint getPositionBehindTail() const;
 
+	CCArray* getAllMembers() const;
+
 	bool isLastMember(Character* pCha) const;
 
 	bool isPendingKill(Character* pCha) const;

@@ -18,3 +18,13 @@ bool BaseEntity::isMovable() const
 	}
 	return true;
 }
+
+void BaseEntity::onEnter()
+{
+	CCNode::onEnter();
+}
+
+void BaseEntity::onExit()
+{
+	CCNode::onExit();
+}
