@@ -11,9 +11,12 @@ USING_NS_CC;
 class GameHelper : public CCNode
 {
 public:
+	CREATE_FUNC(GameHelper);
 
 	void onEnter();
 	void onExit();
+
+	CCPoint getGridCenter(int i, int j);
 
 	void onUpdateMonster(float dt);
 	void onUpdateGoods(float dt);
@@ -27,7 +30,6 @@ private:
 
 	CCPoint			m_Points[22 * 22];
 	int				m_PointsIndex[22 * 22];
-
 	bool			m_bUsed[22][22];			// 标记地图上某一格是否被占用
 
 };

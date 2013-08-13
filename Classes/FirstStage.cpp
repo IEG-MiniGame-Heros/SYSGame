@@ -5,6 +5,7 @@
 #include "SkillFireAttack.h"
 #include "SkillBulletAttack.h"
 #include "EntityManager.h"
+#include "GameHelper.h"
 #include "GameInfo.h"
 
 #include "cocos2d.h"
@@ -45,7 +46,7 @@ void FirstStage::onEnter()
 	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 	CCPoint center = ccp(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
 
-	CCTMXTiledMap *map = CCTMXTiledMap::create("map/Map05.tmx");
+	CCTMXTiledMap *map = CCTMXTiledMap::create("map/Map06.tmx");
 	addChild(map, 0, 1);
 	map->setPosition(ccp(0, 0));
 	GI.Map = map;
@@ -65,6 +66,8 @@ void FirstStage::onEnter()
     //GI.Barrier = map->layerNamed("barrier");
 
 	// 初始化GameHelper, 一定要放在地图加载之后
+	GI.Helper = GameHelper::create();
+	addChild(GI.Helper);
 	////////////////////////////////////////
 
 
@@ -80,7 +83,7 @@ void FirstStage::onEnter()
 	Hero* p4 = EM.addAHero(ccp(100, 100));
 	Hero* p5 = EM.addAHero(ccp(100, 100));
 
-	p5->setPosition(ccp(center.x + GI.GridSize * 3, center.y + GI.GridSize * 3));
+	p5->setPosition(GI.Helper->getGridCenter(11, 11));
 
 
 	// 把这几个人加进队伍里面吧
@@ -90,9 +93,9 @@ void FirstStage::onEnter()
 	GI.Me->addAMember(p4);
 	GI.Me->refreshMembers();
 
-	Monster* m1 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 3, GI.GridSize * 12));
-	Monster* m2 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 7, GI.GridSize * 13));
-	Monster* m3 = EM.addAMonster(ccp(0, 0) + ccp(GI.GridSize * 12, GI.GridSize * 5));
+	Monster* m1 = EM.addAMonster(GI.Helper->getGridCenter(3, 12));
+	Monster* m2 = EM.addAMonster(GI.Helper->getGridCenter(7, 13));
+	Monster* m3 = EM.addAMonster(GI.Helper->getGridCenter(12, 5));
 	//
 	/// 测试，给第一个英雄增加一个技能
 	p1->addChild(SkillFireAttack::create());

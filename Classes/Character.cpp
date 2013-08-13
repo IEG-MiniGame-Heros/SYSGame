@@ -76,24 +76,24 @@ bool Character::onMove()
 	CCPoint moveDelta = m_vCurMoveVector * GI.GridSize;
 	CCPoint targetPosition = getPosition() + moveDelta;
 	
-	if(GI.Map != NULL && GI.Meta != NULL){
-		float x = 0;
-		float y = 0;
-		x = getPosition().x;
-		y = getPosition().y;
-		/* -----------------判断是否不可通行---------------- */  
-		/* 获得当前主角在地图中的格子位置 */  
-		CCPoint tiledPos = tileCoordForPosition(ccp(x, y));  
-  
-		/* 获取地图格子的唯一标识 */  
-		int tiledGid = GI.Meta->tileGIDAt(tiledPos);  
-  
-		/* 不为0，代表存在这个格子,如果存在，那么碰撞到啦~ 结束咯*/  
-		if(tiledGid != 0) {  
-			CCLog("collision detection");
-			return (m_bIsMoving = false); 
-		}  
-	}
+	//if(GI.Map != NULL && GI.Meta != NULL){
+	//	float x = 0;
+	//	float y = 0;
+	//	x = getPosition().x;
+	//	y = getPosition().y;
+	//	/* -----------------判断是否不可通行---------------- */  
+	//	/* 获得当前主角在地图中的格子位置 */  
+	//	CCPoint tiledPos = tileCoordForPosition(ccp(x, y));  
+ // 
+	//	/* 获取地图格子的唯一标识 */  
+	//	int tiledGid = GI.Meta->tileGIDAt(tiledPos);  
+ // 
+	//	/* 不为0，代表存在这个格子,如果存在，那么碰撞到啦~ 结束咯*/  
+	//	if(tiledGid != 0) {  
+	//		CCLog("collision detection");
+	//		return (m_bIsMoving = false); 
+	//	}  
+	//}
 	
 	//bool flag = false;
 	if (m_pQueue)
