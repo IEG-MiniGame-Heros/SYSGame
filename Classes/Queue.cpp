@@ -22,18 +22,23 @@ void Queue::onEnter()
 	m_pPendingKillPool->retain();
 
 #if TEST_REMOVE_FROM_QUEUE
-	schedule(schedule_selector(Queue::onUpdate), 5, 5, 2);
+	schedule(schedule_selector(Queue::onUpdate), 1, 10, 2);
 #endif
 }
 
 void Queue::onUpdate(float dt)
 {
 	CCLog("///////////Queue Num: %d", m_pCharacters->count());		
-	if (m_pCharacters && m_pCharacters->count() > 3)
-	{		
-		//removeAMember((Character*)m_pCharacters->objectAtIndex(0));
-		removeAMember((Character*)m_pCharacters->objectAtIndex(1));
-		removeAMember((Character*)m_pCharacters->objectAtIndex(2));
+	//if (m_pCharacters && m_pCharacters->count() > 3)
+	//{		
+	//	//removeAMember((Character*)m_pCharacters->objectAtIndex(0));
+	//	removeAMember((Character*)m_pCharacters->objectAtIndex(1));
+	//	removeAMember((Character*)m_pCharacters->objectAtIndex(2));
+	//}	
+	//removeAMember((Character*)(m_pCharacters->objectAtIndex(2)));
+	if (m_pCharacters->count() > 0)
+	{
+		((Character*)m_pCharacters->lastObject())->kill();
 	}	
 }
 
@@ -56,6 +61,11 @@ Character* Queue::getHead() const
 	return (Character*)(m_pCharacters->objectAtIndex(0));	
 }
 
+int Queue::getQueueNum() const 
+{
+	return m_pCharacters->count();
+}
+
 CCArray* Queue::getCharacters() const 
 {
 	return m_pCharacters;
@@ -64,7 +74,11 @@ CCArray* Queue::getCharacters() const
 void Queue::setMoveVector(CCPoint move_vector)
 {
 	int size = m_pCharacters->count();
-	CCAssert((size > 0), "Count of queue must larger than 0!!!");
+	if (size <= 0)
+	{
+		return;
+	}
+	//CCAssert((size > 0), "Count of queue must larger than 0!!!");
 
 	CCPoint newVector = ccpMult(move_vector, -1);
 	Character* pHead = getHead();
@@ -85,14 +99,12 @@ void Queue::setMoveVector(CCPoint move_vector)
 
 void Queue::appendCharacter(Character* character)
 {
-	CCPoint pos;
 	if (character != NULL)
 	{
 		if (m_pCharacters->count() == 0)
 		{
 			GI.Game->removeChild(character);
 			addChild(character);
-			pos = GI.Helper->getGridCenter(5, 5);
 			character->setPosition(GI.Helper->getGridCenter(5, 5));
 			character->setMoveVector(ccp(0, 1));
 			m_pCharacters->addObject(character);
@@ -206,4 +218,10 @@ void Queue::refreshMembers()
 		removeFromQueue(pCha);
 		m_pPendingKillPool->removeLastObject();
 	}
+}
+
+bool Queue::isPendingKill(Character* pCha) const 
+{
+	CCAssert(pCha != NULL, "");
+	return (m_pPendingKillPool->indexOfObject(pCha) != CC_INVALID_INDEX);
 }

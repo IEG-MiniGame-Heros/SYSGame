@@ -60,6 +60,10 @@ public:
 
 	bool isLastMember(Character* pCha) const;
 
+	bool isPendingKill(Character* pCha) const;
+
+	int getQueueNum() const;
+
 	/// Test begin
 public:
 	void onUpdate(float dt);

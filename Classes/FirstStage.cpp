@@ -83,7 +83,7 @@ void FirstStage::onEnter()
 	Hero* p4 = EM.addAHero(ccp(100, 100));
 	Hero* p5 = EM.addAHero(ccp(100, 100));
 
-	p5->setPosition(GI.Helper->getGridCenter(11, 11));
+	//p5->setPosition(GI.Helper->getGridCenter(11, 11));
 
 
 	// 把这几个人加进队伍里面吧
@@ -115,7 +115,7 @@ void FirstStage::onExit()
 }
 
 void FirstStage::updateLayer(float dt){
-	if(GI.Me->getHead() == NULL) {  
+	if (GI.Me && GI.Me->getQueueNum() <= 0) {  
         return;  
     }  
     //CCLayer* parent = (CCLayer* )GI.Me->getHead()->getParent();  

@@ -84,7 +84,10 @@ void Hero::onUpdate(float dt)
 		return;
 	}
 
-	onMove();
+	if (!onMove())
+	{
+		return;
+	}
 
 	// 检查有没有英雄要“吃”
 	if (m_pQueue && m_pQueue->getHead() == this)

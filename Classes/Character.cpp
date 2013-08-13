@@ -122,11 +122,20 @@ bool Character::onMove()
 		// 刷完队尾，看看有没有需要添加的
 		if (m_pQueue->isLastMember(this)) 
 		{
+			bool isPendingKill = m_pQueue->isPendingKill(this);
+
 			m_pQueue->refreshMembers();
+			
+			// 如果这是最后一个，而且被kill了，那么，直接退出吧, 为了避免程序挂掉
+			if (isPendingKill)
+			{
+				return false;
+			}
 		}
 	}
 
 	int index = getIndexByMoveVector(getMoveVector());
+
 	// 额。。。这个只是没有资源罢了
 	if (getType() == ET_Monster)
 	{
