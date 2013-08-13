@@ -1,6 +1,7 @@
 #include "GameHelper.h"
 #include "GameInfo.h"
 
+
 #include <cstdlib>
 #include <ctime>
 
@@ -14,6 +15,9 @@ void GameHelper::onEnter()
 	// 初始化地图坐标
 	CCPoint origin(0, 0);
 
+
+
+	// 初始化m_Points
 
 	///////////////////////////////
 
