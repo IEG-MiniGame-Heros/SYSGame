@@ -51,6 +51,11 @@ public:
 	 */
 	void getHarmed(int damage);
 
+	/** 
+	 * 吃血包，得到治疗
+	 */
+	void getHeal(int amount);
+
     /* 
 	 * 将像素坐标转换为地图格子坐标
 	 */

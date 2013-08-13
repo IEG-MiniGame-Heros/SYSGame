@@ -27,6 +27,10 @@ void Hero::onEnter()
 	//setCurSpeed(GI.HeroInitSpeed);
 	setCurSpeed(GI.getHeroConfig()[0].fMoveSpeed);
 
+	// 设置生命
+	setCurHealth(GI.getHeroConfig()[0].iHP);
+	setMaxHealth(GI.getHeroConfig()[0].iHP);
+
 	// 设置动画
 	// 0.右 1.下 2.左 3.上 
 

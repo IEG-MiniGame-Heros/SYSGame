@@ -4,7 +4,7 @@
 #include "Goods.h"
 #include "Comm.h"
 USING_NS_CC;
-class BloodSupply:public Goods
+class BloodSupply : public Goods
 {
 public:
 	BloodSupply();
@@ -14,5 +14,11 @@ public:
 	virtual void use();
 	void  draw();
 
+	static BloodSupply* create(const char *pszFileName);
+
+
+protected:
+	
+	int		m_iSupplyAmount;		// ²¹¸øÁ¿
 };
 #endif 
