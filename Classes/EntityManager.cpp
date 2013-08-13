@@ -185,11 +185,11 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 	switch (type)
 	{
 	case EET_FireBall:
-		eft = FireBall::create("FireBall_1.png");
+		eft = FireBall::create("spirit/skill/FireBall_1.png");
 		eft->setTarget(target_pos);
 		break;
 	case EET_Bullet:
-		eft = Bullet::create("Bullet_1.png");
+		eft = Bullet::create("spirit/skill/Bullet_1.png");
 		eft->setTarget(target_pos);
 		break;
 

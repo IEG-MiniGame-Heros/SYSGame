@@ -10,7 +10,7 @@ void Bullet::onEnter()
 	m_bShouldMove = true;
 
 	CCAnimation* anim = CCAnimation::create();
-	anim->addSpriteFrameWithFileName("Bullet_1.png");
+	anim->addSpriteFrameWithFileName("spirit/skill/Bullet_1.png");
 	anim->setDelayPerUnit(m_fLifeTime);
 
 	float length = max(600.f, getPosition().getDistance(m_vTargetPos));

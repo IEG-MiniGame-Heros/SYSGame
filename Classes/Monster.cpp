@@ -20,8 +20,8 @@ void Monster::onEnter()
 	// 0.об 1.вС 2.ио 3.ср
 	m_pWalkAnim[0] = CCAnimation::create();
 	m_pWalkAnim[0]->retain();
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("Monster1.png");
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("Monster1.png");
+	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/m1.png");
+	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/m1.png");
 	m_pWalkAnim[0]->setDelayPerUnit(0.5 / getCurSpeed());
 
 	setCurSpeed(GI.getMonsterConfig()[0].fMoveSpeed);

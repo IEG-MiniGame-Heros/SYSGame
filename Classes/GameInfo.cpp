@@ -282,13 +282,13 @@ GameInfo::GameInfo()
 
 
 	// Ó¢ÐÛ
-	PathOfHero = "Hero1.png";
+	PathOfHero = "spirit/hero/Hero1_D_1.png";
 	RangeToPickupHero = 80.f;
 	HeroInitSpeed = 1.5f;
 	HeroMaxSpeed = 2.0f;
 
 	// ¹Ö
-	PathOfMonster = "Monster1.png";
+	PathOfMonster = "spirit/monster/m1.png";
 	MonsterInitSpeed = 1.0f;
 	MonsterMaxSpeed = 2.0f;
 
