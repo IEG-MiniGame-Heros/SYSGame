@@ -48,6 +48,8 @@ const int WALK_LOOPS = 3;
 
 void Monster::onUpdate(float dt)
 {
+	return;
+
 	if (0 /* 等地图碰撞做了以后，把这个加上，不要让怪太傻B */)
 	{
 		m_iWalkDir += (m_bIsClockWise ? 1 : -1);

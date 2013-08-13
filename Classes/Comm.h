@@ -29,7 +29,8 @@ enum EGameMode
 enum EEffectType
 {
 	EET_FireBall	=	1,	// 火球
-	EET_Bullet      =   2   //子弹
+	EET_Bullet      =   2,  // 子弹
+	EET_Explosion	=	3	// 爆炸
 };
 
 // 物品类型

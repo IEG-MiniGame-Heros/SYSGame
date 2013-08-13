@@ -156,6 +156,9 @@ void Character::onMoveDone()
 
 void Character::kill() 
 {
+	// 播放死亡动画
+	EM.addAnEffect(getPosition(), EET_Explosion, ccp(0, 0));
+
 	// 在队列之中
 	if (m_pQueue)
 	{
@@ -166,8 +169,6 @@ void Character::kill()
 		EM.removeAnEntity(this, getType());
 	}
 	CCLog("Character killed");
-	// 然后，播放死亡动画
-	////////////////////////////
 }
 
 Queue* Character::getQueue() const 

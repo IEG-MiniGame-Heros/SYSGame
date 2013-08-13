@@ -5,6 +5,7 @@
 #include "FirstStage.h"
 #include "FireBall.h"
 #include "Bullet.h"
+#include "Explosion.h"
 #include "GameInfo.h"
 
 EntityManager& EntityManager::instance()
@@ -188,9 +189,14 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 		eft = FireBall::create("spirit/skill/FireBall_1.png");
 		eft->setTarget(target_pos);
 		break;
+
 	case EET_Bullet:
 		eft = Bullet::create("spirit/skill/Bullet_1.png");
 		eft->setTarget(target_pos);
+		break;
+
+	case EET_Explosion:
+		eft = Explosion::create("spirit/effect/Explosion_1.png");
 		break;
 
 	default:
