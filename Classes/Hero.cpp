@@ -91,6 +91,17 @@ void Hero::onUpdate(float dt)
 			m_pQueue->addAMember((Character*)(entity));
 		}
 	}	
+
+	// 检测是否撞到小怪了
+	BaseEntity* entity = EM.findEntityInRange(this, 35.f, ET_Monster);
+	if (entity)
+	{
+		// 这个怪死了
+		((Character*)(entity))->kill();
+
+		// 我也死了，呜呜呜>_<
+		kill();
+	}
 }
 
 Hero* Hero::create(const char *pszFileName)

@@ -48,7 +48,7 @@ const int WALK_LOOPS = 3;
 
 void Monster::onUpdate(float dt)
 {
-	return;
+	//return;
 
 	if (0 /* 等地图碰撞做了以后，把这个加上，不要让怪太傻B */)
 	{
