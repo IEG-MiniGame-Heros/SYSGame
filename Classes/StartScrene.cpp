@@ -1,4 +1,5 @@
 #include "StartScrene.h"
+#include "SoundScrene.h"
 
 
 bool StartScrene::init()
@@ -25,7 +26,7 @@ bool StartScrene::init()
 
 void StartScrene::tbSettingCallback(cocos2d::CCObject *pSender)
 {
-
+	CCDirector::sharedDirector()->replaceScene(SoundScrene::scene());
 }
 
 void StartScrene::tbStartGameCallback(cocos2d::CCObject *pSender)
