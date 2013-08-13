@@ -20,7 +20,7 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-#if (CC_TARGET_PLATFORM !=CC_TARGET_WIN32)//Android下需要复制数据文件
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)//Android下需要复制数据文件
 	//检查数据库文件是否已经提取
 	if(!isDatabaseFileExist("database.db"))
 	{
@@ -33,7 +33,11 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
 
     // turn on display FPS
-    pDirector->setDisplayStats(true);
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
+	pDirector->setDisplayStats(false);
+#else
+	pDirector->setDisplayStats(true);
+#endif
 
 	CCEGLView::sharedOpenGLView()->setDesignResolutionSize(480, 800, kResolutionShowAll);
 

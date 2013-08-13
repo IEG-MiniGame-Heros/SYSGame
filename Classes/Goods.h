@@ -4,8 +4,6 @@
 #include "BaseEntity.h"
 #include "cocos2d.h"
 
-#include "Comm.h"
-
 USING_NS_CC;
 
 class Goods : public BaseEntity
@@ -20,7 +18,7 @@ public:
 
 protected:
 
-	EGoodType	m_iID;				// 道具ID
+	int			m_iID;				// 道具ID
 
 };
 #endif

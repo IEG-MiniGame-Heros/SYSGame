@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="52" height="52" tilewidth="20" tileheight="20">
  <tileset firstgid="1" name="grass_map" tilewidth="20" tileheight="20">
-  <image source="./grass_map.jpg" width="1050" height="1050"/>
+  <image source="grass_map.jpg" width="1050" height="1050"/>
  </tileset>
  <tileset firstgid="2705" name="meta_tiles" tilewidth="20" tileheight="20">
-  <image source="../meta_tiles.png" width="67" height="34"/>
+  <image source="meta_tiles.png" width="67" height="34"/>
  </tileset>
  <layer name="background" width="52" height="52">
   <data encoding="base64" compression="zlib">
