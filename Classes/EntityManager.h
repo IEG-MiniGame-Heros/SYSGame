@@ -57,7 +57,6 @@ public:
 
 	/// Find Entity End
 
-protected:
 
 	CCArray* getArrayByType(EEntityType type) const;
 

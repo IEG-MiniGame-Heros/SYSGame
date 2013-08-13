@@ -15,6 +15,7 @@ USING_NS_CC;
 class Character;
 class MainGame;
 class Queue;
+class GameHelper;
 
 const int M_N = 20;
 const int M_M = 20;
@@ -63,6 +64,7 @@ public:
 
 	// 其他
 	float				ValidDraggedLength;			// 有效的滑动距离，在此基础上才进行滑动判定
+	GameHelper*			Helper;						// 游戏辅助类
 
 public:
 	void initData();

@@ -3,6 +3,7 @@
 #include "FirstStage.h"
 #include "EntityManager.h"
 #include "Hero.h"
+#include "GameHelper.h"
 #include "GameInfo.h"
 
 #define TEST_REMOVE_FROM_QUEUE 0
@@ -84,13 +85,15 @@ void Queue::setMoveVector(CCPoint move_vector)
 
 void Queue::appendCharacter(Character* character)
 {
+	CCPoint pos;
 	if (character != NULL)
 	{
 		if (m_pCharacters->count() == 0)
 		{
 			GI.Game->removeChild(character);
 			addChild(character);
-			character->setPosition(ccp(GI.GridSize * 4, GI.GridSize * 4));
+			pos = GI.Helper->getGridCenter(5, 5);
+			character->setPosition(GI.Helper->getGridCenter(5, 5));
 			character->setMoveVector(ccp(0, 1));
 			m_pCharacters->addObject(character);
 			character->setQueue(this);
