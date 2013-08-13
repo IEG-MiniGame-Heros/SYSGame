@@ -49,6 +49,9 @@ void FirstStage::onEnter()
 	addChild(map, 0, 1);
 	map->setPosition(ccp(0, 0));
 	GI.Map = map;
+	GI.MapHeight = map->getContentSize().height;
+	GI.MapWidth = map->getContentSize().width;
+	CCLog("MapSize = %f, %f", GI.MapWidth, GI.MapHeight);
 	
     /* 加载对象层的所有对象 */
     //CCTMXObjectGroup* objGroup = map->objectGroupNamed("objects");
@@ -60,6 +63,9 @@ void FirstStage::onEnter()
 
     /* 加载障碍物层 */
     //GI.Barrier = map->layerNamed("barrier");
+
+	// 初始化GameHelper, 一定要放在地图加载之后
+	////////////////////////////////////////
 
 
 	Queue* pQueue = Queue::create();

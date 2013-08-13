@@ -112,6 +112,12 @@ bool Character::onMove()
 			CCPoint mv = getMoveVectorByPosition(getPosition(), targetPosition);
 			setMoveVector(mv);
 		}
+
+		//if (this == m_pQueue->getHead())
+		//{
+		//	CCPoint pos0 = m_pQueue->getHead()->getPosition();
+		//	CCLog("Position: %f, %f", pos0.x, pos0.y);
+		//}
 		
 		// 刷完队尾，看看有没有需要添加的
 		if (m_pQueue->isLastMember(this)) 

@@ -57,8 +57,8 @@ public:
 
 	int					MapN;						//
 	int					MapM;						// N行M列的地图
-	int					MapWidth;					// 地图宽度
-	int					MapHeight;					// 地图高度
+	float				MapWidth;					// 地图宽度
+	float				MapHeight;					// 地图高度
 	int					GridSize;					// 地图每一小格的大小
 
 	// 其他
