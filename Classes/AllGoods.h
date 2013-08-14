@@ -1,9 +1,26 @@
-#ifndef SYS_BLOODSUPPLY
-#define SYS_BLOODSUPPLY
+#ifndef SYS_COIN
+#define SYS_COIN
 
 #include "Goods.h"
-#include "Comm.h"
-USING_NS_CC;
+
+/** 
+ * 金币
+ */
+class Coin : public Goods
+{
+public:
+
+	void onEnter();
+	void onExit();
+	void use();
+
+	static Coin* create(const char *pszFileName);
+
+protected:
+
+	int		m_iValue;		// 金币价值
+};
+
 class BloodSupply : public Goods
 {
 public:
@@ -17,9 +34,9 @@ public:
 
 	static BloodSupply* create(const char *pszFileName);
 
-
 protected:
-	
+
 	int		m_iSupplyAmount;		// 补给量
 };
-#endif 
+
+#endif

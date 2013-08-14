@@ -30,7 +30,10 @@ enum EEffectType
 {
 	EET_FireBall	=	1,	// 火球
 	EET_Bullet      =   2,  // 子弹
-	EET_Explosion	=	3	// 爆炸
+	EET_Explosion	=	3,	// 爆炸
+	EET_IceBall		=	4,	// 冰球
+	EET_Shit		=	5,	// 屎（真的要用这东西？）
+	EET_SeeStar		=	6	// 海星
 };
 
 // 物品类型

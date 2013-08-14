@@ -2,7 +2,7 @@
 #include "Queue.h"
 #include "Goods.h"
 #include "EntityManager.h"
-#include "SkillFireAttack.h"
+#include "AllSkills.h"
 #include "GameHelper.h"
 #include "GameInfo.h"
 

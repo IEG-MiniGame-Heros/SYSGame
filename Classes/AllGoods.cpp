@@ -1,16 +1,50 @@
-#include "BloodSupply.h"
+#include "AllGoods.h"
 #include "Queue.h"
-#include "FirstStage.h"
-#include "EntityManager.h"
-#include "GameInfo.h"
 #include "Character.h"
+#include "GameInfo.h"
 
 
-//BloodSupply::BloodSupply()
-//{
-//	setType(ET_Goods);
-//}
+////////////////////////////////////////////
+/*---------------- 金币 -------------------*/
+void Coin::onEnter()
+{
+	Goods::onEnter();
 
+	// 设置金币价值
+	m_iValue = 20; 
+}
+
+void Coin::onExit()
+{
+	Goods::onExit();
+}
+
+void Coin::use()
+{
+	if (GI.Me)
+	{
+		// 增加个人金币
+		///////////////////
+
+		kill();
+	}
+}
+
+Coin* Coin::create(const char *pszFileName)
+{
+	Coin *pobSprite = new Coin();
+	if (pobSprite && pobSprite->initWithFile(pszFileName))
+	{
+		pobSprite->autorelease();
+		return pobSprite;
+	}
+	CC_SAFE_DELETE(pobSprite);
+	return NULL;
+}
+
+
+////////////////////////////////////////////
+/*---------------- 血包 -------------------*/
 void BloodSupply::onEnter()
 {
 	Goods::onEnter();
@@ -68,21 +102,3 @@ BloodSupply* BloodSupply::create(const char *pszFileName)
 	CC_SAFE_DELETE(pobSprite);
 	return NULL;
 }
-
-
-////绘制血条
-//void BloodSupply::draw() 
-//{
-//	CCLayer *layer = NULL;
-//	layer->draw();
-//	CCSize s =CCDirector::sharedDirector()->getWinSize();
-//	ccDrawColor4F(0.0, 0.0, 0.0, 1.0);
-//	glLineWidth(10);    //  instead of glColor4f
-//	cocos2d::ccDrawLine(CCPointMake(5, s.height - 10), CCPointMake(115, s.height - 10));
-//	glLineWidth(5);
-//	cocos2d::ccDrawColor4F(1, 0, 0, 0);  
-//	Character* pHead = NULL;
-//	pHead = pHead->getQueue()->getHead();
-//	int bloods=pHead->getCurHealth();
-//	cocos2d::ccDrawLine(CCPointMake(10, s.height - 11), CCPointMake(10 + bloods, s.height - 11));
-//}

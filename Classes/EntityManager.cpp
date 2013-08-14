@@ -3,11 +3,8 @@
 #include "Monster.h"
 #include "Queue.h"
 #include "FirstStage.h"
-#include "FireBall.h"
-#include "Bullet.h"
-#include "Explosion.h"
-#include "Coin.h"
-#include "BloodSupply.h"
+#include "AllEffects.h"
+#include "AllGoods.h"
 #include "GameInfo.h"
 
 EntityManager& EntityManager::instance()
@@ -188,12 +185,27 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 	switch (type)
 	{
 	case EET_FireBall:
-		eft = FireBall::create("spirit/skill/FireBall_1.png");
+		eft = ThrowableObj::create("spirit/skill/FireBall_1.png");
 		eft->setTarget(target_pos);
 		break;
 
 	case EET_Bullet:
-		eft = Bullet::create("spirit/skill/Bullet_1.png");
+		eft = ThrowableObj::create("spirit/skill/Bullet_1.png");
+		eft->setTarget(target_pos);
+		break;
+
+	case EET_IceBall:
+		eft = ThrowableObj::create("spirit/skill/IceBall.png");
+		eft->setTarget(target_pos);
+		break;
+
+	case EET_Shit:
+		eft = ThrowableObj::create("spirit/skill/Shit.png");
+		eft->setTarget(target_pos);
+		break;
+
+	case EET_SeeStar:
+		eft = ThrowableObj::create("spirit/skill/SeeStar.png");
 		eft->setTarget(target_pos);
 		break;
 
