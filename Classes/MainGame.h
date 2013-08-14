@@ -18,9 +18,13 @@ public:
 	virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
 
+	void onPause(CCObject* pSender); //暂停
+	void onResume(CCObject* pSender);//恢复
+
 protected:
 
 	CCPoint			m_tBeginPos;		// 滑动触屏，开始位置
+	CCSprite*       m_pauseBg;          // 暂停界面
 };
 
 #endif

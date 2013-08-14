@@ -9,8 +9,43 @@ void MainGame::onEnter()
 
 	///////// ËùÓÐÓÎÏ·ÖÐµÄ»ù´¡ÉèÖÃ /////////
 
-	// ¿ªÆô´¥ÆÁ
+	//¿ªÆô´¥ÆÁ
 	setTouchEnabled(true);
+
+	//ÔÝÍ£°´Å¥
+	CCMenuItemImage* pauseBtn = CCMenuItemImage::create("ui/pause/pauseBtn.png","ui/pause/resumeBtn.png",this,menu_selector(MainGame::onPause));
+	pauseBtn->setAnchorPoint(ccp(1,1));
+	CCMenu* menu = CCMenu::create(pauseBtn,NULL);
+	menu->setPosition(ccp(100,100));
+	addChild(menu,1000,10);
+}
+
+void MainGame::onPause(CCObject* pSender) //ÔÝÍ£
+{
+	CCLOG("Game Pause");
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	m_pauseBg = CCSprite::create();
+	this->addChild(m_pauseBg,2000);
+
+	CCMenu* menu = (CCMenu*)this->getChildByTag(10);
+	menu->setEnabled(false);
+
+	CCMenuItemFont* item = CCMenuItemFont::create("Resume",this,menu_selector(MainGame::onResume));
+	CCMenu* resumeMenu = CCMenu::create(item,NULL);
+	resumeMenu->setPosition(ccp(size.width/2,size.height/2));
+	m_pauseBg->addChild(resumeMenu);
+
+	CCDirector::sharedDirector()->pause();
+}
+
+void MainGame::onResume(CCObject* pSender)//»Ö¸´
+{
+	CCMenu* menu = (CCMenu*)this->getChildByTag(10);
+	menu->setEnabled(true);
+	
+	this->removeChild(m_pauseBg);
+	CCDirector::sharedDirector()->resume();
+
 }
 
 void MainGame::onExit()
