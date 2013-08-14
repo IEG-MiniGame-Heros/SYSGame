@@ -18,12 +18,32 @@ void Monster::onEnter()
 	schedule(schedule_selector(Monster::onUpdate));
 
 	// 设置动画
-	// 0.下 1.左 2.上 3.右
+	// 0.右 1.下 2.左 3.上 
 	m_pWalkAnim[0] = CCAnimation::create();
 	m_pWalkAnim[0]->retain();
 	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/m1.png");
 	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/m1.png");
-	m_pWalkAnim[0]->setDelayPerUnit(0.5 / getCurSpeed());
+	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/m1.png");
+	m_pWalkAnim[0]->setDelayPerUnit(1.f / getCurSpeed() / 3);
+
+	m_pWalkAnim[1] = CCAnimation::create();
+	m_pWalkAnim[1]->retain();
+	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/monster/m1.png");
+	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/monster/m1.png");
+	m_pWalkAnim[1]->setDelayPerUnit(0.5 / getCurSpeed());
+
+	m_pWalkAnim[2] = CCAnimation::create();
+	m_pWalkAnim[2]->retain();
+	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/monster/m1.png");
+	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/monster/m1.png");
+	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/monster/m1.png");
+	m_pWalkAnim[2]->setDelayPerUnit(1.f / getCurSpeed() / 3);
+
+	m_pWalkAnim[3] = CCAnimation::create();
+	m_pWalkAnim[3]->retain();
+	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/monster/m1.png");
+	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/monster/m1.png");
+	m_pWalkAnim[3]->setDelayPerUnit(0.5 / getCurSpeed());
 
 	setCurSpeed(GI.getMonsterConfig()[0].fMoveSpeed);
 	setMaxSpeed(GI.getMonsterConfig()[0].fMoveSpeed);

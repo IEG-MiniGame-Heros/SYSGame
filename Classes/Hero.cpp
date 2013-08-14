@@ -3,6 +3,7 @@
 #include "Goods.h"
 #include "EntityManager.h"
 #include "SkillFireAttack.h"
+#include "GameHelper.h"
 #include "GameInfo.h"
 
 void Hero::onEnter()

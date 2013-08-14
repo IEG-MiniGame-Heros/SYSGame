@@ -132,15 +132,8 @@ bool Character::onMove()
 
 	int index = getIndexByMoveVector(getMoveVector());
 
-	// 额。。。这个只是没有资源罢了
-	if (getType() == ET_Monster)
-	{
-		index = 0;
-	}
-
 	CCAction*  action;
-	// 移动到目标位置之后，调用onMoveDone将m_bIsMoving置为false	
-	
+	// 移动到目标位置之后，调用onMoveDone将m_bIsMoving置为false		
 	action = CCSequence::create(
 		CCSpawn::create(
 			CCMoveTo::create(1.f / getCurSpeed(), targetPosition),
