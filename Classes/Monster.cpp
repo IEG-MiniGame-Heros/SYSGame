@@ -75,6 +75,8 @@ void Monster::onUpdate(float dt)
 		return;
 	}
 
+	setCurSpeed(m_fMaxSpeed);
+
 	// ¿ì×²µ½Ç½ÁË£¬¸Ï½ô¹ÕÍä£¡£¡£¡
 	CCPoint nextPos = GI.Helper->getNearestGridCenter(getPosition()) +
 		WalkVec[m_iWalkDir] * GI.GridSize;
