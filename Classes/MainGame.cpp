@@ -28,9 +28,11 @@ void MainGame::onPause(CCObject* pSender) //ÔİÍ£
 	this->addChild(m_pauseBg,2000);
 
 	CCMenu* menu = (CCMenu*)this->getChildByTag(10);
-	menu->setEnabled(false);
+	menu->setVisible(false);
 
 	CCMenuItemFont* item = CCMenuItemFont::create("Resume",this,menu_selector(MainGame::onResume));
+	item->setColor(ccc3(255,255,255));
+	item->setFontSize(50);
 	CCMenu* resumeMenu = CCMenu::create(item,NULL);
 	resumeMenu->setPosition(ccp(size.width/2,size.height/2));
 	m_pauseBg->addChild(resumeMenu);
@@ -41,8 +43,8 @@ void MainGame::onPause(CCObject* pSender) //ÔİÍ£
 void MainGame::onResume(CCObject* pSender)//»Ö¸´
 {
 	CCMenu* menu = (CCMenu*)this->getChildByTag(10);
-	menu->setEnabled(true);
-	
+	menu->setVisible(true);
+
 	this->removeChild(m_pauseBg);
 	CCDirector::sharedDirector()->resume();
 
