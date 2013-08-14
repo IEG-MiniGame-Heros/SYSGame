@@ -66,6 +66,10 @@ public:
 	float				ValidDraggedLength;			// 有效的滑动距离，在此基础上才进行滑动判定
 	GameHelper*			Helper;						// 游戏辅助类
 
+	// 音量
+	int					musicVolume;				// 背景音乐音量
+	int					soundVolume;				// 特效音乐音量
+
 public:
 	void initData();
 	TConfig getSystemConfig();

@@ -300,4 +300,7 @@ GameInfo::GameInfo()
 	// ∆‰À˚
 	ValidDraggedLength = 10.f;
 
+	// “Ù¡ø
+	musicVolume = 100;
+	soundVolume = 100;
 }

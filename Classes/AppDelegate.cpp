@@ -50,6 +50,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     // run
     pDirector->runWithScene(pScene);
 
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/background.mp3", true);
+
     return true;
 }
 
