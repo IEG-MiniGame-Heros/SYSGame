@@ -102,22 +102,17 @@ bool Character::onMove()
 		if (this != m_pQueue->getHead())
 		{
 			CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();  
-			/* 边界检测（比较坑爹
-			if(targetPosition.x < 0 || targetPosition.x > visibleSize.width
-				|| targetPosition.y < 0 || targetPosition.y > visibleSize.height){
-				flag = true;
-			}
-			*/
+
 			targetPosition = m_pQueue->getPrivousCharacter(this)->getPosition();
 			CCPoint mv = getMoveVectorByPosition(getPosition(), targetPosition);
 			setMoveVector(mv);
 		}
 
-		//if (this == m_pQueue->getHead())
-		//{
-		//	CCPoint pos0 = m_pQueue->getHead()->getPosition();
-		//	CCLog("Position: %f, %f", pos0.x, pos0.y);
-		//}
+		// 检测队伍速度是否要改变
+		if (this == m_pQueue->getHead())
+		{
+			m_pQueue->checkChaningSpeed();
+		}
 		
 		// 刷完队尾，看看有没有需要添加的
 		if (m_pQueue->isLastMember(this)) 

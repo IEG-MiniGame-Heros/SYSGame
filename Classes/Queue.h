@@ -66,6 +66,10 @@ public:
 
 	int getQueueNum() const;
 
+	void setCurSpeed(float speed);
+
+	void checkChaningSpeed();
+
 	/// Test begin
 public:
 	void onUpdate(float dt);
@@ -75,6 +79,8 @@ protected:
 	CCArray*		m_pCharacters;			// 指向队伍的指针
 	CCArray*		m_pPendingAddPool;		// 即将加入队伍中的指针
 	CCArray*		m_pPendingKillPool;		// 即将要从队伍中删除的指针
+	bool			m_bPendingChangeSpeed;	// 即将改变速度
+	float			m_fNextSpeed;			// 即将要改变的速度
 
 
 };
