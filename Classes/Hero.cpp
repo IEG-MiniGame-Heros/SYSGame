@@ -10,7 +10,7 @@ void Hero::onEnter()
 {
 	Character::onEnter();
 
-	schedule(schedule_selector(Hero::onUpdate));
+	//schedule(schedule_selector(Hero::onUpdate));
 
 
 	m_bIsPickedUp = false;
@@ -78,7 +78,7 @@ void Hero::setAnimFreq()
 
 void Hero::onExit()
 {
-	unschedule(schedule_selector(Hero::onUpdate));
+	//unschedule(schedule_selector(Hero::onUpdate));
 
 	// 释放动画资源
 	m_pWalkAnim[0]->release();
@@ -133,6 +133,13 @@ void Hero::onUpdate(float dt)
 
 		// 我也死了，呜呜呜>_<
 		kill();
+	}
+
+	// 地图碰撞放在这里！！！ @俊强
+	if (!GI.Helper->isWithinMap(getPosition(), 20.f))
+	{
+		// 全部给我去死吧！！！！
+		m_pQueue->allGotoDie();
 	}
 }
 

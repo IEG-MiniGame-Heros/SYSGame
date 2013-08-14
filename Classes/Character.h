@@ -27,6 +27,8 @@ public:
 
 	virtual void kill();
 
+	virtual void onUpdate(float dt);
+
 	/** 
 	 * 属于哪个队列&&设置队列
 	 */
@@ -67,6 +69,8 @@ protected:
 	int				m_iMaxHealth;		// 最大生命值
 	Queue*			m_pQueue;			// 属于哪个队伍
 	CCAnimation*	m_pWalkAnim[4];		// 行走动画
+
+	bool			m_bIsPendingKill;	// 即将被kill掉
 	
 };
 #endif

@@ -70,10 +70,18 @@ public:
 
 	void checkChaningSpeed();
 
-	/// Test begin
+	/** 
+	 * 都去死吧~~
+	 */
+	void allGotoDie();
+
+	/// Refresh Begin
 public:
 	void onUpdate(float dt);
-	/// Test End
+	void clearUpdateFlag();
+	void setUpdateSuccess();
+	bool isQueueUpdateFinished() const;
+	/// Refresh End
 
 protected:
 	CCArray*		m_pCharacters;			// 指向队伍的指针
@@ -81,7 +89,7 @@ protected:
 	CCArray*		m_pPendingKillPool;		// 即将要从队伍中删除的指针
 	bool			m_bPendingChangeSpeed;	// 即将改变速度
 	float			m_fNextSpeed;			// 即将要改变的速度
-
+	int				m_iUpdateFlag;			// 队员刷新标记，onMove成功就自增一次
 
 };
 

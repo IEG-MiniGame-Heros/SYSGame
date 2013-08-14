@@ -8,6 +8,7 @@ void Character::onEnter()
 {
 	MovingEntity::onEnter();
 
+	m_bIsPendingKill = false;
 	m_vCurMoveVector = ccp(0, 0);
 	m_bIsMoving = false;
 	m_pQueue = NULL;
@@ -65,6 +66,9 @@ CCPoint getMoveVectorByPosition(CCPoint A, CCPoint B)
 	return ret;
 }
 
+/** 
+ * 只处理动画相关的
+ */ 
 bool Character::onMove()
 {
 	//this->runAction((GI.Me->getHead()));
@@ -77,28 +81,12 @@ bool Character::onMove()
 	CCPoint moveDelta = m_vCurMoveVector * GI.GridSize;
 	CCPoint targetPosition = getPosition() + moveDelta;
 	
-	//if(GI.Map != NULL && GI.Meta != NULL){
-	//	float x = 0;
-	//	float y = 0;
-	//	x = getPosition().x;
-	//	y = getPosition().y;
-	//	/* -----------------判断是否不可通行---------------- */  
-	//	/* 获得当前主角在地图中的格子位置 */  
-	//	CCPoint tiledPos = tileCoordForPosition(ccp(x, y));  
- // 
-	//	/* 获取地图格子的唯一标识 */  
-	//	int tiledGid = GI.Meta->tileGIDAt(tiledPos);  
- // 
-	//	/* 不为0，代表存在这个格子,如果存在，那么碰撞到啦~ 结束咯*/  
-	//	if(tiledGid != 0) {  
-	//		CCLog("collision detection");
-	//		return (m_bIsMoving = false); 
-	//	}  
-	//}
-	
-	//bool flag = false;
+
 	if (m_pQueue)
 	{
+		// 移动成功
+		m_pQueue->setUpdateSuccess();
+
 		// 如果这个不是队首
 		if (this != m_pQueue->getHead())
 		{
@@ -107,34 +95,13 @@ bool Character::onMove()
 			targetPosition = m_pQueue->getPrivousCharacter(this)->getPosition();
 			CCPoint mv = getMoveVectorByPosition(getPosition(), targetPosition);
 			setMoveVector(mv);
-		}
-
-		// 检测队伍速度是否要改变
-		if (this == m_pQueue->getHead())
-		{
-			m_pQueue->checkChaningSpeed();
-		}
-		
-		// 刷完队尾，看看有没有需要添加的
-		if (m_pQueue->isLastMember(this)) 
-		{
-			bool isPendingKill = m_pQueue->isPendingKill(this);
-
-			m_pQueue->refreshMembers();
-			
-			// 如果这是最后一个，而且被kill了，那么，直接退出吧, 为了避免程序挂掉
-			if (isPendingKill)
-			{
-				return false;
-			}
-		}
+		}		
 	}
 
 	int index = getIndexByMoveVector(getMoveVector());
 
-	CCAction*  action;
 	// 移动到目标位置之后，调用onMoveDone将m_bIsMoving置为false		
-	action = CCSequence::create(
+	CCAction*  action = CCSequence::create(
 		CCSpawn::create(
 			CCMoveTo::create(1.f / getCurSpeed(), targetPosition),
 			CCAnimate::create(m_pWalkAnim[index]),			
@@ -143,8 +110,11 @@ bool Character::onMove()
 		NULL
 		);
 	this->runAction(action);
+
 	return (m_bIsMoving = true);
 }
+
+void Character::onUpdate(float dt) {}
 
 // 已经移动到目标格子
 void Character::onMoveDone()

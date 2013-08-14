@@ -6,8 +6,6 @@
 #include "GameHelper.h"
 #include "GameInfo.h"
 
-#define TEST_REMOVE_FROM_QUEUE 0
-
 void Queue::onEnter()
 {
 	CCNode::onEnter();
@@ -22,25 +20,29 @@ void Queue::onEnter()
 	m_pPendingKillPool->retain();
 
 	m_bPendingChangeSpeed = false;
+	m_iUpdateFlag = 0;
 
-#if TEST_REMOVE_FROM_QUEUE
-	schedule(schedule_selector(Queue::onUpdate), 1, 10, 2);
-#endif
+	schedule(schedule_selector(Queue::onUpdate));
 }
 
 void Queue::onUpdate(float dt)
 {
-	CCLog("///////////Queue Num: %d", m_pCharacters->count());		
-	//if (m_pCharacters && m_pCharacters->count() > 3)
-	//{		
-	//	//removeAMember((Character*)m_pCharacters->objectAtIndex(0));
-	//	removeAMember((Character*)m_pCharacters->objectAtIndex(1));
-	//	removeAMember((Character*)m_pCharacters->objectAtIndex(2));
-	//}	
-	//removeAMember((Character*)(m_pCharacters->objectAtIndex(2)));
-	if (m_pCharacters->count() > 0)
+	CCObject* object;
+
+	// 检测队伍的速度
+	checkChaningSpeed();
+
+	clearUpdateFlag();
+	CCARRAY_FOREACH(m_pCharacters, object)
 	{
-		((Character*)m_pCharacters->lastObject())->kill();
+		Character* pCha = (Character*)(object);
+		pCha->onUpdate(dt);
+	}
+
+	// 更新Members
+	if (isQueueUpdateFinished())
+	{
+		refreshMembers();
 	}	
 }
 
@@ -50,9 +52,7 @@ void Queue::onExit()
 	m_pPendingAddPool->release();
 	m_pPendingKillPool->release();
 
-#if TEST_REMOVE_FROM_QUEUE
 	unschedule(schedule_selector(Queue::onUpdate));
-#endif
 
 	CCNode::onExit();
 }
@@ -213,7 +213,7 @@ void Queue::refreshMembers()
 		Character* pCha = (Character*)m_pPendingAddPool->lastObject();
 		appendCharacter(pCha);
 		m_pPendingAddPool->removeLastObject();
-		pCha->onMove();
+		pCha->onUpdate(0.f);
 	}
 
 	while (m_pPendingKillPool->count() > 0)
@@ -263,5 +263,29 @@ void Queue::checkChaningSpeed()
 				}
 			}
 		}
+	}
+}
+
+void Queue::clearUpdateFlag()
+{
+	m_iUpdateFlag = 0;
+}
+
+void Queue::setUpdateSuccess()
+{
+	++m_iUpdateFlag;
+}
+
+bool Queue::isQueueUpdateFinished() const 
+{
+	return (m_iUpdateFlag >= getQueueNum());
+}
+
+void Queue::allGotoDie()
+{
+	CCObject* object;
+	CCARRAY_FOREACH(m_pCharacters, object)
+	{
+		((Character*)(object))->kill();
 	}
 }
