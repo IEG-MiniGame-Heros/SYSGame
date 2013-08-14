@@ -16,9 +16,10 @@ void Hero::onEnter()
 	m_bIsPickedUp = false;
 
 	// 倒计时，一定时间后消失
+	int flashTimes = int(/*GI.getSystemConfig().fFlashingTime*/ 5 * 2.5);
 	CCAction* fadeAway = CCSequence::create(
-		CCDelayTime::create(6),
-		CCBlink::create(6, 15),
+		CCDelayTime::create(/*float(GI.getItemConfig()[2].iExistTime)*/ 5.f),
+		CCBlink::create(float(GI.getSystemConfig().fFlashingTime), flashTimes),
 		CCDelayTime::create(0.2f),
 		CCCallFunc::create(this, callfunc_selector(Character::kill)),
 		NULL
