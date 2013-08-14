@@ -226,7 +226,7 @@ Goods* EntityManager::addAGoods(CCPoint pos, EGoodType type)
 		break;
 
 	case EGT_Coin:
-		goods = Coin::create("spirit/item/Coin.png");
+		goods = Coin::create("spirit/item/coin.png");
 		break;
 	}
 
