@@ -33,11 +33,14 @@ void GameHelper::onEnter()
 		}
 	}
 
-
+	// …Ë÷√∏˜÷÷Timer
+	schedule(schedule_selector(GameHelper::onUpdateGoods), 6.f);
 }
 
 void GameHelper::onExit()
 {
+	unschedule(schedule_selector(GameHelper::onUpdateGoods));
+
 	CCNode::onExit();
 }
 
@@ -53,7 +56,7 @@ void GameHelper::onUpdateMonster(float dt)
 
 void GameHelper::onUpdateGoods(float dt)
 {
-
+	EM.addAHero(getGridCenter(11, 11));
 }
 
 void GetIndexOfPos(const CCPoint& pos, int& i, int& j)

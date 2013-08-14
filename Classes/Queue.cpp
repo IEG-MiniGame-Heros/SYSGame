@@ -21,6 +21,8 @@ void Queue::onEnter()
 	m_pPendingKillPool = CCArray::create();
 	m_pPendingKillPool->retain();
 
+	m_bPendingChangeSpeed = false;
+
 #if TEST_REMOVE_FROM_QUEUE
 	schedule(schedule_selector(Queue::onUpdate), 1, 10, 2);
 #endif
@@ -118,6 +120,7 @@ void Queue::appendCharacter(Character* character)
 			addChild(character);
 			character->setPosition(getPositionBehindTail());
 			character->setMoveVector(lastCharacter->getMoveVector());
+			character->setCurSpeed(lastCharacter->getCurSpeed());
 			m_pCharacters->addObject(character);
 			character->setQueue(this);
 		}
@@ -126,6 +129,7 @@ void Queue::appendCharacter(Character* character)
 		if (character->getType() == ET_Hero)
 		{
 			((Hero*)(character))->setIsPickedUp(true);
+			((Hero*)(character))->setAnimFreq();
 		}
 	}
 }
@@ -232,4 +236,32 @@ bool Queue::isPendingKill(Character* pCha) const
 CCArray* Queue::getAllMembers() const 
 {
 	return m_pCharacters;
+}
+
+void Queue::setCurSpeed(float speed)
+{
+	m_bPendingChangeSpeed = true;
+	m_fNextSpeed = speed;
+}
+
+void Queue::checkChaningSpeed()
+{
+	if (m_bPendingChangeSpeed)
+	{
+		m_bPendingChangeSpeed = false;
+		if (m_fNextSpeed >= 0 && getQueueNum() > 0)
+		{
+			CCObject* object;
+
+			CCARRAY_FOREACH(m_pCharacters, object)
+			{
+				Character* pCha = (Character*)(object);
+				pCha->setCurSpeed(m_fNextSpeed);
+				if (pCha->getType() == ET_Hero)
+				{
+					((Hero*)(pCha))->setAnimFreq();
+				}
+			}
+		}
+	}
 }

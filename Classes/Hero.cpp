@@ -25,8 +25,9 @@ void Hero::onEnter()
 	runAction(fadeAway);
 
 	// 设置速度
-	//setCurSpeed(GI.HeroInitSpeed);
 	setCurSpeed(GI.getHeroConfig()[0].fMoveSpeed);
+	setMaxSpeed(GI.getSystemConfig().fMaxMoveSpeed);
+	m_fSpeedIncrement = GI.getSystemConfig().fSpeedIncrement;
 
 	// 设置生命
 	setCurHealth(GI.getHeroConfig()[0].iHP);
@@ -59,10 +60,15 @@ void Hero::onEnter()
 	m_pWalkAnim[3]->retain();
 	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/hero/Hero1_U_1.png");
 	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/hero/Hero1_U_2.png");
+	m_pWalkAnim[3]->setDelayPerUnit(0.5 / getCurSpeed());	
+}
+
+void Hero::setAnimFreq()
+{
+	m_pWalkAnim[0]->setDelayPerUnit(1.f / getCurSpeed() / 3);
+	m_pWalkAnim[1]->setDelayPerUnit(0.5 / getCurSpeed());
+	m_pWalkAnim[2]->setDelayPerUnit(1.f / getCurSpeed() / 3);
 	m_pWalkAnim[3]->setDelayPerUnit(0.5 / getCurSpeed());
-
-
-	
 }
 
 void Hero::onExit()
@@ -80,12 +86,8 @@ void Hero::onExit()
 
 void Hero::onUpdate(float dt)
 {
+	// 如果这个英雄还没被拾取
 	if (!m_bIsPickedUp)
-	{
-		return;
-	}
-
-	if (!onMove())
 	{
 		return;
 	}
@@ -97,7 +99,17 @@ void Hero::onUpdate(float dt)
 		if (entity != NULL)
 		{
 			m_pQueue->addAMember((Character*)(entity));
+
+			// 吃了之后，增加速度
+			float speed = min(m_fMaxSpeed, m_fCurSpeed + m_fSpeedIncrement);
+			m_pQueue->setCurSpeed(speed);
+			CCLog("After Adding, Speed: %f", getCurSpeed());
 		}
+	}
+
+	if (!onMove())
+	{
+		return;
 	}	
 
 	// 检查有没有物品可以使用
