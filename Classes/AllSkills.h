@@ -16,7 +16,20 @@ public:
 	void onExit();
 
 	void attack();
-	//void onUpdate(float dt);
+};
+
+/** 
+ * ÊÍ·Å±ùÇò¼¼ÄÜ
+ */
+class SkillIceAttack : public Skill
+{
+public:
+	CREATE_FUNC(SkillIceAttack);
+
+	void onEnter();
+	void onExit();
+
+	void attack();
 };
 
 /** 
@@ -32,7 +45,6 @@ public:
 	void onExit();
 
 	void attack();
-	//void onUpdate(float dt);
 };
 
 #endif

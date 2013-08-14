@@ -48,6 +48,36 @@ void SkillFireAttack::attack()
 	m_pEffect = EM.addAnEffect(m_pOwner->getPosition(), EET_FireBall, m_pTarget->getPosition());
 }
 
+////////////////////////////////////////////////////
+/*----------------- 释放冰球技能 -------------------*/
+void SkillIceAttack::onEnter()
+{
+	Skill::onEnter();
+
+	m_iDamage = 50;
+	m_fCoolTime = 5.f;
+	m_fElapseTime = 5.5f;
+	m_fAttackRange = 120.f;
+	m_fHitRange = 40.f;
+
+	m_fAttackSpeed = 2.f;
+
+	schedule(schedule_selector(Skill::onUpdate));
+}
+
+void SkillIceAttack::onExit()
+{
+	unschedule(schedule_selector(Skill::onUpdate));
+	Skill::onExit();
+}
+
+void SkillIceAttack::attack()
+{
+	m_bIsAttacking = true;
+	m_fElapseTime = 0;
+	m_pEffect = EM.addAnEffect(m_pOwner->getPosition(), EET_IceBall, m_pTarget->getPosition());
+}
+
 
 ////////////////////////////////////////////////////
 /*----------------- 释放子弹技能 -------------------*/
