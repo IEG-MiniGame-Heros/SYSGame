@@ -135,6 +135,7 @@ void Hero::onUpdate(float dt)
 		kill();
 	}
 
+	// 如果撞到墙壁
 	// 地图碰撞放在这里！！！ @俊强
 	if (!GI.Helper->isWithinMap(getPosition(), 20.f))
 	{

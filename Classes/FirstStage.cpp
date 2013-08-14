@@ -77,36 +77,18 @@ void FirstStage::onEnter()
 	GI.Me = pQueue;
 	GI.Me->retain();
 
-	Hero* p1 = EM.addAHero(ccp(100, 100));
-	Hero* p2 = EM.addAHero(ccp(100, 100));
-	Hero* p3 = EM.addAHero(ccp(100, 100));
-	Hero* p4 = EM.addAHero(ccp(100, 100));
-	Hero* p5 = EM.addAHero(ccp(100, 100));
-
-	//p5->setPosition(GI.Helper->getGridCenter(11, 11));
-
-
-	// 把这几个人加进队伍里面吧
+	Hero* p1 = EM.addAHero(GI.Helper->getGridCenter(21, 11));
+	p1->setMoveVector(ccp(0, -1));
 	GI.Me->addAMember(p1);
-	GI.Me->addAMember(p2);
-	GI.Me->addAMember(p3);
-	GI.Me->addAMember(p4);
 	GI.Me->refreshMembers();
-
-	/// 测试，给第一个英雄增加一个技能
-	//p1->addChild(SkillFireAttack::create());
-	//p2->addChild(SkillBulletAttack::create());
 
 	Monster* m1 = EM.addAMonster(GI.Helper->getGridCenter(3, 12));
 	Monster* m2 = EM.addAMonster(GI.Helper->getGridCenter(7, 13));
 	Monster* m3 = EM.addAMonster(GI.Helper->getGridCenter(12, 5));
-	
-	// 测试，增加血包、金币
-	//EM.addAGoods(GI.Helper->getGridCenter(10, 10), EGT_BloodSupply);
-	//EM.addAGoods(GI.Helper->getGridCenter(15, 15), EGT_Coin);
 
 	// 更新Layer，让Layer跟随精灵移动
 	this->schedule(schedule_selector(FirstStage::updateLayer));
+	updateLayer(0.f);
 }
 
 void FirstStage::onExit()

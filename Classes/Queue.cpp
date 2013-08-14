@@ -107,8 +107,12 @@ void Queue::appendCharacter(Character* character)
 		{
 			GI.Game->removeChild(character);
 			addChild(character);
-			character->setPosition(GI.Helper->getGridCenter(5, 5));
-			character->setMoveVector(ccp(0, 1));
+			// 针对英雄刚出生的时候特殊处理一下
+			if (character->getType())
+			{
+				character->setPosition(GI.Helper->getGridCenter(21, 11));
+				character->setMoveVector(ccp(0, -1));
+			}
 			m_pCharacters->addObject(character);
 			character->setQueue(this);
 		}
