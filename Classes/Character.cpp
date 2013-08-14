@@ -1,6 +1,7 @@
 #include "Character.h"
 #include "Queue.h"
 #include "EntityManager.h"
+#include "GameHelper.h"
 #include "GameInfo.h"
 
 void Character::onEnter()

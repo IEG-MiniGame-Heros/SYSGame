@@ -1,6 +1,7 @@
 #include "Monster.h"
 #include "Queue.h"
 #include "EntityManager.h"
+#include "GameHelper.h"
 #include "GameInfo.h"
 
 #include <cstdlib>
@@ -31,7 +32,8 @@ void Monster::onEnter()
 
 	m_iWalkLoopCount = 0;
 	m_iWalkDir = 0;
-	m_bIsClockWise = std::rand() % 2;
+	m_bIsClockWise = std::rand() % 2; // 顺时针还是逆时针走动
+	m_bForceToStop = false;
 }
 
 void Monster::onExit()
@@ -48,9 +50,15 @@ const int WALK_LOOPS = 3;
 
 void Monster::onUpdate(float dt)
 {
-	//return;
+	if (m_bForceToStop)
+	{
+		return;
+	}
 
-	if (0 /* 等地图碰撞做了以后，把这个加上，不要让怪太傻B */)
+	// 快撞到墙了，赶紧拐弯！！！
+	CCPoint nextPos = GI.Helper->getNearestGridCenter(getPosition()) +
+		WalkVec[m_iWalkDir] * GI.GridSize;
+	if (!GI.Helper->isWithinMap(nextPos) )
 	{
 		m_iWalkDir += (m_bIsClockWise ? 1 : -1);
 		m_iWalkDir = (m_iWalkDir + 4) % 4;
@@ -61,6 +69,7 @@ void Monster::onUpdate(float dt)
 
 	bool moveSuccess = onMove();
 
+	// 处理转弯问题
 	if (moveSuccess && (!m_pQueue || m_pQueue->getHead() == this))
 	{
 		++m_iWalkLoopCount;
@@ -73,6 +82,28 @@ void Monster::onUpdate(float dt)
 			//CCLog("Dir = %d", m_iWalkDir);
 		}
 	}
+
+	// 假如快与其他怪撞车了
+	Monster* other = (Monster*)EM.findEntityInRange(this, 50.f, ET_Monster);
+	if (other)
+	{
+		other->setForceToStop(true);
+		setForceToStop(true);
+	}
+}
+
+void Monster::setForceToStop(bool isStop)
+{
+	m_bForceToStop = isStop;
+}
+
+void Monster::kill()
+{
+	// 随机生成英雄或者物品
+	CCPoint gridCenter = GI.Helper->getNearestGridCenter(getPosition());
+	GI.Helper->randomGenHeroOrGoods(gridCenter);
+
+	Character::kill();
 }
 
 Monster* Monster::create(const char *pszFileName)

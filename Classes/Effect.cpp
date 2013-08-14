@@ -33,5 +33,5 @@ void Effect::kill()
 {
 	EM.removeAnEntity(this, ET_Effect);
 	m_bIsKilled = true;
-	CCLog("FireBall's been killed");
+	//CCLog("FireBall's been killed");
 }

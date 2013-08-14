@@ -2,6 +2,7 @@
 #include "Queue.h"
 #include "Goods.h"
 #include "EntityManager.h"
+#include "SkillFireAttack.h"
 #include "GameInfo.h"
 
 void Hero::onEnter()
@@ -32,6 +33,9 @@ void Hero::onEnter()
 	// 设置生命
 	setCurHealth(GI.getHeroConfig()[0].iHP);
 	setMaxHealth(GI.getHeroConfig()[0].iHP);
+
+	// 设置技能
+	addChild(SkillFireAttack::create());
 
 	// 设置动画
 	// 0.右 1.下 2.左 3.上 

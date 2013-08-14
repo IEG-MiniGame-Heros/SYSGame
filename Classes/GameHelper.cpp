@@ -5,7 +5,7 @@
 #include "EntityManager.h"
 #include "GameInfo.h"
 
-
+#include <algorithm>
 #include <cstdlib>
 #include <ctime>
 
@@ -20,26 +20,30 @@ void GameHelper::onEnter()
 	// ...
 	// (1, 1), (1, 2), (1, 3)...
 	// (0, 1), (0, 2), (0, 3)...
-	CCPoint origin(0, 0);
-	CCPoint center = origin + ccp(GI.MapWidth / 2, GI.MapHeight / 2);
-	CCPoint offset = center - ccp(GI.GridSize * 11, GI.GridSize * 11);
-	CCLog("offset = %f, %f", offset.x, offset.y);
+	CCPoint offset(0, 0);
+	CCPoint center = offset + ccp(GI.MapWidth / 2, GI.MapHeight / 2);
+	m_OriginPos = center - ccp(GI.GridSize * 11, GI.GridSize * 11);
+	m_UpRightPos = center + ccp(GI.GridSize * 11, GI.GridSize * 11);
+	CCLog("m_OriginPos = %f, %f", m_OriginPos.x, m_OriginPos.y);
+	CCLog("m_UpRightPos = %f, %f", m_UpRightPos.x, m_UpRightPos.y);
 	for (int i = 0; i < 22; ++i)
 	{
 		for (int j = 0; j < 22; ++j)
 		{
 			int index = i * 22 + j;
-			m_Points[index] = offset + ccp(j * GI.GridSize, i * GI.GridSize);
+			m_Points[index] = m_OriginPos + ccp(j * GI.GridSize, i * GI.GridSize);
 		}
 	}
 
 	// 设置各种Timer
-	schedule(schedule_selector(GameHelper::onUpdateGoods), 6.f);
+	schedule(schedule_selector(GameHelper::onUpdateGridUsage));
+	schedule(schedule_selector(GameHelper::onUpdateMonster), GI.getMapConfig()[0].vFrequency[0].iRefreshInterval);
 }
 
 void GameHelper::onExit()
 {
-	unschedule(schedule_selector(GameHelper::onUpdateGoods));
+	unschedule(schedule_selector(GameHelper::onUpdateGridUsage));
+	unschedule(schedule_selector(GameHelper::onUpdateMonster));
 
 	CCNode::onExit();
 }
@@ -49,20 +53,34 @@ CCPoint GameHelper::getGridCenter(int i, int j)
 	return ccpAdd(m_Points[i * 22 + j], ccp(GI.GridSize / 2, GI.GridSize / 2));
 }
 
+CCPoint GameHelper::getNearestGridCenter(CCPoint pos)
+{
+	int i, j;
+	getGridIndexOfPos(pos, i, j);
+	return getGridCenter(i, j);
+}
+
+/** 刷怪位置的缓存 */
+CCPoint MonstRetPos[100];
+
 void GameHelper::onUpdateMonster(float dt)
 {
+	//CCLog("A monster is getRandomFreeGridborned");
+	int refreshNum = GI.getMapConfig()[0].vFrequency[0].iRefreshNum;
 
+	// 获取随机的空余格子
+	getRandomFreeGrid(MonstRetPos, refreshNum);
+
+	for (int i = 0; i < refreshNum; ++i)
+	{
+		EM.addAMonster(MonstRetPos[i]);
+	}
 }
 
-void GameHelper::onUpdateGoods(float dt)
+void GameHelper::getGridIndexOfPos(CCPoint pos, int& i, int& j)
 {
-	EM.addAHero(getGridCenter(11, 11));
-}
-
-void GetIndexOfPos(const CCPoint& pos, int& i, int& j)
-{
-	i = int(pos.y / GI.GridSize);
-	j = int(pos.x / GI.GridSize);
+	i = int((pos.y - m_OriginPos.y) / GI.GridSize);
+	j = int((pos.x - m_OriginPos.x) / GI.GridSize);
 }
 
 void GameHelper::onUpdateGridUsage(float dt)
@@ -80,8 +98,11 @@ void GameHelper::onUpdateGridUsage(float dt)
 		if (object && object->retainCount() > 1)
 		{
 			Monster* monster = (Monster*)(object);
-			GetIndexOfPos(monster->getPosition(), i, j);
-			m_bUsed[i][j] = true;
+			getGridIndexOfPos(monster->getPosition(), i, j);
+			if (i < 22 && j < 22)
+			{
+				m_bUsed[i][j] = true;
+			}
 		}
 	}
 
@@ -91,8 +112,11 @@ void GameHelper::onUpdateGridUsage(float dt)
 		if (object && object->retainCount() > 1)
 		{
 			Hero* hero = (Hero*)(object);
-			GetIndexOfPos(hero->getPosition(), i, j);
-			m_bUsed[i][j] = true;
+			getGridIndexOfPos(hero->getPosition(), i, j);
+			if (i < 22 && j < 22)
+			{
+				m_bUsed[i][j] = true;
+			}
 		}
 	}
 
@@ -102,13 +126,33 @@ void GameHelper::onUpdateGridUsage(float dt)
 		if (object && object->retainCount() > 1)
 		{
 			Goods* good = (Goods*)(object);
-			GetIndexOfPos(good->getPosition(), i, j);
-			m_bUsed[i][j] = true;
+			getGridIndexOfPos(good->getPosition(), i, j);
+			if (i < 22 && j < 22)
+			{
+				m_bUsed[i][j] = true;
+			}
 		}
 	}
 }
 
-CCPoint GameHelper::getRandomFreeGrid()
+/** 
+ * 判断某点是否在有效地图内
+ * @param pos 要判断的点
+ * @param margin 边缘厚度
+ */
+bool GameHelper::isWithinMap(CCPoint pos, float margin /* = 0.f */)
+{
+	if (pos.x - margin < m_OriginPos.x ||
+		pos.x + margin > m_UpRightPos.x ||
+		pos.y - margin < m_OriginPos.y ||
+		pos.y + margin > m_UpRightPos.y)
+	{
+		return false;
+	}
+	return true;
+}
+
+void GameHelper::getRandomFreeGrid(CCPoint ret[], int num)
 {
 	int totCount = 0;
 	for (int i = 0; i < 22; ++i)
@@ -122,8 +166,45 @@ CCPoint GameHelper::getRandomFreeGrid()
 		}
 	}
 
-	int ret = rand() % totCount;
-	CCPoint offSet(GI.GridSize / 2, GI.GridSize / 2);
+	// 将空余的位置打乱
+	random_shuffle(m_PointsIndex, m_PointsIndex + totCount);
 
-	return (m_Points[m_PointsIndex[ret]] + offSet);
+	for (int i = 0; i < num; ++i)
+	{
+		ret[i] = (m_Points[m_PointsIndex[i]] + ccp(GI.GridSize / 2, GI.GridSize / 2));
+	}
+}
+
+
+int PB[10];
+/** 
+ * 怪死后随机生成英雄或者物品
+ * 这个概率以后再来调配!!!!!!!
+ * @param pos 出生地点
+ */
+void GameHelper::randomGenHeroOrGoods(CCPoint pos)
+{
+	PB[0] = 3;	// 英雄
+	PB[1] = 4;	// 金币
+	PB[2] = 2;	// 血包
+
+	for (int i = 1; i < 3; ++i)
+	{
+		PB[i] += PB[i - 1];
+	}
+
+	int rret = rand() % PB[2];
+	if (rret < PB[0])
+	{
+		EM.addAHero(pos);
+	}
+	else if (rret < PB[1])
+	{
+		EM.addAGoods(pos, EGT_Coin);
+	}
+	else 
+	{
+		EM.addAGoods(pos, EGT_BloodSupply);
+	}
+	
 }

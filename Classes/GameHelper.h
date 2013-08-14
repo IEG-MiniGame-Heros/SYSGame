@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 
+
 USING_NS_CC;
 
 /** 
@@ -16,17 +17,25 @@ public:
 	void onEnter();
 	void onExit();
 
+	bool isWithinMap(CCPoint pos, float margin = 0.f);
+
 	CCPoint getGridCenter(int i, int j);
+	CCPoint getNearestGridCenter(CCPoint pos);
 
 	void onUpdateMonster(float dt);
-	void onUpdateGoods(float dt);
 	void onUpdateGridUsage(float dt);
 
-private:
-
-	CCPoint getRandomFreeGrid();	
+	void randomGenHeroOrGoods(CCPoint pos);
 
 private:
+
+	void getRandomFreeGrid(CCPoint ret[], int num);
+	void getGridIndexOfPos(CCPoint pos, int& i, int& j);
+
+private:
+
+	CCPoint			m_OriginPos;				// 地图原点
+	CCPoint			m_UpRightPos;				// 地图右上角
 
 	CCPoint			m_Points[22 * 22];
 	int				m_PointsIndex[22 * 22];

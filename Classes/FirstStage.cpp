@@ -94,16 +94,16 @@ void FirstStage::onEnter()
 	GI.Me->refreshMembers();
 
 	/// 测试，给第一个英雄增加一个技能
-	p1->addChild(SkillFireAttack::create());
-	p2->addChild(SkillBulletAttack::create());
+	//p1->addChild(SkillFireAttack::create());
+	//p2->addChild(SkillBulletAttack::create());
 
 	Monster* m1 = EM.addAMonster(GI.Helper->getGridCenter(3, 12));
 	Monster* m2 = EM.addAMonster(GI.Helper->getGridCenter(7, 13));
 	Monster* m3 = EM.addAMonster(GI.Helper->getGridCenter(12, 5));
 	
 	// 测试，增加血包、金币
-	EM.addAGoods(GI.Helper->getGridCenter(10, 10), EGT_BloodSupply);
-	EM.addAGoods(GI.Helper->getGridCenter(15, 15), EGT_Coin);
+	//EM.addAGoods(GI.Helper->getGridCenter(10, 10), EGT_BloodSupply);
+	//EM.addAGoods(GI.Helper->getGridCenter(15, 15), EGT_Coin);
 
 	// 更新Layer，让Layer跟随精灵移动
 	this->schedule(schedule_selector(FirstStage::updateLayer));
