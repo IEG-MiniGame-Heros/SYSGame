@@ -71,7 +71,6 @@ CCPoint getMoveVectorByPosition(CCPoint A, CCPoint B)
  */ 
 bool Character::onMove()
 {
-	//this->runAction((GI.Me->getHead()));
 	// 正在移动中，请勿打扰>_<
 	if (m_bIsMoving)
 	{

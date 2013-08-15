@@ -6,6 +6,8 @@
 #include "GameHelper.h"
 #include "GameInfo.h"
 
+#define HERO_UNBEATABLE 0
+
 void Hero::onEnter()
 {
 	Character::onEnter();
@@ -133,7 +135,9 @@ void Hero::onUpdate(float dt)
 		((Character*)(entity))->kill();
 
 		// 我也死了，呜呜呜>_<
+#if !HERO_UNBEATABLE
 		kill();
+#endif
 	}
 
 	// 如果撞到墙壁

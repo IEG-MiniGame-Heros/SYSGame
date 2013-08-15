@@ -6,6 +6,11 @@
 
 USING_NS_CC;
 
+enum EGoodActionType
+{
+	EGAT_Fade
+};
+
 class Goods : public BaseEntity
 {
 public:

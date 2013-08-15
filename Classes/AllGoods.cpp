@@ -26,8 +26,9 @@ void Coin::use()
 		// 增加个人金币
 		///////////////////
 
-		kill();
+		
 	}
+	Goods::use();
 }
 
 Coin* Coin::create(const char *pszFileName)
@@ -85,10 +86,9 @@ void BloodSupply::use()
 		{
 			((Character*)(object))->getHeal(m_iSupplyAmount);
 		}
-
-		// 吃完了，不要你了。。。ByeBye
-		kill();
 	}
+
+	Goods::use();
 }
 
 BloodSupply* BloodSupply::create(const char *pszFileName)
