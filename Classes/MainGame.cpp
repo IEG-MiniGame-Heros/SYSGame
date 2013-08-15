@@ -12,12 +12,29 @@ void MainGame::onEnter()
 	//¿ªÆô´¥ÆÁ
 	setTouchEnabled(true);
 
+	// ÔÝÍ£¡¢·ÖÊýUI
+	ulGameControl = UILayer::create();
+	this->addChild(ulGameControl, 200, 150);
+	ulGameControl->addWidget(CCUIHELPER->createWidgetFromJsonFile("ui/screne_game/screne_game_1.ExportJson"));
+
+	// ÔÝÍ£°´Å¥
+	btnPause = dynamic_cast<UIButton*>(ulGameControl->getWidgetByName("Button"));
+	btnPause->addPushDownEvent(this, coco_releaseselector(MainGame::btnPauseCallback));
+
+	ulGameControl->setTouchEnabled(true);
+
+
 	//ÔÝÍ£°´Å¥
-	CCMenuItemImage* pauseBtn = CCMenuItemImage::create("ui/pause/pauseBtn.png","ui/pause/resumeBtn.png",this,menu_selector(MainGame::onPause));
+	/*CCMenuItemImage* pauseBtn = CCMenuItemImage::create("ui/pause/pauseBtn.png","ui/pause/resumeBtn.png",this,menu_selector(MainGame::onPause));
 	pauseBtn->setAnchorPoint(ccp(1,1));
 	CCMenu* menu = CCMenu::create(pauseBtn,NULL);
 	menu->setPosition(ccp(100,100));
-	addChild(menu,1000,10);
+	addChild(menu,1000,10);*/
+}
+
+void MainGame::btnPauseCallback(cocos2d::CCObject *pSender)
+{
+	CCDirector::sharedDirector()->pause();
 }
 
 void MainGame::onPause(CCObject* pSender) //ÔÝÍ£

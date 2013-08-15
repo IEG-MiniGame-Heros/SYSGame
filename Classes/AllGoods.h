@@ -1,5 +1,5 @@
-#ifndef SYS_COIN
-#define SYS_COIN
+#ifndef SYS_ALL_GOODS
+#define SYS_ALL_GOODS
 
 #include "Goods.h"
 

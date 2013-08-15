@@ -122,20 +122,23 @@ void FirstStage::updateLayer(float dt){
   
     /* 精灵的坐标，取第一个精灵 */  
     CCPoint spritePos = GI.Me->getHead()->getPosition();  
+	float halfScreneWidth = visibleSize.width / 2;
+	float halfScreneHeight = visibleSize.height / 2;
   
     /* 如果精灵坐标小于屏幕的一半，则取屏幕中点坐标，否则取精灵的坐标 */  
-    float x = max(spritePos.x, visibleSize.width / 2);  
-    float y = max(spritePos.y, visibleSize.height / 2);  
+    float x = max(spritePos.x, halfScreneWidth);  
+    float y = max(spritePos.y, halfScreneHeight);  
   
     /* 如果x、y的坐标大于右上角的极限值，则取极限值的坐标（极限值是指不让地图超出屏幕造成出现黑边的极限坐标） */  
-    x = min(x, mapSize.width - visibleSize.width / 2);  
-    y = min(y, mapSize.height - visibleSize.height / 2);  
+    x = min(x, mapSize.width - halfScreneWidth);  
+    y = min(y, mapSize.height - halfScreneHeight);  
 
     CCPoint destPos = CCPoint(x, y);  
-    CCPoint centerPos = CCPoint(visibleSize.width / 2, visibleSize.height / 2);  
+    CCPoint centerPos = CCPoint(halfScreneWidth, halfScreneHeight);  
 
     /* 计算屏幕中点和所要移动的目的点之间的距离 */  
-    CCPoint viewPos = ccpSub(centerPos, destPos);  
+    CCPoint viewPos = ccpSub(centerPos, destPos);
 
 	GI.currentLayer->setPosition(viewPos);  
+	ulGameControl->setPosition(ccp(x - halfScreneWidth, y - halfScreneHeight));
 }

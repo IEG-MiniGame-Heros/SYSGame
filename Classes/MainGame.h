@@ -2,7 +2,9 @@
 #define SYS_MAIN_GAME
 
 #include "cocos2d.h"
+#include "cocos-ext.h"
 
+USING_NS_CC_EXT;
 USING_NS_CC;
 
 class MainGame : public cocos2d::CCLayer
@@ -18,6 +20,10 @@ public:
 	virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
 
+	CCNode* createSceneControl();
+
+	void btnPauseCallback(cocos2d::CCObject *pSender);
+
 	void onPause(CCObject* pSender); //ÔÝÍ£
 	void onResume(CCObject* pSender);//»Ö¸´
 
@@ -25,6 +31,8 @@ protected:
 
 	CCPoint			m_tBeginPos;		// »¬¶¯´¥ÆÁ£¬¿ªÊ¼Î»ÖÃ
 	CCSprite*       m_pauseBg;          // ÔÝÍ£½çÃæ
+	UILayer *ulGameControl;
+	UIButton *btnPause;
 };
 
 #endif

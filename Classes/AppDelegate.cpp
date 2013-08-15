@@ -2,7 +2,9 @@
 #include "CCEGLView.h"
 #include "AppDelegate.h"
 //#include "LogoScrene.h"
+#include "LoginScrene.h"
 #include "SimpleAudioEngine.h"
+#include "HelloWorldScene.h"
 #include "FirstStage.h"
 
 using namespace CocosDenshion;
@@ -46,6 +48,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // create a scene. it's an autorelease object
     //CCScene *pScene = LogoScrene::scene();
+	//CCScene* pScene = LoginScrene::scene();
 	CCScene* pScene = FirstStage::scene();
 
     // run
