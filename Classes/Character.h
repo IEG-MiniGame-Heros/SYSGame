@@ -63,6 +63,9 @@ public:
 	 */
     CCPoint tileCoordForPosition(CCPoint pos);
 
+	// 设置血条
+	bool setBlood();
+
 protected: 
 
 	int				m_iCurHealth;		// 当前生命值
@@ -72,5 +75,6 @@ protected:
 
 	bool			m_bIsPendingKill;	// 即将被kill掉
 	
+	CCProgressTimer* m_bloodBar;		// 血条
 };
 #endif

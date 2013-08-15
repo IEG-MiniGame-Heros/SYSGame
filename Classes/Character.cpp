@@ -7,11 +7,45 @@
 void Character::onEnter()
 {
 	MovingEntity::onEnter();
+	setBlood();
 
 	m_bIsPendingKill = false;
 	m_vCurMoveVector = ccp(0, 0);
 	m_bIsMoving = false;
 	m_pQueue = NULL;
+}
+
+
+bool Character::setBlood(){
+	bool isRet=false;
+	do 
+	{
+		CCSprite* bloodbackimg = new CCSprite();
+		bloodbackimg->initWithFile("spirit/bloodbar/blood_frame.png");
+		CC_BREAK_IF(!bloodbackimg);	
+		bloodbackimg->setPosition(ccp(this->getContentSize().width/2,this->getContentSize().height+2));
+		this->addChild(bloodbackimg,1);
+
+		CCSprite* blood = new CCSprite();
+		blood->initWithFile("spirit/bloodbar/blood.png");
+		CC_BREAK_IF(!blood);
+		this->m_bloodBar=CCProgressTimer::create(blood);
+		CC_BREAK_IF(!m_bloodBar);
+		m_bloodBar->setType(kCCProgressTimerTypeBar);
+		m_bloodBar->setMidpoint(ccp(0,0)); 
+		m_bloodBar->setBarChangeRate(ccp(1,0));
+
+		m_bloodBar->setPosition(ccp(this->getContentSize().width/2,this->getContentSize().height+2));
+		// TODO :: 用setPercentage方法设置百分比 Emily
+		m_bloodBar->setPercentage(100);
+		this->addChild(m_bloodBar,2);
+		// TODO :: 通过setVisible方法控制血条是否可见 Emily
+		//bloodbackimg->setVisible(false);
+		//bloodBwlid->setVisible(false);
+		isRet=true;
+	} while (0);
+	return isRet;
+
 }
 
 void Character::onExit()
