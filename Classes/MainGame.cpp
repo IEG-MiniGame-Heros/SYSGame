@@ -4,6 +4,7 @@
 #include "GameInfo.h"
 #include "GameInfo.h"
 #include "StartScrene.h"
+#include "FirstStage.h"
 
 void MainGame::onEnter()
 {
@@ -88,10 +89,12 @@ void MainGame::btnResumeCallback(cocos2d::CCObject *pSender)
 	btnPause->setVisible(true);
 }
 
-// TODO :: kongcheng
+
 void MainGame::btnRestartCallback(cocos2d::CCObject *pSender)
 {
-
+	//重新开始游戏
+	CCDirector::sharedDirector()->replaceScene(FirstStage::scene());
+	CCDirector::sharedDirector()->resume();
 }
 
 void MainGame::btnBackMenuCallback(cocos2d::CCObject *pSender)
