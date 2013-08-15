@@ -1,6 +1,9 @@
 #include "StartScrene.h"
 #include "SoundScrene.h"
 #include "FirstStage.h"
+#include "SimpleAudioEngine.h"
+
+using namespace CocosDenshion;
 
 
 bool StartScrene::init()

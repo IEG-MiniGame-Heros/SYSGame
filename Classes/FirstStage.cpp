@@ -9,6 +9,10 @@
 
 #include "cocos2d.h"
 
+#include "SimpleAudioEngine.h"
+
+using namespace CocosDenshion;
+
 USING_NS_CC;
 
 cocos2d::CCScene* FirstStage::scene()
@@ -17,6 +21,9 @@ cocos2d::CCScene* FirstStage::scene()
 
 	do 
 	{
+		//JQ_effect
+		SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/playing2.mp3", true);
+
 		// 'scene' is an autorelease object
 		scene = CCScene::create();
 		CC_BREAK_IF(! scene);
