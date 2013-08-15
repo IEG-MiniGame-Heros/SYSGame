@@ -95,7 +95,7 @@ bool IsAheadOfMe(CCPoint p1, CCPoint dir, CCPoint p2)
 	}
 }
 
-byte CanMove[4];
+int CanMove[4];
 
 /** 
  * 在这里简单实现怪物的AI
