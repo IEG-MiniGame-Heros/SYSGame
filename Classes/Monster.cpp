@@ -78,7 +78,7 @@ void Monster::onUpdate(float dt)
 	// ¿ì×²µ½Ç½ÁË£¬¸Ï½ô¹ÕÍä£¡£¡£¡
 	CCPoint nextPos = GI.Helper->getNearestGridCenter(getPosition()) +
 		WalkVec[m_iWalkDir] * GI.GridSize;
-	if (0 && !GI.Helper->isWithinMap(nextPos) )
+	if (!GI.Helper->isWithinMap(nextPos) )
 	{
 		m_iWalkDir += (m_bIsClockWise ? 1 : -1);
 		m_iWalkDir = (m_iWalkDir + 4) % 4;
