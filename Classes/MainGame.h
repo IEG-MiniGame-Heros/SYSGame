@@ -27,8 +27,7 @@ public:
 	void btnRestartCallback(cocos2d::CCObject *pSender);
 	void btnBackMenuCallback(cocos2d::CCObject *pSender);
 
-	void onPause(CCObject* pSender); //暂停
-	void onResume(CCObject* pSender);//恢复
+	void setText(UILabelAtlas *la, const char *s);
 
 protected:
 
@@ -40,6 +39,15 @@ protected:
 	UILayer *ulPause;
 	// 暂停按钮
 	UIButton *btnPause;
+
+	// 杀怪数
+	UILabelAtlas *laMonster;
+	// 金币数
+	UILabelAtlas *laCoin;
+	// 分数
+	UILabelAtlas *laScore;
+	// 时间
+	UILabelAtlas *laTime;
 };
 
 #endif

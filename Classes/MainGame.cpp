@@ -23,7 +23,24 @@ void MainGame::onEnter()
 	btnPause = dynamic_cast<UIButton*>(ulGameControl->getWidgetByName("Button"));
 	btnPause->addPushDownEvent(this, coco_releaseselector(MainGame::btnPauseCallback));
 
+	laMonster = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_monster"));
+	laCoin = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_money"));
+	laScore = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_score"));
+	laTime = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_time"));
+
+	setText(laMonster, "12");
+	setText(laCoin, "1234");
+	setText(laScore, "12345");
+	setText(laTime, "11");
+
 	ulGameControl->setTouchEnabled(true);
+}
+
+void MainGame::setText(UILabelAtlas *la, const char *s)
+{
+	if (la == NULL || s == NULL)
+		return;
+	la->setStringValue(s);
 }
 
 void MainGame::createPauseUI()
@@ -43,6 +60,7 @@ void MainGame::createPauseUI()
 	UIButton *btnRestart = dynamic_cast<UIButton*>(ulPause->getWidgetByName("btn_restart"));
 	btnRestart->addPushDownEvent(this, coco_releaseselector(MainGame::btnRestartCallback));
 
+	// ·µ»ØÖ÷²Ëµ¥°´Å¥
 	UIButton *btnBackMenu = dynamic_cast<UIButton*>(ulPause->getWidgetByName("btn_back"));
 	btnBackMenu->addPushDownEvent(this, coco_releaseselector(MainGame::btnBackMenuCallback));
 
@@ -81,36 +99,6 @@ void MainGame::btnBackMenuCallback(cocos2d::CCObject *pSender)
 	// »Ö¸´ÓÎÏ·
 	CCDirector::sharedDirector()->resume();
 	CCDirector::sharedDirector()->replaceScene(StartScrene::scene());
-}
-
-void MainGame::onPause(CCObject* pSender) //ÔÝÍ£
-{
-	CCLOG("Game Pause");
-	CCSize size = CCDirector::sharedDirector()->getWinSize();
-	m_pauseBg = CCSprite::create();
-	this->addChild(m_pauseBg,2000);
-
-	CCMenu* menu = (CCMenu*)this->getChildByTag(10);
-	menu->setVisible(false);
-
-	CCMenuItemFont* item = CCMenuItemFont::create("Resume",this,menu_selector(MainGame::onResume));
-	item->setColor(ccc3(255,255,255));
-	item->setFontSize(50);
-	CCMenu* resumeMenu = CCMenu::create(item,NULL);
-	resumeMenu->setPosition(ccp(size.width/2,size.height/2));
-	m_pauseBg->addChild(resumeMenu);
-
-	CCDirector::sharedDirector()->pause();
-}
-
-void MainGame::onResume(CCObject* pSender)//»Ö¸´
-{
-	CCMenu* menu = (CCMenu*)this->getChildByTag(10);
-	menu->setVisible(true);
-
-	this->removeChild(m_pauseBg);
-	CCDirector::sharedDirector()->resume();
-
 }
 
 void MainGame::onExit()

@@ -1,4 +1,4 @@
-#include "Character.h"
+ï»¿#include "Character.h"
 #include "Queue.h"
 #include "EntityManager.h"
 #include "GameHelper.h"
@@ -36,10 +36,10 @@ bool Character::setBlood(){
 		m_bloodBar->setBarChangeRate(ccp(1,0));
 
 		m_bloodBar->setPosition(ccp(this->getContentSize().width/2,this->getContentSize().height+2));
-		// TODO :: ÓÃsetPercentage·½·¨ÉèÖÃ°Ù·Ö±È Emily
+		// TODO :: ç”¨setPercentageæ–¹æ³•è®¾ç½®ç™¾åˆ†æ¯” Emily
 		m_bloodBar->setPercentage(100);
 		this->addChild(m_bloodBar,2);
-		// TODO :: Í¨¹ısetVisible·½·¨¿ØÖÆÑªÌõÊÇ·ñ¿É¼û Emily
+		// TODO :: é€šè¿‡setVisibleæ–¹æ³•æ§åˆ¶è¡€æ¡æ˜¯å¦å¯è§ Emily
 		//bloodbackimg->setVisible(false);
 		//bloodBwlid->setVisible(false);
 		isRet=true;
@@ -101,11 +101,11 @@ CCPoint getMoveVectorByPosition(CCPoint A, CCPoint B)
 }
 
 /** 
- * Ö»´¦Àí¶¯»­Ïà¹ØµÄ
+ * åªå¤„ç†åŠ¨ç”»ç›¸å…³çš„
  */ 
 bool Character::onMove()
 {
-	// ÕıÔÚÒÆ¶¯ÖĞ£¬ÇëÎğ´òÈÅ>_<
+	// æ­£åœ¨ç§»åŠ¨ä¸­ï¼Œè¯·å‹¿æ‰“æ‰°>_<
 	if (m_bIsMoving)
 	{
 		return false;
@@ -117,10 +117,10 @@ bool Character::onMove()
 
 	if (m_pQueue)
 	{
-		// ÒÆ¶¯³É¹¦
+		// ç§»åŠ¨æˆåŠŸ
 		m_pQueue->setUpdateSuccess();
 
-		// Èç¹ûÕâ¸ö²»ÊÇ¶ÓÊ×
+		// å¦‚æœè¿™ä¸ªä¸æ˜¯é˜Ÿé¦–
 		if (this != m_pQueue->getHead())
 		{
 			CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();  
@@ -133,7 +133,7 @@ bool Character::onMove()
 
 	int index = getIndexByMoveVector(getMoveVector());
 
-	// ÒÆ¶¯µ½Ä¿±êÎ»ÖÃÖ®ºó£¬µ÷ÓÃonMoveDone½«m_bIsMovingÖÃÎªfalse		
+	// ç§»åŠ¨åˆ°ç›®æ ‡ä½ç½®ä¹‹åï¼Œè°ƒç”¨onMoveDoneå°†m_bIsMovingç½®ä¸ºfalse		
 	CCAction*  action = CCSequence::create(
 		CCSpawn::create(
 			CCMoveTo::create(1.f / getCurSpeed(), targetPosition),
@@ -149,7 +149,7 @@ bool Character::onMove()
 
 void Character::onUpdate(float dt) {}
 
-// ÒÑ¾­ÒÆ¶¯µ½Ä¿±ê¸ñ×Ó
+// å·²ç»ç§»åŠ¨åˆ°ç›®æ ‡æ ¼å­
 void Character::onMoveDone()
 {
 	m_bIsMoving = false;
@@ -157,10 +157,10 @@ void Character::onMoveDone()
 
 void Character::kill() 
 {
-	// ²¥·ÅËÀÍö¶¯»­
+	// æ’­æ”¾æ­»äº¡åŠ¨ç”»
 	EM.addAnEffect(getPosition(), EET_Explosion, ccp(0, 0));
 
-	// ÔÚ¶ÓÁĞÖ®ÖĞ
+	// åœ¨é˜Ÿåˆ—ä¹‹ä¸­
 	if (m_pQueue)
 	{
 		m_pQueue->removeAMember(this);
@@ -219,7 +219,7 @@ void Character::getHarmed(int damage)
 	if (damage > 0)
 	{
 		m_iCurHealth -= damage;
-		// Èç¹û¹ÒÁË
+		// å¦‚æœæŒ‚äº†
 		if (m_iCurHealth <= 0)
 		{
 			kill();
@@ -248,7 +248,7 @@ CCPoint Character::tileCoordForPosition( CCPoint pos )
     int x = pos.x / tiledSize.width;
     int y = pos.y / tiledSize.height;
 
-    /* Cocos2d-xµÄÄ¬ÈÏY×ø±êÊÇÓÉÏÂÖÁÉÏµÄ£¬ËùÒÔÒª×öÒ»¸öÏà¼õ²Ù×÷ */
+    /* Cocos2d-xçš„é»˜è®¤Yåæ ‡æ˜¯ç”±ä¸‹è‡³ä¸Šçš„ï¼Œæ‰€ä»¥è¦åšä¸€ä¸ªç›¸å‡æ“ä½œ */
     y = mapTiledNum.height - y;
 
     return ccp(x, y);
