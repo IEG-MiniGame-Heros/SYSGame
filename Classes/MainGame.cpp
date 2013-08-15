@@ -78,6 +78,8 @@ void MainGame::btnRestartCallback(cocos2d::CCObject *pSender)
 
 void MainGame::btnBackMenuCallback(cocos2d::CCObject *pSender)
 {
+	// »Ö¸´ÓÎÏ·
+	CCDirector::sharedDirector()->resume();
 	CCDirector::sharedDirector()->replaceScene(StartScrene::scene());
 }
 
