@@ -17,38 +17,36 @@ void Monster::onEnter()
 
 	schedule(schedule_selector(Monster::onUpdate));
 
-	// 设置动画
-	// 0.右 1.下 2.左 3.上 
-	m_pWalkAnim[0] = CCAnimation::create();
-	m_pWalkAnim[0]->retain();
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/m1.png");
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/m1.png");
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/m1.png");
-	m_pWalkAnim[0]->setDelayPerUnit(1.f / getCurSpeed() / 3);
-
-	m_pWalkAnim[1] = CCAnimation::create();
-	m_pWalkAnim[1]->retain();
-	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/monster/m1.png");
-	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/monster/m1.png");
-	m_pWalkAnim[1]->setDelayPerUnit(0.5 / getCurSpeed());
-
-	m_pWalkAnim[2] = CCAnimation::create();
-	m_pWalkAnim[2]->retain();
-	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/monster/m1.png");
-	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/monster/m1.png");
-	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/monster/m1.png");
-	m_pWalkAnim[2]->setDelayPerUnit(1.f / getCurSpeed() / 3);
-
-	m_pWalkAnim[3] = CCAnimation::create();
-	m_pWalkAnim[3]->retain();
-	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/monster/m1.png");
-	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/monster/m1.png");
-	m_pWalkAnim[3]->setDelayPerUnit(0.5 / getCurSpeed());
-
 	setCurSpeed(GI.getMonsterConfig()[0].fMoveSpeed);
 	setMaxSpeed(GI.getMonsterConfig()[0].fMoveSpeed);
 	setCurHealth(GI.getMonsterConfig()[0].iHP);
 	setMaxHealth(GI.getMonsterConfig()[0].iHP);
+
+	// 设置动画
+	// 0.右 1.下 2.左 3.上 
+	m_pWalkAnim[0] = CCAnimation::create();
+	m_pWalkAnim[0]->retain();
+	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/Monster_R_1.png");
+	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/Monster_R_2.png");
+	m_pWalkAnim[0]->setDelayPerUnit(0.5f / getCurSpeed());
+
+	m_pWalkAnim[1] = CCAnimation::create();
+	m_pWalkAnim[1]->retain();
+	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/monster/Monster_D_1.png");
+	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/monster/Monster_D_2.png");
+	m_pWalkAnim[1]->setDelayPerUnit(0.5f / getCurSpeed());
+
+	m_pWalkAnim[2] = CCAnimation::create();
+	m_pWalkAnim[2]->retain();
+	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/monster/Monster_L_1.png");
+	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/monster/Monster_L_2.png");
+	m_pWalkAnim[2]->setDelayPerUnit(0.5f / getCurSpeed());
+
+	m_pWalkAnim[3] = CCAnimation::create();
+	m_pWalkAnim[3]->retain();
+	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/monster/Monster_U_1.png");
+	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/monster/Monster_U_2.png");
+	m_pWalkAnim[3]->setDelayPerUnit(0.5f / getCurSpeed());
 
 	m_iWalkLoopCount = 0;
 	m_iWalkDir = 0;
@@ -80,7 +78,7 @@ void Monster::onUpdate(float dt)
 	// 快撞到墙了，赶紧拐弯！！！
 	CCPoint nextPos = GI.Helper->getNearestGridCenter(getPosition()) +
 		WalkVec[m_iWalkDir] * GI.GridSize;
-	if (0 && !GI.Helper->isWithinMap(nextPos) )
+	if (!GI.Helper->isWithinMap(nextPos) )
 	{
 		m_iWalkDir += (m_bIsClockWise ? 1 : -1);
 		m_iWalkDir = (m_iWalkDir + 4) % 4;
