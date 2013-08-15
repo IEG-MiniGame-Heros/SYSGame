@@ -49,7 +49,5 @@ CCScene* LoginScrene::scene()
 
 void LoginScrene::tbLoginCallback(cocos2d::CCObject *pSender)
 {
-	//CCDirector::sharedDirector()->replaceScene(StartScrene::scene());
-	ExitDlg* dlg = ExitDlg::create();  
-	addChild(dlg); 
+	CCDirector::sharedDirector()->replaceScene(StartScrene::scene());
 }
