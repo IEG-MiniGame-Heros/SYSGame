@@ -12,9 +12,13 @@ public:
 
 	virtual void onExit();
 
+	bool onMove();
+
 	virtual void onUpdate(float dt);
 
 	void setForceToStop(bool isStop);
+
+	void setDropItemAfterDeath(bool shouldDrop);
 
 	void kill();
 
@@ -26,6 +30,7 @@ protected:
 	int		m_iWalkDir;				// Monster AI走路的方向
 	int		m_bIsClockWise;			// 是否顺时针走路
 	bool	m_bForceToStop;			// 强制停止
+	bool	m_bDropItemAfterDeath;	// 死后掉物品
 };
 
 #endif

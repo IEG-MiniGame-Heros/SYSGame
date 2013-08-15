@@ -17,6 +17,11 @@ public:
 	void onEnter();
 	void onExit();
 
+	int getRand(int mod);
+
+	bool ccpEqual(const CCPoint& p1, const CCPoint& p2) const;
+
+	bool isReachable(CCPoint pos, CCPoint moveVec, int gridNum);
 	bool isWithinMap(CCPoint pos, float margin = 0.f);
 
 	CCPoint getGridCenter(int i, int j);

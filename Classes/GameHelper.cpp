@@ -60,6 +60,21 @@ CCPoint GameHelper::getNearestGridCenter(CCPoint pos)
 	return getGridCenter(i, j);
 }
 
+/** 
+ * 检测这个格子在某个方向上的第几个是否可达
+ */
+bool GameHelper::isReachable(CCPoint pos, CCPoint moveVec, int gridNum) 
+{
+	int i, j;
+	CCPoint desPos = pos + moveVec * (GI.GridSize * gridNum);
+	if (!isWithinMap(desPos))
+	{
+		return false;
+	}
+	getGridIndexOfPos(desPos, i, j);
+	return !m_bUsed[i][j];
+}
+
 /** 刷怪位置的缓存 */
 CCPoint MonstRetPos[100];
 
@@ -207,4 +222,14 @@ void GameHelper::randomGenHeroOrGoods(CCPoint pos)
 		EM.addAGoods(pos, EGT_BloodSupply);
 	}
 	
+}
+
+bool GameHelper::ccpEqual(const CCPoint& p1, const CCPoint& p2) const 
+{
+	return p1.x == p2.x && p1.y == p2.y;
+}
+
+int GameHelper::getRand(int mod)
+{
+	return rand() % mod;
 }
