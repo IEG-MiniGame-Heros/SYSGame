@@ -47,7 +47,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // create a scene. it's an autorelease object
     CCScene *pScene = LogoScrene::scene();
-	//CCScene* pScene = LoginScrene::scene();
 	//CCScene* pScene = FirstStage::scene();
 
     // run

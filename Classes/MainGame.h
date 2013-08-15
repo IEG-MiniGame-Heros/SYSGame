@@ -20,9 +20,12 @@ public:
 	virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
 
-	CCNode* createSceneControl();
+	void createPauseUI();
 
 	void btnPauseCallback(cocos2d::CCObject *pSender);
+	void btnResumeCallback(cocos2d::CCObject *pSender);
+	void btnRestartCallback(cocos2d::CCObject *pSender);
+	void btnBackMenuCallback(cocos2d::CCObject *pSender);
 
 	void onPause(CCObject* pSender); //暂停
 	void onResume(CCObject* pSender);//恢复
@@ -31,7 +34,11 @@ protected:
 
 	CCPoint			m_tBeginPos;		// 滑动触屏，开始位置
 	CCSprite*       m_pauseBg;          // 暂停界面
+	// 暂停按钮，分数UI
 	UILayer *ulGameControl;
+	// 暂停界面UI
+	UILayer *ulPause;
+	// 暂停按钮
 	UIButton *btnPause;
 };
 

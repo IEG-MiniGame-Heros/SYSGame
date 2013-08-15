@@ -2,6 +2,8 @@
 #include "Character.h"
 #include "Queue.h"
 #include "GameInfo.h"
+#include "GameInfo.h"
+#include "StartScrene.h"
 
 void MainGame::onEnter()
 {
@@ -22,19 +24,61 @@ void MainGame::onEnter()
 	btnPause->addPushDownEvent(this, coco_releaseselector(MainGame::btnPauseCallback));
 
 	ulGameControl->setTouchEnabled(true);
+}
 
+void MainGame::createPauseUI()
+{
+	// 显示暂停界面
+	CCPoint nowViewPos = ulGameControl->getPosition();
+	ulPause = UILayer::create();
+	this->addChild(ulPause, 300, 200);
+	ulPause->addWidget(CCUIHELPER->createWidgetFromJsonFile("ui/screne_pause/screne_pause_1.ExportJson"));
+	ulPause->setPosition(nowViewPos);
 
-	//暂停按钮
-	/*CCMenuItemImage* pauseBtn = CCMenuItemImage::create("ui/pause/pauseBtn.png","ui/pause/resumeBtn.png",this,menu_selector(MainGame::onPause));
-	pauseBtn->setAnchorPoint(ccp(1,1));
-	CCMenu* menu = CCMenu::create(pauseBtn,NULL);
-	menu->setPosition(ccp(100,100));
-	addChild(menu,1000,10);*/
+	// 恢复按钮
+	UIButton *btnResume = dynamic_cast<UIButton*>(ulPause->getWidgetByName("btn_continue"));
+	btnResume->addPushDownEvent(this, coco_releaseselector(MainGame::btnResumeCallback));
+
+	// 重新开始按钮
+	UIButton *btnRestart = dynamic_cast<UIButton*>(ulPause->getWidgetByName("btn_restart"));
+	btnRestart->addPushDownEvent(this, coco_releaseselector(MainGame::btnRestartCallback));
+
+	UIButton *btnBackMenu = dynamic_cast<UIButton*>(ulPause->getWidgetByName("btn_back"));
+	btnBackMenu->addPushDownEvent(this, coco_releaseselector(MainGame::btnBackMenuCallback));
+
+	// 设置透明度
+	UIPanel *p = dynamic_cast<UIPanel*>(ulPause->getWidgetByName("Panel"));
+	p->setBackGroundColorOpacity(150);
 }
 
 void MainGame::btnPauseCallback(cocos2d::CCObject *pSender)
 {
+	createPauseUI();
+	// 暂停游戏
 	CCDirector::sharedDirector()->pause();
+	// 隐藏暂停按钮
+	btnPause->setVisible(false);
+}
+
+void MainGame::btnResumeCallback(cocos2d::CCObject *pSender)
+{
+	// 移除暂停界面
+	ulPause->dispose();
+	// 恢复游戏
+	CCDirector::sharedDirector()->resume();
+	// 显示暂停按钮
+	btnPause->setVisible(true);
+}
+
+// TODO :: kongcheng
+void MainGame::btnRestartCallback(cocos2d::CCObject *pSender)
+{
+
+}
+
+void MainGame::btnBackMenuCallback(cocos2d::CCObject *pSender)
+{
+	CCDirector::sharedDirector()->replaceScene(StartScrene::scene());
 }
 
 void MainGame::onPause(CCObject* pSender) //暂停
