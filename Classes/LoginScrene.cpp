@@ -1,6 +1,5 @@
 #include "LoginScrene.h"
 #include "StartScrene.h"
-#include "ExitDialog.h"
 
 bool LoginScrene::init()
 {
