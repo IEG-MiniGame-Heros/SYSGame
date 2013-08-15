@@ -96,6 +96,7 @@ void FirstStage::onExit()
 
 	GI.Me->release();
 	GI.Me = NULL;
+	EM.removeAll();
 	MainGame::onExit();
 }
 

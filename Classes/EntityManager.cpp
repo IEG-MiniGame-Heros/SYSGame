@@ -25,6 +25,14 @@ EntityManager::EntityManager()
 	m_pAllGoods->retain();
 }
 
+void EntityManager::removeAll()
+{
+	m_pAllMonsters->removeAllObjects();
+	m_pAllEffects->removeAllObjects();
+	m_pAllHeros->removeAllObjects();	
+	m_pAllGoods->removeAllObjects();
+}
+
 EntityManager::~EntityManager()
 {
 	m_pAllMonsters->release();

@@ -23,6 +23,7 @@ public:
 	static EntityManager& instance();
 
 	//CCArray* getAllEntities() const;
+	void removeAll();
 
 	/** 
 	 * 移除一个对象
