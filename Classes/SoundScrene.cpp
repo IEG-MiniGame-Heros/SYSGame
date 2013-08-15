@@ -1,8 +1,9 @@
 #include "SoundScrene.h"
-#include "SimpleAudioEngine.h"
 #include "GameInfo.h"
 #include "StartScrene.h"
+#include "SimpleAudioEngine.h"
 
+using namespace CocosDenshion;
 
 bool SoundScrene::init()
 {
@@ -76,6 +77,8 @@ void SoundScrene::sliderMusicCallback(cocos2d::CCObject *pSender)
 	// TODO :: junqiang
 	GI.musicVolume = slMusic->getPercent();
 	float volume = (float)slMusic->getPercent() / 100;
+	//ÉèÖÃ±³¾°ÒôÀÖÒôÁ¿
+	SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(volume);
 	updateSlider(slMusic);
 }
 
@@ -84,6 +87,9 @@ void SoundScrene::sliderSoundCallback(cocos2d::CCObject *pSender)
 	// TODO :: junqiang
 	GI.soundVolume = slSound->getPercent();
 	float volume = (float)slSound->getPercent() / 100;
+
+	//ÉèÖÃÒôÐ§ÒôÁ¿
+	SimpleAudioEngine::sharedEngine()->setEffectsVolume(volume);
 	updateSlider(slSound);
 }
 

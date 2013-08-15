@@ -1,6 +1,9 @@
 #include "AllEffects.h"
 #include "EntityManager.h"
 
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
+
 #include <math.h>
 
 //////////////////////////////////////////
@@ -21,6 +24,8 @@ void ThrowableObj::onEnter()
 		NULL
 		);
 
+	// JQ_effect
+	SimpleAudioEngine::sharedEngine()->playEffect("music/gun.mp3");
 	runAction(act);
 }
 
