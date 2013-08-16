@@ -33,7 +33,8 @@ enum EEffectType
 	EET_Explosion	=	3,	// 爆炸
 	EET_IceBall		=	4,	// 冰球
 	EET_Shit		=	5,	// 屎（真的要用这东西？）
-	EET_SeeStar		=	6	// 海星
+	EET_SeeStar		=	6,	// 海星
+	EET_Frozen		=	7,	// 冰冻
 };
 
 // 物品类型
@@ -41,6 +42,7 @@ enum EGoodType
 {
 	EGT_Coin		=	1,	// 金币
 	EGT_BloodSupply	=	2,	// 血包
+	EGT_IceCube		=	3,	// 冰块
 };
 
 

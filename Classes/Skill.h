@@ -23,8 +23,12 @@ public:
 	virtual void attack() {}
 	virtual void onUpdate(float dt);
 
+	bool isEnable() const;
+	void setEnable(bool flag);
+
 protected:
 
+	bool		m_bIsEnable;		// 是否开启此技能
 	int			m_iDamage;			// 伤害
 	float		m_fAttackRange;		// 判定应该攻击范围
 	float		m_fHitRange;		// 判定命中范围	

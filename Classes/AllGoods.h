@@ -21,6 +21,9 @@ protected:
 	int		m_iValue;		// 金币价值
 };
 
+/** 
+ * 血包
+ */
 class BloodSupply : public Goods
 {
 public:
@@ -37,6 +40,20 @@ public:
 protected:
 
 	int		m_iSupplyAmount;		// 补给量
+};
+
+/** 
+ * 冰块(产生冰冻特效)
+ */
+class IceCube : public Goods
+{
+public:
+
+	void onEnter();
+	void onExit();
+	void use();
+
+	static IceCube* create(const char *pszFileName);
 };
 
 #endif

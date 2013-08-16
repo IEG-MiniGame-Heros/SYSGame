@@ -31,6 +31,7 @@ protected:
 	int		m_bIsClockWise;			// 是否顺时针走路
 	bool	m_bForceToStop;			// 强制停止
 	bool	m_bDropItemAfterDeath;	// 死后掉物品
+	bool	m_bIsFrozen;			// 是否被冰冻了
 };
 
 #endif

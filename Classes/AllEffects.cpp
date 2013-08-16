@@ -91,3 +91,30 @@ Explosion* Explosion::create(const char *pszFileName)
 	CC_SAFE_DELETE(pobSprite);
 	return NULL;
 }
+
+
+///////////////////////////////////////////////
+/*---------------  ±ù¶³ÌØÐ§   ----------------*/
+void Frozen::onEnter()
+{
+	Effect::onEnter();
+
+
+}
+
+void Frozen::onExit()
+{
+	Effect::onExit();
+}
+
+Frozen* Frozen::create(const char *pszFileName)
+{
+	Frozen *pobSprite = new Frozen();
+	if (pobSprite && pobSprite->initWithFile(pszFileName))
+	{
+		pobSprite->autorelease();
+		return pobSprite;
+	}
+	CC_SAFE_DELETE(pobSprite);
+	return NULL;
+}

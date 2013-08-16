@@ -102,3 +102,33 @@ BloodSupply* BloodSupply::create(const char *pszFileName)
 	CC_SAFE_DELETE(pobSprite);
 	return NULL;
 }
+
+
+////////////////////////////////////////////
+/*---------------- ±ù¿é -------------------*/
+void IceCube::onEnter()
+{
+	Goods::onEnter();
+}
+
+void IceCube::onExit()
+{
+	Goods::onExit();
+}
+
+void IceCube::use()
+{
+	
+}
+
+IceCube* IceCube::create(const char *pszFileName)
+{
+	IceCube *pobSprite = new IceCube();
+	if (pobSprite && pobSprite->initWithFile(pszFileName))
+	{
+		pobSprite->autorelease();
+		return pobSprite;
+	}
+	CC_SAFE_DELETE(pobSprite);
+	return NULL;
+}

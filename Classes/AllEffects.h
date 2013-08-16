@@ -31,3 +31,15 @@ public:
 
 	static Explosion* create(const char *pszFileName);
 };
+
+/** 
+ * ±ù¶³ÌØÐ§
+ */
+class Frozen : public Effect
+{
+public:
+
+	void onEnter();
+	void onExit();
+	static Frozen* create(const char *pszFileName);
+};

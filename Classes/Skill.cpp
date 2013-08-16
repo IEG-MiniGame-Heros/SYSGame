@@ -12,6 +12,7 @@ void Skill::onEnter()
 	m_pOwner = (Character*)(getParent());
 	m_bIsAttacking = false;
 	m_fElapseTime = m_fCoolTime;
+	m_bIsEnable = true;
 }
 
 void Skill::onExit()
@@ -21,6 +22,11 @@ void Skill::onExit()
 
 bool Skill::shouldAttack()
 {
+	if (!m_bIsEnable)
+	{
+		return false;
+	}
+
 	// 如果正在攻击中
 	if (m_bIsAttacking) 
 	{
@@ -82,4 +88,14 @@ void Skill::onUpdate(float dt)
 	{
 		attack();
 	}
+}
+
+bool Skill::isEnable() const 
+{
+	return m_bIsEnable;
+}
+
+void Skill::setEnable(bool flag)
+{
+	m_bIsEnable = flag;
 }
