@@ -22,7 +22,7 @@ cocos2d::CCScene* FirstStage::scene()
 	do 
 	{
 		//JQ_effect
-		//SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/playing2.mp3", true);
+		SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/playing2.mp3", true);
 
 		// 'scene' is an autorelease object
 		scene = CCScene::create();
@@ -84,8 +84,10 @@ void FirstStage::onEnter()
 	GI.Me->retain();
 
 	Hero* p1 = EM.addAHero(GI.Helper->getGridCenter(21, 11));
+	//Hero* p2 = EM.addAHero(GI.Helper->getGridCenter(21, 11));
 	p1->setMoveVector(ccp(0, -1));
 	GI.Me->addAMember(p1);
+	//GI.Me->addAMember(p2);
 	GI.Me->refreshMembers();
 
 	Monster* m1 = EM.addAMonster(GI.Helper->getGridCenter(3, 12));

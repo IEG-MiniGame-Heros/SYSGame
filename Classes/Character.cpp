@@ -275,7 +275,15 @@ void Character::getHarmed(int damage)
 		// 如果挂了
 		if (m_iCurHealth <= 0)
 		{
-			kill();
+			if (getType() == ET_Hero && m_pQueue && m_pQueue->getHead() == this)
+			{
+				//CCLOG("Alll Go to Die!!!!!!!!!!!");
+				m_pQueue->allGotoDie();
+			}
+			else 
+			{
+				kill();
+			}
 		}
 	}
 }

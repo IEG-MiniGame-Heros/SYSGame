@@ -139,8 +139,19 @@ void Hero::onUpdate(float dt)
 
 		// 我也死了，呜呜呜>_<
 #if !HERO_UNBEATABLE
-		kill();
+		//kill();
+		getHarmed(1000000);
 #endif
+	}
+
+	// 撞到队友
+	if (m_pQueue && m_pQueue->getHead() == this)
+	{
+		entity = EM.findEntityInRange(this, 25.f, ET_Hero);
+		if (entity)
+		{
+			m_pQueue->allGotoDie();
+		}
 	}
 
 	// 如果撞到墙壁
