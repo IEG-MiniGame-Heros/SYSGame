@@ -39,7 +39,7 @@ bool Character::initHPStrip(){
 		m_pBloodBlack->initWithFile("spirit/bloodbar/blood_frame.png");
 		CC_BREAK_IF(!m_pBloodBlack);	
 		m_pBloodBlack->setPosition(ccp(this->getContentSize().width/2,this->getContentSize().height+2));
-		this->addChild(m_pBloodBlack,1);
+		this->addChild(m_pBloodBlack, 2000);
 
 		CCSprite* blood = new CCSprite();
 		blood->initWithFile("spirit/bloodbar/blood.png");

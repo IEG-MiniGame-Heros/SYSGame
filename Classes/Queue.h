@@ -71,6 +71,12 @@ public:
 	void checkChaningSpeed();
 
 	/** 
+	 * 给用户手势用， 检查是否需要改变方向
+	 */
+	void confirmMoveVector();
+	void setNextMoveVector(CCPoint moveVec);
+
+	/** 
 	 * 都去死吧~~
 	 */
 	void allGotoDie();
@@ -83,6 +89,7 @@ public:
 	bool isQueueUpdateFinished() const;
 	/// Refresh End
 
+
 protected:
 	CCArray*		m_pCharacters;			// 指向队伍的指针
 	CCArray*		m_pPendingAddPool;		// 即将加入队伍中的指针
@@ -90,6 +97,7 @@ protected:
 	bool			m_bPendingChangeSpeed;	// 即将改变速度
 	float			m_fNextSpeed;			// 即将要改变的速度
 	int				m_iUpdateFlag;			// 队员刷新标记，onMove成功就自增一次
+	CCPoint			m_vNextMoveVector;		// 给手势用的，更新的时候使用
 
 };
 

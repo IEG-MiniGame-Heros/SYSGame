@@ -143,6 +143,7 @@ void MainGame::ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent)
 
 	if (GI.Me)
 	{
-		GI.Me->setMoveVector(moveVector);
+		//GI.Me->setMoveVector(moveVector);
+		GI.Me->setNextMoveVector(moveVector);
 	}
 }

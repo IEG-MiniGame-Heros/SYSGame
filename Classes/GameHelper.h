@@ -20,6 +20,7 @@ public:
 	int getRand(int mod);
 
 	bool ccpEqual(const CCPoint& p1, const CCPoint& p2) const;
+	bool isReverseDir(const CCPoint& dir1, const CCPoint& dir2);
 
 	bool isReachable(CCPoint pos, CCPoint moveVec, int gridNum);
 	bool isWithinMap(CCPoint pos, float margin = 0.f);

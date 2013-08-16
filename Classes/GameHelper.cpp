@@ -233,3 +233,8 @@ int GameHelper::getRand(int mod)
 {
 	return rand() % mod;
 }
+
+bool GameHelper::isReverseDir(const CCPoint& dir1, const CCPoint& dir2)
+{
+	return  (dir1.x == (dir2.x * -1)) && (dir1.y == (dir2.y * -1));
+}

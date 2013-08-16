@@ -21,13 +21,35 @@ void Queue::onEnter()
 
 	m_bPendingChangeSpeed = false;
 	m_iUpdateFlag = 0;
+	m_vNextMoveVector = ccp(0, -1);
 
 	schedule(schedule_selector(Queue::onUpdate));
+}
+
+void Queue::confirmMoveVector()
+{
+	if (getQueueNum() > 0)
+	{
+		CCPoint curMoveVec = getHead()->getMoveVector();
+		if (!GI.Helper->isReverseDir(curMoveVec, m_vNextMoveVector) &&
+			!GI.Helper->ccpEqual(m_vNextMoveVector, curMoveVec))
+		{
+			setMoveVector(m_vNextMoveVector);
+		}
+	}
+}
+
+void Queue::setNextMoveVector(CCPoint moveVec)
+{
+	m_vNextMoveVector = moveVec;
 }
 
 void Queue::onUpdate(float dt)
 {
 	CCObject* object;
+
+	// 确认方向
+	confirmMoveVector();
 
 	// 检测队伍的速度
 	checkChaningSpeed();
@@ -106,6 +128,7 @@ void Queue::appendCharacter(Character* character)
 		if (m_pCharacters->count() == 0)
 		{
 			GI.Game->removeChild(character);
+			character->setZOrder(1000);
 			addChild(character);
 			// 针对英雄刚出生的时候特殊处理一下
 			if (character->getType())
@@ -121,6 +144,7 @@ void Queue::appendCharacter(Character* character)
 			// 加在队伍后面
 			Character* lastCharacter = (Character*)(m_pCharacters->lastObject());			
 			GI.Game->removeChild(character);
+			character->setZOrder(1000 - m_pCharacters->count());
 			addChild(character);
 			character->setPosition(getPositionBehindTail());
 			character->setMoveVector(lastCharacter->getMoveVector());
