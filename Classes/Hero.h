@@ -3,11 +3,6 @@
 
 #include "Character.h"
 
-enum EHeroActionTag
-{
-	EHAT_Fade		// ÏûÊ§µÄTag
-};
-
 class Hero : public Character 
 {
 public:

@@ -11,6 +11,19 @@ void Character::onEnter()
 	// 初始化血条
 	initHPStrip();
 
+	// 显示血条3秒后消失
+	m_pShowHPAct = CCSequence::create(
+			CCDelayTime::create(3.f),
+			CCCallFunc::create(this, callfunc_selector(Character::stopShowHPCallback)),
+			NULL
+		);
+	m_pShowHPAct->setTag(ECAT_BloodFade);
+	m_pShowHPAct->retain();
+
+	// 默认不显示血条
+	m_bEnableShowHP = false;
+	setShowHP(false);
+
 	m_bIsPendingKill = false;
 	m_vCurMoveVector = ccp(0, 0);
 	m_bIsMoving = false;
@@ -59,8 +72,15 @@ void Character::setShowHP(bool bShow)
 	}
 }
 
+void Character::stopShowHPCallback()
+{
+	setShowHP(false);
+}
+
 void Character::onExit()
 {
+	m_pShowHPAct->release();
+
 	MovingEntity::onExit();
 }
 
@@ -208,10 +228,32 @@ int Character::getCurHealth() const
 
 void Character::setCurHealth(int health)
 {
-	m_iCurHealth = health;
-	if (m_iCurHealth < 0)
+	if (health != m_iCurHealth)
 	{
-		m_iCurHealth = 0;
+		m_iCurHealth = health;
+		if (m_iCurHealth < 0)
+		{
+			m_iCurHealth = 0;
+		}
+		if (m_iCurHealth > m_iMaxHealth)
+		{
+			m_iCurHealth = m_iMaxHealth;
+		}
+
+		// 如果需要显示血条
+		if (m_bEnableShowHP)
+		{
+			stopActionByTag(ECAT_BloodFade);
+
+			setShowHP(true);
+			m_pBloodBar->setPercentage(100.0 * m_iCurHealth / m_iMaxHealth);
+
+			if (m_iCurHealth > int(m_iMaxHealth * 0.5))
+			{
+				// 血量小于50%，一定会显示血条
+				runAction(m_pShowHPAct);
+			}
+		}
 	}
 }
 
@@ -229,7 +271,7 @@ void Character::getHarmed(int damage)
 {
 	if (damage > 0)
 	{
-		m_iCurHealth -= damage;
+		setCurHealth(m_iCurHealth - damage);
 		// 如果挂了
 		if (m_iCurHealth <= 0)
 		{
@@ -242,11 +284,7 @@ void Character::getHeal(int amount)
 {
 	if (amount > 0)
 	{
-		m_iCurHealth += amount;
-		if (m_iCurHealth > m_iMaxHealth)
-		{
-			m_iCurHealth = m_iMaxHealth;
-		}
+		setCurHealth(m_iCurHealth + amount);
 	}
 }
 

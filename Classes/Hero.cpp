@@ -26,11 +26,11 @@ void Hero::onEnter()
 		CCCallFunc::create(this, callfunc_selector(Character::kill)),
 		NULL
 		);
-	fadeAway->setTag(EHAT_Fade);
+	fadeAway->setTag(ECAT_HeroFade);
 	runAction(fadeAway);
 
 	// 设置速度
-	setCurSpeed(GI.getHeroConfig()[0].fMoveSpeed);
+	setCurSpeed(GI.getHeroConfig()[0].fMoveSpeed); 
 	setMaxSpeed(GI.getSystemConfig().fMaxMoveSpeed);
 	m_fSpeedIncrement = GI.getSystemConfig().fSpeedIncrement;
 
@@ -38,8 +38,11 @@ void Hero::onEnter()
 	setCurHealth(GI.getHeroConfig()[0].iHP);
 	setMaxHealth(GI.getHeroConfig()[0].iHP);
 
+	// 显示血条开关打开
+	m_bEnableShowHP = true;
+
 	// 设置技能
-	addChild(SkillFireAttack::create());
+	//addChild(SkillFireAttack::create());
 
 	// 设置动画
 	// 0.右 1.下 2.左 3.上 
@@ -173,7 +176,7 @@ void Hero::setIsPickedUp(bool is_picked_up)
 	// 英雄被获取了，就把闪烁动画给停了
 	if (m_bIsPickedUp)
 	{
-		stopActionByTag(EHAT_Fade);
+		stopActionByTag(ECAT_HeroFade);
 		setVisible(true);
 	}
 }

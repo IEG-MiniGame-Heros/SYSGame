@@ -5,6 +5,13 @@
 
 class Queue;
 
+enum ECharacterActionTag
+{
+	ECAT_HeroFade,		// 英雄消失的Tag
+	ECAT_BloodFade		// 血条消失的Tag
+};
+
+
 const CCPoint WalkVec[4] = 
 {
 	CCPoint(1, 0),		// 右
@@ -69,6 +76,8 @@ public:
 	// 是否显示血条
 	void setShowHP(bool bShow);
 
+	void stopShowHPCallback();
+
 protected: 
 
 	int				m_iCurHealth;		// 当前生命值
@@ -80,6 +89,7 @@ protected:
 	
 	CCProgressTimer* m_pBloodBar;		// 血条
 	CCSprite*		m_pBloodBlack;		// 血条外围的一层黑
-	CCAnimation*	m_pShowHPAnim;		// 显示血条的动画
+	CCAction*		m_pShowHPAct;		// 显示血条Action
+	bool			m_bEnableShowHP;	// 显示血条开关
 };
 #endif
