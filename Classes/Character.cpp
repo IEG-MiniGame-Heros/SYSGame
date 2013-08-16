@@ -7,7 +7,9 @@
 void Character::onEnter()
 {
 	MovingEntity::onEnter();
-	setBlood();
+
+	// 初始化血条
+	initHPStrip();
 
 	m_bIsPendingKill = false;
 	m_vCurMoveVector = ccp(0, 0);
@@ -16,15 +18,15 @@ void Character::onEnter()
 }
 
 
-bool Character::setBlood(){
+bool Character::initHPStrip(){
 	bool isRet=false;
 	do 
 	{
-		CCSprite* bloodbackimg = new CCSprite();
-		bloodbackimg->initWithFile("spirit/bloodbar/blood_frame.png");
-		CC_BREAK_IF(!bloodbackimg);	
-		bloodbackimg->setPosition(ccp(this->getContentSize().width/2,this->getContentSize().height+2));
-		this->addChild(bloodbackimg,1);
+		m_pBloodBlack = new CCSprite();
+		m_pBloodBlack->initWithFile("spirit/bloodbar/blood_frame.png");
+		CC_BREAK_IF(!m_pBloodBlack);	
+		m_pBloodBlack->setPosition(ccp(this->getContentSize().width/2,this->getContentSize().height+2));
+		this->addChild(m_pBloodBlack,1);
 
 		CCSprite* blood = new CCSprite();
 		blood->initWithFile("spirit/bloodbar/blood.png");
@@ -40,12 +42,21 @@ bool Character::setBlood(){
 		m_bloodBar->setPercentage(100);
 		this->addChild(m_bloodBar,2);
 		// TODO :: 通过setVisible方法控制血条是否可见 Emily
-		//bloodbackimg->setVisible(false);
+		//m_pBloodBlack->setVisible(false);
 		//bloodBwlid->setVisible(false);
 		isRet=true;
 	} while (0);
 	return isRet;
 
+}
+
+void Character::setShowHP(bool bShow)
+{
+	if (m_bloodBar)
+	{
+		m_bloodBar->setVisible(bShow);
+		m_pBloodBlack->setVisible(bShow);
+	}
 }
 
 void Character::onExit()
