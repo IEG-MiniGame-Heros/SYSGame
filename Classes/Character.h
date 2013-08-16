@@ -64,7 +64,10 @@ public:
     CCPoint tileCoordForPosition(CCPoint pos);
 
 	// 设置血条
-	bool setBlood();
+	bool initHPStrip();
+
+	// 是否显示血条
+	void setShowHP(bool bShow);
 
 protected: 
 
@@ -76,5 +79,6 @@ protected:
 	bool			m_bIsPendingKill;	// 即将被kill掉
 	
 	CCProgressTimer* m_bloodBar;		// 血条
+	CCSprite*		m_pBloodBlack;		// 血条外围的一层黑色
 };
 #endif
