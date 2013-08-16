@@ -31,16 +31,16 @@ bool Character::initHPStrip(){
 		CCSprite* blood = new CCSprite();
 		blood->initWithFile("spirit/bloodbar/blood.png");
 		CC_BREAK_IF(!blood);
-		this->m_bloodBar=CCProgressTimer::create(blood);
-		CC_BREAK_IF(!m_bloodBar);
-		m_bloodBar->setType(kCCProgressTimerTypeBar);
-		m_bloodBar->setMidpoint(ccp(0,0)); 
-		m_bloodBar->setBarChangeRate(ccp(1,0));
+		this->m_pBloodBar=CCProgressTimer::create(blood);
+		CC_BREAK_IF(!m_pBloodBar);
+		m_pBloodBar->setType(kCCProgressTimerTypeBar);
+		m_pBloodBar->setMidpoint(ccp(0,0)); 
+		m_pBloodBar->setBarChangeRate(ccp(1,0));
 
-		m_bloodBar->setPosition(ccp(this->getContentSize().width/2,this->getContentSize().height+2));
+		m_pBloodBar->setPosition(ccp(this->getContentSize().width/2,this->getContentSize().height+2));
 		// TODO :: 用setPercentage方法设置百分比 Emily
-		m_bloodBar->setPercentage(100);
-		this->addChild(m_bloodBar,2);
+		m_pBloodBar->setPercentage(100);
+		this->addChild(m_pBloodBar,2);
 		// TODO :: 通过setVisible方法控制血条是否可见 Emily
 		//m_pBloodBlack->setVisible(false);
 		//bloodBwlid->setVisible(false);
@@ -52,9 +52,9 @@ bool Character::initHPStrip(){
 
 void Character::setShowHP(bool bShow)
 {
-	if (m_bloodBar)
+	if (m_pBloodBar)
 	{
-		m_bloodBar->setVisible(bShow);
+		m_pBloodBar->setVisible(bShow);
 		m_pBloodBlack->setVisible(bShow);
 	}
 }

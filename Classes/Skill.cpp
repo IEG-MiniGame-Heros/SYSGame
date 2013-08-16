@@ -11,7 +11,7 @@ void Skill::onEnter()
 	// 设定谁拥有这个Character
 	m_pOwner = (Character*)(getParent());
 	m_bIsAttacking = false;
-	m_fElapseTime = 0;
+	m_fElapseTime = m_fCoolTime;
 }
 
 void Skill::onExit()

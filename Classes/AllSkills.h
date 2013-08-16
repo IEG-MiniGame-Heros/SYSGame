@@ -47,4 +47,18 @@ public:
 	void attack();
 };
 
+/** 
+ * 释放便便技能(拉屎？）
+ */
+class SkillShitAttack : public Skill
+{
+public:
+	CREATE_FUNC(SkillShitAttack);
+
+	void onEnter();
+	void onExit();
+
+	void attack();
+};
+
 #endif

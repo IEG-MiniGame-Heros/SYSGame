@@ -111,3 +111,36 @@ void SkillBulletAttack::attack()
 	m_pEffect = EM.addAnEffect(m_pOwner->getPosition(), EET_Bullet, m_pTarget->getPosition());
 
 }
+
+////////////////////////////////////////////////////
+/*----------------- 释放便便技能 -------------------*/
+void SkillShitAttack::onEnter()
+{
+	Skill::onEnter();
+
+	//后面要改成读取配置
+	m_iDamage = 30;  //攻击力
+	m_fCoolTime = 10.f; //冷却时间
+	m_fElapseTime = 4.f;
+	m_fAttackRange = 120.f;  //攻击距离
+	m_fHitRange = 40.f;  //攻击范围
+
+	m_fAttackSpeed = 4.f;
+
+	schedule(schedule_selector(Skill::onUpdate));
+}
+
+void SkillShitAttack::onExit()
+{
+	unschedule(schedule_selector(Skill::onUpdate));
+
+	Skill::onExit();
+}
+
+void SkillShitAttack::attack()
+{
+	m_bIsAttacking = true;
+	m_fElapseTime = 0;
+	m_pEffect = EM.addAnEffect(m_pOwner->getPosition(), EET_Shit, m_pTarget->getPosition());
+
+}

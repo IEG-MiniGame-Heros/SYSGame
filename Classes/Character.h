@@ -78,7 +78,8 @@ protected:
 
 	bool			m_bIsPendingKill;	// 即将被kill掉
 	
-	CCProgressTimer* m_bloodBar;		// 血条
-	CCSprite*		m_pBloodBlack;		// 血条外围的一层黑色
+	CCProgressTimer* m_pBloodBar;		// 血条
+	CCSprite*		m_pBloodBlack;		// 血条外围的一层黑
+	CCAnimation*	m_pShowHPAnim;		// 显示血条的动画
 };
 #endif

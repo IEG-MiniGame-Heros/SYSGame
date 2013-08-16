@@ -1,6 +1,7 @@
 #include "Monster.h"
 #include "Queue.h"
 #include "EntityManager.h"
+#include "AllSkills.h"
 #include "GameHelper.h"
 #include "GameInfo.h"
 
@@ -49,6 +50,9 @@ void Monster::onEnter()
 	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/monster/Monster_U_1.png");
 	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/monster/Monster_U_2.png");
 	m_pWalkAnim[3]->setDelayPerUnit(0.5f / getCurSpeed());
+
+	// …Ë÷√ººƒ‹
+	addChild(SkillShitAttack::create());
 
 	//m_iWalkLoopCount = 0;
 	//m_iWalkDir = 0;
