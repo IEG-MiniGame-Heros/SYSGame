@@ -7,6 +7,7 @@
 #include "AllGoods.h"
 #include "GameInfo.h"
 
+
 EntityManager& EntityManager::instance()
 {
 	static EntityManager inst;
@@ -25,8 +26,42 @@ EntityManager::EntityManager()
 	m_pAllGoods->retain();
 }
 
+/** 作为整个CCArray清除之前的指针缓存 */
+CCObject* ObjBuffer[1000];
+
+/** 
+ * 先保存到一个数组里，再去清空，避免死循环
+ */
+template <class T>
+int RemoveObjectsFromArray(CCArray* arr)
+{
+	int num = arr->count();
+	CCObject* obj;
+
+	if (num > 0)
+	{
+		int curIdx = 0;
+		CCARRAY_FOREACH(arr, obj)
+		{
+			ObjBuffer[curIdx++] = obj;
+		}
+
+		for (int i = 0; i < num; ++i)
+		{
+			((T*)(ObjBuffer[i]))->kill();
+		}
+	}
+
+	return 0;
+}
+
 void EntityManager::removeAll()
 {
+	RemoveObjectsFromArray<Monster>(m_pAllHeros);
+	RemoveObjectsFromArray<Hero>(m_pAllMonsters);
+	RemoveObjectsFromArray<Goods>(m_pAllGoods);
+	RemoveObjectsFromArray<Effect>(m_pAllEffects);
+
 	m_pAllMonsters->removeAllObjects();
 	m_pAllEffects->removeAllObjects();
 	m_pAllHeros->removeAllObjects();	
