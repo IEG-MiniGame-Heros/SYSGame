@@ -23,6 +23,8 @@ public:
 	void createPauseUI();
 	void createGameOverUI();
 
+	void replaceScrene(float dt);
+
 	void btnPauseCallback(cocos2d::CCObject *pSender);
 	void btnResumeCallback(cocos2d::CCObject *pSender);
 	void btnRestartCallback(cocos2d::CCObject *pSender);

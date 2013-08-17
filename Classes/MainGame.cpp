@@ -3,8 +3,9 @@
 #include "Queue.h"
 #include "GameInfo.h"
 #include "GameInfo.h"
-#include "StartScrene.h"
 #include "FirstStage.h"
+#include "StartScrene.h"
+#include "ResultScrene.h"
 
 void MainGame::onEnter()
 {
@@ -84,6 +85,14 @@ void MainGame::createGameOverUI()
 	p->setBackGroundColorOpacity(150);
 
 	ulGameControl->dispose();
+	// 2ÃëÖ®ºóÇÐ»»³¡¾°
+	this->schedule(schedule_selector(MainGame::replaceScrene), 2.0f);  
+}
+
+void MainGame::replaceScrene(float dt)
+{
+	this->unschedule(schedule_selector(MainGame::replaceScrene));  
+	CCDirector::sharedDirector()->replaceScene(ResultScrene::scene());
 }
 
 void MainGame::btnPauseCallback(cocos2d::CCObject *pSender)
