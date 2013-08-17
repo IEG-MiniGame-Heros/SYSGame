@@ -22,7 +22,7 @@ public:
 
 	virtual void use();
 
-	void kill();
+	virtual void kill();
 
 protected:
 

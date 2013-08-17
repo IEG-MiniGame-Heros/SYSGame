@@ -42,7 +42,8 @@ void Hero::onEnter()
 	m_bEnableShowHP = true;
 
 	// 设置技能
-	addChild(SkillFireAttack::create());
+	m_pSkill = SkillFireAttack::create();
+	addChild(m_pSkill);
 
 	// 设置动画
 	// 0.右 1.下 2.左 3.上 

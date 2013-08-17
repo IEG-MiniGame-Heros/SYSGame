@@ -32,6 +32,8 @@ public:
 	static Explosion* create(const char *pszFileName);
 };
 
+class Monster;
+
 /** 
  * ±ù¶³ÌØÐ§
  */
@@ -41,5 +43,14 @@ public:
 
 	void onEnter();
 	void onExit();
+
+	void frozenStart(Monster* pMonster);
+	void frozenEnd();
+
+	void stopFrozen();
+	
 	static Frozen* create(const char *pszFileName);
+
+private:
+	Monster*		m_pMonster;
 };

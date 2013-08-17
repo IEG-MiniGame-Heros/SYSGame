@@ -1,6 +1,8 @@
 #include "AllGoods.h"
 #include "Queue.h"
 #include "Character.h"
+#include "Monster.h"
+#include "EntityManager.h"
 #include "GameInfo.h"
 
 
@@ -118,7 +120,16 @@ void IceCube::onExit()
 
 void IceCube::use()
 {
-	
+	CCArray* pAllMonsters = EM.getArrayByType(ET_Monster);
+	CCObject* obj;
+
+	CCARRAY_FOREACH(pAllMonsters, obj)
+	{
+		Monster* monst = (Monster*)(obj);
+		monst->setFrozen(true);
+	}
+
+	Goods::use();
 }
 
 IceCube* IceCube::create(const char *pszFileName)

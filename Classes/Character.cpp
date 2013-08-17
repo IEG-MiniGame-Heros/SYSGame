@@ -28,6 +28,7 @@ void Character::onEnter()
 	m_vCurMoveVector = ccp(0, 0);
 	m_bIsMoving = false;
 	m_pQueue = NULL;
+	m_pSkill = NULL;
 }
 
 

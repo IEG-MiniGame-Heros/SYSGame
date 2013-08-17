@@ -2,6 +2,7 @@
 #include "Queue.h"
 #include "EntityManager.h"
 #include "AllSkills.h"
+#include "AllEffects.h"
 #include "GameHelper.h"
 #include "GameInfo.h"
 
@@ -52,7 +53,11 @@ void Monster::onEnter()
 	m_pWalkAnim[3]->setDelayPerUnit(0.5f / getCurSpeed());
 
 	// 设置技能
-	addChild(SkillShitAttack::create());
+	m_pSkill = SkillShitAttack::create();
+	addChild(m_pSkill);
+
+	// 冰冻
+	m_bIsFrozen = false;
 
 	//m_iWalkLoopCount = 0;
 	//m_iWalkDir = 0;
@@ -192,8 +197,12 @@ const int WALK_LOOPS = 3;
 
 void Monster::onUpdate(float dt)
 {
-	if (m_bForceToStop)
+	if (m_bIsFrozen)
 	{
+		if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1)
+		{
+			m_pFrozenEft->setPosition(getPosition());
+		}
 		return;
 	}
 
@@ -223,6 +232,16 @@ void Monster::kill()
 		GI.Helper->randomGenHeroOrGoods(gridCenter);
 	}
 
+	// 如果正结冰
+	if (m_bIsFrozen)
+	{
+		if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1)
+		{
+			m_pFrozenEft->stopFrozen();
+			m_pFrozenEft->kill();
+		}
+	}
+
 	Character::kill();
 }
 
@@ -238,7 +257,43 @@ Monster* Monster::create(const char *pszFileName)
 	return NULL;
 }
 
+/** 
+ * 死后是否要掉落物品
+ */
 void Monster::setDropItemAfterDeath(bool shouldDrop)
 {
 	m_bDropItemAfterDeath = shouldDrop;
+}
+
+/** 
+ * 设置冰冻
+ */
+void Monster::setFrozen(bool frozen)
+{
+	if (frozen)
+	{
+		// 本身已经结冰了
+		if (m_bIsFrozen)
+		{
+			// 先把原来的特效清空
+			if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1)
+			{
+				m_pFrozenEft->stopFrozen();
+				m_pFrozenEft->kill();
+			}
+		}
+		
+		m_pFrozenEft = (Frozen*)(EM.addAnEffect(getPosition(), EET_Frozen, ccp(0, 0)));
+		m_pFrozenEft->frozenStart(this);
+		m_bIsFrozen = true;
+
+		// 冰冻之后，技能也要冻结掉
+		m_pSkill->setEnable(false);
+	}
+	else 
+	{
+		m_bIsFrozen = false;
+		m_pFrozenEft = NULL;
+		m_pSkill->setEnable(true);
+	}
 }

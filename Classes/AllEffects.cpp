@@ -1,4 +1,5 @@
 #include "AllEffects.h"
+#include "Monster.h"
 #include "EntityManager.h"
 
 #include "SimpleAudioEngine.h"
@@ -105,6 +106,31 @@ void Frozen::onEnter()
 void Frozen::onExit()
 {
 	Effect::onExit();
+}
+
+void Frozen::frozenStart(Monster* pMonster)
+{
+	m_pMonster = pMonster;
+	CCAction* act = CCSequence::create(
+		CCDelayTime::create(20.f),
+		CCCallFunc::create(this, callfunc_selector(Effect::kill)),
+		NULL
+		);
+	act->setTag(EEAT_Frozenning);
+	runAction(act);
+}
+
+void Frozen::frozenEnd()
+{
+	if (m_pMonster)
+	{
+		m_pMonster->setFrozen(false);
+	}
+}
+
+void Frozen::stopFrozen()
+{
+	stopActionByTag(EEAT_Frozenning);
 }
 
 Frozen* Frozen::create(const char *pszFileName)

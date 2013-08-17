@@ -22,7 +22,7 @@ cocos2d::CCScene* FirstStage::scene()
 	do 
 	{
 		//JQ_effect
-		SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/playing2.mp3", true);
+		//SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/playing2.mp3", true);
 
 		// 'scene' is an autorelease object
 		scene = CCScene::create();

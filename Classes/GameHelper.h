@@ -35,7 +35,7 @@ public:
 
 private:
 
-	void getRandomFreeGrid(CCPoint ret[], int num);
+	void getRandomFreeGrid(CCPoint ret[], int& num);
 	void getGridIndexOfPos(CCPoint pos, int& i, int& j);
 
 private:
