@@ -70,6 +70,22 @@ void MainGame::createPauseUI()
 	p->setBackGroundColorOpacity(150);
 }
 
+void MainGame::createGameOverUI()
+{
+	// 显示暂停界面
+	CCPoint nowViewPos = ulGameControl->getPosition();
+	ulPause = UILayer::create();
+	this->addChild(ulPause, 300, 200);
+	ulPause->addWidget(CCUIHELPER->createWidgetFromJsonFile("ui/screne_gameover/screne_gameover_1.ExportJson"));
+	ulPause->setPosition(nowViewPos);
+
+	// 设置透明度
+	UIPanel *p = dynamic_cast<UIPanel*>(ulPause->getWidgetByName("Panel"));
+	p->setBackGroundColorOpacity(150);
+
+	ulGameControl->dispose();
+}
+
 void MainGame::btnPauseCallback(cocos2d::CCObject *pSender)
 {
 	createPauseUI();

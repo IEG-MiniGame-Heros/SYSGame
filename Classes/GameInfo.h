@@ -50,6 +50,7 @@ public:
 	// 场景
 	CCLayer*			currentLayer;				// 每一关的切换都要对这个场景进行赋值，以跟随英雄移动
 													// 跟随移动的代码在FirstStage的update函数中
+	bool				IsGameOver;					// 是否游戏结束
 
 	// 地图相关
 	CCTMXTiledMap*		Map;						// 地图的引用

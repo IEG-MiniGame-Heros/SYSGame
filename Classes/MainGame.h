@@ -21,6 +21,7 @@ public:
 	virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
 
 	void createPauseUI();
+	void createGameOverUI();
 
 	void btnPauseCallback(cocos2d::CCObject *pSender);
 	void btnResumeCallback(cocos2d::CCObject *pSender);
