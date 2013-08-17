@@ -256,6 +256,10 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 		eft = Explosion::create("spirit/effect/Explosion_1.png");
 		break;
 
+	case EET_Frozen:
+		eft = Frozen::create("spirit/effect/Frozen.png");
+		break;
+
 	default:
 		break;
 	}
@@ -282,6 +286,10 @@ Goods* EntityManager::addAGoods(CCPoint pos, EGoodType type)
 
 	case EGT_Coin:
 		goods = Coin::create("spirit/item/coin.png");
+		break;
+
+	case EGT_IceCube:
+		goods = IceCube::create("spirit/item/IceCube.png");
 		break;
 	}
 

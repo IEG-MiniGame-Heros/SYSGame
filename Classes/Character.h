@@ -4,6 +4,7 @@
 #include "MovingEntity.h"
 
 class Queue;
+class Skill;
 
 enum ECharacterActionTag
 {
@@ -91,5 +92,7 @@ protected:
 	CCSprite*		m_pBloodBlack;		// 血条外围的一层黑
 	CCAction*		m_pShowHPAct;		// 显示血条Action
 	bool			m_bEnableShowHP;	// 显示血条开关
+
+	Skill*			m_pSkill;			// 技能指针
 };
 #endif

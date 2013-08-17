@@ -3,6 +3,10 @@
 
 #include "MovingEntity.h"
 
+enum EEffectActionType
+{
+	EEAT_Frozenning,		// 冰冻特效Tag
+};
 
 class Effect : public MovingEntity
 {
@@ -14,7 +18,7 @@ public:
 	/** 
 	 * @brief 移除特效
 	 */
-	void kill();
+	virtual void kill();
 
 	bool isKilled() const;
 

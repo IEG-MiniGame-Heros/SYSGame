@@ -167,7 +167,7 @@ bool GameHelper::isWithinMap(CCPoint pos, float margin /* = 0.f */)
 	return true;
 }
 
-void GameHelper::getRandomFreeGrid(CCPoint ret[], int num)
+void GameHelper::getRandomFreeGrid(CCPoint ret[], int& num)
 {
 	int totCount = 0;
 	for (int i = 0; i < 22; ++i)
@@ -184,14 +184,18 @@ void GameHelper::getRandomFreeGrid(CCPoint ret[], int num)
 	// 将空余的位置打乱
 	random_shuffle(m_PointsIndex, m_PointsIndex + totCount);
 
+	// 不够的话
+	if (totCount < num)
+	{
+		num = totCount;
+	}
+
 	for (int i = 0; i < num; ++i)
 	{
 		ret[i] = (m_Points[m_PointsIndex[i]] + ccp(GI.GridSize / 2, GI.GridSize / 2));
 	}
 }
 
-
-int PB[10];
 /** 
  * 怪死后随机生成英雄或者物品
  * 这个概率以后再来调配!!!!!!!
@@ -199,16 +203,22 @@ int PB[10];
  */
 void GameHelper::randomGenHeroOrGoods(CCPoint pos)
 {
-	PB[0] = 3;	// 英雄
-	PB[1] = 4;	// 金币
-	PB[2] = 2;	// 血包
+	int PB[] = 
+	{
+		3,			// 英雄
+		4,			// 金币
+		2,			// 血包
+		2,			// 冰块
+	};
 
-	for (int i = 1; i < 3; ++i)
+	int cnt = sizeof(PB) / sizeof(int);
+
+	for (int i = 1; i < cnt; ++i)
 	{
 		PB[i] += PB[i - 1];
 	}
 
-	int rret = rand() % PB[2];
+	int rret = rand() % PB[cnt - 1];
 	if (rret < PB[0])
 	{
 		EM.addAHero(pos);
@@ -217,9 +227,13 @@ void GameHelper::randomGenHeroOrGoods(CCPoint pos)
 	{
 		EM.addAGoods(pos, EGT_Coin);
 	}
-	else 
+	else if (rret < PB[2])
 	{
 		EM.addAGoods(pos, EGT_BloodSupply);
+	}
+	else 
+	{
+		EM.addAGoods(pos, EGT_IceCube);
 	}
 	
 }
