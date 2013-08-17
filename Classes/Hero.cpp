@@ -141,6 +141,7 @@ void Hero::onUpdate(float dt)
 #if !HERO_UNBEATABLE
 		//kill();
 		getHarmed(1000000);
+		GI.IsGameOver = true;
 #endif
 	}
 
@@ -151,6 +152,7 @@ void Hero::onUpdate(float dt)
 		if (entity)
 		{
 			m_pQueue->allGotoDie();
+			GI.IsGameOver = true;
 		}
 	}
 
@@ -160,6 +162,7 @@ void Hero::onUpdate(float dt)
 	{
 		// 全部给我去死吧！！！！
 		m_pQueue->allGotoDie();
+		GI.IsGameOver = true;
 	}
 }
 

@@ -45,6 +45,7 @@ void FirstStage::onEnter()
 {
 	MainGame::onEnter();
 	GI.Game = this;
+	GI.IsGameOver = false;
 
 
 	// 获取屏幕宽度和高度
@@ -110,6 +111,14 @@ void FirstStage::onExit()
 }
 
 void FirstStage::updateLayer(float dt){
+	if (GI.IsGameOver)
+	{
+		CCLog("Game Over");
+		MainGame::createGameOverUI();
+		unschedule(schedule_selector(FirstStage::updateLayer));
+		//CCDirector::sharedDirector()->pause();
+		return ;
+	}
 	if (GI.Me && GI.Me->getQueueNum() <= 0) {  
         return;  
     }  
