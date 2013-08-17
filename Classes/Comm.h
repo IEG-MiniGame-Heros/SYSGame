@@ -81,6 +81,7 @@ struct TSkill
 	int iDamage; // 技能上海
 	int iSkillCD; // 技能CD
 	TResource stResource; // 对应的图片资源
+	float fSpeed; // 技能速度
 };
 
 // 怪物结构
@@ -137,6 +138,8 @@ struct TConfig
 	float fCoinCoefficient; // 金币得分系数
 	float fMonsterCoefficient; // 怪物得分系数
 	float fFlashingTime; // 英雄或物品消失前的闪烁时间
+	float fFrozenTime; // 冰冻时间
+	float fHitRange; // 命中判断范围
 };
 
 // 用户结构

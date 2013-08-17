@@ -44,6 +44,10 @@ void GameInfo::initData()
 				stSystemConfig.fMonsterCoefficient = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "flashing_time")
 				stSystemConfig.fFlashingTime = Util::StringToNumber<float>(iter->second);
+			if (iter->first == "frozen_time")
+				stSystemConfig.fFrozenTime = Util::StringToNumber<float>(iter->second);
+			if (iter->first == "hit_range")
+				stSystemConfig.fHitRange = Util::StringToNumber<float>(iter->second);
 			CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
 		}
 		CCLOG("-------------");
@@ -246,7 +250,7 @@ void GameInfo::initData()
 	}
 
 	// 取出技能信息
-	sql = "select damage, skill_cd from t_skill order by id asc";
+	sql = "select damage, skill_cd, speed from t_skill order by id asc";
 	CCLOG("sql:%s", sql.c_str());
 	vData.clear();
 	Database::query(sql, vData);
@@ -261,6 +265,8 @@ void GameInfo::initData()
 				stSkill.iDamage = Util::StringToNumber<int>(iter->second);
 			if (iter->first == "skill_cd")
 				stSkill.iSkillCD = Util::StringToNumber<int>(iter->second);
+			if (iter->first == "speed")
+				stSkill.fSpeed = Util::StringToNumber<float>(iter->second);
 			CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
 		}
 		vSkillConfig.push_back(stSkill);
