@@ -35,6 +35,8 @@ void GameHelper::onEnter()
 		}
 	}
 
+	memset(m_bUsed, 0, sizeof(m_bUsed));
+
 	// …Ë÷√∏˜÷÷Timer
 	schedule(schedule_selector(GameHelper::onUpdateGridUsage));
 	schedule(schedule_selector(GameHelper::onUpdateMonster), GI.getMapConfig()[0].vFrequency[0].iRefreshInterval);

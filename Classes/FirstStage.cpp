@@ -84,15 +84,18 @@ void FirstStage::onEnter()
 	GI.Me->retain();
 
 	Hero* p1 = EM.addAHero(GI.Helper->getGridCenter(21, 11));
-	//Hero* p2 = EM.addAHero(GI.Helper->getGridCenter(21, 11));
 	p1->setMoveVector(ccp(0, -1));
 	GI.Me->addAMember(p1);
-	//GI.Me->addAMember(p2);
 	GI.Me->refreshMembers();
 
-	Monster* m1 = EM.addAMonster(GI.Helper->getGridCenter(3, 12));
-	Monster* m2 = EM.addAMonster(GI.Helper->getGridCenter(7, 13));
-	Monster* m3 = EM.addAMonster(GI.Helper->getGridCenter(12, 5));
+	// 随机生成3只怪
+	CCPoint posArr[3];
+	int numOfMonster = 3;
+	GI.Helper->getRandomFreeGrid(posArr, numOfMonster);
+	for (int i = 0; i < numOfMonster; ++i)
+	{
+		EM.addAMonster(posArr[i]);
+	}
 
 	// 更新Layer，让Layer跟随精灵移动
 	this->schedule(schedule_selector(FirstStage::updateLayer));

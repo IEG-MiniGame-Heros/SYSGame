@@ -33,9 +33,10 @@ public:
 
 	void randomGenHeroOrGoods(CCPoint pos);
 
-private:
-
 	void getRandomFreeGrid(CCPoint ret[], int& num);
+
+private:
+	
 	void getGridIndexOfPos(CCPoint pos, int& i, int& j);
 
 private:
