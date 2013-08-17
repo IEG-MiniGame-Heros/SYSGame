@@ -2,14 +2,22 @@
 #include "StartScrene.h"
 #include "FirstStage.h"
 #include "Util.h"
+#include "Database.h"
 
 ResultScrene::ResultScrene(int score, int min, int sec, int monsterNum, int coinNum)
 {
+	this->iNowMin = 0;
+	this->iNowSec = 0;
+	this->iNowMonsterNum = 0;
+	this->iNowCoinNum = 0;
+
 	this->iScore = score;
 	this->iMin = min;
 	this->iSec = sec;
 	this->iMonsterNum = monsterNum;
 	this->iCoinNum = coinNum;
+	//string sql = "insert into t_user values(2, 0, 0, 'b', 'b')";
+	//Database::execute(sql);
 }
 
 bool ResultScrene::init()
@@ -35,6 +43,7 @@ bool ResultScrene::init()
 		laSec = dynamic_cast<UILabelAtlas*>(ul->getWidgetByName("la_sec"));
 		laMonsterNum = dynamic_cast<UILabelAtlas*>(ul->getWidgetByName("la_monster"));
 		laCoinNum = dynamic_cast<UILabelAtlas*>(ul->getWidgetByName("la_coin"));
+		laScore->setVisible(false);
 
 		schedule(schedule_selector(ResultScrene::update));
 
@@ -44,14 +53,32 @@ bool ResultScrene::init()
 	return bRef;
 }
 
+// 显示分数等...
 void ResultScrene::update(float dt)
 {
-	CCLog("%s", N2C(iScore));
-	laScore->setStringValue(N2C(iScore));
-	laMin->setStringValue(N2C(iMin));
-	laSec->setStringValue(N2C(iSec));
-	laMonsterNum->setStringValue(N2C(iMonsterNum));
-	laCoinNum->setStringValue(N2C(iCoinNum));
+	if (iNowMin < iMin)
+		iNowMin++;
+	else if (iNowSec < iSec)
+		iNowSec++;
+	else if (iNowMonsterNum < iMonsterNum)
+		iNowMonsterNum++;
+	else if (iNowCoinNum < iCoinNum)
+	{
+		iNowCoinNum += 10;
+		if (iNowCoinNum > iCoinNum)
+			iNowCoinNum = iCoinNum;
+	}
+	else
+	{
+		CCLog("show result finish");
+		laScore->setVisible(true);
+		laScore->setStringValue(N2C(iScore));
+		unschedule(schedule_selector(ResultScrene::update));
+	}
+	laMin->setStringValue(N2C(iNowMin));
+	laSec->setStringValue(N2C(iNowSec));
+	laMonsterNum->setStringValue(N2C(iNowMonsterNum));
+	laCoinNum->setStringValue(N2C(iNowCoinNum));
 }
 
 ResultScrene* ResultScrene::create(int score, int min, int sec, int monsterNum, int coinNum)

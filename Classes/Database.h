@@ -18,6 +18,7 @@ public:
 	static string getDataBasePath();
 	static int callback(void *data, int argc, char **argv, char **azColName);
 	static int query(string sql, vector<map<string, string> > &vData);
+	static int execute(string sql);
 	static int updateCoin(int currNum);
 };
 

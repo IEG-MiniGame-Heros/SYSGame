@@ -80,6 +80,31 @@ int Database::query(string sql, vector<map<string, string> > &vData)
 	return result;
 }
 
+int Database::execute(string sql)
+{
+	int result = SQLITE_ERROR;
+
+	string dbPath = getDataBasePath();
+	CCLOG("database path : %s", dbPath.c_str());
+	sqlite3 *pDB = NULL;
+	char * errMsg = NULL;
+	do 
+	{
+		result = sqlite3_open(dbPath.c_str(), &pDB); 
+		if( result != SQLITE_OK )
+		{
+			CCLOG("open database fail");
+			break;
+		}
+		CCLOG("open database succ");
+		result = sqlite3_exec(pDB, sql.c_str(), NULL, NULL, &errMsg); 
+		if( result != SQLITE_OK )
+			break;
+	} while (0);
+
+	return result;
+}
+
 int Database::updateCoin(int currNum)
 {
 	int result = SQLITE_ERROR;

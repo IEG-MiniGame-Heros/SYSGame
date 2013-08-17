@@ -36,6 +36,11 @@ private:
 	int iMonsterNum;
 	int iCoinNum;
 
+	int iNowMin;
+	int iNowSec;
+	int iNowMonsterNum;
+	int iNowCoinNum;
+
 	// ·ÖÊý
 	UILabelAtlas *laScore;
 	// ·Ö
