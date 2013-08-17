@@ -92,7 +92,8 @@ void MainGame::createGameOverUI()
 void MainGame::replaceScrene(float dt)
 {
 	this->unschedule(schedule_selector(MainGame::replaceScrene));  
-	CCDirector::sharedDirector()->replaceScene(ResultScrene::scene());
+	// TODO ::
+	CCDirector::sharedDirector()->replaceScene(ResultScrene::scene(13579, 1, 35, 20, 680));
 }
 
 void MainGame::btnPauseCallback(cocos2d::CCObject *pSender)

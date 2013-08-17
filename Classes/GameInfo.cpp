@@ -244,6 +244,28 @@ void GameInfo::initData()
 		}
 		CCLOG("-------------");
 	}
+
+	// 取出技能信息
+	sql = "select damage, skill_cd from t_skill order by id asc";
+	CCLOG("sql:%s", sql.c_str());
+	vData.clear();
+	Database::query(sql, vData);
+	size = vData.size();
+	for(int i = 0; i < size; i++)
+	{
+		TSkill stSkill;
+		map<string, string>::iterator iter;
+		for(iter = vData[i].begin(); iter != vData[i].end(); iter++) 
+		{
+			if (iter->first == "damage")
+				stSkill.iDamage = Util::StringToNumber<int>(iter->second);
+			if (iter->first == "skill_cd")
+				stSkill.iSkillCD = Util::StringToNumber<int>(iter->second);
+			CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
+		}
+		vSkillConfig.push_back(stSkill);
+		CCLOG("-------------");
+	}
 	CCLOG("-------------  initData finish  -------------");
 }
 
@@ -270,6 +292,11 @@ vector<TMonster> GameInfo::getMonsterConfig()
 vector<TItem> GameInfo::getItemConfig()
 {
 	return vItemConfig;
+}
+
+vector<TSkill> GameInfo::getSkillConfig()
+{
+	return vSkillConfig;
 }
 
 GameInfo::GameInfo()

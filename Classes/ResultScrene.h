@@ -12,10 +12,16 @@ class ResultScrene : public cocos2d::CCLayer
 {
 public :
 	virtual bool init();
+	ResultScrene() {}
+	ResultScrene(int score, int min, int sec, int monsterNum, int coinNum);
 	static cocos2d::CCScene* scene();
+	static cocos2d::CCScene* scene(int score, int min, int sec, int monsterNum, int coinNum);
+	static ResultScrene* create(int score, int min, int sec, int monsterNum, int coinNum);
 
 	void btnBackCallback(CCObject *pSender);
 	void btnRestartCallback(CCObject *pSender);
+
+	void update(float dt);
 
 	CREATE_FUNC(ResultScrene);
 
@@ -23,6 +29,23 @@ private:
 	UILayer *ul;
 	UIButton *btnBack;
 	UIButton *btnRestart;
+
+	int iScore;
+	int iMin;
+	int iSec;
+	int iMonsterNum;
+	int iCoinNum;
+
+	// 分数
+	UILabelAtlas *laScore;
+	// 分
+	UILabelAtlas *laMin;
+	// 秒
+	UILabelAtlas *laSec;
+	// 杀怪数
+	UILabelAtlas *laMonsterNum;
+	// 金币数
+	UILabelAtlas *laCoinNum;
 };
 
 #endif

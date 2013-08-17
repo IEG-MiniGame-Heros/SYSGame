@@ -6,6 +6,9 @@
 #include <sstream>
 using namespace std;
 
+#define N2S(num) (Util::NumberToString(num))
+#define N2C(num) (Util::NumberToString(num).c_str())
+
 class Util
 {
 public:

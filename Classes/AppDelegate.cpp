@@ -5,6 +5,7 @@
 #include "SimpleAudioEngine.h"
 #include "HelloWorldScene.h"
 #include "FirstStage.h"
+#include "ResultScrene.h"
 
 using namespace CocosDenshion;
 
@@ -46,7 +47,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = LogoScrene::scene();
+	CCScene *pScene = LogoScrene::scene();
+	//CCScene *pScene = ResultScrene::scene(13579, 1, 35, 20, 680);
 	//CCScene* pScene = FirstStage::scene();
 
     // run
