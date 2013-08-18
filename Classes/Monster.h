@@ -9,6 +9,7 @@ class Monster : public Character
 {
 public:
 	Monster();
+	Monster(int ID);
 
 	virtual void onEnter();
 
@@ -30,6 +31,7 @@ public:
 
 protected:
 
+	int		m_iMonsterID;			// 怪兽ID
 	int		m_iWalkLoopCount;		// Monster AI走路时候的计数
 	int		m_iWalkDir;				// Monster AI走路的方向
 	int		m_bIsClockWise;			// 是否顺时针走路

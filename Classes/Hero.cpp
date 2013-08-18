@@ -29,14 +29,16 @@ void Hero::onEnter()
 	fadeAway->setTag(ECAT_HeroFade);
 	runAction(fadeAway);
 
+	int HeroIdx = m_iHeroID - 1;
+
 	// 设置速度
-	setCurSpeed(GI.getHeroConfig()[0].fMoveSpeed); 
+	setCurSpeed(GI.getHeroConfig()[HeroIdx].fMoveSpeed); 
 	setMaxSpeed(GI.getSystemConfig().fMaxMoveSpeed);
 	m_fSpeedIncrement = GI.getSystemConfig().fSpeedIncrement;
 
 	// 设置生命
-	setCurHealth(GI.getHeroConfig()[0].iHP);
-	setMaxHealth(GI.getHeroConfig()[0].iHP);
+	setCurHealth(GI.getHeroConfig()[HeroIdx].iHP);
+	setMaxHealth(GI.getHeroConfig()[HeroIdx].iHP);
 
 	// 显示血条开关打开
 	m_bEnableShowHP = true;
@@ -179,7 +181,12 @@ Hero* Hero::create(const char *pszFileName)
 	return NULL;
 }
 
-Hero::Hero()
+Hero::Hero() : m_iHeroID(1)
+{
+	setType(ET_Hero);
+}
+
+Hero::Hero(int ID) : m_iHeroID(ID)
 {
 	setType(ET_Hero);
 }

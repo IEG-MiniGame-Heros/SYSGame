@@ -250,7 +250,7 @@ void GameInfo::initData()
 	}
 
 	// 取出技能信息
-	sql = "select damage, skill_cd, speed from t_skill order by id asc";
+	sql = "select damage, skill_cd, speed, attack_range from t_skill order by id asc";
 	CCLOG("sql:%s", sql.c_str());
 	vData.clear();
 	Database::query(sql, vData);
@@ -267,6 +267,8 @@ void GameInfo::initData()
 				stSkill.iSkillCD = Util::StringToNumber<int>(iter->second);
 			if (iter->first == "speed")
 				stSkill.fSpeed = Util::StringToNumber<float>(iter->second);
+			if (iter->first == "attack_range")
+				stSkill.fAttackRange = Util::StringToNumber<float>(iter->second);
 			CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
 		}
 		vSkillConfig.push_back(stSkill);

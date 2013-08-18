@@ -83,6 +83,7 @@ struct TSkill
 	int iSkillCD; // 技能CD
 	TResource stResource; // 对应的图片资源
 	float fSpeed; // 技能速度
+	float fAttackRange; // 攻击范围
 };
 
 // 怪物结构

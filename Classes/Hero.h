@@ -7,6 +7,7 @@ class Hero : public Character
 {
 public:
 	Hero();
+	Hero(int ID);
 
 	virtual void onEnter();
 
@@ -29,6 +30,7 @@ protected:
 
 	bool		m_bIsPickedUp;		// 是否被拾取了
 	float		m_fSpeedIncrement;	// 没增加一个英雄增加的速度
+	int			m_iHeroID;			// 英雄ID
 
 };
 #endif

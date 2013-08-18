@@ -8,7 +8,12 @@
 
 #include <cstdlib>
 
-Monster::Monster()
+Monster::Monster() : m_iMonsterID(1)
+{
+	setType(ET_Monster);
+}
+
+Monster::Monster(int ID) : m_iMonsterID(ID) 
 {
 	setType(ET_Monster);
 }
