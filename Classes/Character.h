@@ -58,8 +58,9 @@ public:
 	/** 
 	 * 受到伤害
 	 * @param damage 伤害大小
+	 * @param bHeroToMonster 是不是英雄打怪
 	 */
-	void getHarmed(int damage);
+	void getHarmed(int damage, bool bHeroToMonster = false);
 
 	/** 
 	 * 吃血包，得到治疗

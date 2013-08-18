@@ -48,6 +48,10 @@ void GameInfo::initData()
 				stSystemConfig.fFrozenTime = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "hit_range")
 				stSystemConfig.fHitRange = Util::StringToNumber<float>(iter->second);
+			if (iter->first == "exist_time")
+				stSystemConfig.fExistTime = Util::StringToNumber<float>(iter->second);
+			if (iter->first == "skill_slide_len")
+				stSystemConfig.fSkillSlideLen = Util::StringToNumber<float>(iter->second);
 			CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
 		}
 		CCLOG("-------------");
@@ -104,7 +108,7 @@ void GameInfo::initData()
 	}
 
 	// 取出英雄及其技能信息
-	sql = "select o.hero_name, o.move_speed, o.hp, o.resource_path, o.attack_range, "
+	sql = "select o.hero_name, o.move_speed, o.hp, o.resource_path, o.attack_range, o.skill_id,"
 		"s.skill_name, s.damage, s.skill_cd, s.resource_path as skill_rc_path "
 		"from t_hero o, t_skill s where o.skill_id = s.id order by o.id asc";
 	CCLOG("sql:%s", sql.c_str());
@@ -128,6 +132,8 @@ void GameInfo::initData()
 				stHero.sHeroName = iter->second;
 			if (iter->first == "resource_path")
 				Util::convertString2ResourceStruct(iter->second, stHero.stResource);
+			if (iter->first == "skill_id")
+				stHero.iSkillID = Util::StringToNumber<int>(iter->second);
 
 			// 技能部分
 			if (iter->first == "damage")
@@ -177,7 +183,7 @@ void GameInfo::initData()
 	}
 
 	// 取出怪物属性,技能信息
-	sql = "select o.monster_name, o.move_speed, o.hp, o.resource_path, o.attack_range, "
+	sql = "select o.monster_name, o.move_speed, o.hp, o.resource_path, o.attack_range, o.skill_id,"
 		"s.skill_name, s.damage, s.skill_cd, s.resource_path as skill_rc_path "
 		"from t_monster o, t_skill s where o.skill_id = s.id order by o.id asc";
 	CCLOG("sql:%s", sql.c_str());
@@ -201,6 +207,8 @@ void GameInfo::initData()
 				stMonster.sMonsterName = iter->second;
 			if (iter->first == "resource_path")
 				Util::convertString2ResourceStruct(iter->second, stMonster.stResource);
+			if (iter->first == "skill_id")
+				stMonster.iSkillID = Util::StringToNumber<int>(iter->second);
 
 			// 技能部分
 			if (iter->first == "damage")
@@ -335,6 +343,7 @@ GameInfo::GameInfo()
 	// 其他
 	ValidDraggedLength = 10.f;
 
+	// 音量
 	musicVolume = 100;
 	soundVolume = 100;
 }

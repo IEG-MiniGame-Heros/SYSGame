@@ -268,7 +268,7 @@ void Character::setMaxHealth(int max_health)
 	m_iMaxHealth = max_health;
 }
 
-void Character::getHarmed(int damage)
+void Character::getHarmed(int damage, bool bHeroToMonster /* = false */)
 {
 	if (damage > 0)
 	{
@@ -283,6 +283,10 @@ void Character::getHarmed(int damage)
 			}
 			else 
 			{
+				// 如果是英雄打怪,死了的话，计分
+				GI.MonsterKillNum += 1;
+				GI.Score += GI.getSystemConfig().fMonsterCoefficient;
+
 				kill();
 			}
 		}

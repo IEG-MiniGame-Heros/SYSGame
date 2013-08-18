@@ -1,6 +1,7 @@
 #include "AllEffects.h"
 #include "Monster.h"
 #include "EntityManager.h"
+#include "GameInfo.h"
 
 #include "SimpleAudioEngine.h"
 using namespace CocosDenshion;
@@ -13,11 +14,12 @@ void ThrowableObj::onEnter()
 {
 	Effect::onEnter();
 
-	m_fLifeTime = 2.f;
 	m_bShouldMove = true;
 
-	float length = max(600.f, getPosition().getDistance(m_vTargetPos));
-	CCPoint move_delta((m_vTargetPos - getPosition()).normalize() * length);
+	float slideLength = GI.getSystemConfig().fSkillSlideLen;
+	slideLength = max(slideLength, getPosition().getDistance(m_vTargetPos));
+	m_fLifeTime = slideLength / GI.getSkillConfig()[m_EffectType - 1].fSpeed * 0.01;
+	CCPoint move_delta((m_vTargetPos - getPosition()).normalize() * slideLength);
 
 	CCAction* act = CCSequence::create(
 		CCMoveBy::create(m_fLifeTime, move_delta),
@@ -35,9 +37,9 @@ void ThrowableObj::onExit()
 	Effect::onExit();
 }
 
-ThrowableObj* ThrowableObj::create(const char *pszFileName)
+ThrowableObj* ThrowableObj::create(const char *pszFileName, EEffectType eft)
 {
-	ThrowableObj *pobSprite = new ThrowableObj();
+	ThrowableObj *pobSprite = new ThrowableObj(eft);
 	if (pobSprite && pobSprite->initWithFile(pszFileName))
 	{
 		pobSprite->autorelease();
@@ -110,9 +112,11 @@ void Frozen::onExit()
 
 void Frozen::frozenStart(Monster* pMonster)
 {
+	float frozenTime = GI.getSystemConfig().fFrozenTime;
+
 	m_pMonster = pMonster;
 	CCAction* act = CCSequence::create(
-		CCDelayTime::create(20.f),
+		CCDelayTime::create(frozenTime),
 		CCCallFunc::create(this, callfunc_selector(Effect::kill)),
 		NULL
 		);

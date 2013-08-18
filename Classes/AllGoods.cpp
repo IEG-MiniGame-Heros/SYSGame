@@ -13,7 +13,7 @@ void Coin::onEnter()
 	Goods::onEnter();
 
 	// 设置金币价值
-	m_iValue = 20; 
+	m_iValue = GI.getItemConfig()[EGT_Coin - 1].iValue;
 }
 
 void Coin::onExit()
@@ -27,9 +27,11 @@ void Coin::use()
 	{
 		// 增加个人金币
 		///////////////////
-
-		kill();
+		GI.Coin += m_iValue;
+		GI.Score += GI.getSystemConfig().fCoinCoefficient * m_iValue;
 	}
+
+	Goods::use();
 }
 
 Coin* Coin::create(const char *pszFileName)
@@ -51,7 +53,7 @@ void BloodSupply::onEnter()
 {
 	Goods::onEnter();
 
-	m_iSupplyAmount = 30;
+	m_iSupplyAmount = GI.getItemConfig()[EGT_BloodSupply - 1].iValue;
 }
 
 void BloodSupply::onExit()
@@ -61,24 +63,6 @@ void BloodSupply::onExit()
 
 void BloodSupply::use()
 {
-	//道具号：1->血包,吃一个血包+30
-	//GameInfo info;
-	//vector<TItem> tem_config=info.getItemConfig();
-	//vector<TItem>::iterator iter;
-	//for(iter = tem_config.begin(); iter!= tem_config.end(); iter++) 
-	//{
-	//	if (iter->eType==2){
-	//		if(m_iID==EGT_BloodSupply){		
-	//			Character* pHead = NULL;
-	//			pHead = pHead->getQueue()->getHead();
-	//			int bloods=pHead->getCurHealth();
-	//			bloods+=30;
-	//			pHead->setCurHealth(bloods);
-	//			break;
-	//		}			
-	//	}
-	//}
-
 	if (GI.Me && GI.Me->getQueueNum() > 0)
 	{
 		CCArray* members = GI.Me->getAllMembers();
@@ -88,9 +72,9 @@ void BloodSupply::use()
 			((Character*)(object))->getHeal(m_iSupplyAmount);
 		}
 
-		// 吃完了，不要你了。。。ByeBye
-		kill();
 	}
+
+	Goods::use();
 }
 
 BloodSupply* BloodSupply::create(const char *pszFileName)

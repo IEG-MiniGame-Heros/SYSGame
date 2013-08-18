@@ -100,7 +100,6 @@ void Skill::onUpdate(float dt)
 			{
 				// ÅÐ¶¨ÉËº¦
 				pEnemy->getHarmed(m_iDamage);
-				//m_pEffect->kill();
 				m_pEffect->setVisible(false);
 				m_pEffect = NULL;
 				m_bIsAttacking = false;

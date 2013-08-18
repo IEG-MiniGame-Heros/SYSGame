@@ -14,6 +14,8 @@ using namespace CocosDenshion;
 
 USING_NS_CC;
 
+#define UPDATE_CHECK_SCORE_TIME 0.5f
+
 cocos2d::CCScene* FirstStage::scene()
 {
 	CCScene * scene = NULL;
@@ -98,13 +100,23 @@ void FirstStage::onEnter()
 	}
 
 	// 更新Layer，让Layer跟随精灵移动
-	this->schedule(schedule_selector(FirstStage::updateLayer));
+	schedule(schedule_selector(FirstStage::updateLayer));
 	updateLayer(0.f);
+
+	// 定时刷新金币数、分数、杀怪数
+	schedule(schedule_selector(FirstStage::updateAllScores), UPDATE_CHECK_SCORE_TIME);
+
+	// 初始化结算数据
+	GI.Coin = 0;
+	GI.Score = 0;
+	GI.ChallengeTime = 0;
+	GI.MonsterKillNum = 0;
 }
 
 void FirstStage::onExit()
 {
 	unschedule(schedule_selector(FirstStage::updateLayer));
+	unschedule(schedule_selector(FirstStage::updateAllScores));
 
 	GI.Me->release();
 	GI.Me = NULL;
@@ -162,4 +174,17 @@ void FirstStage::updateLayer(float dt){
 
 	GI.currentLayer->setPosition(viewPos);  
 	ulGameControl->setPosition(ccp(x - halfScreneWidth, y - halfScreneHeight));
+}
+
+void FirstStage::updateAllScores(float dt)
+{
+	if (!GI.IsGameOver)
+	{
+		GI.Score += GI.getSystemConfig().fTimeCoefficient * dt;
+		GI.ChallengeTime += dt;
+
+		setCoin(GI.Coin);
+		setScore(int(GI.Score));
+		setMonsterKillNum(GI.MonsterKillNum);
+	}
 }

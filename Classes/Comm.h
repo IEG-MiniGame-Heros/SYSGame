@@ -96,6 +96,7 @@ struct TMonster
 	TResource stResource; // 对应的图片资源
 	vector<TReward> vReward; // 奖励列表
 	float fAttackRange; // 攻击范围
+	int iSkillID;		// 对应的技能ID
 };
 
 // 英雄结构
@@ -107,6 +108,7 @@ struct THero
 	TSkill stSkill; // 技能
 	float fAttackRange; // 攻击范围
 	TResource stResource; // 对应的图片资源
+	int iSkillID;		// 对应的技能ID
 };
 
 // 刷怪频率结构
@@ -143,6 +145,7 @@ struct TConfig
 	float fFlashingTime; // 英雄或物品消失前的闪烁时间
 	float fFrozenTime; // 冰冻时间
 	float fHitRange; // 命中判断范围
+	float fSkillSlideLen; // 技能在屏幕飞行长度（未攻击到怪情况下）
 };
 
 // 用户结构

@@ -228,27 +228,27 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 	switch (type)
 	{
 	case EET_FireBall:
-		eft = ThrowableObj::create("spirit/skill/FireBall_1.png");
+		eft = ThrowableObj::create("spirit/skill/FireBall_1.png", type);
 		eft->setTarget(target_pos);
 		break;
 
 	case EET_Bullet:
-		eft = ThrowableObj::create("spirit/skill/Bullet_1.png");
+		eft = ThrowableObj::create("spirit/skill/Bullet_1.png", type);
 		eft->setTarget(target_pos);
 		break;
 
 	case EET_IceBall:
-		eft = ThrowableObj::create("spirit/skill/IceBall.png");
+		eft = ThrowableObj::create("spirit/skill/IceBall.png", type);
 		eft->setTarget(target_pos);
 		break;
 
 	case EET_Shit:
-		eft = ThrowableObj::create("spirit/skill/Shit.png");
+		eft = ThrowableObj::create("spirit/skill/Shit.png", type);
 		eft->setTarget(target_pos);
 		break;
 
 	case EET_SeeStar:
-		eft = ThrowableObj::create("spirit/skill/SeeStar.png");
+		eft = ThrowableObj::create("spirit/skill/SeeStar.png", type);
 		eft->setTarget(target_pos);
 		break;
 

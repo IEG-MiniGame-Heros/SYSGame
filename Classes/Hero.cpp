@@ -41,7 +41,7 @@ void Hero::onEnter()
 	m_bEnableShowHP = true;
 
 	// 设置技能
-	m_pSkill = Skill::create(1);
+	m_pSkill = Skill::create( GI.getHeroConfig()[HeroIdx].iSkillID);
 	addChild(m_pSkill);
 
 	// 设置动画

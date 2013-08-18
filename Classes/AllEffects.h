@@ -2,6 +2,7 @@
 #define SYS_FIRE_BALL
 
 #include "Effect.h"
+#include "Comm.h"
 
 /** 
  * 可抛掷物, 包括火球、子弹、星星等远程攻击特效
@@ -10,11 +11,16 @@
 class ThrowableObj : public Effect
 {
 public:
+	ThrowableObj() {}
+	ThrowableObj(EEffectType eft) : m_EffectType(eft) {}
+
 	void onEnter();
 	void onExit();
 
-	static ThrowableObj* create(const char *pszFileName);
+	static ThrowableObj* create(const char *pszFileName, EEffectType eft);
 
+private:
+	EEffectType			m_EffectType;
 };
 #endif
 

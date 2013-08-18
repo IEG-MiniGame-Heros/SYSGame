@@ -24,10 +24,12 @@ void Monster::onEnter()
 
 	schedule(schedule_selector(Monster::onUpdate));
 
-	setCurSpeed(GI.getMonsterConfig()[0].fMoveSpeed);
-	setMaxSpeed(GI.getMonsterConfig()[0].fMoveSpeed);
-	setCurHealth(GI.getMonsterConfig()[0].iHP);
-	setMaxHealth(GI.getMonsterConfig()[0].iHP);
+	int MonsterIdx = m_iMonsterID - 1;
+
+	setCurSpeed(GI.getMonsterConfig()[MonsterIdx].fMoveSpeed);
+	setMaxSpeed(GI.getMonsterConfig()[MonsterIdx].fMoveSpeed);
+	setCurHealth(GI.getMonsterConfig()[MonsterIdx].iHP);
+	setMaxHealth(GI.getMonsterConfig()[MonsterIdx].iHP);
 
 	setMoveVector(ccp(1, 0));
 
@@ -58,9 +60,8 @@ void Monster::onEnter()
 	m_pWalkAnim[3]->setDelayPerUnit(0.5f / getCurSpeed());
 
 	// ÉèÖÃ¼¼ÄÜ
-	m_pSkill = Skill::create(5);
+	m_pSkill = Skill::create(GI.getMonsterConfig()[MonsterIdx].iSkillID);
 	addChild(m_pSkill);
-	m_pSkill->setEnable(false);
 
 	// ±ù¶³
 	m_bIsFrozen = false;
@@ -202,10 +203,11 @@ void Monster::onUpdate(float dt)
 {
 	if (m_bIsFrozen)
 	{
-		if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1)
+		if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1 && !m_pFrozenEft->isKilled())
 		{
 			m_pFrozenEft->setPosition(getPosition());
 		}
+		
 		return;
 	}
 

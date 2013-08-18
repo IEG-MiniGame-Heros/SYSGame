@@ -32,6 +32,10 @@ public:
 
 	void setText(UILabelAtlas *la, const char *s);
 
+	void setCoin(int CoinNum);
+	void setScore(int Score);
+	void setMonsterKillNum(int KillNum);
+
 protected:
 
 	CCPoint			m_tBeginPos;		// 滑动触屏，开始位置

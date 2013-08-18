@@ -11,9 +11,9 @@ void Goods::onEnter()
 {
 	BaseEntity::onEnter();
 
-	int flashTimes = int(/*GI.getSystemConfig().fFlashingTime*/ 5 * 2.5);
+	int flashTimes = int(GI.getSystemConfig().fFlashingTime * 2.5);
 	CCAction* fadeAway = CCSequence::create(
-		CCDelayTime::create(/*float(GI.getItemConfig()[2].iExistTime)*/ 5.f),
+		CCDelayTime::create(GI.getSystemConfig().fExistTime),
 		CCBlink::create(float(GI.getSystemConfig().fFlashingTime), flashTimes),
 		CCDelayTime::create(0.2f),
 		CCCallFunc::create(this, callfunc_selector(Goods::kill)),

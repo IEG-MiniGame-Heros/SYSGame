@@ -6,6 +6,7 @@
 #include "FirstStage.h"
 #include "StartScrene.h"
 #include "ResultScrene.h"
+#include "Util.h"
 
 void MainGame::onEnter()
 {
@@ -30,10 +31,10 @@ void MainGame::onEnter()
 	laScore = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_score"));
 	laTime = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_time"));
 
-	setText(laMonster, "12");
-	setText(laCoin, "1234");
-	setText(laScore, "12345");
-	setText(laTime, "11");
+	setText(laMonster, "0");
+	setText(laCoin, "0");
+	setText(laScore, "0");
+	setText(laTime, "0");
 
 	ulGameControl->setTouchEnabled(true);
 }
@@ -172,4 +173,20 @@ void MainGame::ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent)
 		//GI.Me->setMoveVector(moveVector);
 		GI.Me->setNextMoveVector(moveVector);
 	}
+}
+
+
+void MainGame::setCoin(int CoinNum)
+{
+	setText(laCoin, (Util::NumberToString(CoinNum)).c_str());
+}
+
+void MainGame::setScore(int Score)
+{
+	setText(laScore, (Util::NumberToString(Score)).c_str());
+}
+
+void MainGame::setMonsterKillNum(int KillNum)
+{
+	setText(laMonster, (Util::NumberToString(KillNum)).c_str());
 }

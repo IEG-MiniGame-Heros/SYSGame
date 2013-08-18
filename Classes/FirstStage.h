@@ -18,6 +18,11 @@ public:
 
 	void updateLayer(float dt);
 
+	/** 
+	 * 更新显示金币、分数、杀怪数
+	 */
+	void updateAllScores(float dt);
+
 	static cocos2d::CCScene* scene();
 
 	CREATE_FUNC(FirstStage)

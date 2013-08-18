@@ -71,6 +71,12 @@ public:
 	int					musicVolume;				// 背景音乐音量
 	int					soundVolume;				// 特效音乐音量
 
+	// 金币，得分，杀怪数
+	int					Coin;						// 金币
+	float				Score;						// 得分
+	int					MonsterKillNum;				// 杀怪数
+	float				ChallengeTime;				// 总挑战时间
+
 public:
 	void initData();
 	TConfig getSystemConfig();
