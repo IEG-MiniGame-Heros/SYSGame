@@ -2,7 +2,7 @@
 #include "Queue.h"
 #include "Goods.h"
 #include "EntityManager.h"
-#include "AllSkills.h"
+#include "Skill.h"
 #include "GameHelper.h"
 #include "GameInfo.h"
 
@@ -42,7 +42,7 @@ void Hero::onEnter()
 	m_bEnableShowHP = true;
 
 	// 设置技能
-	m_pSkill = SkillFireAttack::create();
+	m_pSkill = Skill::create(1);
 	addChild(m_pSkill);
 
 	// 设置动画

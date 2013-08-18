@@ -1,7 +1,7 @@
 #include "Monster.h"
 #include "Queue.h"
 #include "EntityManager.h"
-#include "AllSkills.h"
+#include "Skill.h"
 #include "AllEffects.h"
 #include "GameHelper.h"
 #include "GameInfo.h"
@@ -53,15 +53,11 @@ void Monster::onEnter()
 	m_pWalkAnim[3]->setDelayPerUnit(0.5f / getCurSpeed());
 
 	// 设置技能
-	m_pSkill = SkillShitAttack::create();
+	m_pSkill = Skill::create(5);
 	addChild(m_pSkill);
 
 	// 冰冻
 	m_bIsFrozen = false;
-
-	//m_iWalkLoopCount = 0;
-	//m_iWalkDir = 0;
-	//m_bIsClockWise = std::rand() % 2; // 顺时针还是逆时针走动
 	m_bForceToStop = false;
 	m_bDropItemAfterDeath = true;
 }
@@ -70,8 +66,11 @@ void Monster::onExit()
 {
 	unschedule(schedule_selector(Monster::onUpdate));
 
-	// 施放动画
+	// 释放动画
 	m_pWalkAnim[0]->release();
+	m_pWalkAnim[1]->release();
+	m_pWalkAnim[2]->release();
+	m_pWalkAnim[3]->release();
 
 	Character::onExit();
 }
@@ -183,10 +182,6 @@ bool Monster::onMove()
 	}
 	else 
 	{
-		if (GI.Helper->ccpEqual(curMoveVec * (-1), WalkVec[index]))
-		{
-			CCLog("Oh, shit!!!!!!!!!!!!!!!");
-		}
 		setMoveVector(WalkVec[index]);
 	}
 

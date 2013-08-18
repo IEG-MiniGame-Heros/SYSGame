@@ -2,7 +2,12 @@
 #include "Hero.h"
 #include "Monster.h"
 #include "Effect.h"
+#include "GameInfo.h"
 #include "EntityManager.h"
+
+Skill::Skill(int id) : m_iSkillID(id) 
+{
+}
 
 void Skill::onEnter()
 {
@@ -11,13 +16,32 @@ void Skill::onEnter()
 	// 设定谁拥有这个Character
 	m_pOwner = (Character*)(getParent());
 	m_bIsAttacking = false;
-	m_fElapseTime = m_fCoolTime;
+	m_fElapseTime = 100000.f;
 	m_bIsEnable = true;
+
+	// 设置技能各种属性
+	int SkillIdx = m_iSkillID - 1;
+	m_iDamage = GI.getSkillConfig()[SkillIdx].iDamage;
+	m_fCoolTime = GI.getSkillConfig()[SkillIdx].iSkillCD;
+	m_fAttackSpeed = GI.getSkillConfig()[SkillIdx].fSpeed;
+	m_fAttackRange = 120.f;
+	m_fHitRange = GI.getSystemConfig().fHitRange;
+
+	schedule(schedule_selector(Skill::onUpdate));
 }
 
 void Skill::onExit()
 {
+	unschedule(schedule_selector(Skill::onUpdate));
+
 	CCNode::onExit();
+}
+
+void Skill::attack()
+{
+	m_bIsAttacking = true;
+	m_fElapseTime = 0;
+	m_pEffect = EM.addAnEffect(m_pOwner->getPosition(), EEffectType(m_iSkillID), m_pTarget->getPosition());
 }
 
 bool Skill::shouldAttack()
@@ -98,4 +122,20 @@ bool Skill::isEnable() const
 void Skill::setEnable(bool flag)
 {
 	m_bIsEnable = flag;
+}
+
+Skill* Skill::create(int SkillID)
+{
+	Skill *pRet = new Skill(SkillID); 
+	if (pRet && pRet->init()) 
+	{ 
+		pRet->autorelease(); 
+		return pRet; 
+	} 
+	else 
+	{ 
+		delete pRet; 
+		pRet = NULL; 
+		return NULL; 
+	} 
 }

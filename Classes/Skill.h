@@ -8,9 +8,16 @@ USING_NS_CC;
 class Character;
 class Effect;
 
+/** 
+ * 统一改成了远程攻击
+ */
 class Skill : public CCNode
 {
 public:
+	Skill() {}
+	Skill(int id);
+
+	static Skill* create(int SkillID);
 
 	virtual void onEnter();
 	virtual void onExit();
@@ -20,7 +27,7 @@ public:
 	 */
 	bool shouldAttack();
 
-	virtual void attack() {}
+	virtual void attack();
 	virtual void onUpdate(float dt);
 
 	bool isEnable() const;
@@ -28,6 +35,7 @@ public:
 
 protected:
 
+	int			m_iSkillID;			// 技能ID，对应EffectID
 	bool		m_bIsEnable;		// 是否开启此技能
 	int			m_iDamage;			// 伤害
 	float		m_fAttackRange;		// 判定应该攻击范围
