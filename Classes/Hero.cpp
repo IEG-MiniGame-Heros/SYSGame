@@ -12,9 +12,6 @@ void Hero::onEnter()
 {
 	Character::onEnter();
 
-	//schedule(schedule_selector(Hero::onUpdate));
-
-
 	m_bIsPickedUp = false;
 
 	// 倒计时，一定时间后消失
@@ -88,6 +85,7 @@ void Hero::setAnimFreq()
 void Hero::onExit()
 {
 	//unschedule(schedule_selector(Hero::onUpdate));
+	removeChild(m_pSkill, true);
 
 	// 释放动画资源
 	m_pWalkAnim[0]->release();

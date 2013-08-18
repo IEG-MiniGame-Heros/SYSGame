@@ -60,6 +60,7 @@ void Monster::onEnter()
 	// 设置技能
 	m_pSkill = Skill::create(5);
 	addChild(m_pSkill);
+	m_pSkill->setEnable(false);
 
 	// 冰冻
 	m_bIsFrozen = false;
@@ -70,6 +71,8 @@ void Monster::onEnter()
 void Monster::onExit()
 {
 	unschedule(schedule_selector(Monster::onUpdate));
+
+	removeChild(m_pSkill, true);
 
 	// 释放动画
 	m_pWalkAnim[0]->release();

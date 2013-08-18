@@ -31,7 +31,6 @@ bool Effect::isKilled() const
 
 void Effect::kill()
 {
-	EM.removeAnEntity(this, ET_Effect);
 	m_bIsKilled = true;
-	//CCLog("ThrowableObj's been killed");
+	EM.removeAnEntity(this, ET_Effect);
 }

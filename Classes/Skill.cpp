@@ -11,7 +11,7 @@ Skill::Skill(int id) : m_iSkillID(id)
 
 void Skill::onEnter()
 {
-	CCNode::onEnter();
+	CCNode::onEnter();	
 
 	// 设定谁拥有这个Character
 	m_pOwner = (Character*)(getParent());
