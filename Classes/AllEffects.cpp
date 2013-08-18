@@ -117,6 +117,7 @@ void Frozen::frozenStart(Monster* pMonster)
 	m_pMonster = pMonster;
 	CCAction* act = CCSequence::create(
 		CCDelayTime::create(frozenTime),
+		CCCallFunc::create(this, callfunc_selector(Frozen::frozenEnd)),
 		CCCallFunc::create(this, callfunc_selector(Effect::kill)),
 		NULL
 		);

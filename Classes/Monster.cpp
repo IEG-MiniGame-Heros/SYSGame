@@ -203,7 +203,7 @@ void Monster::onUpdate(float dt)
 {
 	if (m_bIsFrozen)
 	{
-		if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1 && !m_pFrozenEft->isKilled())
+		if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1 && !m_pFrozenEft->isKilled() )
 		{
 			m_pFrozenEft->setPosition(getPosition());
 		}
@@ -283,7 +283,7 @@ void Monster::setFrozen(bool frozen)
 			// 先把原来的特效清空
 			if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1)
 			{
-				m_pFrozenEft->stopFrozen();
+				//m_pFrozenEft->stopFrozen();
 				m_pFrozenEft->kill();
 			}
 		}
