@@ -186,5 +186,10 @@ void FirstStage::updateAllScores(float dt)
 		setCoin(GI.Coin);
 		setScore(int(GI.Score));
 		setMonsterKillNum(GI.MonsterKillNum);
+
+		if (GI.Me && GI.Me->getQueueNum() == 0)
+		{
+			GI.IsGameOver = true;
+		}
 	}
 }
