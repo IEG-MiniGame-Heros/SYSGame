@@ -94,7 +94,13 @@ void MainGame::replaceScrene(float dt)
 {
 	this->unschedule(schedule_selector(MainGame::replaceScrene));  
 	// TODO ::
-	CCDirector::sharedDirector()->replaceScene(ResultScrene::scene(13579, 1, 35, 20, 680));
+	// ½áËãÊý¾Ý
+	int Sec = int(GI.ChallengeTime) % 60;
+	int Min = int(GI.ChallengeTime) / 60;
+	int Score = int(GI.Score);
+	int MonsterNum = GI.MonsterKillNum;
+	int CoinNum = GI.Coin;
+	CCDirector::sharedDirector()->replaceScene(ResultScrene::scene(Score, Min, Sec, MonsterNum, CoinNum));
 }
 
 void MainGame::btnPauseCallback(cocos2d::CCObject *pSender)
