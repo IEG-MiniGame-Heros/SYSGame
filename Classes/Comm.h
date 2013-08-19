@@ -146,6 +146,7 @@ struct TConfig
 	float fFrozenTime; // 冰冻时间
 	float fHitRange; // 命中判断范围
 	float fSkillSlideLen; // 技能在屏幕飞行长度（未攻击到怪情况下）
+	float fPickupRange;// 拾取的范围
 };
 
 // 用户结构
