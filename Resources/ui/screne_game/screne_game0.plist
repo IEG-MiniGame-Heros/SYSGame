@@ -23,6 +23,25 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
+			<key>p.png</key>
+			<dict>
+				<key>width</key>
+				<integer>19</integer>
+				<key>height</key>
+				<integer>27</integer>
+				<key>originalWidth</key>
+				<integer>19</integer>
+				<key>originalHeight</key>
+				<integer>27</integer>
+				<key>x</key>
+				<integer>53</integer>
+				<key>y</key>
+				<integer>0</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
 			<key>game_monster.png</key>
 			<dict>
 				<key>width</key>
@@ -34,7 +53,7 @@
 				<key>originalHeight</key>
 				<integer>39</integer>
 				<key>x</key>
-				<integer>53</integer>
+				<integer>74</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -53,7 +72,7 @@
 				<key>originalHeight</key>
 				<integer>43</integer>
 				<key>x</key>
-				<integer>110</integer>
+				<integer>131</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -72,7 +91,7 @@
 				<key>originalHeight</key>
 				<integer>38</integer>
 				<key>x</key>
-				<integer>318</integer>
+				<integer>339</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>

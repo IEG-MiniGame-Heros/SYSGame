@@ -186,6 +186,8 @@ void FirstStage::updateAllScores(float dt)
 		setCoin(GI.Coin);
 		setScore(int(GI.Score));
 		setMonsterKillNum(GI.MonsterKillNum);
+		setMin(int(GI.ChallengeTime) / 60);
+		setSec(int(GI.ChallengeTime) % 60);
 
 		if (GI.Me && GI.Me->getQueueNum() == 0)
 		{

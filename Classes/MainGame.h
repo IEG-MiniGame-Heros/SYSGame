@@ -35,6 +35,8 @@ public:
 	void setCoin(int CoinNum);
 	void setScore(int Score);
 	void setMonsterKillNum(int KillNum);
+	void setMin(int min);
+	void setSec(int sec);
 
 protected:
 
@@ -54,7 +56,8 @@ protected:
 	// 分数
 	UILabelAtlas *laScore;
 	// 时间
-	UILabelAtlas *laTime;
+	UILabelAtlas *laMin;
+	UILabelAtlas *laSec;
 };
 
 #endif

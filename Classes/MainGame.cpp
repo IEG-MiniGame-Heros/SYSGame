@@ -29,12 +29,14 @@ void MainGame::onEnter()
 	laMonster = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_monster"));
 	laCoin = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_money"));
 	laScore = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_score"));
-	laTime = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_time"));
+	laMin = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_min"));
+	laSec = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_sec"));
 
 	setText(laMonster, "0");
 	setText(laCoin, "0");
 	setText(laScore, "0");
-	setText(laTime, "0");
+	setText(laMin, "0");
+	setText(laSec, "0");
 
 	ulGameControl->setTouchEnabled(true);
 }
@@ -195,4 +197,14 @@ void MainGame::setScore(int Score)
 void MainGame::setMonsterKillNum(int KillNum)
 {
 	setText(laMonster, (Util::NumberToString(KillNum)).c_str());
+}
+
+void MainGame::setMin(int min)
+{
+	setText(laMin, N2C(min));
+}
+
+void MainGame::setSec(int sec)
+{
+	setText(laSec, N2C(sec));
 }
