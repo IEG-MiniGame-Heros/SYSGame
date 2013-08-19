@@ -24,7 +24,7 @@ void Skill::onEnter()
 	m_iDamage = GI.getSkillConfig()[SkillIdx].iDamage;
 	m_fCoolTime = GI.getSkillConfig()[SkillIdx].iSkillCD;
 	m_fAttackSpeed = GI.getSkillConfig()[SkillIdx].fSpeed;
-	m_fAttackRange = 120.f;
+	m_fAttackRange = GI.getSkillConfig()[SkillIdx].fAttackRange;
 	m_fHitRange = GI.getSystemConfig().fHitRange;
 
 	schedule(schedule_selector(Skill::onUpdate));

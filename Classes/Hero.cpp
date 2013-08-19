@@ -5,6 +5,7 @@
 #include "Skill.h"
 #include "GameHelper.h"
 #include "GameInfo.h"
+#include "Util.h"
 
 #define HERO_UNBEATABLE 0
 
@@ -107,7 +108,7 @@ void Hero::onUpdate(float dt)
 	// 检查有没有英雄要“吃”
 	if (m_pQueue && m_pQueue->getHead() == this)
 	{
-		BaseEntity* entity = EM.findHeroNotInQueue(this, GI.RangeToPickupHero);
+		BaseEntity* entity = EM.findHeroNotInQueue(this, /*GI.RangeToPickupHero*/ GI.getSystemConfig().fPickupRange);
 		if (entity != NULL)
 		{
 			m_pQueue->addAMember((Character*)(entity));
@@ -125,7 +126,7 @@ void Hero::onUpdate(float dt)
 	}	
 
 	// 检查有没有物品可以使用
-	Goods* pGood = (Goods*)(EM.findEntityInRange(this, 60.f, ET_Goods));
+	Goods* pGood = (Goods*)(EM.findEntityInRange(this,  GI.getSystemConfig().fPickupRange, ET_Goods));
 	if (pGood)
 	{
 		pGood->use();
