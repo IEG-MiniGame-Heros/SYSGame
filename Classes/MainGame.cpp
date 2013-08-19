@@ -24,7 +24,8 @@ void MainGame::onEnter()
 
 	// 暂停按钮
 	btnPause = dynamic_cast<UIButton*>(ulGameControl->getWidgetByName("Button"));
-	btnPause->addPushDownEvent(this, coco_releaseselector(MainGame::btnPauseCallback));
+	btnPause->addReleaseEvent(this, coco_releaseselector(MainGame::btnPauseCallback));
+	btnPause->setPressedTexture("ui/screne_game/big_pause");
 
 	laMonster = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_monster"));
 	laCoin = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_money"));
@@ -59,15 +60,18 @@ void MainGame::createPauseUI()
 
 	// 恢复按钮
 	UIButton *btnResume = dynamic_cast<UIButton*>(ulPause->getWidgetByName("btn_continue"));
-	btnResume->addPushDownEvent(this, coco_releaseselector(MainGame::btnResumeCallback));
+	btnResume->addReleaseEvent(this, coco_releaseselector(MainGame::btnResumeCallback));
+	btnResume->setPressedTexture("ui/screne_pause/big_continue.png");
 
 	// 重新开始按钮
 	UIButton *btnRestart = dynamic_cast<UIButton*>(ulPause->getWidgetByName("btn_restart"));
-	btnRestart->addPushDownEvent(this, coco_releaseselector(MainGame::btnRestartCallback));
+	btnRestart->addReleaseEvent(this, coco_releaseselector(MainGame::btnRestartCallback));
+	btnRestart->setPressedTexture("ui/screne_pause/big_restart.png");
 
 	// 返回主菜单按钮
 	UIButton *btnBackMenu = dynamic_cast<UIButton*>(ulPause->getWidgetByName("btn_back"));
-	btnBackMenu->addPushDownEvent(this, coco_releaseselector(MainGame::btnBackMenuCallback));
+	btnBackMenu->addReleaseEvent(this, coco_releaseselector(MainGame::btnBackMenuCallback));
+	btnBackMenu->setPressedTexture("ui/screne_pause/big_back_main.png");
 
 	// 设置透明度
 	UIPanel *p = dynamic_cast<UIPanel*>(ulPause->getWidgetByName("Panel"));

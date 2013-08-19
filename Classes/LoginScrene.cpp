@@ -31,7 +31,8 @@ bool LoginScrene::init()
 
 		// µÇÂ¼°´Å¥
 		tbLogin = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_login"));
-		tbLogin->addPushDownEvent(this, coco_releaseselector(LoginScrene::tbLoginCallback));
+		tbLogin->addReleaseEvent(this, coco_releaseselector(LoginScrene::tbLoginCallback));
+		tbLogin->setPressedTexture("ui/screne_login/big_login.png");
 
 		ul->setTouchEnabled(true);
 		bRef = true;

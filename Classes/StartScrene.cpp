@@ -17,10 +17,12 @@ bool StartScrene::init()
 		ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("ui/screne_main/screne_main_1.ExportJson"));
 
 		tbStartGame = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_startgame"));
-		tbStartGame->addPushDownEvent(this, coco_releaseselector(StartScrene::tbStartGameCallback));
+		tbStartGame->addReleaseEvent(this, coco_releaseselector(StartScrene::tbStartGameCallback));
+		tbStartGame->setPressedTexture("ui/screne_main/big_start.png");
 
 		tbSetting = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_setting"));
-		tbSetting->addPushDownEvent(this, coco_releaseselector(StartScrene::tbSettingCallback));
+		tbSetting->addReleaseEvent(this, coco_releaseselector(StartScrene::tbSettingCallback));
+		tbSetting->setPressedTexture("ui/screne_main/big_setting.png");
 
 		ul->setTouchEnabled(true);
 		bRef = true;

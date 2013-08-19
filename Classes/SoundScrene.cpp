@@ -17,7 +17,8 @@ bool SoundScrene::init()
 
 		// 返回按钮
 		btnBack = dynamic_cast<UIButton*>(ul->getWidgetByName("Button"));
-		btnBack->addPushDownEvent(this, coco_releaseselector(SoundScrene::btnBackCallback));
+		btnBack->addReleaseEvent(this, coco_releaseselector(SoundScrene::btnBackCallback));
+		btnBack->setPressedTexture("ui/screne_sound/big_back.png");
 
 		// music滑动条
 		slMusic = dynamic_cast<UISlider*>(ul->getWidgetByName("Slider_music"));
