@@ -61,18 +61,75 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>btn_setting.png</key>
+			<key>big_start.png</key>
 			<dict>
 				<key>width</key>
-				<integer>215</integer>
+				<integer>277</integer>
 				<key>height</key>
-				<integer>85</integer>
+				<integer>128</integer>
 				<key>originalWidth</key>
-				<integer>215</integer>
+				<integer>277</integer>
 				<key>originalHeight</key>
-				<integer>85</integer>
+				<integer>128</integer>
 				<key>x</key>
 				<integer>233</integer>
+				<key>y</key>
+				<integer>802</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>btn_setting2.png</key>
+			<dict>
+				<key>width</key>
+				<integer>64</integer>
+				<key>height</key>
+				<integer>64</integer>
+				<key>originalWidth</key>
+				<integer>64</integer>
+				<key>originalHeight</key>
+				<integer>64</integer>
+				<key>x</key>
+				<integer>512</integer>
+				<key>y</key>
+				<integer>802</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>big_btn_setting2.png</key>
+			<dict>
+				<key>width</key>
+				<integer>77</integer>
+				<key>height</key>
+				<integer>77</integer>
+				<key>originalWidth</key>
+				<integer>77</integer>
+				<key>originalHeight</key>
+				<integer>77</integer>
+				<key>x</key>
+				<integer>578</integer>
+				<key>y</key>
+				<integer>802</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>btn_rank.png</key>
+			<dict>
+				<key>width</key>
+				<integer>228</integer>
+				<key>height</key>
+				<integer>102</integer>
+				<key>originalWidth</key>
+				<integer>228</integer>
+				<key>originalHeight</key>
+				<integer>102</integer>
+				<key>x</key>
+				<integer>657</integer>
 				<key>y</key>
 				<integer>802</integer>
 				<key>offsetX</key>

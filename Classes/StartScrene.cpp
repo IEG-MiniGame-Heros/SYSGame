@@ -18,11 +18,12 @@ bool StartScrene::init()
 
 		tbStartGame = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_startgame"));
 		tbStartGame->addReleaseEvent(this, coco_releaseselector(StartScrene::tbStartGameCallback));
-		tbStartGame->setPressedTexture("ui/screne_main/big_start.png");
 
 		tbSetting = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_setting"));
 		tbSetting->addReleaseEvent(this, coco_releaseselector(StartScrene::tbSettingCallback));
-		tbSetting->setPressedTexture("ui/screne_main/big_setting.png");
+
+		tbRank = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_rank"));
+		tbRank->addReleaseEvent(this, coco_releaseselector(StartScrene::tbRankdCallback));
 
 		ul->setTouchEnabled(true);
 		bRef = true;
@@ -38,6 +39,11 @@ void StartScrene::tbSettingCallback(cocos2d::CCObject *pSender)
 void StartScrene::tbStartGameCallback(cocos2d::CCObject *pSender)
 {
 	CCDirector::sharedDirector()->replaceScene(FirstStage::scene());
+}
+
+void StartScrene::tbRankdCallback(cocos2d::CCObject *pSender)
+{
+	CCLog("1111111");
 }
 
 CCScene* StartScrene::scene()

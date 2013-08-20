@@ -19,6 +19,7 @@ public :
 
 	// 设置按钮响应事件
 	void tbSettingCallback(cocos2d::CCObject *pSender);
+	void tbRankdCallback(cocos2d::CCObject *pSender);
 
 	CREATE_FUNC(StartScrene);
 
@@ -26,6 +27,7 @@ private:
 	UILayer *ul;
 	UIButton *tbStartGame;
 	UIButton *tbSetting;
+	UIButton *tbRank;
 };
 
 #endif
