@@ -15,7 +15,7 @@ public:
 
 	virtual void onUpdate(float dt);
 
-	static Hero* create(const char *pszFileName);
+	static Hero* create(const char *pszFileName, int HeroID);
 
 	void setIsPickedUp(bool is_picked_up);
 

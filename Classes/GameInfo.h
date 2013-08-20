@@ -20,6 +20,9 @@ class GameHelper;
 const int M_N = 20;
 const int M_M = 20;
 
+/** 英雄最大种类 */
+const int MAX_HERO_KINDS = 4;
+
 /** 
  * @brief 所有全局信息的单例
  */

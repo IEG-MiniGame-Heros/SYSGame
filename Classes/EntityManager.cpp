@@ -5,7 +5,10 @@
 #include "FirstStage.h"
 #include "AllEffects.h"
 #include "AllGoods.h"
+#include "GameHelper.h"
 #include "GameInfo.h"
+
+#include <string.h>
 
 
 EntityManager& EntityManager::instance()
@@ -76,11 +79,15 @@ EntityManager::~EntityManager()
 	m_pAllGoods->release();
 }
 
+char GSHero[35];
+
 Hero* EntityManager::addAHero(CCPoint pos)
 {
 	if (GI.Game)
 	{
-		Hero* pHero = Hero::create("spirit/hero/Hero1_D_1.png");
+		int HeroID = GI.Helper->getRand(MAX_HERO_KINDS) + 1;
+		sprintf(GSHero, "spirit/hero/Hero%d", HeroID);
+		Hero* pHero = Hero::create(strcat(GSHero, "_D_1.png"), HeroID);
 		GI.Game->addChild(pHero);
 		pHero->setPosition(pos);
 		m_pAllHeros->addObject(pHero);

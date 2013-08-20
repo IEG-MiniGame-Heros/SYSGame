@@ -47,31 +47,34 @@ void Hero::onEnter()
 
 	// 设置动画
 	// 0.右 1.下 2.左 3.上 
+	char SHero[25];
+	sprintf(SHero, "spirit/hero/Hero%d", m_iHeroID);
+	std::string StrSHero(SHero);
 
 	m_pWalkAnim[0] = CCAnimation::create();
 	m_pWalkAnim[0]->retain();
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/hero/Hero1_R_1.png");
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/hero/Hero1_R_2.png");
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/hero/Hero1_R_3.png");
+	m_pWalkAnim[0]->addSpriteFrameWithFileName( (StrSHero + std::string("_R_1.png")).c_str() );
+	m_pWalkAnim[0]->addSpriteFrameWithFileName( (StrSHero + std::string("_R_2.png")).c_str() );
+	m_pWalkAnim[0]->addSpriteFrameWithFileName( (StrSHero + std::string("_R_3.png")).c_str() );
 	m_pWalkAnim[0]->setDelayPerUnit(1.f / getCurSpeed() / 3);
 
 	m_pWalkAnim[1] = CCAnimation::create();
 	m_pWalkAnim[1]->retain();
-	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/hero/Hero1_D_1.png");
-	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/hero/Hero1_D_2.png");
+	m_pWalkAnim[1]->addSpriteFrameWithFileName( (StrSHero + std::string("_D_1.png")).c_str() );
+	m_pWalkAnim[1]->addSpriteFrameWithFileName( (StrSHero + std::string("_D_2.png")).c_str() );
 	m_pWalkAnim[1]->setDelayPerUnit(0.5 / getCurSpeed());
 	
 	m_pWalkAnim[2] = CCAnimation::create();
 	m_pWalkAnim[2]->retain();
-	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/hero/Hero1_L_1.png");
-	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/hero/Hero1_L_2.png");
-	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/hero/Hero1_L_3.png");
+	m_pWalkAnim[2]->addSpriteFrameWithFileName( (StrSHero + std::string("_L_1.png")).c_str() );
+	m_pWalkAnim[2]->addSpriteFrameWithFileName( (StrSHero + std::string("_L_2.png")).c_str() );
+	m_pWalkAnim[2]->addSpriteFrameWithFileName( (StrSHero + std::string("_L_3.png")).c_str() );
 	m_pWalkAnim[2]->setDelayPerUnit(1.f / getCurSpeed() / 3);
 
 	m_pWalkAnim[3] = CCAnimation::create();
 	m_pWalkAnim[3]->retain();
-	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/hero/Hero1_U_1.png");
-	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/hero/Hero1_U_2.png");
+	m_pWalkAnim[3]->addSpriteFrameWithFileName( (StrSHero + std::string("_U_1.png")).c_str() );
+	m_pWalkAnim[3]->addSpriteFrameWithFileName( (StrSHero + std::string("_U_2.png")).c_str() );
 	m_pWalkAnim[3]->setDelayPerUnit(0.5 / getCurSpeed());	
 }
 
@@ -168,9 +171,9 @@ void Hero::onUpdate(float dt)
 	}
 }
 
-Hero* Hero::create(const char *pszFileName)
+Hero* Hero::create(const char *pszFileName, int HeroID)
 {
-	Hero *pobSprite = new Hero();
+	Hero *pobSprite = new Hero(HeroID);
 	if (pobSprite && pobSprite->initWithFile(pszFileName))
 	{
 		pobSprite->autorelease();
