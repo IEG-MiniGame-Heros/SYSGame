@@ -23,7 +23,17 @@ void Queue::onEnter()
 	m_iUpdateFlag = 0;
 	m_vNextMoveVector = ccp(0, -1);
 
-	schedule(schedule_selector(Queue::onUpdate));
+	schedule(schedule_selector(Queue::onUpdate));	
+
+	schedule(schedule_selector(Queue::testUpdate), 5.f);
+}
+
+void Queue::testUpdate(float dt)
+{
+	//if (getQueueNum() > 2)
+	//{
+	//	removeAMember((Character*)m_pCharacters->objectAtIndex(1));
+	//}
 }
 
 void Queue::confirmMoveVector()

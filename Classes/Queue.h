@@ -89,6 +89,8 @@ public:
 	bool isQueueUpdateFinished() const;
 	/// Refresh End
 
+	void testUpdate(float dt);
+
 
 protected:
 	CCArray*		m_pCharacters;			// 指向队伍的指针

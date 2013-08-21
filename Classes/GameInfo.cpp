@@ -349,7 +349,7 @@ GameInfo::GameInfo()
 	GridSize = 40.f;
 
 	// ∆‰À˚
-	ValidDraggedLength = 35.f;
+	ValidDraggedLength = 30.f;
 
 	// “Ù¡ø
 	musicVolume = 100;
