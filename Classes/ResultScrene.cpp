@@ -33,12 +33,10 @@ bool ResultScrene::init()
 		// 返回主菜单按钮
 		btnBack = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_back"));
 		btnBack->addReleaseEvent(this, coco_releaseselector(ResultScrene::btnBackCallback));
-		btnBack->setPressedTexture("ui/screne_result/big_back.png");
 
 		// 重新开始按钮
 		btnRestart = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_restart"));
 		btnRestart->addReleaseEvent(this, coco_releaseselector(ResultScrene::btnRestartCallback));
-		btnRestart->setPressedTexture("ui/screne_result/big_restart.png");
 
 		laScore = dynamic_cast<UILabelAtlas*>(ul->getWidgetByName("la_score"));
 		laMin = dynamic_cast<UILabelAtlas*>(ul->getWidgetByName("la_min"));
