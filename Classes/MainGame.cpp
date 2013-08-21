@@ -16,6 +16,7 @@ void MainGame::onEnter()
 
 	//¿ªÆô´¥ÆÁ
 	setTouchEnabled(true);
+	m_bTouchBegin = false;
 
 	// ÔÝÍ£¡¢·ÖÊýUI
 	ulGameControl = UILayer::create();
@@ -153,16 +154,18 @@ void MainGame::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
 	CCSetIterator it = pTouches->begin();
 	CCTouch* touch = (CCTouch*)(*it);
 	m_tBeginPos = touch->getLocation();  
+
+	m_bTouchBegin = true;
 }
 
-void MainGame::ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent)
+void MainGame::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
 {
 	CCSetIterator it = pTouches->begin();
 	CCTouch* touch = (CCTouch*)(*it);
 
 	CCPoint curPos = touch->getLocation();
 	CCPoint slideDir = ccpSub(curPos, m_tBeginPos);
-	if (slideDir.getLengthSq() < GI.ValidDraggedLength * GI.ValidDraggedLength)
+	if (!m_bTouchBegin || slideDir.getLengthSq() < GI.ValidDraggedLength * GI.ValidDraggedLength)
 	{		
 		return;
 	}
@@ -181,9 +184,13 @@ void MainGame::ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent)
 
 	if (GI.Me)
 	{
-		//GI.Me->setMoveVector(moveVector);
 		GI.Me->setNextMoveVector(moveVector);
 	}
+}
+
+void MainGame::ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent)
+{
+	m_bTouchBegin = false;
 }
 
 

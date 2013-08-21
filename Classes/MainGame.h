@@ -19,6 +19,7 @@ public:
 	 */
 	virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
+	virtual void ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent);
 
 	void createPauseUI();
 	void createGameOverUI();
@@ -40,6 +41,7 @@ public:
 
 protected:
 
+	bool			m_bTouchBegin;
 	CCPoint			m_tBeginPos;		// 滑动触屏，开始位置
 	CCSprite*       m_pauseBg;          // 暂停界面
 	// 暂停按钮，分数UI
