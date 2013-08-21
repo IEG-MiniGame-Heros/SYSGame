@@ -18,6 +18,8 @@ Monster::Monster(int ID) : m_iMonsterID(ID)
 	setType(ET_Monster);
 }
 
+char CMonster[25];
+
 void Monster::onEnter()
 {
 	Character::onEnter();
@@ -28,35 +30,40 @@ void Monster::onEnter()
 
 	setCurSpeed(GI.getMonsterConfig()[MonsterIdx].fMoveSpeed);
 	setMaxSpeed(GI.getMonsterConfig()[MonsterIdx].fMoveSpeed);
-	setCurHealth(GI.getMonsterConfig()[MonsterIdx].iHP);
 	setMaxHealth(GI.getMonsterConfig()[MonsterIdx].iHP);
+	setCurHealth(GI.getMonsterConfig()[MonsterIdx].iHP);
+
+	CCLog("curhealth = %d", m_iCurHealth);
 
 	setMoveVector(ccp(1, 0));
+
+	sprintf(CMonster, "spirit/monster/Monster%d", m_iMonsterID);
+	std::string StrMonster(CMonster);
 
 	// 设置动画
 	// 0.右 1.下 2.左 3.上 
 	m_pWalkAnim[0] = CCAnimation::create();
 	m_pWalkAnim[0]->retain();
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/Monster_R_1.png");
-	m_pWalkAnim[0]->addSpriteFrameWithFileName("spirit/monster/Monster_R_2.png");
+	m_pWalkAnim[0]->addSpriteFrameWithFileName( (StrMonster + std::string("_R_1.png")).c_str() );
+	m_pWalkAnim[0]->addSpriteFrameWithFileName( (StrMonster + std::string("_R_2.png")).c_str() );
 	m_pWalkAnim[0]->setDelayPerUnit(0.5f / getCurSpeed());
 
 	m_pWalkAnim[1] = CCAnimation::create();
 	m_pWalkAnim[1]->retain();
-	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/monster/Monster_D_1.png");
-	m_pWalkAnim[1]->addSpriteFrameWithFileName("spirit/monster/Monster_D_2.png");
+	m_pWalkAnim[1]->addSpriteFrameWithFileName( (StrMonster + std::string("_D_1.png")).c_str() );
+	m_pWalkAnim[1]->addSpriteFrameWithFileName( (StrMonster + std::string("_D_2.png")).c_str() );
 	m_pWalkAnim[1]->setDelayPerUnit(0.5f / getCurSpeed());
 
 	m_pWalkAnim[2] = CCAnimation::create();
 	m_pWalkAnim[2]->retain();
-	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/monster/Monster_L_1.png");
-	m_pWalkAnim[2]->addSpriteFrameWithFileName("spirit/monster/Monster_L_2.png");
+	m_pWalkAnim[2]->addSpriteFrameWithFileName( (StrMonster + std::string("_L_1.png")).c_str() );
+	m_pWalkAnim[2]->addSpriteFrameWithFileName( (StrMonster + std::string("_L_2.png")).c_str() );
 	m_pWalkAnim[2]->setDelayPerUnit(0.5f / getCurSpeed());
 
 	m_pWalkAnim[3] = CCAnimation::create();
 	m_pWalkAnim[3]->retain();
-	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/monster/Monster_U_1.png");
-	m_pWalkAnim[3]->addSpriteFrameWithFileName("spirit/monster/Monster_U_2.png");
+	m_pWalkAnim[3]->addSpriteFrameWithFileName( (StrMonster + std::string("_U_1.png")).c_str() );
+	m_pWalkAnim[3]->addSpriteFrameWithFileName( (StrMonster + std::string("_U_2.png")).c_str() );
 	m_pWalkAnim[3]->setDelayPerUnit(0.5f / getCurSpeed());
 
 	// 设置技能
@@ -250,9 +257,9 @@ void Monster::kill()
 	Character::kill();
 }
 
-Monster* Monster::create(const char *pszFileName)
+Monster* Monster::create(const char *pszFileName, int MonsID)
 {
-	Monster *pobSprite = new Monster();
+	Monster *pobSprite = new Monster(MonsID);
 	if (pobSprite && pobSprite->initWithFile(pszFileName))
 	{
 		pobSprite->autorelease();

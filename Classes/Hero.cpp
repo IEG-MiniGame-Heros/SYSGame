@@ -35,8 +35,8 @@ void Hero::onEnter()
 	m_fSpeedIncrement = GI.getSystemConfig().fSpeedIncrement;
 
 	// 设置生命
-	setCurHealth(GI.getHeroConfig()[HeroIdx].iHP);
 	setMaxHealth(GI.getHeroConfig()[HeroIdx].iHP);
+	setCurHealth(GI.getHeroConfig()[HeroIdx].iHP);
 
 	// 显示血条开关打开
 	m_bEnableShowHP = true;

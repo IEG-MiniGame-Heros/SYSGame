@@ -22,6 +22,7 @@ const int M_M = 20;
 
 /** 英雄最大种类 */
 const int MAX_HERO_KINDS = 4;
+const int MAX_MONSTER_KINDS = 3;
 
 /** 
  * @brief 所有全局信息的单例

@@ -283,9 +283,12 @@ void Character::getHarmed(int damage, bool bHeroToMonster /* = false */)
 			}
 			else 
 			{
-				// 如果是英雄打怪,死了的话，计分
-				GI.MonsterKillNum += 1;
-				GI.Score += GI.getSystemConfig().fMonsterCoefficient;
+				if (bHeroToMonster)
+				{
+					// 如果是英雄打怪,死了的话，计分
+					GI.MonsterKillNum += 1;
+					GI.Score += GI.getSystemConfig().fMonsterCoefficient;
+				}
 
 				kill();
 			}
