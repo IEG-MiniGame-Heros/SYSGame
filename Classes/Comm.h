@@ -36,6 +36,9 @@ enum EEffectType
 	EET_Shit		=	5,	// 屎（真的要用这东西？）	
 	EET_Explosion	=	6,	// 爆炸
 	EET_Frozen		=	7,	// 冰冻
+	EET_Flash		=	8,	// 闪光
+	EET_Smog		=	9,	// 烟雾
+	EET_Twinkle		=	10,	// 星星闪烁
 };
 
 // 物品类型

@@ -105,7 +105,7 @@ Monster* EntityManager::addAMonster(CCPoint pos)
 	{
 		int MonsID = GI.Helper->getRand(MAX_MONSTER_KINDS) + 1;
 		sprintf(GSMons, "spirit/monster/Monster%d_D_1.png", MonsID);
-		Monster* pMonster = Monster::create(GI.PathOfMonster.c_str(), MonsID);
+		Monster* pMonster = Monster::create(GSMons, MonsID);
 		GI.Game->addChild(pMonster);
 		pMonster->setPosition(pos);
 		m_pAllMonsters->addObject(pMonster);
@@ -191,16 +191,13 @@ void EntityManager::removeAnEntity(BaseEntity* entity, EEntityType type)
 		return;
 	}
 
+	entity->removeFromParentAndCleanup(true);
+
 	CCArray* objects = getArrayByType(type);
 	if (objects)
 	{
 		objects->removeObject(entity);
 	}	
-
-	if (entity->getParent() != NULL)
-	{
-		entity->removeFromParentAndCleanup(true);
-	}
 }
 
 CCArray* EntityManager::getArrayByType(EEntityType type) const
@@ -271,6 +268,10 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 		eft = Frozen::create("spirit/effect/Frozen.png");
 		break;
 
+	case EET_Smog:
+		eft = Smog::create("spirit/effect/Smog_1.png");
+		break;
+
 	default:
 		break;
 	}
@@ -279,6 +280,35 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 	{
 		eft->setPosition(pos);
 		GI.Game->addChild(eft);		
+		m_pAllEffects->addObject(eft);
+	}
+
+	return eft;
+}
+
+Effect* EntityManager::addAnEffectOnCharacter(EEffectType type, Character* pCha)
+{
+	Effect* eft = NULL;
+
+	switch (type)
+	{
+	case EET_Flash:
+		eft = Flash::create("spirit/effect/Flash_1.png");
+		break;
+
+	case EET_Twinkle:
+		eft = Twinkle::create("spirit/effect/Tk_1.png");
+		break;
+
+	case EET_Smog:
+		eft = Smog::create("spirit/effect/Smog_1.png");
+		break;
+	}
+
+	if (pCha)
+	{
+		pCha->addChild(eft);
+		eft->setPosition(ccp(GI.GridSize / 2, GI.GridSize / 2));
 		m_pAllEffects->addObject(eft);
 	}
 

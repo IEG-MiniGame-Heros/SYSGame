@@ -6,6 +6,8 @@
 
 USING_NS_CC;
 
+class Hero;
+
 enum EGoodActionType
 {
 	EGAT_Fade
@@ -20,7 +22,7 @@ public:
 	virtual void onEnter();
 	virtual void onExit();
 
-	virtual void use();
+	virtual void use(Hero* pHero = NULL);
 
 	virtual void kill();
 

@@ -28,7 +28,7 @@ void Goods::onExit()
 	BaseEntity::onExit();
 }
 
-void Goods::use()
+void Goods::use(Hero* pHero /* = NULL */)
 {
 	stopActionByTag(EGAT_Fade);
 	setVisible(false);

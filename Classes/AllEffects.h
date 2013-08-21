@@ -60,3 +60,37 @@ public:
 private:
 	Monster*		m_pMonster;
 };
+
+/** 
+ * 闪光特效
+ */
+class Flash : public Effect
+{
+public:
+
+	void onEnter();
+	void onExit();
+	static Flash* create(const char *pszFileName);
+};
+
+/** 
+ * 烟雾特效
+ */
+class Smog : public Effect
+{
+public:
+	void onEnter();
+	void onExit();
+	static Smog* create(const char *pszFileName);
+};
+
+/** 
+ * 星星闪烁特效
+ */
+class Twinkle : public Effect
+{
+public:
+	void onEnter();
+	void onExit();
+	static Twinkle* create(const char *pszFileName);
+};

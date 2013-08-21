@@ -12,7 +12,7 @@ public:
 
 	void onEnter();
 	void onExit();
-	void use();
+	void use(Hero* pHero);
 
 	static Coin* create(const char *pszFileName);
 
@@ -30,7 +30,7 @@ public:
 
 	virtual void onEnter();
 	virtual void onExit();
-	virtual void use();
+	void use(Hero* pHero = NULL);
 
 	//为什么要在这里重载CCSprite???!!!
 	//void  draw();
@@ -51,7 +51,7 @@ public:
 
 	void onEnter();
 	void onExit();
-	void use();
+	void use(Hero* pHero);
 
 	static IceCube* create(const char *pszFileName);
 };

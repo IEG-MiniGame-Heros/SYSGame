@@ -120,6 +120,9 @@ void Hero::onUpdate(float dt)
 			float speed = min(m_fMaxSpeed, m_fCurSpeed + m_fSpeedIncrement);
 			m_pQueue->setCurSpeed(speed);
 			CCLog("After Adding, Speed: %f", getCurSpeed());
+
+			// 播放烟雾特效
+			EM.addAnEffect(getPosition(), EET_Smog, ccp(0, 0));
 		}
 	}
 
@@ -132,7 +135,7 @@ void Hero::onUpdate(float dt)
 	Goods* pGood = (Goods*)(EM.findEntityInRange(this,  GI.getSystemConfig().fPickupRange, ET_Goods));
 	if (pGood)
 	{
-		pGood->use();
+		pGood->use(this);
 	}
 
 	// 检测是否撞到小怪了

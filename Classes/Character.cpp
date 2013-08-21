@@ -192,6 +192,8 @@ void Character::kill()
 	// 播放死亡动画
 	EM.addAnEffect(getPosition(), EET_Explosion, ccp(0, 0));
 
+	//removeAllChildrenWithCleanup(true);
+
 	// 在队列之中
 	if (m_pQueue)
 	{
@@ -273,6 +275,13 @@ void Character::getHarmed(int damage, bool bHeroToMonster /* = false */)
 	if (damage > 0)
 	{
 		setCurHealth(m_iCurHealth - damage);
+
+		// 受到攻击，播放闪光特效
+		if (getType() == ET_Hero)
+		{
+			EM.addAnEffectOnCharacter(EET_Flash, this);
+		}
+
 		// 如果挂了
 		if (m_iCurHealth <= 0)
 		{

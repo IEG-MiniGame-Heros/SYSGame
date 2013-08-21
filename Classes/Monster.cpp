@@ -33,8 +33,6 @@ void Monster::onEnter()
 	setMaxHealth(GI.getMonsterConfig()[MonsterIdx].iHP);
 	setCurHealth(GI.getMonsterConfig()[MonsterIdx].iHP);
 
-	CCLog("curhealth = %d", m_iCurHealth);
-
 	setMoveVector(ccp(1, 0));
 
 	sprintf(CMonster, "spirit/monster/Monster%d", m_iMonsterID);

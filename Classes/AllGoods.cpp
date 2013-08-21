@@ -21,7 +21,7 @@ void Coin::onExit()
 	Goods::onExit();
 }
 
-void Coin::use()
+void Coin::use(Hero* pHero)
 {
 	if (GI.Me)
 	{
@@ -29,6 +29,9 @@ void Coin::use()
 		///////////////////
 		GI.Coin += m_iValue;
 		GI.Score += GI.getSystemConfig().fCoinCoefficient * m_iValue;
+
+		// ²¥·ÅÐÇÐÇÉÁË¸ÌØÐ§
+		EM.addAnEffectOnCharacter(EET_Twinkle, (Character*)(pHero));
 	}
 
 	Goods::use();
@@ -61,7 +64,7 @@ void BloodSupply::onExit()
 	Goods::onExit();
 }
 
-void BloodSupply::use()
+void BloodSupply::use(Hero* pHero)
 {
 	if (GI.Me && GI.Me->getQueueNum() > 0)
 	{
@@ -102,7 +105,7 @@ void IceCube::onExit()
 	Goods::onExit();
 }
 
-void IceCube::use()
+void IceCube::use(Hero* pHero)
 {
 	CCArray* pAllMonsters = EM.getArrayByType(ET_Monster);
 	CCObject* obj;
