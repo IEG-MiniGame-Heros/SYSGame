@@ -137,6 +137,32 @@ BaseEntity* EntityManager::findEntityInRange(BaseEntity* pMe, float range, EEnti
 	return ret;
 }
 
+BaseEntity* EntityManager::findNearestEntityInRange(BaseEntity* pMe, float range, EEntityType type)
+{
+	BaseEntity* ret = NULL;
+	float min_dist = range * range;
+	CCObject* tObject;	
+
+	CCARRAY_FOREACH(getArrayByType(type), tObject)
+	{
+		BaseEntity* tEntity = (BaseEntity*)(tObject);
+		if (tEntity != pMe && tEntity->getType() == type)
+		{
+			float dist_sqrt = pMe->getPosition().getDistanceSq(tEntity->getPosition());
+			if (dist_sqrt < range * range + 1e-6)
+			{
+				if (dist_sqrt < min_dist)
+				{
+					ret = tEntity;
+					min_dist = dist_sqrt;
+				}				
+			}
+		}
+	}
+
+	return ret;
+}
+
 Hero* EntityManager::findHeroNotInQueue(BaseEntity* pMe, float range)
 {
 	Hero* ret = NULL;

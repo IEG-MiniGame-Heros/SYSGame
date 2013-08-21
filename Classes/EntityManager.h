@@ -53,6 +53,8 @@ public:
 	 */
 	BaseEntity* findEntityInRange(BaseEntity* pMe, float range, EEntityType type);
 
+	BaseEntity* findNearestEntityInRange(BaseEntity* pMe, float range, EEntityType type);
+
 
 	/** 
 	 * 寻找范围内所有的Entity

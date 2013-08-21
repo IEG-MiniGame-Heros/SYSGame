@@ -2,6 +2,7 @@
 #include "Monster.h"
 #include "Goods.h"
 #include "Hero.h"
+#include "Queue.h"
 #include "EntityManager.h"
 #include "GameInfo.h"
 
@@ -188,7 +189,22 @@ void GameHelper::onUpdateGridUsage(float dt)
 	}
 
 	// 给第一个英雄加个防护罩
-
+	if (GI.Me && GI.Me->getQueueNum() > 0)
+	{
+		CCPoint pos = GI.Me->getHead()->getPosition();
+		int gi, gj;
+		getGridIndexOfPos(pos, gi, gj);
+		for (int i = gi - 1; i <= gi + 1; ++i)
+		{
+			for (int j = gj - 1; j <= gj + 1; ++j)
+			{
+				if (i >= 0 && i < 22 && j >= 0 && j < 22)
+				{
+					m_bUsed[i][j] = true;
+				}
+			}
+		}
+	}
 }
 
 /** 

@@ -62,7 +62,8 @@ bool Skill::shouldAttack()
 		return false;
 	}
 
-	Character* pCha = (Character*)EM.findEntityInRange(m_pOwner, m_fAttackRange, m_pOwner->getEnemyType());
+	//Character* pCha = (Character*)EM.findEntityInRange(m_pOwner, m_fAttackRange, m_pOwner->getEnemyType());
+	Character* pCha = (Character*)EM.findNearestEntityInRange(m_pOwner, m_fAttackRange, m_pOwner->getEnemyType());
 	if (pCha)
 	{
 		m_pTarget = pCha;

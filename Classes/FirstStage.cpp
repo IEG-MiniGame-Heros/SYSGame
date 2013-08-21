@@ -91,11 +91,11 @@ void FirstStage::onEnter()
 	GI.Me->refreshMembers();
 
 	// 随机生成3只怪
-	CCPoint posArr[3];
-	int needNum = 0;
+	CCPoint posArr[3];	
 	int curMonstNum = 0;
 	while (curMonstNum < 3)
 	{
+		int needNum = 1;
 		GI.Helper->getRandomFreeGrid(posArr, needNum);
 		int i, j;
 		GI.Helper->getGridIndexOfPos(posArr[0], i, j);
