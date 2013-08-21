@@ -343,3 +343,109 @@ Goods* EntityManager::addAGoods(CCPoint pos, EGoodType type)
 
 	return goods;
 }
+
+/** 
+ * 在某个位置周围生成多个金币,坑爹=，=
+ */
+void EntityManager::addCoins(CCPoint pos, int num)
+{
+	int gi, gj;
+	GI.Helper->getGridIndexOfPos(pos, gi, gj);
+
+	if (num <= 4)
+	{
+		// 2*2
+		if (gi + 1 > 21) 
+		{
+			gi = 20;
+		}
+		if (gj + 1 > 21)
+		{
+			gj = 20;
+		}
+		CCPoint origPos = GI.Helper->getGridCenter(gi, gj);
+		for (int cnt = 0, i = 0, j = 0; cnt < num; ++cnt)
+		{
+			CCPoint curPos = origPos + ccp(GI.GridSize * j, GI.GridSize * i);
+			addAGoods(curPos, EGT_Coin);
+			++j;
+			if (j == 2)
+			{
+				j = 0;
+				++i;
+			}
+		}
+	}
+	else if (num <= 10)
+	{
+		// 3*4
+		if (gi - 1 < 0) 
+		{
+			gi = 1;
+		}
+		else if (gi + 1 > 21)
+		{
+			gi = 20;
+		}
+
+		if (gj - 1 < 0)
+		{
+			gj = 1;
+		}
+		else if (gj + 2 > 21)
+		{
+			gj = 19;
+		}
+
+		gi -= 1;
+		gj -= 1;
+		CCPoint origPos = GI.Helper->getGridCenter(gi, gj);
+		for (int cnt = 0, i = 0, j = 0; cnt < num; ++cnt)
+		{
+			CCPoint curPos = origPos + ccp(GI.GridSize * j, GI.GridSize * i);
+			addAGoods(curPos, EGT_Coin);
+			++j;
+			if (j == 4)
+			{
+				j = 0;
+				++i;
+			}
+		}
+	}
+	else 
+	{
+		// 4*4
+		if (gi - 1 < 0) 
+		{
+			gi = 1;
+		}
+		else if (gi + 2 > 21)
+		{
+			gi = 19;
+		}
+
+		if (gj - 1 < 0)
+		{
+			gj = 1;
+		}
+		else if (gj + 2 > 21)
+		{
+			gj = 19;
+		}
+
+		gi -= 1;
+		gj -= 1;
+		CCPoint origPos = GI.Helper->getGridCenter(gi, gj);
+		for (int cnt = 0, i = 0, j = 0; cnt < num; ++cnt)
+		{
+			CCPoint curPos = origPos + ccp(GI.GridSize * j, GI.GridSize * i);
+			addAGoods(curPos, EGT_Coin);
+			++j;
+			if (j == 4)
+			{
+				j = 0;
+				++i;
+			}
+		}
+	}
+}

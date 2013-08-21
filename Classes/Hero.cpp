@@ -125,17 +125,17 @@ void Hero::onUpdate(float dt)
 			EM.addAnEffect(getPosition(), EET_Smog, ccp(0, 0));
 		}
 	}
-
-	if (!onMove())
-	{
-		return;
-	}	
-
+	
 	// 检查有没有物品可以使用
 	Goods* pGood = (Goods*)(EM.findEntityInRange(this,  GI.getSystemConfig().fPickupRange, ET_Goods));
 	if (pGood)
 	{
 		pGood->use(this);
+	}
+
+	if (!onMove())
+	{
+		return;
 	}
 
 	// 检测是否撞到小怪了

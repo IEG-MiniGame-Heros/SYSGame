@@ -201,7 +201,7 @@ void GameHelper::getRandomFreeGrid(CCPoint ret[], int& num)
 	}
 }
 
-const int MAX_REWARDS_NUM = 6;
+const int MAX_REWARDS_NUM = 7;
 int RP[10] = {0};
 /** 
  * 初始化掉落奖品的概率
@@ -234,6 +234,7 @@ void GameHelper::randomGenHeroOrGoods(CCPoint pos)
 	// 4.金币（1~4）
 	// 5.金币（5~10）
 	// 6.金币（10~15）
+	// 7.无奖励
 
 	if (rret < RP[1])
 	{
@@ -249,15 +250,23 @@ void GameHelper::randomGenHeroOrGoods(CCPoint pos)
 	}
 	else if (rret < RP[4])
 	{
-		
+		int num = 1 + getRand(4);
+		EM.addCoins(pos, num);
+		//EM.addCoins(getGridCenter(0, 0), 5);
 	}
 	else if (rret < RP[5])
 	{
-
+		int num = 5 + getRand(6);
+		EM.addCoins(pos, num);
 	}
 	else if (rret < RP[6])
 	{
-
+		int num = 11 + getRand(5);
+		EM.addCoins(pos, num);
+	}
+	else if (rret < RP[7])
+	{
+		// 什么都没有了
 	}
 	
 }

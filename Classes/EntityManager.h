@@ -36,6 +36,11 @@ public:
 	Effect* addAnEffect(CCPoint pos, EEffectType type, CCPoint target_pos);
 	Effect* addAnEffectOnCharacter(EEffectType type, Character* pCha);
 	Goods* addAGoods(CCPoint pos, EGoodType type);
+	
+	/** 
+	 * 需要同时生成若干个金币
+	 */
+	void addCoins(CCPoint pos, int num);
 
 	/// Find Entity Begin
 	////////////////////////
