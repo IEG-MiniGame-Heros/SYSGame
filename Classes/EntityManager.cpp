@@ -97,11 +97,15 @@ Hero* EntityManager::addAHero(CCPoint pos)
 	return NULL;
 }
 
+char GSMons[35];
+
 Monster* EntityManager::addAMonster(CCPoint pos)
 {
 	if (GI.Game)
 	{
-		Monster* pMonster = Monster::create(GI.PathOfMonster.c_str());
+		int MonsID = GI.Helper->getRand(MAX_MONSTER_KINDS) + 1;
+		sprintf(GSMons, "spirit/monster/Monster%d_D_1.png", MonsID);
+		Monster* pMonster = Monster::create(GI.PathOfMonster.c_str(), MonsID);
 		GI.Game->addChild(pMonster);
 		pMonster->setPosition(pos);
 		m_pAllMonsters->addObject(pMonster);

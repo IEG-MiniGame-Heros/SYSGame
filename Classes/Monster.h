@@ -27,7 +27,7 @@ public:
 
 	void setFrozen(bool frozen);
 
-	static Monster* create(const char *pszFileName);
+	static Monster* create(const char *pszFileName, int MonsID);
 
 protected:
 
