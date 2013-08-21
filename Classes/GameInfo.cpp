@@ -228,7 +228,7 @@ void GameInfo::initData()
 	}
 
 	// 取出怪物奖励信息
-	sql = "select monster_id, item_id, weight from t_reward";
+	sql = "select item_id, weight from t_reward";
 	CCLOG("sql:%s", sql.c_str());
 	vData.clear();
 	Database::query(sql, vData);
@@ -237,25 +237,26 @@ void GameInfo::initData()
 	{
 		TReward stReward;
 		map<string, string>::iterator iter;
-		int monsterId, itemId;
+		int /*monsterId, */itemId;
 		for(iter = vData[i].begin(); iter != vData[i].end(); iter++) 
 		{
-			if (iter->first == "monster_id")
-				monsterId = Util::StringToNumber<int>(iter->second);
+			//if (iter->first == "monster_id")
+			//	monsterId = Util::StringToNumber<int>(iter->second);
 			if (iter->first == "weight")
 				stReward.iWeight = Util::StringToNumber<int>(iter->second);
 			if (iter->first == "item_id")
 			{
 				itemId = Util::StringToNumber<int>(iter->second);
-				if (itemId > 0)
-					stReward.stItem = vItemConfig[itemId - 1];
+				//if (itemId > 0)
+				//	stReward.stItem = vItemConfig[itemId - 1];
 			}
 			CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
 		}
-		if (monsterId > 0)
-		{
-			vMonsterConfig[monsterId - 1].vReward.push_back(stReward);
-		}
+		vRewardConfig.push_back(stReward);
+		//if (monsterId > 0)
+		//{
+		//	vMonsterConfig[monsterId - 1].vReward.push_back(stReward);
+		//}
 		CCLOG("-------------");
 	}
 
@@ -315,6 +316,11 @@ vector<TItem> GameInfo::getItemConfig()
 vector<TSkill> GameInfo::getSkillConfig()
 {
 	return vSkillConfig;
+}
+
+vector<TReward> GameInfo::getRewardConfig()
+{
+	return vRewardConfig;
 }
 
 GameInfo::GameInfo()

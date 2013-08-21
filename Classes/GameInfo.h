@@ -89,6 +89,7 @@ public:
 	vector<TMonster> getMonsterConfig();
 	vector<TItem> getItemConfig();
 	vector<TSkill> getSkillConfig();
+	vector<TReward> getRewardConfig();
 
 private:
 	TConfig stSystemConfig; // 系统配置
@@ -97,6 +98,7 @@ private:
 	vector<TMonster> vMonsterConfig; // 怪物配置列表
 	vector<TItem> vItemConfig; // 物品配置列表
 	vector<TSkill> vSkillConfig; // 技能配置列表
+	vector<TReward> vRewardConfig;	// 奖励配置列表
 };
 
 #endif

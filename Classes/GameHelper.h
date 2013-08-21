@@ -38,6 +38,7 @@ public:
 private:
 	
 	void getGridIndexOfPos(CCPoint pos, int& i, int& j);
+	void initRewardProp();
 
 private:
 

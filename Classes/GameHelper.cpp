@@ -37,6 +37,9 @@ void GameHelper::onEnter()
 
 	memset(m_bUsed, 0, sizeof(m_bUsed));
 
+	// 初始化各种奖励掉落概率
+	initRewardProp();
+
 	// 设置各种Timer
 	schedule(schedule_selector(GameHelper::onUpdateGridUsage));
 	schedule(schedule_selector(GameHelper::onUpdateMonster), GI.getMapConfig()[0].vFrequency[0].iRefreshInterval);
@@ -198,6 +201,24 @@ void GameHelper::getRandomFreeGrid(CCPoint ret[], int& num)
 	}
 }
 
+const int MAX_REWARDS_NUM = 6;
+int RP[10] = {0};
+/** 
+ * 初始化掉落奖品的概率
+ */
+void GameHelper::initRewardProp()
+{
+	
+	CCAssert(MAX_REWARDS_NUM == GI.getRewardConfig().size(), "MAX_REWARDS_NUM is not right!!!");
+
+	RP[0] = 0;
+	for (int i = 1; i <= MAX_REWARDS_NUM; ++i)
+	{
+		RP[i] = GI.getRewardConfig()[i - 1].iWeight;
+		RP[i] += RP[i - 1];
+	}
+}
+
 /** 
  * 怪死后随机生成英雄或者物品
  * 这个概率以后再来调配!!!!!!!
@@ -205,37 +226,38 @@ void GameHelper::getRandomFreeGrid(CCPoint ret[], int& num)
  */
 void GameHelper::randomGenHeroOrGoods(CCPoint pos)
 {
-	int PB[] = 
-	{
-		3,			// 英雄
-		4,			// 金币
-		2,			// 血包
-		2,			// 冰块
-	};
+	int rret = getRand(RP[MAX_REWARDS_NUM]);
 
-	int cnt = sizeof(PB) / sizeof(int);
+	// 1.英雄
+	// 2.血包
+	// 3.冰块
+	// 4.金币（1~4）
+	// 5.金币（5~10）
+	// 6.金币（10~15）
 
-	for (int i = 1; i < cnt; ++i)
-	{
-		PB[i] += PB[i - 1];
-	}
-
-	int rret = rand() % PB[cnt - 1];
-	if (rret < PB[0])
+	if (rret < RP[1])
 	{
 		EM.addAHero(pos);
 	}
-	else if (rret < PB[1])
-	{
-		EM.addAGoods(pos, EGT_Coin);
-	}
-	else if (rret < PB[2])
+	else if (rret < RP[2])
 	{
 		EM.addAGoods(pos, EGT_BloodSupply);
 	}
-	else 
+	else if (rret < RP[3])
 	{
 		EM.addAGoods(pos, EGT_IceCube);
+	}
+	else if (rret < RP[4])
+	{
+		
+	}
+	else if (rret < RP[5])
+	{
+
+	}
+	else if (rret < RP[6])
+	{
+
 	}
 	
 }
