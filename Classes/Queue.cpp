@@ -25,15 +25,15 @@ void Queue::onEnter()
 
 	schedule(schedule_selector(Queue::onUpdate));	
 
-	schedule(schedule_selector(Queue::testUpdate), 5.f);
+	//schedule(schedule_selector(Queue::testUpdate), 5.f);
 }
 
 void Queue::testUpdate(float dt)
 {
-	//if (getQueueNum() > 2)
-	//{
-	//	removeAMember((Character*)m_pCharacters->objectAtIndex(1));
-	//}
+	if (getQueueNum() > 2)
+	{
+		removeAMember((Character*)m_pCharacters->objectAtIndex(1));
+	}
 }
 
 void Queue::confirmMoveVector()
@@ -125,12 +125,6 @@ void Queue::setMoveVector(CCPoint move_vector)
 		return;
 	}
 
-	//for (int i = size - 1; i > 0; --i)
-	//{
-	//	Character* character = (Character*)(m_pCharacters->objectAtIndex(i));
-	//	Character* characterInFront = (Character*)(m_pCharacters->objectAtIndex(i - 1));
-	//	character->setMoveVector(characterInFront->getMoveVector());
-	//}
 	pHead->setMoveVector(move_vector);
 }
 
@@ -236,9 +230,12 @@ bool Queue::isLastMember(Character* pCha) const
 
 void Queue::addAMember(Character* pCha)
 {
-	m_pPendingAddPool->addObject(pCha);
-	pCha->setQueue(this);
-	GI.Game->removeChild(pCha);
+	if (!GI.IsGameOver)
+	{
+		m_pPendingAddPool->addObject(pCha);
+		pCha->setQueue(this);
+		GI.Game->removeChild(pCha);
+	}
 }
 
 void Queue::removeAMember(Character* pCha)

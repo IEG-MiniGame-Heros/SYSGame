@@ -90,6 +90,7 @@ public:
 	vector<TItem> getItemConfig();
 	vector<TSkill> getSkillConfig();
 	vector<TReward> getRewardConfig();
+	vector<TFrequency> getFreqConfig();
 
 private:
 	TConfig stSystemConfig; // 系统配置
@@ -99,6 +100,7 @@ private:
 	vector<TItem> vItemConfig; // 物品配置列表
 	vector<TSkill> vSkillConfig; // 技能配置列表
 	vector<TReward> vRewardConfig;	// 奖励配置列表
+	vector<TFrequency> vFreqConfig; // 刷怪频率列表
 };
 
 #endif

@@ -289,6 +289,7 @@ void Character::getHarmed(int damage, bool bHeroToMonster /* = false */)
 			{
 				//CCLOG("Alll Go to Die!!!!!!!!!!!");
 				m_pQueue->allGotoDie();
+				GI.IsGameOver = true;
 			}
 			else 
 			{

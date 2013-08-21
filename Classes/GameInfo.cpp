@@ -82,7 +82,7 @@ void GameInfo::initData()
 			if (iter->first == "monster_max")
 				stFrequency.iMonsterMax = Util::StringToNumber<int>(iter->second);
 			if (iter->first == "refresh_interval")
-				stFrequency.iRefreshInterval = Util::StringToNumber<int>(iter->second);
+				stFrequency.iRefreshInterval = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "refresh_num")
 				stFrequency.iRefreshNum = Util::StringToNumber<int>(iter->second);
 			if (iter->first == "type")
@@ -95,6 +95,7 @@ void GameInfo::initData()
 				stMap.sResourcePath = iter->second;
 			CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
 		}
+		vFreqConfig.push_back(stFrequency);
 		if (curr_id > id)
 		{
 			stMap.vFrequency.push_back(stFrequency);
@@ -321,6 +322,11 @@ vector<TSkill> GameInfo::getSkillConfig()
 vector<TReward> GameInfo::getRewardConfig()
 {
 	return vRewardConfig;
+}
+
+vector<TFrequency> GameInfo::getFreqConfig()
+{
+	return vFreqConfig;
 }
 
 GameInfo::GameInfo()

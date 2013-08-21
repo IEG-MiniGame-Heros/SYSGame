@@ -138,13 +138,13 @@ void Hero::onUpdate(float dt)
 	if (entity)
 	{
 		// 这个怪死了
-		((Character*)(entity))->kill();
+		((Character*)(entity))->getHarmed(1000000, true);
 
 		// 我也死了，呜呜呜>_<
 #if !HERO_UNBEATABLE
 		//kill();
 		getHarmed(1000000);
-		GI.IsGameOver = true;
+
 #endif
 	}
 

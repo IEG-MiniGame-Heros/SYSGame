@@ -91,13 +91,18 @@ void FirstStage::onEnter()
 	GI.Me->refreshMembers();
 
 	// 随机生成3只怪
-	CCPoint posArr[3];
-	int numOfMonster = 3;
-	GI.Helper->getRandomFreeGrid(posArr, numOfMonster);
-	for (int i = 0; i < numOfMonster; ++i)
+	int curMonstNum = 0;
+	while (curMonstNum < 3)
 	{
-		EM.addAMonster(posArr[i]);
+		
 	}
+	//CCPoint posArr[3];
+	//int numOfMonster = 3;
+	//GI.Helper->getRandomFreeGrid(posArr, numOfMonster);
+	//for (int i = 0; i < numOfMonster; ++i)
+	//{
+	//	EM.addAMonster(posArr[i]);
+	//}
 
 	// 更新Layer，让Layer跟随精灵移动
 	schedule(schedule_selector(FirstStage::updateLayer));

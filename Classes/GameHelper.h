@@ -41,6 +41,7 @@ public:
 private:	
 	
 	void initRewardProp();
+	int	getCurMonsFreq();
 
 private:
 
@@ -50,6 +51,8 @@ private:
 	CCPoint			m_Points[22 * 22];
 	int				m_PointsIndex[22 * 22];
 	bool			m_bUsed[22][22];			// 标记地图上某一格是否被占用
+
+	int				m_iMonsFreqID;				// 刷怪频率ID
 
 };
 

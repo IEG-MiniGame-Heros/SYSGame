@@ -40,9 +40,12 @@ void GameHelper::onEnter()
 	// 初始化各种奖励掉落概率
 	initRewardProp();
 
+	// 刷怪频率
+	m_iMonsFreqID = 0;
+
 	// 设置各种Timer
 	schedule(schedule_selector(GameHelper::onUpdateGridUsage));
-	schedule(schedule_selector(GameHelper::onUpdateMonster), GI.getMapConfig()[0].vFrequency[0].iRefreshInterval);
+	schedule(schedule_selector(GameHelper::onUpdateMonster), float(GI.getFreqConfig()[0].iRefreshInterval));
 }
 
 void GameHelper::onExit()
@@ -80,13 +83,32 @@ bool GameHelper::isReachable(CCPoint pos, CCPoint moveVec, int gridNum)
 	return !m_bUsed[i][j];
 }
 
+/** 
+ * @brief 获取当前刷怪频率ID
+ */
+int GameHelper::getCurMonsFreq()
+{
+	std::vector<TFrequency>& tFreq = GI.getFreqConfig();
+	int RetID = 0;
+	for (size_t i = 0; i < tFreq.size(); ++i)
+	{
+		if (tFreq[i].iMonsterMin <= GI.MonsterKillNum && 
+			GI.MonsterKillNum <= tFreq[i].iMonsterMax)
+		{
+			RetID = i;
+			break;
+		}
+	}
+	return RetID;
+}
+
+
 /** 刷怪位置的缓存 */
 CCPoint MonstRetPos[100];
 
 void GameHelper::onUpdateMonster(float dt)
 {
-	//CCLog("A monster is getRandomFreeGridborned");
-	int refreshNum = GI.getMapConfig()[0].vFrequency[0].iRefreshNum;
+	int refreshNum = GI.getFreqConfig()[m_iMonsFreqID].iRefreshNum;
 
 	// 获取随机的空余格子
 	getRandomFreeGrid(MonstRetPos, refreshNum);
@@ -94,6 +116,17 @@ void GameHelper::onUpdateMonster(float dt)
 	for (int i = 0; i < refreshNum; ++i)
 	{
 		EM.addAMonster(MonstRetPos[i]);
+	}
+
+	int curFreqID = getCurMonsFreq();
+	if (curFreqID != m_iMonsFreqID)
+	{
+		m_iMonsFreqID = curFreqID;
+		unschedule(schedule_selector(GameHelper::onUpdateMonster));
+
+		float newInterval = float(GI.getFreqConfig()[m_iMonsFreqID].iRefreshInterval);
+		schedule(schedule_selector(GameHelper::onUpdateMonster), newInterval);
+		CCLog("New monster refresh interval: %f", newInterval);		
 	}
 }
 

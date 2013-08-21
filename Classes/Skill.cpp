@@ -99,7 +99,12 @@ void Skill::onUpdate(float dt)
 			if (pEnemy)
 			{
 				// ÅÐ¶¨ÉËº¦
-				pEnemy->getHarmed(m_iDamage);
+				bool IsMonster = false;
+				if (pEnemy->getType() == ET_Monster)
+				{
+					IsMonster = true;
+				}
+				pEnemy->getHarmed(m_iDamage, IsMonster);
 				m_pEffect->setVisible(false);
 				m_pEffect = NULL;
 				m_bIsAttacking = false;

@@ -120,7 +120,7 @@ struct TFrequency
 	EGameMode eGameMode; // 游戏模式
 	int iMonsterMin; // 击杀怪物条件的下限
 	int iMonsterMax; // 击杀怪物条件的上限
-	int iRefreshInterval; // 刷新时间间隔(单位:s)
+	float iRefreshInterval; // 刷新时间间隔(单位:s)
 	int iRefreshNum; // 刷新时间间隔内刷怪的数量
 };
 
