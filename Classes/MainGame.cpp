@@ -25,7 +25,6 @@ void MainGame::onEnter()
 	// ÔÝÍ£°´Å¥
 	btnPause = dynamic_cast<UIButton*>(ulGameControl->getWidgetByName("Button"));
 	btnPause->addReleaseEvent(this, coco_releaseselector(MainGame::btnPauseCallback));
-	btnPause->setPressedTexture("ui/screne_game/big_pause");
 
 	laMonster = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_monster"));
 	laCoin = dynamic_cast<UILabelAtlas*>(ulGameControl->getWidgetByName("la_money"));
