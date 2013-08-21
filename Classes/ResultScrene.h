@@ -23,6 +23,8 @@ public :
 
 	void update(float dt);
 
+	void save2DataBase();
+
 	CREATE_FUNC(ResultScrene);
 
 private:

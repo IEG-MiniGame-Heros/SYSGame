@@ -8,6 +8,7 @@ using namespace std;
 
 #define N2S(num) (Util::NumberToString(num))
 #define N2C(num) (Util::NumberToString(num).c_str())
+#define S2I(s) (Util::StringToNumber<int>(s))
 
 class Util
 {

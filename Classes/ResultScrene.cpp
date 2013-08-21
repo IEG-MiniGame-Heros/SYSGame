@@ -45,12 +45,50 @@ bool ResultScrene::init()
 		laCoinNum = dynamic_cast<UILabelAtlas*>(ul->getWidgetByName("la_coin"));
 		laScore->setVisible(false);
 
+		// 保存到数据库
+		save2DataBase();
+
 		schedule(schedule_selector(ResultScrene::update));
 
 		ul->setTouchEnabled(true);
 		bRef = true;
 	}while(0);
 	return bRef;
+}
+
+void ResultScrene::save2DataBase()
+{
+	TUser stUser;
+	// 获取数据库中当前用户的数据
+	int ret = SQLITE_ERROR;
+	do 
+	{
+		ret = Database::getUserInfo(stUser);
+		if (ret != SQLITE_OK)
+			break;
+		int nowTime = iMin * 60 + iSec;
+		int nowScore = iScore;
+		int nowKill = iMonsterNum;
+		int nowCoin = iCoinNum;
+
+		if (nowTime > stUser.iTime)
+			stUser.iTime = nowTime;
+		if (nowScore > stUser.iScore)
+			stUser.iScore = nowScore;
+		if (nowKill > stUser.iKillNum)
+			stUser.iKillNum = nowKill;
+		if (nowCoin > stUser.iMoney)
+			stUser.iMoney = nowCoin;
+
+		string updateSQL = "update t_user set money = " + N2S(stUser.iMoney) + " , kill_num = " + 
+			N2S(stUser.iKillNum) + " , score = " + N2S(stUser.iScore) + " , time = " + N2S(stUser.iTime) + 
+			" where id = 1";
+		CCLog(updateSQL.c_str());
+		ret = Database::execute(updateSQL);
+		if (ret != SQLITE_OK)
+			break;
+	} while (0);
+	CCLog("save result : %d", ret);
 }
 
 // 显示分数等...

@@ -29,6 +29,37 @@ int Database::callback(void *data, int argc, char **argv, char **azColName)
 	return 0;
 }
 
+int Database::getUserInfo(TUser &stUser)
+{
+	int ret = SQLITE_ERROR;
+	vector<map<string, string> > vData;
+	string sql = "select score, money, kill_num from t_user where id = 1";
+	ret = Database::query(sql, vData);
+	do 
+	{
+		if (vData.size() == 0)
+			break;
+		map<string, string> mData = vData[0];
+
+		map<string, string>::iterator iter;
+		for(iter = mData.begin(); iter != mData.end(); iter++) 
+		{
+			if (iter->first == "kill_num")
+				stUser.iKillNum = S2I(iter->second);
+			if (iter->first == "money")
+				stUser.iMoney = S2I(iter->second);
+			if (iter->first == "score")
+				stUser.iScore = S2I(iter->second);
+			if (iter->first == "time")
+				stUser.iTime = S2I(iter->second);
+			CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
+		}
+		ret = SQLITE_OK;
+	} while (0);
+
+	return ret;
+}
+
 int Database::query(string sql, vector<map<string, string> > &vData)
 {
 	int result = SQLITE_ERROR;
@@ -59,20 +90,6 @@ int Database::query(string sql, vector<map<string, string> > &vData)
 		}else{
 			CCLOG("Operation done successfully");
 		}
-#if 0
-		CCLOG("--------- %s ---------", sql.c_str());
-		int size = vData.size();
-		for(int i = 0; i < size; i++)
-		{
-			map<string, string>::iterator iter;
-			for(iter = vData[i].begin(); iter != vData[i].end(); iter++) 
-			{
-				CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
-			}
-			CCLOG("----------------");
-		}
-		CCLOG("--------- end ---------");
-#endif
 		result = SQLITE_OK;
 	} while (0);
 

@@ -155,6 +155,7 @@ struct TUser
 	int iMoney; // 用户拥有的金币数
 	int iKillNum; // 用户杀怪的数量
 	int iScore; // 最高分
+	int iTime; // 持续时间
 };
 
 

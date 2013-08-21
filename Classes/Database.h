@@ -20,6 +20,7 @@ public:
 	static int query(string sql, vector<map<string, string> > &vData);
 	static int execute(string sql);
 	static int updateCoin(int currNum);
+	static int getUserInfo(TUser &stUser);
 };
 
 #endif
