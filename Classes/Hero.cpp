@@ -133,11 +133,6 @@ void Hero::onUpdate(float dt)
 		pGood->use(this);
 	}
 
-	if (!onMove())
-	{
-		return;
-	}
-
 	// 检测是否撞到小怪了
 	BaseEntity* entity = EM.findEntityInRange(this, 35.f, ET_Monster);
 	if (entity)
@@ -151,6 +146,11 @@ void Hero::onUpdate(float dt)
 		getHarmed(1000000);
 		GI.IsGameOver = true;
 #endif
+	}
+
+	if (!onMove())
+	{
+		return;
 	}
 
 	// 撞到队友

@@ -252,7 +252,6 @@ void GameHelper::randomGenHeroOrGoods(CCPoint pos)
 	{
 		int num = 1 + getRand(4);
 		EM.addCoins(pos, num);
-		//EM.addCoins(getGridCenter(0, 0), 5);
 	}
 	else if (rret < RP[5])
 	{
@@ -284,4 +283,18 @@ int GameHelper::getRand(int mod)
 bool GameHelper::isReverseDir(const CCPoint& dir1, const CCPoint& dir2)
 {
 	return  (dir1.x == (dir2.x * -1)) && (dir1.y == (dir2.y * -1));
+}
+
+bool GameHelper::isInGridCenter(CCPoint pos)
+{
+	if (isWithinMap(pos))
+	{
+		CCPoint center = getNearestGridCenter(pos);
+		if (fabs(pos.x - center.x) < 1e-6 &&
+			fabs(pos.y - center.y) < 1e-6)
+		{
+			return true;
+		}
+	}
+	return false;
 }

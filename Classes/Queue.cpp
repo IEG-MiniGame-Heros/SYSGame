@@ -48,11 +48,14 @@ void Queue::onUpdate(float dt)
 {
 	CCObject* object;
 
-	// 确认方向
-	confirmMoveVector();
-
 	// 检测队伍的速度
 	checkChaningSpeed();
+
+	// 确认方向
+	if (getQueueNum() > 0 && GI.Helper->isInGridCenter(getHead()->getPosition()))
+	{
+		confirmMoveVector();
+	}	
 
 	clearUpdateFlag();
 	CCARRAY_FOREACH(m_pCharacters, object)
