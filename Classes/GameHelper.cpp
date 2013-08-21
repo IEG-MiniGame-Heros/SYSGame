@@ -186,6 +186,9 @@ void GameHelper::onUpdateGridUsage(float dt)
 			}
 		}
 	}
+
+	// 给第一个英雄加个防护罩
+
 }
 
 /** 
