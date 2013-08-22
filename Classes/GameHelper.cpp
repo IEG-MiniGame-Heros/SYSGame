@@ -278,6 +278,12 @@ void GameHelper::initRewardProp()
  */
 void GameHelper::randomGenHeroOrGoods(CCPoint pos)
 {
+	// 如果游戏结束了，就不生成物品了
+	if (!GI.IsGameOver)
+	{
+		return;
+	}
+
 	int rret = getRand(RP[MAX_REWARDS_NUM]);
 
 	// 1.英雄
@@ -349,4 +355,9 @@ bool GameHelper::isInGridCenter(CCPoint pos)
 		}
 	}
 	return false;
+}
+
+bool GameHelper::isGridInUsed(int i, int j) const 
+{
+	return m_bUsed[i][j];
 }

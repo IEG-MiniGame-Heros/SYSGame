@@ -393,7 +393,10 @@ void EntityManager::addCoins(CCPoint pos, int num)
 		for (int cnt = 0, i = 0, j = 0; cnt < num; ++cnt)
 		{
 			CCPoint curPos = origPos + ccp(GI.GridSize * j, GI.GridSize * i);
-			addAGoods(curPos, EGT_Coin);
+			if (!GI.Helper->isGridInUsed(i, j))
+			{
+				addAGoods(curPos, EGT_Coin);
+			}
 			++j;
 			if (j == 2)
 			{
@@ -429,7 +432,10 @@ void EntityManager::addCoins(CCPoint pos, int num)
 		for (int cnt = 0, i = 0, j = 0; cnt < num; ++cnt)
 		{
 			CCPoint curPos = origPos + ccp(GI.GridSize * j, GI.GridSize * i);
-			addAGoods(curPos, EGT_Coin);
+			if (!GI.Helper->isGridInUsed(i, j))
+			{
+				addAGoods(curPos, EGT_Coin);
+			}
 			++j;
 			if (j == 4)
 			{
@@ -465,7 +471,10 @@ void EntityManager::addCoins(CCPoint pos, int num)
 		for (int cnt = 0, i = 0, j = 0; cnt < num; ++cnt)
 		{
 			CCPoint curPos = origPos + ccp(GI.GridSize * j, GI.GridSize * i);
-			addAGoods(curPos, EGT_Coin);
+			if (!GI.Helper->isGridInUsed(i, j))
+			{
+				addAGoods(curPos, EGT_Coin);
+			}
 			++j;
 			if (j == 4)
 			{
