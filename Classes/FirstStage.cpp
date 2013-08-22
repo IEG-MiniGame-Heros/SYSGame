@@ -90,16 +90,16 @@ void FirstStage::onEnter()
 	GI.Me->addAMember(p1);
 	GI.Me->refreshMembers();
 
-	// 随机生成3只怪
+	// 随机生成2只怪
 	CCPoint posArr[3];	
 	int curMonstNum = 0;
-	while (curMonstNum < 3)
+	while (curMonstNum < 1)
 	{
 		int needNum = 1;
 		GI.Helper->getRandomFreeGrid(posArr, needNum);
 		int i, j;
 		GI.Helper->getGridIndexOfPos(posArr[0], i, j);
-		if (i < 15)
+		if (i < 11)
 		{
 			++curMonstNum;
 			EM.addAMonster(posArr[0]);
