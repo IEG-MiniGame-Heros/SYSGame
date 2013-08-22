@@ -33,7 +33,7 @@ int Database::getUserInfo(TUser &stUser)
 {
 	int ret = SQLITE_ERROR;
 	vector<map<string, string> > vData;
-	string sql = "select score, money, kill_num from t_user where id = 1";
+	string sql = "select score, money, kill_num, time from t_user where id = 1";
 	ret = Database::query(sql, vData);
 	do 
 	{

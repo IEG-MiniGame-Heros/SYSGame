@@ -16,8 +16,7 @@ ResultScrene::ResultScrene(int score, int min, int sec, int monsterNum, int coin
 	this->iSec = sec;
 	this->iMonsterNum = monsterNum;
 	this->iCoinNum = coinNum;
-	//string sql = "insert into t_user values(2, 0, 0, 'b', 'b')";
-	//Database::execute(sql);
+	isNewRecord = false;
 }
 
 bool ResultScrene::init()
@@ -25,18 +24,30 @@ bool ResultScrene::init()
 	bool bRef = true;
 	do{
 		CC_BREAK_IF(! CCLayer::init());
-		ul = UILayer::create();
+		CCNode *pNode = CCJsonReader::sharedJsonReader()->createNodeWithJsonFile("ui/screne_result_final/screne_result_final.json");
+		this->addChild(pNode);
+
+		CCComRender *pUIRender = (CCComRender*)(pNode->getChildByTag(1)->getChildByTag(3)->getComponent("GUIComponent"));
+		ul = (UILayer*)(pUIRender->getRender()); 
+
+		CCComRender *pArmRender = (CCComRender*)(pNode->getChildByTag(1)->getChildByTag(2)->getComponent("CCArmature"));
+		CCArmature* armLoad = (CCArmature*)(pArmRender->getRender());
+		armLoad->getAnimation()->playByIndex(0);
+
 		// 设置 UI 层的tag
-		this->addChild(ul, 0, 100);
-		ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("ui/screne_result/screne_result_1.ExportJson"));
+		//this->addChild(ul, 0, 100);
+		//ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("ui/screne_result/screne_result_1.ExportJson"));
 
 		// 返回主菜单按钮
-		btnBack = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_back"));
+		btnBack = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_back_main"));
 		btnBack->addReleaseEvent(this, coco_releaseselector(ResultScrene::btnBackCallback));
 
 		// 重新开始按钮
 		btnRestart = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_restart"));
 		btnRestart->addReleaseEvent(this, coco_releaseselector(ResultScrene::btnRestartCallback));
+
+		// 新纪录图片
+		iv_newRecord = dynamic_cast<UIImageView*>(ul->getWidgetByName("iv_new_record"));
 
 		laScore = dynamic_cast<UILabelAtlas*>(ul->getWidgetByName("la_score"));
 		laMin = dynamic_cast<UILabelAtlas*>(ul->getWidgetByName("la_min"));
@@ -71,14 +82,27 @@ void ResultScrene::save2DataBase()
 		int nowKill = iMonsterNum;
 		int nowCoin = iCoinNum;
 
+		CCLog("%d, %d", nowTime, stUser.iTime);
 		if (nowTime > stUser.iTime)
+		{
 			stUser.iTime = nowTime;
+			isNewRecord = true;
+		}
 		if (nowScore > stUser.iScore)
+		{
 			stUser.iScore = nowScore;
+			isNewRecord = true;
+		}
 		if (nowKill > stUser.iKillNum)
+		{
 			stUser.iKillNum = nowKill;
+			isNewRecord = true;
+		}
 		if (nowCoin > stUser.iMoney)
+		{
 			stUser.iMoney = nowCoin;
+			isNewRecord = true;
+		}
 
 		string updateSQL = "update t_user set money = " + N2S(stUser.iMoney) + " , kill_num = " + 
 			N2S(stUser.iKillNum) + " , score = " + N2S(stUser.iScore) + " , time = " + N2S(stUser.iTime) + 
@@ -112,6 +136,8 @@ void ResultScrene::update(float dt)
 		laScore->setVisible(true);
 		laScore->setStringValue(N2C(iScore));
 		unschedule(schedule_selector(ResultScrene::update));
+		if (isNewRecord)
+			iv_newRecord->setVisible(true);
 	}
 	laMin->setStringValue(N2C(iNowMin));
 	laSec->setStringValue(N2C(iNowSec));

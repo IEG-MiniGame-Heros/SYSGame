@@ -31,6 +31,9 @@ private:
 	UILayer *ul;
 	UIButton *btnBack;
 	UIButton *btnRestart;
+	UIImageView *iv_newRecord;
+
+	bool isNewRecord;
 
 	int iScore;
 	int iMin;
