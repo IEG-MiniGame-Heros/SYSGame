@@ -60,7 +60,7 @@ public:
 	 * @param damage 伤害大小
 	 * @param bHeroToMonster 是不是英雄打怪
 	 */
-	void getHarmed(int damage, bool bHeroToMonster = false);
+	virtual void getHarmed(int damage, bool bHeroToMonster = false);
 
 	/** 
 	 * 吃血包，得到治疗
@@ -92,6 +92,7 @@ protected:
 	CCProgressTimer* m_pBloodBar;		// 血条
 	CCSprite*		m_pBloodBlack;		// 血条外围的一层黑
 	CCAction*		m_pShowHPAct;		// 显示血条Action
+	CCNode*			m_pRunHPActNode;	// RunHP动画的开关
 	bool			m_bEnableShowHP;	// 显示血条开关
 
 	Skill*			m_pSkill;			// 技能指针

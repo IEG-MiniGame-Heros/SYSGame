@@ -66,8 +66,15 @@ bool Skill::shouldAttack()
 	Character* pCha = (Character*)EM.findNearestEntityInRange(m_pOwner, m_fAttackRange, m_pOwner->getEnemyType());
 	if (pCha)
 	{
-		m_pTarget = pCha;
-		return true;
+		if (pCha->getType() == ET_Hero && !((Hero*)pCha)->isPickedUp())
+		{
+			// 还没被捡起来就不要攻击他了啊。。。
+		}
+		else 
+		{
+			m_pTarget = pCha;
+			return true;
+		}
 	}
 
 	return false;

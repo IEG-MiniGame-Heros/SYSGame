@@ -122,12 +122,12 @@ void Hero::onUpdate(float dt)
 			CCLog("After Adding, Speed: %f", getCurSpeed());
 
 			// 播放烟雾特效
-			//EM.addAnEffect(getPosition(), EET_Smog, ccp(0, 0));
-			CCPoint curPos = getPosition();
-			EM.addAnEffect(curPos + ccp(-GI.GridSize / 2, -GI.GridSize / 2), EET_Explosion, ccp(0, 0));
-			EM.addAnEffect(curPos + ccp(-GI.GridSize / 2, +GI.GridSize / 2), EET_Explosion, ccp(0, 0));
-			EM.addAnEffect(curPos + ccp(+GI.GridSize / 2, -GI.GridSize / 2), EET_Explosion, ccp(0, 0));
-			EM.addAnEffect(curPos + ccp(+GI.GridSize / 2, +GI.GridSize / 2), EET_Explosion, ccp(0, 0));
+			EM.addAnEffect(getPosition(), EET_Smog, ccp(0, 0));
+			//CCPoint curPos = getPosition();
+			//EM.addAnEffect(curPos + ccp(-GI.GridSize / 2, -GI.GridSize / 2), EET_Explosion, ccp(0, 0));
+			//EM.addAnEffect(curPos + ccp(-GI.GridSize / 2, +GI.GridSize / 2), EET_Explosion, ccp(0, 0));
+			//EM.addAnEffect(curPos + ccp(+GI.GridSize / 2, -GI.GridSize / 2), EET_Explosion, ccp(0, 0));
+			//EM.addAnEffect(curPos + ccp(+GI.GridSize / 2, +GI.GridSize / 2), EET_Explosion, ccp(0, 0));
 		}
 	}
 	
@@ -142,14 +142,13 @@ void Hero::onUpdate(float dt)
 	BaseEntity* entity = EM.findEntityInRange(this, 35.f, ET_Monster);
 	if (entity)
 	{
-		// 这个怪死了
-		((Character*)(entity))->getHarmed(1000000, true);
-
 		// 我也死了，呜呜呜>_<
 #if !HERO_UNBEATABLE
 		//kill();
 		getHarmed(1000000);
 
+		// 这个怪死了
+		((Character*)(entity))->getHarmed(1000000, true);
 #endif
 	}
 
@@ -211,4 +210,9 @@ void Hero::setIsPickedUp(bool is_picked_up)
 		stopActionByTag(ECAT_HeroFade);
 		setVisible(true);
 	}
+}
+
+bool Hero::isPickedUp() const 
+{
+	return m_bIsPickedUp;
 }

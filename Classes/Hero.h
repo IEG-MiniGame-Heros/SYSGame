@@ -18,6 +18,7 @@ public:
 	static Hero* create(const char *pszFileName, int HeroID);
 
 	void setIsPickedUp(bool is_picked_up);
+	bool isPickedUp() const;
 
 	/** 
 	 * 给队列调用的，人数增加，速度提升

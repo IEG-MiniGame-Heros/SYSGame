@@ -19,6 +19,8 @@ void Character::onEnter()
 		);
 	m_pShowHPAct->setTag(ECAT_BloodFade);
 	m_pShowHPAct->retain();
+	m_pRunHPActNode = CCNode::create();
+	addChild(m_pRunHPActNode);
 
 	// 默认不显示血条
 	m_bEnableShowHP = false;
@@ -81,6 +83,10 @@ void Character::stopShowHPCallback()
 void Character::onExit()
 {
 	m_pShowHPAct->release();
+
+	removeChild(m_pBloodBlack, true);
+	removeChild(m_pBloodBar, true);	
+	removeChild(m_pRunHPActNode, true);
 
 	MovingEntity::onExit();
 }
@@ -246,7 +252,7 @@ void Character::setCurHealth(int health)
 		// 如果需要显示血条
 		if (m_bEnableShowHP)
 		{
-			stopActionByTag(ECAT_BloodFade);
+			m_pRunHPActNode->stopActionByTag(ECAT_BloodFade);
 
 			setShowHP(true);
 			m_pBloodBar->setPercentage(100.0 * m_iCurHealth / m_iMaxHealth);
@@ -254,7 +260,7 @@ void Character::setCurHealth(int health)
 			if (m_iCurHealth > int(m_iMaxHealth * 0.5))
 			{
 				// 血量小于50%，一定会显示血条
-				runAction(m_pShowHPAct);
+				m_pRunHPActNode->runAction(m_pShowHPAct);
 			}
 		}
 	}
