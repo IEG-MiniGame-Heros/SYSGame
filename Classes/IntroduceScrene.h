@@ -4,30 +4,39 @@
 
 #include "cocos2d.h"
 #include "cocos-ext.h"
+#include <vector>
+#include <string>
 #include "CocoGUILIB/System/CocosGUI.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
+using namespace std;
 
-class IntroduceScrene : public cocos2d::CCLayerColor
+
+#define CHANGE_DIALOG_INTERVAL 4.0f
+#define CHANEGE_ANIMATION_INTERVAL 1.0f
+#define ANIMATION_FRAMES 2
+
+
+class IntroduceScrene : public cocos2d::CCLayer
 {
 public :
 	virtual bool init();
+	void initData();
 	static cocos2d::CCScene* scene();
-	// init scene
-	cocos2d::CCNode* createGameScene();
+
 	void tbContinueCallback(cocos2d::CCObject *pSender);
 	void update(float time);
 	CREATE_FUNC(IntroduceScrene);
 
 private:
-	cocos2d::CCNode *m_pCurNode;
-
-	// UI¿Ø¼þ
 	UILayer *ul;
-	UIButton *btnContinue;
+	UIButton *btnSkip;
+	UIImageView *ivAnimation;
 
-	float isOver;  
+	vector<string> vFrames;
+	int iFramePos;
+	float fTotalTime;
 };
 
 #endif

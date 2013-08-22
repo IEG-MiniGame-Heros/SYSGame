@@ -1,6 +1,5 @@
 #include "IntroduceScrene.h"
-#include "SelectHeroScrene.h"
-#include "CocostudioReader/CCJsonReader.h"
+#include "FirstStage.h"
 
 CCScene* IntroduceScrene::scene()
 {
@@ -23,38 +22,38 @@ CCScene* IntroduceScrene::scene()
 	return scene;
 }
 
+void IntroduceScrene::initData()
+{
+	vFrames.push_back("ui/screne_introduce/1.png");
+	vFrames.push_back("ui/screne_introduce/2.png");
+	vFrames.push_back("ui/screne_introduce/3.png");
+	vFrames.push_back("ui/screne_introduce/4.png");
+	vFrames.push_back("ui/screne_introduce/5.png");
+	vFrames.push_back("ui/screne_introduce/6.png");
+	iFramePos = 0;
+	fTotalTime = 0.f;
+}
+
 bool IntroduceScrene::init()
 {
 	bool bRet = false;
 	do 
 	{
-		CC_BREAK_IF(! CCLayerColor::initWithColor( ccc4(0,0,0,255) ) );
+		CC_BREAK_IF(! CCLayer::init());
+		initData();
+		ul = UILayer::create();
 
-		CCNode *root = createGameScene();
-		CC_BREAK_IF(!root);
-		this->addChild(root, 0, 1);
+		this->addChild(ul);
+		ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("ui/screne_introduce/screne_introduce_1.json"));
 
-		// 获取UI层
-		CCComRender *pRender = (CCComRender*)(m_pCurNode->getChildByTag(1)->getComponent("GUIComponent"));
-		ul = (UILayer*)(pRender->getRender());
-		// 获取跳过按钮
-		btnContinue = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_continue"));
-		btnContinue->addPushDownEvent(this, coco_releaseselector(IntroduceScrene::tbContinueCallback));
+		ivAnimation = dynamic_cast<UIImageView*>(ul->getWidgetByName("iv_intro"));
 
-		// 滚动字幕
-		isOver = 0;  
-		//得到模拟器宽和高  
-		float SW = CCDirector::sharedDirector()->getWinSize().width;  
-		float SH = CCDirector::sharedDirector()->getWinSize().height;  
- 
-		CCSprite* sp = CCSprite::create("ui/introduce/zimu.png", CCRect(0, 0, 400, 100));  
+		btnSkip = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_skip"));
+		btnSkip->addPushDownEvent(this, coco_releaseselector(IntroduceScrene::tbContinueCallback));
 
-		//精灵水平方向居中于模拟器  
-		sp->setPosition(ccp(SW*0.5, sp->getContentSize().height*0.5 + 100));  
-		addChild(sp,0,99);  
+		schedule(schedule_selector(IntroduceScrene::update), CHANEGE_ANIMATION_INTERVAL);
 
-		scheduleUpdate();  
-
+		ul->setTouchEnabled(true);
 		bRet = true;
 	} while (0);
 
@@ -63,33 +62,24 @@ bool IntroduceScrene::init()
 
 void IntroduceScrene::tbContinueCallback(cocos2d::CCObject *pSender)
 {
-	CCDirector::sharedDirector()->replaceScene(SelectHeroScrene::scene());
-}
-
-cocos2d::CCNode* IntroduceScrene::createGameScene()
-{
-	CCNode *pNode = CCJsonReader::sharedJsonReader()->createNodeWithJsonFile("ui/introduce/sceneTest.json");
-	if (pNode == NULL)
-	{
-		return NULL;
-	}
-	m_pCurNode = pNode;
-
-	CCComRender *pLoadRender = (CCComRender*)(m_pCurNode->getChildByTag(1)->getChildByTag(2)->getComponent("CCArmature"));
-	CCArmature* armLoad = (CCArmature*)(pLoadRender->getRender());
-	armLoad->getAnimation()->playByIndex(0);
-
-	return pNode;
+	CCDirector::sharedDirector()->replaceScene(FirstStage::scene());
 }
 
 void IntroduceScrene::update(float time)  
-{  
-	CCSprite* sp = (CCSprite*)getChildByTag(99);  
-	//字幕滚动速度  
-	isOver += 0.5;  
-	sp->setTextureRect(CCRect(0, isOver, 400, 100));  
-	//循环滚动字幕  
-	if (isOver >= 200) {  
-		isOver = 0;  
-	}  
+{
+	fTotalTime += time;
+	if (fTotalTime < CHANGE_DIALOG_INTERVAL && iFramePos % ANIMATION_FRAMES != 0)
+	{
+		return ;
+	}
+	iFramePos++;
+	if (iFramePos == (int)(vFrames.size() - 1))
+	{
+		unschedule(schedule_selector(IntroduceScrene::update));
+	}
+	ivAnimation->setTexture(vFrames[iFramePos].c_str());
+	if (fTotalTime >= CHANGE_DIALOG_INTERVAL)
+	{
+		fTotalTime = 0.f;
+	}
 }  
