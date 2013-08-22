@@ -122,7 +122,12 @@ void Hero::onUpdate(float dt)
 			CCLog("After Adding, Speed: %f", getCurSpeed());
 
 			// ²¥·ÅÑÌÎíÌØÐ§
-			EM.addAnEffect(getPosition(), EET_Smog, ccp(0, 0));
+			//EM.addAnEffect(getPosition(), EET_Smog, ccp(0, 0));
+			CCPoint curPos = getPosition();
+			EM.addAnEffect(curPos + ccp(-GI.GridSize / 2, -GI.GridSize / 2), EET_Explosion, ccp(0, 0));
+			EM.addAnEffect(curPos + ccp(-GI.GridSize / 2, +GI.GridSize / 2), EET_Explosion, ccp(0, 0));
+			EM.addAnEffect(curPos + ccp(+GI.GridSize / 2, -GI.GridSize / 2), EET_Explosion, ccp(0, 0));
+			EM.addAnEffect(curPos + ccp(+GI.GridSize / 2, +GI.GridSize / 2), EET_Explosion, ccp(0, 0));
 		}
 	}
 	
