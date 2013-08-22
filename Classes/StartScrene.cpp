@@ -2,6 +2,7 @@
 #include "SoundScrene.h"
 #include "IntroduceScrene.h"
 #include "FirstStage.h"
+#include "HighestScrene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace CocosDenshion;
@@ -44,7 +45,7 @@ void StartScrene::tbStartGameCallback(cocos2d::CCObject *pSender)
 
 void StartScrene::tbRankdCallback(cocos2d::CCObject *pSender)
 {
-	CCLog("1111111");
+	CCDirector::sharedDirector()->replaceScene(HighestScrene::scene());
 }
 
 CCScene* StartScrene::scene()

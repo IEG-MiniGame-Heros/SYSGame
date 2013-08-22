@@ -118,16 +118,16 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>btn_rank.png</key>
+			<key>highest.png</key>
 			<dict>
 				<key>width</key>
-				<integer>228</integer>
+				<integer>233</integer>
 				<key>height</key>
-				<integer>102</integer>
+				<integer>109</integer>
 				<key>originalWidth</key>
-				<integer>228</integer>
+				<integer>233</integer>
 				<key>originalHeight</key>
-				<integer>102</integer>
+				<integer>109</integer>
 				<key>x</key>
 				<integer>657</integer>
 				<key>y</key>
