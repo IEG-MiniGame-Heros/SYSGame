@@ -89,7 +89,7 @@ bool GameHelper::isReachable(CCPoint pos, CCPoint moveVec, int gridNum)
  */
 int GameHelper::getCurMonsFreq()
 {
-	std::vector<TFrequency>& tFreq = GI.getFreqConfig();
+	std::vector<TFrequency> tFreq = GI.getFreqConfig();
 	int RetID = 0;
 	for (size_t i = 0; i < tFreq.size(); ++i)
 	{

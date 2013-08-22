@@ -4,7 +4,7 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>result_view.png</key>
+			<key>cloud.png</key>
 			<dict>
 				<key>width</key>
 				<integer>480</integer>
@@ -99,37 +99,18 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>congratulation.png</key>
+			<key>new_record.png</key>
 			<dict>
 				<key>width</key>
-				<integer>424</integer>
+				<integer>282</integer>
 				<key>height</key>
-				<integer>164</integer>
+				<integer>129</integer>
 				<key>originalWidth</key>
-				<integer>424</integer>
+				<integer>282</integer>
 				<key>originalHeight</key>
-				<integer>164</integer>
+				<integer>129</integer>
 				<key>x</key>
 				<integer>260</integer>
-				<key>y</key>
-				<integer>802</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>new record.png</key>
-			<dict>
-				<key>width</key>
-				<integer>186</integer>
-				<key>height</key>
-				<integer>74</integer>
-				<key>originalWidth</key>
-				<integer>186</integer>
-				<key>originalHeight</key>
-				<integer>74</integer>
-				<key>x</key>
-				<integer>686</integer>
 				<key>y</key>
 				<integer>802</integer>
 				<key>offsetX</key>
@@ -148,7 +129,7 @@
 				<key>originalHeight</key>
 				<integer>27</integer>
 				<key>x</key>
-				<integer>874</integer>
+				<integer>544</integer>
 				<key>y</key>
 				<integer>802</integer>
 				<key>offsetX</key>
