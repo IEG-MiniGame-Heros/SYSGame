@@ -279,7 +279,7 @@ void GameHelper::initRewardProp()
 void GameHelper::randomGenHeroOrGoods(CCPoint pos)
 {
 	// 如果游戏结束了，就不生成物品了
-	if (!GI.IsGameOver)
+	if (GI.IsGameOver)
 	{
 		return;
 	}
