@@ -284,6 +284,15 @@ void GameHelper::randomGenHeroOrGoods(CCPoint pos)
 		return;
 	}
 
+	// Ç¿ÖÆË¢Ó¢ÐÛ
+	if (GI.HeroFlushElapseTime > GI.getSystemConfig().fAppearHeroTime)
+	{
+		CCLog("Force to appear a hero!!!");
+		GI.HeroFlushElapseTime = 0;
+		EM.addAHero(pos);
+		return;
+	}
+
 	int rret = getRand(RP[MAX_REWARDS_NUM]);
 
 	// 1.Ó¢ÐÛ

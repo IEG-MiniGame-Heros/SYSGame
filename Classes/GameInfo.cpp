@@ -54,6 +54,8 @@ void GameInfo::initData()
 				stSystemConfig.fSkillSlideLen = Util::StringToNumber<float>(iter->second);
 			if (iter->first == "pickup_range")
 				stSystemConfig.fPickupRange = Util::StringToNumber<float>(iter->second);
+			if (iter->first == "appear_hero_time")
+				stSystemConfig.fAppearHeroTime = Util::StringToNumber<float>(iter->second);
 			CCLOG("key: %s, value: %s", iter->first.c_str(), iter->second.c_str());
 		}
 		CCLOG("-------------");

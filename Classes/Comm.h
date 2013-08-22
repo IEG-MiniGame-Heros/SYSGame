@@ -150,6 +150,7 @@ struct TConfig
 	float fHitRange; // 命中判断范围
 	float fSkillSlideLen; // 技能在屏幕飞行长度（未攻击到怪情况下）
 	float fPickupRange;// 拾取的范围
+	float fAppearHeroTime; // 强制出现英雄的时间
 };
 
 // 用户结构

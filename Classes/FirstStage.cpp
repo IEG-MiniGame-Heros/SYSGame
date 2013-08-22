@@ -118,6 +118,8 @@ void FirstStage::onEnter()
 	GI.Score = 0;
 	GI.ChallengeTime = 0;
 	GI.MonsterKillNum = 0;
+
+	GI.HeroFlushElapseTime = 0;
 }
 
 void FirstStage::onExit()
@@ -187,6 +189,7 @@ void FirstStage::updateAllScores(float dt)
 {
 	if (!GI.IsGameOver)
 	{
+		GI.HeroFlushElapseTime += dt;
 		GI.Score += GI.getSystemConfig().fTimeCoefficient * dt;
 		GI.ChallengeTime += dt;
 

@@ -81,6 +81,8 @@ public:
 	int					MonsterKillNum;				// 杀怪数
 	float				ChallengeTime;				// 总挑战时间
 
+	float				HeroFlushElapseTime;		// 出现计时
+
 public:
 	void initData();
 	TConfig getSystemConfig();
