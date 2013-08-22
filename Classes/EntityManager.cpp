@@ -276,7 +276,7 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 		eft->setTarget(target_pos);
 		break;
 
-	case EET_Shit:
+	case EET_MonsLight:
 		eft = ThrowableObj::create("spirit/skill/Shit.png", type);
 		eft->setTarget(target_pos);
 		break;

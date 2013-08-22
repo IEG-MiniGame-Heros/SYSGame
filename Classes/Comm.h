@@ -33,7 +33,7 @@ enum EEffectType
 	EET_Bullet      =   2,  // 子弹	
 	EET_IceBall		=	3,	// 冰球
 	EET_SeeStar		=	4,	// 海星
-	EET_Shit		=	5,	// 屎（真的要用这东西？）	
+	EET_MonsLight	=	5,	// 小怪攻击
 	EET_Explosion	=	6,	// 爆炸
 	EET_Frozen		=	7,	// 冰冻
 	EET_Flash		=	8,	// 闪光
