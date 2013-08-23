@@ -8,6 +8,8 @@ using namespace CocosDenshion;
 
 #include <math.h>
 
+#define PI (acos(-1.0))
+
 //////////////////////////////////////////
 /*------------- ø…≈◊÷¿ŒÔ ----------------*/
 void ThrowableObj::onEnter()
@@ -15,6 +17,9 @@ void ThrowableObj::onEnter()
 	Effect::onEnter();
 
 	m_bShouldMove = true;
+
+	float rot = ccpAngle(ccp(0, 1), (m_vTargetPos - getPosition()));
+	setRotation(rot *  180 / PI);
 
 	float slideLength = GI.getSystemConfig().fSkillSlideLen;
 	slideLength = max(slideLength, getPosition().getDistance(m_vTargetPos));
