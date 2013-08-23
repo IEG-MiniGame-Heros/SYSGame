@@ -6,6 +6,8 @@
 #include "GameHelper.h"
 #include "GameInfo.h"
 #include "Util.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 #define HERO_UNBEATABLE 0
 
@@ -120,7 +122,8 @@ void Hero::onUpdate(float dt)
 			float speed = min(m_fMaxSpeed, m_fCurSpeed + m_fSpeedIncrement);
 			m_pQueue->setCurSpeed(speed);
 			CCLog("After Adding, Speed: %f", getCurSpeed());
-
+			
+			SimpleAudioEngine::sharedEngine()->playEffect("music/eat3.mp3");
 			// 播放烟雾特效
 			EM.addAnEffect(getPosition(), EET_Smog, ccp(0, 0));
 			//CCPoint curPos = getPosition();
@@ -165,6 +168,7 @@ void Hero::onUpdate(float dt)
 		{
 			m_pQueue->allGotoDie();
 			GI.IsGameOver = true;
+			SimpleAudioEngine::sharedEngine()->playEffect("music/eat3.mp3");
 		}
 	}
 
@@ -175,6 +179,7 @@ void Hero::onUpdate(float dt)
 		// 全部给我去死吧！！！！
 		m_pQueue->allGotoDie();
 		GI.IsGameOver = true;
+		SimpleAudioEngine::sharedEngine()->playEffect("music/eat3.mp3");
 	}
 }
 

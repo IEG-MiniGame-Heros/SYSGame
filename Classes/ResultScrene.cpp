@@ -3,6 +3,8 @@
 #include "FirstStage.h"
 #include "Util.h"
 #include "Database.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 ResultScrene::ResultScrene(int score, int min, int sec, int monsterNum, int coinNum)
 {
@@ -180,10 +182,15 @@ CCScene* ResultScrene::scene(int score, int min, int sec, int monsterNum, int co
 
 void ResultScrene::btnBackCallback(CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	CCDirector::sharedDirector()->replaceScene(StartScrene::scene());
+	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/background.mp3", true);
 }
 
 void ResultScrene::btnRestartCallback(CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
+		
 	CCDirector::sharedDirector()->replaceScene(FirstStage::scene());
 }

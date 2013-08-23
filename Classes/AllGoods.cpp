@@ -4,6 +4,8 @@
 #include "Monster.h"
 #include "EntityManager.h"
 #include "GameInfo.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 
 ////////////////////////////////////////////
@@ -32,6 +34,8 @@ void Coin::use(Hero* pHero)
 
 		// ²¥·ÅÐÇÐÇÉÁË¸ÌØÐ§
 		EM.addAnEffectOnCharacter(EET_Twinkle, (Character*)(pHero));
+			
+		SimpleAudioEngine::sharedEngine()->playEffect("music/coin.mp3");
 	}
 
 	Goods::use();
@@ -74,7 +78,8 @@ void BloodSupply::use(Hero* pHero)
 		{
 			((Character*)(object))->getHeal(m_iSupplyAmount);
 		}
-
+		
+		SimpleAudioEngine::sharedEngine()->playEffect("music/blood.mp3");
 	}
 
 	Goods::use();
@@ -115,7 +120,8 @@ void IceCube::use(Hero* pHero)
 		Monster* monst = (Monster*)(obj);
 		monst->setFrozen(true);
 	}
-
+	
+	SimpleAudioEngine::sharedEngine()->playEffect("music/glass.mp3");
 	Goods::use();
 }
 

@@ -137,6 +137,8 @@ void FirstStage::updateLayer(float dt){
 	if (GI.IsGameOver)
 	{
 		CCLog("Game Over");
+		SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+		SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/result.mp3", true);
 		MainGame::createGameOverUI();
 		unschedule(schedule_selector(FirstStage::updateLayer));
 		//CCDirector::sharedDirector()->pause();

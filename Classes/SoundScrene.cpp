@@ -42,6 +42,7 @@ bool SoundScrene::init()
 
 void SoundScrene::btnBackCallback(cocos2d::CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	CCDirector::sharedDirector()->replaceScene(StartScrene::scene());
 }
 

@@ -7,12 +7,17 @@
 #include "StartScrene.h"
 #include "ResultScrene.h"
 #include "Util.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 void MainGame::onEnter()
 {
 	cocos2d::CCLayer::onEnter();
 
 	///////// 所有游戏中的基础设置 /////////
+	
+	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/playing.mp3", true);
 
 	//开启触屏
 	setTouchEnabled(true);
@@ -111,6 +116,7 @@ void MainGame::replaceScrene(float dt)
 
 void MainGame::btnPauseCallback(cocos2d::CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	createPauseUI();
 	// 暂停游戏
 	CCDirector::sharedDirector()->pause();
@@ -120,6 +126,7 @@ void MainGame::btnPauseCallback(cocos2d::CCObject *pSender)
 
 void MainGame::btnResumeCallback(cocos2d::CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	// 移除暂停界面
 	ulPause->dispose();
 	// 恢复游戏
@@ -131,6 +138,7 @@ void MainGame::btnResumeCallback(cocos2d::CCObject *pSender)
 
 void MainGame::btnRestartCallback(cocos2d::CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	//重新开始游戏
 	CCDirector::sharedDirector()->replaceScene(FirstStage::scene());
 	CCDirector::sharedDirector()->resume();
@@ -138,6 +146,7 @@ void MainGame::btnRestartCallback(cocos2d::CCObject *pSender)
 
 void MainGame::btnBackMenuCallback(cocos2d::CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	// 恢复游戏
 	CCDirector::sharedDirector()->resume();
 	CCDirector::sharedDirector()->replaceScene(StartScrene::scene());

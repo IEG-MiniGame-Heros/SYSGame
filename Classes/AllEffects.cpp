@@ -28,7 +28,7 @@ void ThrowableObj::onEnter()
 		);
 
 	// JQ_effect
-	SimpleAudioEngine::sharedEngine()->playEffect("music/gun.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("music/fire.mp3");
 	runAction(act);
 }
 

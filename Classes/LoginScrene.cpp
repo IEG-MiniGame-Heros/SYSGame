@@ -1,5 +1,7 @@
 #include "LoginScrene.h"
 #include "StartScrene.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 bool LoginScrene::init()
 {
@@ -50,5 +52,6 @@ CCScene* LoginScrene::scene()
 
 void LoginScrene::tbLoginCallback(cocos2d::CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	CCDirector::sharedDirector()->replaceScene(StartScrene::scene());
 }

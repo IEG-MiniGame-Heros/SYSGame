@@ -1,6 +1,8 @@
 #include "HighestScrene.h"
 #include "Database.h"
 #include "StartScrene.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 CCScene* HighestScrene::scene()
 {
@@ -55,5 +57,6 @@ void HighestScrene::setData()
 
 void HighestScrene::btnBackMenuCallback(cocos2d::CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	CCDirector::sharedDirector()->replaceScene(StartScrene::scene());
 }

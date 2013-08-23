@@ -1,5 +1,7 @@
 #include "IntroduceScrene.h"
 #include "FirstStage.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 CCScene* IntroduceScrene::scene()
 {
@@ -62,6 +64,7 @@ bool IntroduceScrene::init()
 
 void IntroduceScrene::tbContinueCallback(cocos2d::CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	CCDirector::sharedDirector()->replaceScene(FirstStage::scene());
 }
 

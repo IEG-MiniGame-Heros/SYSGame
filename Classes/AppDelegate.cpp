@@ -54,8 +54,20 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // run
     pDirector->runWithScene(pScene);
+	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/btn.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/eat1.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/coin.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/eat2.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/eat3.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/blood.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/fire.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/glass.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/kick.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("music/playing.mpc");
+	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("music/background.mpc");
 
-	//SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/background.mp3", true);
+
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/background.mp3", true);
 
     return true;
 }

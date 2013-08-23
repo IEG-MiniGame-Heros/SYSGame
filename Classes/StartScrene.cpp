@@ -35,16 +35,19 @@ bool StartScrene::init()
 
 void StartScrene::tbSettingCallback(cocos2d::CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	CCDirector::sharedDirector()->replaceScene(SoundScrene::scene());
 }
 
 void StartScrene::tbStartGameCallback(cocos2d::CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	CCDirector::sharedDirector()->replaceScene(IntroduceScrene::scene());
 }
 
 void StartScrene::tbRankdCallback(cocos2d::CCObject *pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
 	CCDirector::sharedDirector()->replaceScene(HighestScrene::scene());
 }
 
