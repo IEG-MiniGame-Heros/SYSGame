@@ -39,6 +39,7 @@ enum EEffectType
 	EET_Flash		=	8,	// 闪光
 	EET_Smog		=	9,	// 烟雾
 	EET_Twinkle		=	10,	// 星星闪烁
+	EET_ShowNum		=	11,	// 显示数字
 };
 
 // 物品类型

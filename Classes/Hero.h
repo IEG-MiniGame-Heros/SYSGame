@@ -3,6 +3,15 @@
 
 #include "Character.h"
 
+// 显示时间系数的数字Tag
+enum EHeroQueueNumTag
+{
+	EHQNT_X		=	201308230,		// x
+	EHQNT_1		=	201308231,		// 第一位
+	EHQNT_2		=	201308232,		// 第二位
+	EHQNT_3		=	201308233,		// 第三位
+};
+
 class Hero : public Character 
 {
 public:
@@ -19,6 +28,8 @@ public:
 
 	void setIsPickedUp(bool is_picked_up);
 	bool isPickedUp() const;
+
+	void showQueueNum(int QueueNum);
 
 	/** 
 	 * 给队列调用的，人数增加，速度提升

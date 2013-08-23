@@ -341,6 +341,33 @@ Effect* EntityManager::addAnEffectOnCharacter(EEffectType type, Character* pCha)
 	return eft;
 }
 
+char EffStr[27];
+
+Effect* EntityManager::addANumberOverCharacter(Character* pCha, int num)
+{
+	Effect* eft = NULL;
+
+	if (num == -1)
+	{
+		eft = ShowNum::create("spirit/effect/x.png");
+	}
+	else 
+	{
+		sprintf(EffStr, "spirit/effect/%d.png", num);
+		eft = ShowNum::create(EffStr);
+	}
+
+	if (pCha)
+	{
+		pCha->addChild(eft);
+		eft->setZOrder(10000005);
+		eft->setPosition(ccp(GI.GridSize / 2, GI.GridSize / 2));
+		m_pAllEffects->addObject(eft);
+	}
+
+	return eft;
+}
+
 Goods* EntityManager::addAGoods(CCPoint pos, EGoodType type) 
 {
 	Goods* goods = NULL;

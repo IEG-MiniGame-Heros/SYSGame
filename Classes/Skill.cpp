@@ -99,7 +99,7 @@ void Skill::onUpdate(float dt)
 		else 
 		{
 			Character* pEnemy = NULL;
-			if (m_pEffect && m_pEffect->retainCount() > 1)
+			if (m_pEffect && m_pEffect->retainCount() > 1 && !m_pEffect->isKilled())
 			{
 				//CCLog("Fire, Count = %d", m_pEffect->retainCount());
 				pEnemy = (Character*)EM.findEntityInRange(m_pEffect, m_fHitRange, m_pOwner->getEnemyType());

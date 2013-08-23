@@ -80,6 +80,7 @@ public:
 	float				Score;						// 得分
 	int					MonsterKillNum;				// 杀怪数
 	float				ChallengeTime;				// 总挑战时间
+	int					ScoreTimeCoef;				// 时间系数
 
 	float				HeroFlushElapseTime;		// 出现计时
 

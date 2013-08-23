@@ -35,6 +35,7 @@ public:
 	Monster* addAMonster(CCPoint pos);
 	Effect* addAnEffect(CCPoint pos, EEffectType type, CCPoint target_pos);
 	Effect* addAnEffectOnCharacter(EEffectType type, Character* pCha);
+	Effect* addANumberOverCharacter(Character* pCha, int num);
 	Goods* addAGoods(CCPoint pos, EGoodType type);
 	
 	/** 

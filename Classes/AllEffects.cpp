@@ -298,3 +298,37 @@ Twinkle* Twinkle::create(const char *pszFileName)
 	CC_SAFE_DELETE(pobSprite);
 	return NULL;
 }
+
+void ShowNum::onEnter()
+{
+	Effect::onEnter();
+
+	m_fLifeTime = 2.0f;
+
+	setScale(0.2);
+
+	CCAction* act = CCSequence::create(
+		CCScaleTo::create(0.2f, 1.5f, 1.5f),
+		CCDelayTime::create(m_fLifeTime),
+		CCCallFunc::create(this, callfunc_selector(Effect::kill)),
+		NULL
+		);
+	runAction(act);
+}
+
+void ShowNum::onExit()
+{
+	Effect::onExit();
+}
+
+ShowNum* ShowNum::create(const char *pszFileName)
+{
+	ShowNum *pobSprite = new ShowNum();
+	if (pobSprite && pobSprite->initWithFile(pszFileName))
+	{
+		pobSprite->autorelease();
+		return pobSprite;
+	}
+	CC_SAFE_DELETE(pobSprite);
+	return NULL;
+}

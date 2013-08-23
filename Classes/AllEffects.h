@@ -94,3 +94,19 @@ public:
 	void onExit();
 	static Twinkle* create(const char *pszFileName);
 };
+
+/** 
+ * 显示X1, X2, X3数字特效
+ */
+class ShowNum : public Effect
+{
+public:
+	void onEnter();
+	void onExit();
+
+	// 如果num == -1, 代表X
+	static ShowNum* create(const char *pszFileName);
+
+private:
+	int m_iNum;
+};

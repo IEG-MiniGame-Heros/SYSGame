@@ -5,6 +5,7 @@
 #include "Skill.h"
 #include "GameHelper.h"
 #include "GameInfo.h"
+#include "AllEffects.h"
 #include "Util.h"
 #include "SimpleAudioEngine.h"
 using namespace CocosDenshion;
@@ -116,6 +117,11 @@ void Hero::onUpdate(float dt)
 		BaseEntity* entity = EM.findHeroNotInQueue(this, /*GI.RangeToPickupHero*/ GI.getSystemConfig().fPickupRange);
 		if (entity != NULL)
 		{
+			// 竟然还要。。。加数字，我无语了
+			GI.ScoreTimeCoef += 1;
+			//showQueueNum(m_pQueue->getQueueNum() + 1);
+			showQueueNum(GI.ScoreTimeCoef);
+
 			m_pQueue->addAMember((Character*)(entity));
 
 			// 吃了之后，增加速度
@@ -220,4 +226,45 @@ void Hero::setIsPickedUp(bool is_picked_up)
 bool Hero::isPickedUp() const 
 {
 	return m_bIsPickedUp;
+}
+
+void Hero::showQueueNum(int QueueNum)
+{
+	std::string sNum = Util::NumberToString<int>(QueueNum);
+
+	// 先清除掉以前的Tag
+	for (int Tag = EHQNT_X; Tag <= EHQNT_3; ++Tag)
+	{
+		CCNode* Child = getChildByTag(Tag);
+		if (Child != NULL)
+		{
+			((ShowNum*)(Child))->kill();
+		}
+	}
+
+	float fH = 45.f;
+	
+	ShowNum* NumX = (ShowNum*)EM.addANumberOverCharacter(this, -1);
+	NumX->setPosition(ccp(30.f, fH));
+	NumX->setTag(EHQNT_X);
+
+	CCAssert(sNum.size() > 0, "Size must > 0!!!!");
+
+	ShowNum* Num1 = (ShowNum*)EM.addANumberOverCharacter(this, int(sNum[0] - '0'));
+	Num1->setPosition(ccp(50.f, fH));
+	Num1->setTag(EHQNT_1);
+
+	if (sNum.length() > 1)
+	{
+		ShowNum* Num2 = (ShowNum*)EM.addANumberOverCharacter(this, int(sNum[1] - '0'));
+		Num2->setPosition(ccp(70.f, fH));
+		Num2->setTag(EHQNT_2);
+	}
+
+	if (sNum.length() > 2)
+	{
+		ShowNum* Num3 = (ShowNum*)EM.addANumberOverCharacter(this, int(sNum[2] - '0'));
+		Num3->setPosition(ccp(90.f, fH));
+		Num3->setTag(EHQNT_3);
+	}
 }
