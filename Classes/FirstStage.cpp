@@ -205,6 +205,7 @@ void FirstStage::updateAllScores(float dt)
 		if (GI.Me && GI.Me->getQueueNum() == 0)
 		{
 			GI.IsGameOver = true;
+
 		}
 	}
 }

@@ -26,6 +26,8 @@ public:
 	bool isReachable(CCPoint pos, CCPoint moveVec, int gridNum);
 	bool isWithinMap(CCPoint pos, float margin = 0.f);
 
+	void setGridInUsed(CCPoint pos, bool flag);
+	void setGridInUsed(int i, int j, bool flag);
 	bool isGridInUsed(int i, int j) const;
 	CCPoint getGridCenter(int i, int j);
 	CCPoint getNearestGridCenter(CCPoint pos);

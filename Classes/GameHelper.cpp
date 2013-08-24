@@ -370,3 +370,18 @@ bool GameHelper::isGridInUsed(int i, int j) const
 {
 	return m_bUsed[i][j];
 }
+
+void GameHelper::setGridInUsed(int i, int j, bool flag)
+{
+	m_bUsed[i][j] = flag;
+}
+
+void GameHelper::setGridInUsed(CCPoint pos, bool flag)
+{
+	int i, j;
+	if (isWithinMap(pos))
+	{
+		getGridIndexOfPos(pos, i, j);
+		m_bUsed[i][j] = flag;
+	}
+}

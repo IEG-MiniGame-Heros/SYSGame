@@ -91,6 +91,7 @@ Hero* EntityManager::addAHero(CCPoint pos)
 		GI.Game->addChild(pHero);
 		pHero->setPosition(pos);
 		m_pAllHeros->addObject(pHero);
+		GI.Helper->setGridInUsed(pos, true);
 		return pHero;
 	}
 
@@ -109,6 +110,7 @@ Monster* EntityManager::addAMonster(CCPoint pos)
 		GI.Game->addChild(pMonster);
 		pMonster->setPosition(pos);
 		m_pAllMonsters->addObject(pMonster);
+		GI.Helper->setGridInUsed(pos, true);
 		return pMonster;
 	}
 
@@ -392,6 +394,7 @@ Goods* EntityManager::addAGoods(CCPoint pos, EGoodType type)
 		goods->setPosition(pos);
 		GI.Game->addChild(goods);
 		m_pAllGoods->addObject(goods);
+		GI.Helper->setGridInUsed(pos, true);
 	}
 
 	return goods;

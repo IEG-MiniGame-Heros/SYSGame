@@ -4,6 +4,8 @@
 #include "GameHelper.h"
 #include "GameInfo.h"
 
+#define HERO_UNBEATABLE 0
+
 void Character::onEnter()
 {
 	MovingEntity::onEnter();
@@ -287,6 +289,13 @@ void Character::getHarmed(int damage, bool bHeroToMonster /* = false */)
 		{
 			EM.addAnEffectOnCharacter(EET_Flash, this);
 		}
+
+#if HERO_UNBEATABLE 
+		if (getType() == ET_Hero)
+		{
+			return;
+		}
+#endif
 
 		// 如果挂了
 		if (m_iCurHealth <= 0)
