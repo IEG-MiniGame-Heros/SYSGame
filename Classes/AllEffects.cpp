@@ -17,7 +17,12 @@ void ThrowableObj::onEnter()
 	Effect::onEnter();
 
 	// ÉèÖÃÐý×ª
-	float rot = ccpAngle(ccp(0, 1), (m_vTargetPos - getPosition()));
+	CCPoint curPos = getPosition();
+	float rot = ccpAngle(ccp(0, 1), (m_vTargetPos - curPos));
+	if (m_vTargetPos.x < curPos.x)
+	{
+		rot *= -1;
+	}
 	setRotation(rot *  180 / PI);
 
 	float slideLength = GI.getSystemConfig().fSkillSlideLen;
