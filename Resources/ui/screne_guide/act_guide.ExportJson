@@ -1,0 +1,312 @@
+{
+  "armature_data": [
+    {
+      "name": "act_guide",
+      "bone_data": [
+        {
+          "name": "Layer102",
+          "parent": "",
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": 0.0,
+          "arrow_y": 0.0,
+          "effectbyskeleton": false,
+          "display_data": [
+            {
+              "displayType": 0,
+              "name": "1.png"
+            },
+            {
+              "displayType": 0,
+              "name": "2.png"
+            },
+            {
+              "displayType": 0,
+              "name": "3.png"
+            },
+            {
+              "displayType": 0,
+              "name": "4.png"
+            },
+            {
+              "displayType": 0,
+              "name": "5.png"
+            },
+            {
+              "displayType": 0,
+              "name": "6.png"
+            },
+            {
+              "displayType": 0,
+              "name": "7.png"
+            },
+            {
+              "displayType": 0,
+              "name": "8.png"
+            },
+            {
+              "displayType": 0,
+              "name": "9.png"
+            },
+            {
+              "displayType": 0,
+              "name": "10.png"
+            },
+            {
+              "displayType": 0,
+              "name": "11.png"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animation_data": [
+    {
+      "name": "act_guide",
+      "mov_data": [
+        {
+          "name": "Action0",
+          "dr": 930,
+          "lp": true,
+          "to": 0,
+          "drTW": 0,
+          "twE": 0,
+          "mov_bone_data": [
+            {
+              "name": "Layer102",
+              "dl": 0.0,
+              "sc": 1.0,
+              "frame_data": [
+                {
+                  "twE": 0,
+                  "dr": 30,
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                },
+                {
+                  "twE": 0,
+                  "dr": 60,
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                },
+                {
+                  "twE": 0,
+                  "dr": 180,
+                  "dI": 2,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                },
+                {
+                  "twE": 0,
+                  "dr": 180,
+                  "dI": 3,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                },
+                {
+                  "twE": 0,
+                  "dr": 180,
+                  "dI": 4,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                },
+                {
+                  "twE": 0,
+                  "dr": 30,
+                  "dI": 5,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                },
+                {
+                  "twE": 0,
+                  "dr": 30,
+                  "dI": 6,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                },
+                {
+                  "twE": 0,
+                  "dr": 30,
+                  "dI": 7,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                },
+                {
+                  "twE": 0,
+                  "dr": 30,
+                  "dI": 8,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                },
+                {
+                  "twE": 0,
+                  "dr": 60,
+                  "dI": 9,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                },
+                {
+                  "twE": 0,
+                  "dr": 120,
+                  "dI": 10,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "texture_data": [
+    {
+      "name": "1",
+      "width": 0.0,
+      "height": 0.0,
+      "pX": 0.5,
+      "pY": 0.5
+    },
+    {
+      "name": "2",
+      "width": 480.0,
+      "height": 800.0,
+      "pX": 0.5,
+      "pY": 0.5
+    },
+    {
+      "name": "3",
+      "width": 480.0,
+      "height": 800.0,
+      "pX": 0.5,
+      "pY": 0.5
+    },
+    {
+      "name": "4",
+      "width": 480.0,
+      "height": 800.0,
+      "pX": 0.5,
+      "pY": 0.5
+    },
+    {
+      "name": "5",
+      "width": 480.0,
+      "height": 800.0,
+      "pX": 0.5,
+      "pY": 0.5
+    },
+    {
+      "name": "6",
+      "width": 480.0,
+      "height": 800.0,
+      "pX": 0.5,
+      "pY": 0.5
+    },
+    {
+      "name": "7",
+      "width": 480.0,
+      "height": 800.0,
+      "pX": 0.5,
+      "pY": 0.5
+    },
+    {
+      "name": "8",
+      "width": 480.0,
+      "height": 800.0,
+      "pX": 0.5,
+      "pY": 0.5
+    },
+    {
+      "name": "9",
+      "width": 480.0,
+      "height": 800.0,
+      "pX": 0.5,
+      "pY": 0.5
+    },
+    {
+      "name": "10",
+      "width": 480.0,
+      "height": 800.0,
+      "pX": 0.5,
+      "pY": 0.5
+    },
+    {
+      "name": "11",
+      "width": 480.0,
+      "height": 800.0,
+      "pX": 0.5,
+      "pY": 0.5
+    }
+  ],
+  "config_file_path": [
+    "act_guide0.plist",
+    "act_guide1.plist",
+    "act_guide2.plist",
+    "act_guide3.plist",
+    "act_guide4.plist",
+    "act_guide5.plist"
+  ]
+}
