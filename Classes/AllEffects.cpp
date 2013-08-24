@@ -147,6 +147,8 @@ void Frozen::frozenStart(Monster* pMonster)
 {
 	float frozenTime = GI.getSystemConfig().fFrozenTime;
 
+	setOpacity(155);
+
 	m_pMonster = pMonster;
 	CCAction* act = CCSequence::create(
 		CCDelayTime::create(frozenTime),

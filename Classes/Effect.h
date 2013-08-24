@@ -5,7 +5,8 @@
 
 enum EEffectActionType
 {
-	EEAT_Frozenning,		// 冰冻特效Tag
+	EEAT_Frozenning,					// 冰冻特效Tag
+	EEAT_FrozenChildTag = 20120219,		// 冰冻特效作为Child的Tag
 };
 
 class Effect : public MovingEntity

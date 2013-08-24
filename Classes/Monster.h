@@ -38,7 +38,6 @@ protected:
 	bool	m_bForceToStop;			// 强制停止
 	bool	m_bDropItemAfterDeath;	// 死后掉物品
 	bool	m_bIsFrozen;			// 是否被冰冻了
-	Frozen*	m_pFrozenEft;			// 冰冻特效指针
 };
 
 #endif

@@ -369,6 +369,10 @@ Effect* EntityManager::addAnEffectOnCharacter(EEffectType type, Character* pCha)
 	case EET_Smog:
 		eft = Smog::create("spirit/effect/Smog_1.png");
 		break;
+
+	case EET_Frozen:
+		eft = Frozen::create("spirit/effect/Frozen.png");
+		break;
 	}
 
 	if (pCha)
@@ -443,6 +447,8 @@ Goods* EntityManager::addAGoods(CCPoint pos, EGoodType type)
  */
 void EntityManager::addCoins(CCPoint pos, int num)
 {
+	GI.Helper->onUpdateGridUsage(0);
+
 	int gi, gj;
 	GI.Helper->getGridIndexOfPos(pos, gi, gj);
 

@@ -131,11 +131,6 @@ void Hero::onUpdate(float dt)
 			SimpleAudioEngine::sharedEngine()->playEffect("music/eat3.mp3");
 			// ²¥·ÅÑÌÎíÌØÐ§
 			EM.addAnEffect(getPosition(), EET_Smog, ccp(0, 0));
-			//CCPoint curPos = getPosition();
-			//EM.addAnEffect(curPos + ccp(-GI.GridSize / 2, -GI.GridSize / 2), EET_Explosion, ccp(0, 0));
-			//EM.addAnEffect(curPos + ccp(-GI.GridSize / 2, +GI.GridSize / 2), EET_Explosion, ccp(0, 0));
-			//EM.addAnEffect(curPos + ccp(+GI.GridSize / 2, -GI.GridSize / 2), EET_Explosion, ccp(0, 0));
-			//EM.addAnEffect(curPos + ccp(+GI.GridSize / 2, +GI.GridSize / 2), EET_Explosion, ccp(0, 0));
 		}
 	}
 	

@@ -208,10 +208,10 @@ void Monster::onUpdate(float dt)
 {
 	if (m_bIsFrozen)
 	{
-		if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1 && !m_pFrozenEft->isKilled() )
-		{
-			m_pFrozenEft->setPosition(getPosition());
-		}
+		//if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1 && !m_pFrozenEft->isKilled() )
+		//{
+		//	m_pFrozenEft->setPosition(getPosition());
+		//}
 		
 		return;
 	}
@@ -245,10 +245,10 @@ void Monster::kill()
 	// 如果正结冰
 	if (m_bIsFrozen)
 	{
-		if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1)
+		CCNode* pFrozChild = getChildByTag(EEAT_FrozenChildTag);
+		if (pFrozChild != NULL)
 		{
-			m_pFrozenEft->stopFrozen();
-			m_pFrozenEft->kill();
+			((Frozen*)(pFrozChild))->kill();
 		}
 	}
 
@@ -285,16 +285,16 @@ void Monster::setFrozen(bool frozen)
 		// 本身已经结冰了
 		if (m_bIsFrozen)
 		{
-			// 先把原来的特效清空
-			if (m_pFrozenEft && m_pFrozenEft->retainCount() > 1)
+			CCNode* pFrozChild = getChildByTag(EEAT_FrozenChildTag);
+			if (pFrozChild != NULL)
 			{
-				//m_pFrozenEft->stopFrozen();
-				m_pFrozenEft->kill();
+				((Frozen*)(pFrozChild))->kill();
 			}
 		}
 		
-		m_pFrozenEft = (Frozen*)(EM.addAnEffect(getPosition(), EET_Frozen, ccp(0, 0)));
-		m_pFrozenEft->frozenStart(this);
+		Frozen* pFroz = (Frozen*)(EM.addAnEffectOnCharacter(EET_Frozen, this));
+		pFroz->setTag(EEAT_FrozenChildTag);
+		pFroz->frozenStart(this);
 		m_bIsFrozen = true;
 
 		// 冰冻之后，技能也要冻结掉
@@ -303,7 +303,6 @@ void Monster::setFrozen(bool frozen)
 	else 
 	{
 		m_bIsFrozen = false;
-		m_pFrozenEft = NULL;
 		m_pSkill->setEnable(true);
 	}
 }
