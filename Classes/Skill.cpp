@@ -18,6 +18,7 @@ void Skill::onEnter()
 	m_bIsAttacking = false;
 	m_fElapseTime = 100000.f;
 	m_bIsEnable = true;
+	m_pEffect = NULL;
 
 	// 设置技能各种属性
 	int SkillIdx = m_iSkillID - 1;
@@ -102,7 +103,7 @@ void Skill::onUpdate(float dt)
 			if (m_pEffect && m_pEffect->retainCount() > 1 && !m_pEffect->isKilled())
 			{
 				//CCLog("Fire, Count = %d", m_pEffect->retainCount());
-				pEnemy = (Character*)EM.findEntityInRange(m_pEffect, m_fHitRange, m_pOwner->getEnemyType());
+				pEnemy = (Character*)EM.findNearestEntityInRange(m_pEffect, m_fHitRange, m_pOwner->getEnemyType());
 			}
 			if (pEnemy)
 			{

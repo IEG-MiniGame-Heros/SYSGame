@@ -10,7 +10,6 @@
 #include "SimpleAudioEngine.h"
 using namespace CocosDenshion;
 
-#define HERO_UNBEATABLE 0
 
 void Hero::onEnter()
 {
@@ -152,13 +151,12 @@ void Hero::onUpdate(float dt)
 	if (entity)
 	{
 		// 我也死了，呜呜呜>_<
-#if !HERO_UNBEATABLE
 		//kill();
 		getHarmed(1000000);
 
 		// 这个怪死了
 		((Character*)(entity))->getHarmed(1000000, true);
-#endif
+
 	}
 
 	if (!onMove())
@@ -170,10 +168,11 @@ void Hero::onUpdate(float dt)
 	if (m_pQueue && m_pQueue->getHead() == this)
 	{
 		entity = EM.findEntityInRange(this, 25.f, ET_Hero);
-		if (entity)
+		if (entity && ((Hero*)(entity))->isPickedUp())
 		{
 			m_pQueue->allGotoDie();
 			GI.IsGameOver = true;
+			CCLog("Crash a teammate to die!!!!");
 			SimpleAudioEngine::sharedEngine()->playEffect("music/eat3.mp3");
 		}
 	}
