@@ -42,7 +42,8 @@ void Skill::attack()
 {
 	m_bIsAttacking = true;
 	m_fElapseTime = 0;
-	m_pEffect = EM.addAnEffect(m_pOwner->getPosition(), EEffectType(m_iSkillID), m_pTarget->getPosition());
+	EM.addAnAttackEffect(m_pOwner->getPosition(), EEffectType(m_iSkillID), m_pOwner->getEnemyType(), 
+		m_iDamage, m_pTarget->getPosition());
 }
 
 bool Skill::shouldAttack()
@@ -52,18 +53,11 @@ bool Skill::shouldAttack()
 		return false;
 	}
 
-	// 如果正在攻击中
-	if (m_bIsAttacking) 
-	{
-		return false;
-	}
-
 	if (m_fElapseTime < m_fCoolTime)
 	{
 		return false;
 	}
 
-	//Character* pCha = (Character*)EM.findEntityInRange(m_pOwner, m_fAttackRange, m_pOwner->getEnemyType());
 	Character* pCha = (Character*)EM.findNearestEntityInRange(m_pOwner, m_fAttackRange, m_pOwner->getEnemyType());
 	if (pCha)
 	{
@@ -90,36 +84,18 @@ void Skill::onUpdate(float dt)
 		m_fElapseTime += dt;
 	}
 
-	if (m_bIsAttacking)
-	{
-		// 特效已经消亡
-		if (!m_pEffect || m_pEffect->isKilled())
-		{
-			m_bIsAttacking = false;
-		}
-		else 
-		{
-			Character* pEnemy = NULL;
-			if (m_pEffect && m_pEffect->retainCount() > 1 && !m_pEffect->isKilled())
-			{
-				//CCLog("Fire, Count = %d", m_pEffect->retainCount());
-				pEnemy = (Character*)EM.findNearestEntityInRange(m_pEffect, m_fHitRange, m_pOwner->getEnemyType());
-			}
-			if (pEnemy)
-			{
-				// 判定伤害
-				bool IsMonster = false;
-				if (pEnemy->getType() == ET_Monster)
-				{
-					IsMonster = true;
-				}
-				pEnemy->getHarmed(m_iDamage, IsMonster);
-				m_pEffect->setVisible(false);
-				m_pEffect = NULL;
-				m_bIsAttacking = false;
-			}
-		}
-	}
+	//if (m_bIsAttacking)
+	//{
+	//	// 特效已经消亡
+	//	if (!m_pEffect || m_pEffect->isKilled())
+	//	{
+	//		m_bIsAttacking = false;
+	//	}
+	//	else 
+	//	{
+
+	//	}
+	//}
 
 	if (shouldAttack())
 	{

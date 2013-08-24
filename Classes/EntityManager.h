@@ -12,6 +12,7 @@ USING_NS_CC;
 class Hero;
 class Monster;
 class Character;
+class ThrowableObj;
 class Effect;
 class Goods;
 
@@ -37,6 +38,9 @@ public:
 	Effect* addAnEffectOnCharacter(EEffectType type, Character* pCha);
 	Effect* addANumberOverCharacter(Character* pCha, int num);
 	Goods* addAGoods(CCPoint pos, EGoodType type);
+
+	// 增加一个进攻特效（重整一下进攻特效）
+	Effect*	addAnAttackEffect(CCPoint pos, EEffectType type, EEntityType enemy_type, int damage, CCPoint target_pos);
 
 	// 增加指定英雄 Add By super 20130824
 	Hero* addAppointedHero(CCPoint pos);

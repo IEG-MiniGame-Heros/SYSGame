@@ -16,8 +16,7 @@ void ThrowableObj::onEnter()
 {
 	Effect::onEnter();
 
-	m_bShouldMove = true;
-
+	// ÉèÖÃÐý×ª
 	float rot = ccpAngle(ccp(0, 1), (m_vTargetPos - getPosition()));
 	setRotation(rot *  180 / PI);
 
@@ -35,16 +34,45 @@ void ThrowableObj::onEnter()
 	// JQ_effect
 	SimpleAudioEngine::sharedEngine()->playEffect("music/fire.mp3");
 	runAction(act);
+
+	// ÃüÖÐ·¶Î§
+	m_fHitRange = GI.getSystemConfig().fHitRange;
+
+	schedule(schedule_selector(ThrowableObj::onUpdate));
+}
+
+void ThrowableObj::onUpdate(float dt)
+{
+	if (!m_bIsKilled && isVisible())
+	{
+		Character* pEnemy = NULL;
+		
+		pEnemy = (Character*)EM.findNearestEntityInRange(this, m_fHitRange, m_iEnemyType);
+
+		if (pEnemy)
+		{
+			// ÅÐ¶¨ÉËº¦
+			bool IsMonster = false;
+			if (pEnemy->getType() == ET_Monster)
+			{
+				IsMonster = true;
+			}
+			pEnemy->getHarmed(m_iDamage, (pEnemy->getType() == ET_Monster));
+			setVisible(false);
+		}
+	}
 }
 
 void ThrowableObj::onExit()
 {
+	unschedule(schedule_selector(ThrowableObj::onUpdate));
+
 	Effect::onExit();
 }
 
-ThrowableObj* ThrowableObj::create(const char *pszFileName, EEffectType eft)
+ThrowableObj* ThrowableObj::create(const char *pszFileName, EEffectType eft, EEntityType enemy_type, int damage)
 {
-	ThrowableObj *pobSprite = new ThrowableObj(eft);
+	ThrowableObj *pobSprite = new ThrowableObj(eft, enemy_type, damage);
 	if (pobSprite && pobSprite->initWithFile(pszFileName))
 	{
 		pobSprite->autorelease();

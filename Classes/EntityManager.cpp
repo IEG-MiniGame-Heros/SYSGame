@@ -274,47 +274,58 @@ CCArray* EntityManager::getArrayByType(EEntityType type) const
 	return ret;
 }
 
-Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target_pos)
+Effect* EntityManager::addAnAttackEffect(CCPoint pos, EEffectType type, EEntityType enemy_type, int damage, CCPoint target_pos)
 {
 	Effect* eft = NULL;
 
 	switch (type)
 	{
 	case EET_FireBall:
-		eft = ThrowableObj::create("spirit/skill/FireBall_1.png", type);
-		eft->setTarget(target_pos);
+		eft = ThrowableObj::create("spirit/skill/FireBall_1.png", type, enemy_type, damage);
 		break;
 
 	case EET_Bullet:
-		eft = ThrowableObj::create("spirit/skill/Bullet_1.png", type);
-		eft->setTarget(target_pos);
+		eft = ThrowableObj::create("spirit/skill/Bullet_1.png", type, enemy_type, damage);
 		break;
 
 	case EET_IceBall:
-		eft = ThrowableObj::create("spirit/skill/IceBall.png", type);
-		eft->setTarget(target_pos);
+		eft = ThrowableObj::create("spirit/skill/IceBall.png", type, enemy_type, damage);
 		break;
 
 	case EET_MonsLight:
-		eft = ThrowableObj::create("spirit/skill/Shit.png", type);
-		eft->setTarget(target_pos);
+		eft = ThrowableObj::create("spirit/skill/Shit.png", type, enemy_type, damage);
 		break;
 
 	case EET_SeeStar:
-		eft = ThrowableObj::create("spirit/skill/SeeStar.png", type);
-		eft->setTarget(target_pos);
+		eft = ThrowableObj::create("spirit/skill/SeeStar.png", type, enemy_type, damage);
 		break;
 
 	case EET_Arrow:
-		eft = ThrowableObj::create("spirit/skill/Arrow1.png", type);
-		eft->setTarget(target_pos);
+		eft = ThrowableObj::create("spirit/skill/Arrow1.png", type, enemy_type, damage);
 		break;
 
 	case EET_EnergyBall:
-		eft = ThrowableObj::create("spirit/skill/EnergyBall.png", type);
-		eft->setTarget(target_pos);
+		eft = ThrowableObj::create("spirit/skill/EnergyBall.png", type, enemy_type, damage);
 		break;
+	}
 
+	if (GI.Game)
+	{
+		eft->setTarget(target_pos);
+		eft->setPosition(pos);
+		GI.Game->addChild(eft);		
+		m_pAllEffects->addObject(eft);
+	}
+
+	return eft;
+}
+
+Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target_pos)
+{
+	Effect* eft = NULL;
+
+	switch (type)
+	{
 	case EET_Explosion:
 		eft = Explosion::create("spirit/effect/Explosion_1.png");
 		break;

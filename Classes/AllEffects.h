@@ -12,15 +12,21 @@ class ThrowableObj : public Effect
 {
 public:
 	ThrowableObj() {}
-	ThrowableObj(EEffectType eft) : m_EffectType(eft) {}
+	ThrowableObj(EEffectType eft, EEntityType enemy_type, int damage) 
+		: m_EffectType(eft), m_iEnemyType(enemy_type), m_iDamage(damage) {}
+
+	void onUpdate(float dt);
 
 	void onEnter();
 	void onExit();
 
-	static ThrowableObj* create(const char *pszFileName, EEffectType eft);
+	static ThrowableObj* create(const char *pszFileName, EEffectType eft, EEntityType enemy_type, int damage);
 
 private:
 	EEffectType			m_EffectType;
+	int					m_iDamage;
+	float				m_fHitRange;
+	EEntityType			m_iEnemyType;
 };
 #endif
 
