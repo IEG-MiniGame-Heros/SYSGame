@@ -98,6 +98,23 @@ Hero* EntityManager::addAHero(CCPoint pos)
 	return NULL;
 }
 
+Hero* EntityManager::addAppointedHero(CCPoint pos)
+{
+	if (GI.Game)
+	{
+		int HeroID = GI.CurrHeroId + 1;
+		sprintf(GSHero, "spirit/hero/Hero%d", HeroID);
+		Hero* pHero = Hero::create(strcat(GSHero, "_D_1.png"), HeroID);
+		GI.Game->addChild(pHero);
+		pHero->setPosition(pos);
+		m_pAllHeros->addObject(pHero);
+		GI.Helper->setGridInUsed(pos, true);
+		return pHero;
+	}
+
+	return NULL;
+}
+
 char GSMons[35];
 
 Monster* EntityManager::addAMonster(CCPoint pos)

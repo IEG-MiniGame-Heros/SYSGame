@@ -84,8 +84,11 @@ void FirstStage::onEnter()
 	CCAssert((GI.Me == NULL), "Me is not null");
 	GI.Me = pQueue;
 	GI.Me->retain();
-
-	Hero* p1 = EM.addAHero(GI.Helper->getGridCenter(21, 11));
+	Hero* p1;
+	if (GI.CurrHeroId >=0 && GI.CurrHeroId <=3)
+		p1 = EM.addAppointedHero(GI.Helper->getGridCenter(21, 11));
+	else
+		p1 = EM.addAHero(GI.Helper->getGridCenter(21, 11));
 	p1->setMoveVector(ccp(0, -1));
 	GI.Me->addAMember(p1);
 	GI.Me->refreshMembers();

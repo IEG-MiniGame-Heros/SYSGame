@@ -1,5 +1,5 @@
 #include "IntroduceScrene.h"
-#include "GuideScrene.h"
+#include "SelectScrene.h"
 #include "SimpleAudioEngine.h"
 using namespace CocosDenshion;
 
@@ -65,7 +65,7 @@ bool IntroduceScrene::init()
 void IntroduceScrene::tbContinueCallback(cocos2d::CCObject *pSender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
-	CCDirector::sharedDirector()->replaceScene(GuideScrene::scene());
+	CCDirector::sharedDirector()->replaceScene(SelectScrene::scene());
 }
 
 void IntroduceScrene::update(float time)  
@@ -78,7 +78,7 @@ void IntroduceScrene::update(float time)
 	iFramePos++;
 	if (iFramePos == (int)(vFrames.size() - 1))
 	{
-		unschedule(schedule_selector(IntroduceScrene::update));
+		unschedule(schedule_selector(SelectScrene::update));
 	}
 	ivAnimation->setTexture(vFrames[iFramePos].c_str());
 	if (fTotalTime >= CHANGE_DIALOG_INTERVAL)

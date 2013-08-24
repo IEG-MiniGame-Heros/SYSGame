@@ -45,6 +45,7 @@ public:
 	float				RangeToPickupHero;			// “吃”英雄的有效范围
 	float				HeroInitSpeed;				// 英雄初始速度
 	float				HeroMaxSpeed;				// 英雄最大速度
+	int					CurrHeroId;					// 当前选择的英雄ID
 
 	// 怪
 	std::string			PathOfMonster;				// 怪的图片路径

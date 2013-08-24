@@ -149,7 +149,7 @@
                   "capInsetsY": 31.333334,
                   "disabled": "",
                   "normal": "right.png",
-                  "pressed": "big_left.png",
+                  "pressed": "big_right.png",
                   "scale9Enable": false,
                   "scale9Height": 94,
                   "scale9Width": 57

@@ -36,7 +36,7 @@ bool StartScrene::init()
 void StartScrene::tbSettingCallback(cocos2d::CCObject *pSender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("music/btn.mp3");
-	CCDirector::sharedDirector()->replaceScene(SoundScrene::scene());
+	CCDirector::sharedDirector()->pushScene(SoundScrene::scene());
 }
 
 void StartScrene::tbStartGameCallback(cocos2d::CCObject *pSender)

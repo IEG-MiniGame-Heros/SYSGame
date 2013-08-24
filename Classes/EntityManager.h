@@ -37,6 +37,9 @@ public:
 	Effect* addAnEffectOnCharacter(EEffectType type, Character* pCha);
 	Effect* addANumberOverCharacter(Character* pCha, int num);
 	Goods* addAGoods(CCPoint pos, EGoodType type);
+
+	// 增加指定英雄 Add By super 20130824
+	Hero* addAppointedHero(CCPoint pos);
 	
 	/** 
 	 * 需要同时生成若干个金币

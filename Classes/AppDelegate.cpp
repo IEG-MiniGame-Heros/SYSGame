@@ -3,10 +3,6 @@
 #include "AppDelegate.h"
 #include "LogoScrene.h"
 #include "SimpleAudioEngine.h"
-#include "HelloWorldScene.h"
-#include "FirstStage.h"
-#include "ResultScrene.h"
-#include "GuideScrene.h"
 
 using namespace CocosDenshion;
 
@@ -49,7 +45,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	// create a scene. it's an autorelease object
 	CCScene *pScene = LogoScrene::scene();
-	//CCScene *pScene = GuideScrene::scene();
+	//CCScene *pScene = SelectScrene::scene();
 	//CCScene *pScene = ResultScrene::scene(31750, 1, 35, 20, 680);
 	//CCScene* pScene = FirstStage::scene();
 
