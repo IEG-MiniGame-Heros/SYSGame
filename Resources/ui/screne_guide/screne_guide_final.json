@@ -30,7 +30,7 @@
           "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
           "classname": "CCArmature",
           "name": "CCArmature",
-          "file": "act_guide.ExportJson",
+          "file": "ui/screne_guide/act_guide.ExportJson",
           "selectedactionname": null
         }
       ]
@@ -54,7 +54,7 @@
           "__type": "ComGUIAdapterSurrogate:#EditorCommon.JsonModel.Component",
           "classname": "GUIComponent",
           "name": "GUIComponent",
-          "file": "ui_guide_1.ExportJson"
+          "file": "ui/screne_guide/ui_guide_1.ExportJson"
         }
       ]
     }

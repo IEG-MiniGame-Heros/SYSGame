@@ -6,6 +6,7 @@
 #include "HelloWorldScene.h"
 #include "FirstStage.h"
 #include "ResultScrene.h"
+#include "GuideScrene.h"
 
 using namespace CocosDenshion;
 
@@ -48,7 +49,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	// create a scene. it's an autorelease object
 	CCScene *pScene = LogoScrene::scene();
-	//CCScene *pScene = LogoScrene::scene();
+	//CCScene *pScene = GuideScrene::scene();
 	//CCScene *pScene = ResultScrene::scene(31750, 1, 35, 20, 680);
 	//CCScene* pScene = FirstStage::scene();
 
@@ -63,6 +64,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/fire.mp3");
 	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/glass.mp3");
 	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/kick.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("/music/ready_go.mp3");
 	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("music/playing.mpc");
 	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("music/background.mpc");
 
