@@ -46,6 +46,7 @@ void Hero::onEnter()
 	// 设置技能
 	m_pSkill = Skill::create( GI.getHeroConfig()[HeroIdx].iSkillID);
 	addChild(m_pSkill);
+	m_pSkill->setEnable(false);
 
 	// 设置动画
 	// 0.右 1.下 2.左 3.上 
@@ -208,6 +209,11 @@ Hero::Hero(int ID) : m_iHeroID(ID)
 void Hero::setIsPickedUp(bool is_picked_up)
 {
 	m_bIsPickedUp = is_picked_up;
+
+	if (m_pSkill)
+	{
+		m_pSkill->setEnable(true);
+	}
 	
 	// 英雄被获取了，就把闪烁动画给停了
 	if (m_bIsPickedUp)
