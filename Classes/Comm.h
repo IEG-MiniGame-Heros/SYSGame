@@ -34,12 +34,14 @@ enum EEffectType
 	EET_IceBall		=	3,	// 冰球
 	EET_SeeStar		=	4,	// 海星
 	EET_MonsLight	=	5,	// 小怪攻击
-	EET_Explosion	=	6,	// 爆炸
-	EET_Frozen		=	7,	// 冰冻
-	EET_Flash		=	8,	// 闪光
-	EET_Smog		=	9,	// 烟雾
-	EET_Twinkle		=	10,	// 星星闪烁
-	EET_ShowNum		=	11,	// 显示数字
+	EET_Arrow		=	6,	// 箭
+	EET_EnergyBall	=	7,	// 能量球
+	EET_Explosion	=	8,	// 爆炸
+	EET_Frozen		=	9,	// 冰冻
+	EET_Flash		=	10,	// 闪光
+	EET_Smog		=	11,	// 烟雾
+	EET_Twinkle		=	12,	// 星星闪烁
+	EET_ShowNum		=	13,	// 显示数字
 };
 
 // 物品类型

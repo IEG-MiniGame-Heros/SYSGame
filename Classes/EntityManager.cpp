@@ -305,6 +305,16 @@ Effect* EntityManager::addAnEffect(CCPoint pos, EEffectType type, CCPoint target
 		eft->setTarget(target_pos);
 		break;
 
+	case EET_Arrow:
+		eft = ThrowableObj::create("spirit/skill/Arrow1.png", type);
+		eft->setTarget(target_pos);
+		break;
+
+	case EET_EnergyBall:
+		eft = ThrowableObj::create("spirit/skill/EnergyBall.png", type);
+		eft->setTarget(target_pos);
+		break;
+
 	case EET_Explosion:
 		eft = Explosion::create("spirit/effect/Explosion_1.png");
 		break;

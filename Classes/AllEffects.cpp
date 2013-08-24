@@ -305,7 +305,7 @@ void ShowNum::onEnter()
 
 	m_fLifeTime = 2.0f;
 
-	setScale(0.2);
+	setScale(0.2f);
 
 	CCAction* act = CCSequence::create(
 		CCScaleTo::create(0.2f, 1.5f, 1.5f),
