@@ -33,7 +33,7 @@ void LogoScrene::replaceScrene(float dt)
 void LogoScrene::onEnter()
 {
 	CCLayer::onEnter();
-	this->schedule(schedule_selector(LogoScrene::replaceScrene), 1.0f);  
+	this->schedule(schedule_selector(LogoScrene::replaceScrene), 3.0f);  
 }
 
 void LogoScrene::onExit()

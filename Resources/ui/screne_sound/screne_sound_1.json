@@ -133,7 +133,7 @@
               "tag": 3,
               "touchAble": false,
               "useMergedTexture": false,
-              "visible": true,
+              "visible": false,
               "width": 428,
               "x": 14,
               "xProportion": 0.0291666668,
