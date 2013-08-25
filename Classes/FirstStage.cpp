@@ -69,7 +69,7 @@ void FirstStage::onEnter()
 		map = CCTMXTiledMap::create("map/Map06.tmx");
 	}
 	
-	addChild(map, 0, 1);
+	addChild(map, 0);
 	map->setPosition(ccp(0, 0));
 	map->setTag(MAP_TAG);
 	GI.Map = map;
