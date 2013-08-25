@@ -10,11 +10,15 @@
 
 #include "SimpleAudioEngine.h"
 
+#include <ctime>
+#include <cstdlib>
+
 using namespace CocosDenshion;
 
 USING_NS_CC;
 
 #define UPDATE_CHECK_SCORE_TIME 0.5f
+#define MAP_TAG 19491001
 
 cocos2d::CCScene* FirstStage::scene()
 {
@@ -54,9 +58,20 @@ void FirstStage::onEnter()
 	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 	CCPoint center = ccp(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
 
-	CCTMXTiledMap *map = CCTMXTiledMap::create("map/Map06.tmx");
+	CCTMXTiledMap *map = NULL;
+	srand(time(0));
+	if (rand() % 2)
+	{
+		map = CCTMXTiledMap::create("map/Map07.tmx");
+	}
+	else 
+	{
+		map = CCTMXTiledMap::create("map/Map06.tmx");
+	}
+	
 	addChild(map, 0, 1);
 	map->setPosition(ccp(0, 0));
+	map->setTag(MAP_TAG);
 	GI.Map = map;
 	GI.MapHeight = map->getContentSize().height;
 	GI.MapWidth = map->getContentSize().width;
@@ -131,6 +146,11 @@ void FirstStage::onExit()
 	unschedule(schedule_selector(FirstStage::updateLayer));
 	unschedule(schedule_selector(FirstStage::updateAllScores));
 
+	// °ÑµØÍ¼¸øremoveµô
+	if (getChildByTag(MAP_TAG) != NULL)
+	{
+		removeChildByTag(MAP_TAG);
+	}
 	GI.Me->release();
 	GI.Me = NULL;
 	EM.removeAll();
