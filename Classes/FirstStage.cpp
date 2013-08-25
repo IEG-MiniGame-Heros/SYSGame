@@ -62,11 +62,11 @@ void FirstStage::onEnter()
 	srand(time(0));
 	if (rand() % 2)
 	{
-		map = CCTMXTiledMap::create("map/Map07.tmx");
+		map = CCTMXTiledMap::create("map/ice_map.tmx");
 	}
 	else 
 	{
-		map = CCTMXTiledMap::create("map/Map06.tmx");
+		map = CCTMXTiledMap::create("map/grass_map.tmx");
 	}
 	
 	addChild(map, 0);
@@ -81,9 +81,9 @@ void FirstStage::onEnter()
     //CCTMXObjectGroup* objGroup = map->objectGroupNamed("objects");
 
     /* ¼ÓÔØmeta²ã */
-	CCTMXLayer*	meta = map->layerNamed("meta");
-    GI.Meta = meta;
-    GI.Meta->setVisible(false);
+	//CCTMXLayer*	meta = map->layerNamed("meta");
+    //GI.Meta = meta;
+    //GI.Meta->setVisible(false);
 
     /* ¼ÓÔØÕÏ°­Îï²ã */
     //GI.Barrier = map->layerNamed("barrier");
