@@ -159,7 +159,7 @@ BaseEntity* EntityManager::findEntityInRange(BaseEntity* pMe, float range, EEnti
 BaseEntity* EntityManager::findNearestEntityInRange(BaseEntity* pMe, float range, EEntityType type)
 {
 	BaseEntity* ret = NULL;
-	float min_dist = range * range;
+	float min_dist = range * range + 1e-6;
 	CCObject* tObject;	
 
 	CCARRAY_FOREACH(getArrayByType(type), tObject)
@@ -167,14 +167,16 @@ BaseEntity* EntityManager::findNearestEntityInRange(BaseEntity* pMe, float range
 		BaseEntity* tEntity = (BaseEntity*)(tObject);
 		if (tEntity != pMe && tEntity->getType() == type)
 		{
-			float dist_sqrt = pMe->getPosition().getDistanceSq(tEntity->getPosition());
-			if (dist_sqrt < range * range + 1e-6)
+			// 如果是英雄而且还没被捡起来
+			if (type == ET_Hero && !((Hero*)(tEntity))->isPickedUp())
 			{
-				if (dist_sqrt < min_dist)
-				{
-					ret = tEntity;
-					min_dist = dist_sqrt;
-				}				
+				continue;
+			}
+			float dist_sqrt = pMe->getPosition().getDistanceSq(tEntity->getPosition());
+			if (dist_sqrt < min_dist)
+			{
+				ret = tEntity;
+				min_dist = dist_sqrt;
 			}
 		}
 	}
