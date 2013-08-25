@@ -135,8 +135,33 @@ void ResultScrene::update(float dt)
 	else
 	{
 		CCLog("show result finish");
-		laScore->setVisible(true);
-		laScore->setStringValue(N2C(iScore));
+		//laScore->setVisible(true);
+		//laScore->setStringValue(N2C(iScore));
+
+
+		CCSprite *score = CCSprite::create();
+		string s = Util::convertScore2string(iScore);
+
+		int size = s.size();
+		float t = 0;
+		for (int i = size - 1; i >= 0; i--)
+		{
+			CCLog("now : %c, t : %f", s.c_str()[i], t);
+			if (i == (size - 1))
+			{
+				t = Util::convertNumber2Spirit2(score, '-1', s.c_str()[i], 0, 0);
+			}
+			else
+			{
+				t = Util::convertNumber2Spirit2(score, s.c_str()[i + 1], s.c_str()[i], size - i, t);
+			}
+		}
+
+		ul->addChild(score);
+		CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+		float halfScreneWidth = visibleSize.width / 2;
+		score->setPosition(ccp(halfScreneWidth - t / 2 + 50, 520));
+
 		unschedule(schedule_selector(ResultScrene::update));
 		if (isNewRecord)
 			iv_newRecord->setVisible(true);

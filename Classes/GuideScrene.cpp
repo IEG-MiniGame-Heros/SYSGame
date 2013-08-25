@@ -48,7 +48,7 @@ void GuideScrene::playReadyGo(float dt)
 {
 	int nowFrames = armLoad->getAnimation()->getCurrentFrameIndex();
 	if (nowFrames == READY_FRAMES)
-	{
+	{ 
 		SimpleAudioEngine::sharedEngine()->playEffect("/music/ready_go.mp3");
 	}
 	if (nowFrames >= ALL_FRAMES)

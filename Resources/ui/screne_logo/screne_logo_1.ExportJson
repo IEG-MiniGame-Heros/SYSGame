@@ -52,7 +52,7 @@
           "capInsetsWidth": 160,
           "capInsetsX": 160,
           "capInsetsY": 266.666656,
-          "fileName": "bg_logo.png",
+          "fileName": "logo_bg_new.png",
           "scale9Enable": false,
           "scale9Height": 800,
           "scale9Width": 480
@@ -64,7 +64,7 @@
       "classname": "Panel",
       "name": "Panel",
       "ZOrder": 0,
-      "actiontag": 19,
+      "actiontag": -1,
       "anchorPointX": 0,
       "anchorPointY": 0,
       "classType": "Panel",

@@ -4,6 +4,9 @@
 #include "Comm.h"
 #include <string>
 #include <sstream>
+#include "cocos2d.h"
+
+using namespace cocos2d;
 using namespace std;
 
 #define N2S(num) (Util::NumberToString(num))
@@ -82,6 +85,130 @@ public:
 		} while (0);
 		return ;
 	}
+
+	static string convertScore2string(int score)
+	{
+		string s, ss;
+		s = N2S(score);
+		int size = (int)s.size();
+		int count = 0;
+		for (int i = size - 1; i >= 0; i--)
+		{
+			count++;
+			char c = s.c_str()[i];
+			ss += c;
+			if (count == 3 && i != 0)
+			{
+				ss += ',';
+				count = 0;
+			}
+		}
+		CCLog("string %s", ss.c_str());
+		return ss;
+	}
+
+
+	static float convertNumber2Spirit2(CCSprite *parentSpirit, char before_c, char c, int pos, float before_separator_size)
+	{
+		const char *fileName;
+		int final_separator_size;
+		int base_separator_size = 45;
+
+		switch(before_c)
+		{
+		case '0':
+			base_separator_size = 42;
+			break;
+		case '1':
+			base_separator_size = 30;
+			break;
+		case '2':
+			base_separator_size = 37;
+			break;
+		case '3':
+			base_separator_size = 37;
+			break;
+		case '4':
+			base_separator_size = 37;
+			break;
+		case '5':
+			base_separator_size = 37;
+			break;
+		case '6':
+			base_separator_size = 37;
+			break;
+		case '7':
+			base_separator_size = 37;
+			break;
+		case '8':
+			base_separator_size = 38;
+			break;
+		case '9':
+			base_separator_size = 37;
+			break;
+		default:
+			base_separator_size = 30;
+			break;
+		};
+
+		switch(c)
+		{
+		case '0':
+			fileName = "ui/score/0.png";
+			break;
+		case '1':
+			fileName = "ui/score/1.png";
+			break;
+		case '2':
+			fileName = "ui/score/2.png";
+			break;
+		case '3':
+			fileName = "ui/score/3.png";
+			break;
+		case '4':
+			fileName = "ui/score/4.png";
+			break;
+		case '5':
+			fileName = "ui/score/5.png";
+			break;
+		case '6':
+			fileName = "ui/score/6.png";
+			break;
+		case '7':
+			fileName = "ui/score/7.png";
+			break;
+		case '8':
+			fileName = "ui/score/8.png";
+			break;
+		case '9':
+			fileName = "ui/score/9.png";
+			break;
+		default:
+			fileName = "ui/score/sign.png";
+			break;
+		};
+		if (pos == 0)
+		{
+			parentSpirit->initWithFile(fileName);
+			return 0.0f;
+		}
+		if (pos % 4 == 3 || (pos % 4 == 0 && pos > 0))
+		{
+			final_separator_size = base_separator_size + 10;
+		} else 
+		{
+			final_separator_size = base_separator_size;
+		}
+
+		float size = final_separator_size + before_separator_size;
+		CCSprite *child = CCSprite::create();
+		child->initWithFile(fileName);
+		child->setPosition(ccp(parentSpirit->getContentSize().width/2 + size, parentSpirit->getContentSize().height/2));
+		parentSpirit->addChild(child);
+
+		return size;
+	}
+
 };
 
 #endif
