@@ -26,6 +26,7 @@ public :
 	static cocos2d::CCScene* scene();
 
 	void tbContinueCallback(cocos2d::CCObject *pSender);
+	void changeScrene(float dt);
 	void update(float time);
 	CREATE_FUNC(IntroduceScrene);
 

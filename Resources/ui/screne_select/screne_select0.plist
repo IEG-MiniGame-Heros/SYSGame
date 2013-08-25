@@ -4,7 +4,7 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>select_bg.png</key>
+			<key>select_background.png</key>
 			<dict>
 				<key>width</key>
 				<integer>480</integer>

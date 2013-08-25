@@ -23,16 +23,16 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>logo_main.png</key>
+			<key>logo_top.png</key>
 			<dict>
 				<key>width</key>
-				<integer>428</integer>
+				<integer>450</integer>
 				<key>height</key>
-				<integer>238</integer>
+				<integer>200</integer>
 				<key>originalWidth</key>
-				<integer>428</integer>
+				<integer>450</integer>
 				<key>originalHeight</key>
-				<integer>238</integer>
+				<integer>200</integer>
 				<key>x</key>
 				<integer>482</integer>
 				<key>y</key>
@@ -42,16 +42,16 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>btn_startgame.png</key>
+			<key>logo_install.png</key>
 			<dict>
 				<key>width</key>
-				<integer>231</integer>
+				<integer>100</integer>
 				<key>height</key>
-				<integer>107</integer>
+				<integer>100</integer>
 				<key>originalWidth</key>
-				<integer>231</integer>
+				<integer>100</integer>
 				<key>originalHeight</key>
-				<integer>107</integer>
+				<integer>100</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -61,18 +61,18 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>big_start.png</key>
+			<key>big_logo_install.png</key>
 			<dict>
 				<key>width</key>
-				<integer>277</integer>
+				<integer>120</integer>
 				<key>height</key>
-				<integer>128</integer>
+				<integer>120</integer>
 				<key>originalWidth</key>
-				<integer>277</integer>
+				<integer>120</integer>
 				<key>originalHeight</key>
-				<integer>128</integer>
+				<integer>120</integer>
 				<key>x</key>
-				<integer>233</integer>
+				<integer>102</integer>
 				<key>y</key>
 				<integer>802</integer>
 				<key>offsetX</key>
@@ -80,18 +80,18 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>btn_setting2.png</key>
+			<key>logo_rank.png</key>
 			<dict>
 				<key>width</key>
-				<integer>64</integer>
+				<integer>100</integer>
 				<key>height</key>
-				<integer>64</integer>
+				<integer>100</integer>
 				<key>originalWidth</key>
-				<integer>64</integer>
+				<integer>100</integer>
 				<key>originalHeight</key>
-				<integer>64</integer>
+				<integer>100</integer>
 				<key>x</key>
-				<integer>512</integer>
+				<integer>224</integer>
 				<key>y</key>
 				<integer>802</integer>
 				<key>offsetX</key>
@@ -99,37 +99,18 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>big_btn_setting2.png</key>
+			<key>big_logo_rank.png</key>
 			<dict>
 				<key>width</key>
-				<integer>77</integer>
+				<integer>120</integer>
 				<key>height</key>
-				<integer>77</integer>
+				<integer>120</integer>
 				<key>originalWidth</key>
-				<integer>77</integer>
+				<integer>120</integer>
 				<key>originalHeight</key>
-				<integer>77</integer>
+				<integer>120</integer>
 				<key>x</key>
-				<integer>578</integer>
-				<key>y</key>
-				<integer>802</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>highest.png</key>
-			<dict>
-				<key>width</key>
-				<integer>233</integer>
-				<key>height</key>
-				<integer>109</integer>
-				<key>originalWidth</key>
-				<integer>233</integer>
-				<key>originalHeight</key>
-				<integer>109</integer>
-				<key>x</key>
-				<integer>657</integer>
+				<integer>326</integer>
 				<key>y</key>
 				<integer>802</integer>
 				<key>offsetX</key>

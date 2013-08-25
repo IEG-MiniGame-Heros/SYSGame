@@ -98,7 +98,7 @@
               "capInsetsY": 13.333333,
               "disabled": "",
               "normal": "skip.png",
-              "pressed": "",
+              "pressed": "big_skip.png",
               "scale9Enable": false,
               "scale9Height": 40,
               "scale9Width": 114

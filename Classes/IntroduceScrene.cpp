@@ -51,7 +51,7 @@ bool IntroduceScrene::init()
 		ivAnimation = dynamic_cast<UIImageView*>(ul->getWidgetByName("iv_intro"));
 
 		btnSkip = dynamic_cast<UIButton*>(ul->getWidgetByName("btn_skip"));
-		btnSkip->addPushDownEvent(this, coco_releaseselector(IntroduceScrene::tbContinueCallback));
+		btnSkip->addReleaseEvent(this, coco_releaseselector(IntroduceScrene::tbContinueCallback));
 
 		schedule(schedule_selector(IntroduceScrene::update), CHANEGE_ANIMATION_INTERVAL);
 
@@ -68,6 +68,12 @@ void IntroduceScrene::tbContinueCallback(cocos2d::CCObject *pSender)
 	CCDirector::sharedDirector()->replaceScene(SelectScrene::scene());
 }
 
+void IntroduceScrene::changeScrene(float dt)
+{
+	unschedule(schedule_selector(IntroduceScrene::changeScrene));
+	CCDirector::sharedDirector()->replaceScene(SelectScrene::scene());
+}
+
 void IntroduceScrene::update(float time)  
 {
 	fTotalTime += time;
@@ -79,6 +85,7 @@ void IntroduceScrene::update(float time)
 	if (iFramePos == (int)(vFrames.size() - 1))
 	{
 		unschedule(schedule_selector(SelectScrene::update));
+		schedule(schedule_selector(IntroduceScrene::changeScrene), 0.8f);
 	}
 	ivAnimation->setTexture(vFrames[iFramePos].c_str());
 	if (fTotalTime >= CHANGE_DIALOG_INTERVAL)

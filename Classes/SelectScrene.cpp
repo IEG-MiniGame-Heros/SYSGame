@@ -32,6 +32,7 @@ bool SelectScrene::init()
 		iv_name = dynamic_cast<UIImageView*>(ul->getWidgetByName("iv_heroname"));
 		// TODO::
 		//iv_heroPic
+		iv_heroPic = dynamic_cast<UIImageView*>(ul->getWidgetByName("iv_hero"));
 		iv_HP = dynamic_cast<UIImageView*>(ul->getWidgetByName("iv_hp"));
 		iv_moveSpeed = dynamic_cast<UIImageView*>(ul->getWidgetByName("iv_movespeed"));
 		iv_skillSpeed = dynamic_cast<UIImageView*>(ul->getWidgetByName("iv_skillspeed"));
@@ -89,6 +90,9 @@ void SelectScrene::updateHeroInfo(int pos)
 	sprintf(sNamePath, "ui/screne_select/%s/name.png", sHeroName);
 	// TODO :: hero pic
 
+	char sHeroPath[50];
+	sprintf(sHeroPath, "ui/screne_select/%s/hero.png", sHeroName);
+
 	char sAttackPath[50];
 	sprintf(sAttackPath, "ui/screne_select/%s/at.png", sHeroName);
 
@@ -111,6 +115,7 @@ void SelectScrene::updateHeroInfo(int pos)
 	sprintf(sRangePath, "ui/screne_select/%s/ra.png", sHeroName);
 	
 	iv_name->setTexture(sNamePath);
+	iv_heroPic->setTexture(sHeroPath);
 	iv_moveSpeed->setTexture(sMoveSpeedPath);
 	iv_skillSpeed->setTexture(sSkillSpeedPath);
 	iv_attack->setTexture(sAttackPath);
