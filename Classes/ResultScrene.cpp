@@ -57,6 +57,7 @@ bool ResultScrene::init()
 		laMonsterNum = dynamic_cast<UILabelAtlas*>(ul->getWidgetByName("la_monster"));
 		laCoinNum = dynamic_cast<UILabelAtlas*>(ul->getWidgetByName("la_coin"));
 		laScore->setVisible(false);
+		iv_newRecord->setVisible(false);
 
 		// 保存到数据库
 		save2DataBase();
@@ -88,7 +89,6 @@ void ResultScrene::save2DataBase()
 		if (nowTime > stUser.iTime)
 		{
 			stUser.iTime = nowTime;
-			isNewRecord = true;
 		}
 		if (nowScore > stUser.iScore)
 		{
@@ -98,12 +98,10 @@ void ResultScrene::save2DataBase()
 		if (nowKill > stUser.iKillNum)
 		{
 			stUser.iKillNum = nowKill;
-			isNewRecord = true;
 		}
 		if (nowCoin > stUser.iMoney)
 		{
 			stUser.iMoney = nowCoin;
-			isNewRecord = true;
 		}
 
 		string updateSQL = "update t_user set money = " + N2S(stUser.iMoney) + " , kill_num = " + 
@@ -160,7 +158,7 @@ void ResultScrene::update(float dt)
 		ul->addChild(score);
 		CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
 		float halfScreneWidth = visibleSize.width / 2;
-		score->setPosition(ccp(halfScreneWidth - t / 2 + 50, 520));
+		score->setPosition(ccp(halfScreneWidth - t / 2 + 50, 532));
 
 		unschedule(schedule_selector(ResultScrene::update));
 		if (isNewRecord)

@@ -103,7 +103,7 @@ public:
 				count = 0;
 			}
 		}
-		CCLog("string %s", ss.c_str());
+		//CCLog("string %s", ss.c_str());
 		return ss;
 	}
 

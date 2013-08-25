@@ -305,7 +305,8 @@ Effect* EntityManager::addAnAttackEffect(CCPoint pos, EEffectType type, EEntityT
 		break;
 
 	case EET_EnergyBall:
-		eft = ThrowableObj::create("spirit/skill/EnergyBall.png", type, enemy_type, damage);
+		//eft = ThrowableObj::create("spirit/skill/EnergyBall.png", type, enemy_type, damage);
+		eft = ThrowableObj::create("spirit/skill/Shit2.png", type, enemy_type, damage);
 		break;
 	}
 

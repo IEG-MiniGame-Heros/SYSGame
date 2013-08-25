@@ -4,6 +4,7 @@
 #include "LogoScrene.h"
 #include "HighestScrene.h"
 #include "ResultScrene.h"
+#include "FirstStage.h"
 #include "SimpleAudioEngine.h"
 
 using namespace CocosDenshion;
@@ -48,7 +49,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	// create a scene. it's an autorelease object
 	CCScene *pScene = LogoScrene::scene();
 	//CCScene *pScene = HighestScrene::scene();
-	//CCScene *pScene = ResultScrene::scene(4296, 1, 35, 20, 680);
+	//CCScene *pScene = ResultScrene::scene(429571, 1, 35, 20, 680);
 	//CCScene* pScene = FirstStage::scene();
 
     // run
