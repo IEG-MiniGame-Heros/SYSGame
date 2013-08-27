@@ -71,6 +71,7 @@ public:
 	// 其他
 	float				ValidDraggedLength;			// 有效的滑动距离，在此基础上才进行滑动判定
 	GameHelper*			Helper;						// 游戏辅助类
+	float				ValidRefreshMonsDist;		// 在与英雄队首有此距离外刷怪
 
 	// 音量
 	int					musicVolume;				// 背景音乐音量

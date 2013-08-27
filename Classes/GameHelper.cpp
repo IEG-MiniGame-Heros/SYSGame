@@ -116,7 +116,15 @@ void GameHelper::onUpdateMonster(float dt)
 
 	for (int i = 0; i < refreshNum; ++i)
 	{
-		EM.addAMonster(MonstRetPos[i]);
+		if (GI.Me && GI.Me->getQueueNum() > 0)
+		{
+			// ½ûÖ¹ÔÚ¾àÀëÓ¢ÐÛÌ«½üµÄ·¶Î§ÄÚË¢¹Ö
+			CCPoint heroPos = GI.Me->getHead()->getPosition();
+			if (heroPos.getDistance(MonstRetPos[i]) > GI.ValidRefreshMonsDist)
+			{
+				EM.addAMonster(MonstRetPos[i]);
+			}
+		}		
 	}
 
 	int curFreqID = getCurMonsFreq();

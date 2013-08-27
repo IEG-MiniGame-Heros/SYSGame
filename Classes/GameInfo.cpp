@@ -358,6 +358,7 @@ GameInfo::GameInfo()
 
 	// ∆‰À˚
 	ValidDraggedLength = 30.f;
+	ValidRefreshMonsDist = 140.f;
 
 	// “Ù¡ø
 	musicVolume = 100;

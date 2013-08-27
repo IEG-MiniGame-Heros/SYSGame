@@ -41,7 +41,7 @@ public:
 protected:
 
 	bool		m_bIsPickedUp;		// 是否被拾取了
-	float		m_fSpeedIncrement;	// 没增加一个英雄增加的速度
+	float		m_fSpeedIncrement;	// 每增加一个英雄增加的速度
 	int			m_iHeroID;			// 英雄ID
 
 };
