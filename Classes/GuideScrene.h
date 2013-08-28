@@ -8,8 +8,8 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
-#define READY_FRAMES 750
-#define ALL_FRAMES 1000
+#define READY_FRAMES 1100
+#define ALL_FRAMES 1460
 
 class GuideScrene : public cocos2d::CCLayer
 {

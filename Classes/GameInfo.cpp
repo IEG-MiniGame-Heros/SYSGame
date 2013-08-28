@@ -357,7 +357,7 @@ GameInfo::GameInfo()
 	GridSize = 40.f;
 
 	// ∆‰À˚
-	ValidDraggedLength = 30.f;
+	ValidDraggedLength = 10.f;
 	ValidRefreshMonsDist = 155.f;
 
 	// “Ù¡ø

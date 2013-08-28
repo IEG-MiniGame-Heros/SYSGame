@@ -47,10 +47,10 @@ bool GuideScrene::init()
 void GuideScrene::playReadyGo(float dt)
 {
 	int nowFrames = armLoad->getAnimation()->getCurrentFrameIndex();
-	if (nowFrames == READY_FRAMES)
+	/*if (nowFrames == READY_FRAMES)
 	{ 
 		SimpleAudioEngine::sharedEngine()->playEffect("/music/ready_go.mp3");
-	}
+	}*/
 	if (nowFrames >= ALL_FRAMES)
 	{
 		unschedule(schedule_selector(GuideScrene::playReadyGo));
